@@ -1,0 +1,58 @@
+{
+  "existing": {
+    "station_info": {
+      "STATION_INFO00": {
+        "country": "s64",
+        "elev": 101,
+        "iata_id": "IATA01",
+        "icao_id": "ICAO01",
+        "lat": 104,
+        "lon": 105,
+        "name": "s6a",
+        "priority": "s6b",
+        "site": "s6c",
+        "state": "s6d"
+      },
+      "STATION_INFO01": {
+        "country": "sc8",
+        "elev": 201,
+        "iata_id": "IATA01",
+        "icao_id": "ICAO01",
+        "lat": 204,
+        "lon": 205,
+        "name": "sce",
+        "priority": "scf",
+        "site": "sd0",
+        "state": "sd1"
+      },
+      "STATION_INFO02": {
+        "country": "s12c",
+        "elev": 301,
+        "iata_id": "IATA01",
+        "icao_id": "ICAO01",
+        "lat": 304,
+        "lon": 305,
+        "name": "s132",
+        "priority": "s133",
+        "site": "s134",
+        "state": "s135"
+      }
+    }
+  },
+  "new": {
+    "station_info": {
+      "station_info_ref01": {
+        "country": "s190",
+        "elev": 401,
+        "iata_id": "IATA01",
+        "icao_id": "ICAO01",
+        "lat": 404,
+        "lon": 405,
+        "name": "s196",
+        "priority": "s197",
+        "site": "s198",
+        "state": "s199"
+      }
+    }
+  }
+}

@@ -1,0 +1,178 @@
+# Entity: cache
+
+main: kit: entity: cache: {
+
+  alias: field: {}
+
+  name: "cache"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/data/cache/aircraftreports.cache.csv.gz"
+          parts: [
+            "data"
+            "cache"
+            "aircraftreports.cache.csv.gz"
+          ]
+          select: {
+            "$action": "aircraftreportscachecsvgz"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/data/cache/aircraftreports.cache.xml.gz"
+          parts: [
+            "data"
+            "cache"
+            "aircraftreports.cache.xml.gz"
+          ]
+          select: {
+            "$action": "aircraftreportscachexmlgz"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/data/cache/airsigmets.cache.csv.gz"
+          parts: [
+            "data"
+            "cache"
+            "airsigmets.cache.csv.gz"
+          ]
+          select: {
+            "$action": "airsigmetscachecsvgz"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/data/cache/airsigmets.cache.xml.gz"
+          parts: [
+            "data"
+            "cache"
+            "airsigmets.cache.xml.gz"
+          ]
+          select: {
+            "$action": "airsigmetscachexmlgz"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/data/cache/gairmets.cache.xml.gz"
+          parts: [
+            "data"
+            "cache"
+            "gairmets.cache.xml.gz"
+          ]
+          select: {
+            "$action": "gairmetscachexmlgz"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/data/cache/metars.cache.csv.gz"
+          parts: [
+            "data"
+            "cache"
+            "metars.cache.csv.gz"
+          ]
+          select: {
+            "$action": "metarscachecsvgz"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/data/cache/metars.cache.xml.gz"
+          parts: [
+            "data"
+            "cache"
+            "metars.cache.xml.gz"
+          ]
+          select: {
+            "$action": "metarscachexmlgz"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/data/cache/stations.cache.json.gz"
+          parts: [
+            "data"
+            "cache"
+            "stations.cache.json.gz"
+          ]
+          select: {
+            "$action": "stationscachejsongz"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/data/cache/stations.cache.xml.gz"
+          parts: [
+            "data"
+            "cache"
+            "stations.cache.xml.gz"
+          ]
+          select: {
+            "$action": "stationscachexmlgz"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/data/cache/tafs.cache.xml.gz"
+          parts: [
+            "data"
+            "cache"
+            "tafs.cache.xml.gz"
+          ]
+          select: {
+            "$action": "tafscachexmlgz"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

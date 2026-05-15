@@ -1,0 +1,22 @@
+# BasicStationInfoFlow
+
+main: kit: flow: BasicStationInfoFlow:
+{
+  entity: "station_info",
+  kind: "basic",
+  name: "BasicStationInfoFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "station_info_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicStationInfoFlow"
+}

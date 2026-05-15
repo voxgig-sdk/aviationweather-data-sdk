@@ -1,0 +1,58 @@
+{
+  "existing": {
+    "air_sigmet": {
+      "AIR_SIGMET00": {
+        "airsigmet_type": "s64",
+        "altitude_high": "s65",
+        "altitude_low": "s66",
+        "fir": "s67",
+        "hazard": "s68",
+        "issue_time": "s69",
+        "raw_air_sigmet": "s6a",
+        "severity": "s6b",
+        "valid_time_from": "s6c",
+        "valid_time_to": "s6d"
+      },
+      "AIR_SIGMET01": {
+        "airsigmet_type": "sc8",
+        "altitude_high": "sc9",
+        "altitude_low": "sca",
+        "fir": "scb",
+        "hazard": "scc",
+        "issue_time": "scd",
+        "raw_air_sigmet": "sce",
+        "severity": "scf",
+        "valid_time_from": "sd0",
+        "valid_time_to": "sd1"
+      },
+      "AIR_SIGMET02": {
+        "airsigmet_type": "s12c",
+        "altitude_high": "s12d",
+        "altitude_low": "s12e",
+        "fir": "s12f",
+        "hazard": "s130",
+        "issue_time": "s131",
+        "raw_air_sigmet": "s132",
+        "severity": "s133",
+        "valid_time_from": "s134",
+        "valid_time_to": "s135"
+      }
+    }
+  },
+  "new": {
+    "air_sigmet": {
+      "air_sigmet_ref01": {
+        "airsigmet_type": "s190",
+        "altitude_high": "s191",
+        "altitude_low": "s192",
+        "fir": "s193",
+        "hazard": "s194",
+        "issue_time": "s195",
+        "raw_air_sigmet": "s196",
+        "severity": "s197",
+        "valid_time_from": "s198",
+        "valid_time_to": "s199"
+      }
+    }
+  }
+}

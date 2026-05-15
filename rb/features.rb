@@ -1,0 +1,18 @@
+# AviationweatherData SDK feature factory
+
+require_relative 'feature/base_feature'
+require_relative 'feature/test_feature'
+
+
+module AviationweatherDataFeatures
+  def self.make_feature(name)
+    case name
+    when "base"
+      AviationweatherDataBaseFeature.new
+    when "test"
+      AviationweatherDataTestFeature.new
+    else
+      AviationweatherDataBaseFeature.new
+    end
+  end
+end

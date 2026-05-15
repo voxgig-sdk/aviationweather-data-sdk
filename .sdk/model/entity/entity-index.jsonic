@@ -1,0 +1,12 @@
+# Entity Models
+
+@"air_sigmet.jsonic"
+@"airport.jsonic"
+@"cache.jsonic"
+@"cwa.jsonic"
+@"g_airmet.jsonic"
+@"metar.jsonic"
+@"pirep.jsonic"
+@"station_info.jsonic"
+@"taf.jsonic"
+@"tcf.jsonic"

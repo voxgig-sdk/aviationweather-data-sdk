@@ -1,0 +1,258 @@
+# Entity: metar
+
+main: kit: entity: metar: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "altim"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "cloud"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "dewp"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "elev"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "flt_cat"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "icao_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "lat"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "lon"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "max_t"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "max_t24"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "metar_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "min_t"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "min_t24"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "most_recent"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "obs_time"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "pcp24hr"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "pcp3hr"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "pcp6hr"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "precip"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "pres_tend"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "prior"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "qc_field"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "raw_ob"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "raw_taf"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "report_time"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "slp"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "snow"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "temp"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "vert_vi"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "visib"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "wdir"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "wgst"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "wspd"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "wx_string"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "metar"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "bbox"
+                orig: "bbox"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "raw"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "ids"
+                orig: "ids"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "taf"
+                orig: "taf"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/data/metar"
+          parts: [
+            "api"
+            "data"
+            "metar"
+          ]
+          select: {
+            exist: [
+              "bbox"
+              "date"
+              "format"
+              "ids"
+              "taf"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

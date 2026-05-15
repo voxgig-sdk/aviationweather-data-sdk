@@ -1,0 +1,78 @@
+{
+  "existing": {
+    "pirep": {
+      "PIREP00": {
+        "aircraft_type": "s96",
+        "altitude_ft": "s97",
+        "cloud": [],
+        "icing": "s99",
+        "lat": 154,
+        "lon": 155,
+        "obs_time": "s9c",
+        "raw_ob": "s9d",
+        "report_type": "s9e",
+        "temp": 159,
+        "turbulence": "sa0",
+        "visibility": "sa1",
+        "wdir": "sa2",
+        "wspd": "sa3",
+        "wx_string": "sa4"
+      },
+      "PIREP01": {
+        "aircraft_type": "s12c",
+        "altitude_ft": "s12d",
+        "cloud": [],
+        "icing": "s12f",
+        "lat": 304,
+        "lon": 305,
+        "obs_time": "s132",
+        "raw_ob": "s133",
+        "report_type": "s134",
+        "temp": 309,
+        "turbulence": "s136",
+        "visibility": "s137",
+        "wdir": "s138",
+        "wspd": "s139",
+        "wx_string": "s13a"
+      },
+      "PIREP02": {
+        "aircraft_type": "s1c2",
+        "altitude_ft": "s1c3",
+        "cloud": [],
+        "icing": "s1c5",
+        "lat": 454,
+        "lon": 455,
+        "obs_time": "s1c8",
+        "raw_ob": "s1c9",
+        "report_type": "s1ca",
+        "temp": 459,
+        "turbulence": "s1cc",
+        "visibility": "s1cd",
+        "wdir": "s1ce",
+        "wspd": "s1cf",
+        "wx_string": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "pirep": {
+      "pirep_ref01": {
+        "aircraft_type": "s258",
+        "altitude_ft": "s259",
+        "cloud": [],
+        "icing": "s25b",
+        "lat": 604,
+        "lon": 605,
+        "obs_time": "s25e",
+        "raw_ob": "s25f",
+        "report_type": "s260",
+        "temp": 609,
+        "turbulence": "s262",
+        "visibility": "s263",
+        "wdir": "s264",
+        "wspd": "s265",
+        "wx_string": "s266"
+      }
+    }
+  }
+}

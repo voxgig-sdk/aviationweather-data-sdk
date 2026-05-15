@@ -1,0 +1,150 @@
+# Entity: pirep
+
+main: kit: entity: pirep: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "aircraft_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "altitude_ft"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "cloud"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "icing"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "lat"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "lon"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "obs_time"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "raw_ob"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "report_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "temp"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "turbulence"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "visibility"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "wdir"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "wspd"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "wx_string"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "pirep"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "age"
+                orig: "age"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "bbox"
+                orig: "bbox"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "raw"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/data/pirep"
+          parts: [
+            "api"
+            "data"
+            "pirep"
+          ]
+          select: {
+            exist: [
+              "age"
+              "bbox"
+              "date"
+              "format"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,54 @@
+{
+  "existing": {
+    "airport": {
+      "AIRPORT00": {
+        "city": "s5a",
+        "country": "s5b",
+        "elev": 92,
+        "iata_id": "IATA01",
+        "icao_id": "ICAO01",
+        "lat": 95,
+        "lon": 96,
+        "name": "s61",
+        "state": "s62"
+      },
+      "AIRPORT01": {
+        "city": "sb4",
+        "country": "sb5",
+        "elev": 182,
+        "iata_id": "IATA01",
+        "icao_id": "ICAO01",
+        "lat": 185,
+        "lon": 186,
+        "name": "sbb",
+        "state": "sbc"
+      },
+      "AIRPORT02": {
+        "city": "s10e",
+        "country": "s10f",
+        "elev": 272,
+        "iata_id": "IATA01",
+        "icao_id": "ICAO01",
+        "lat": 275,
+        "lon": 276,
+        "name": "s115",
+        "state": "s116"
+      }
+    }
+  },
+  "new": {
+    "airport": {
+      "airport_ref01": {
+        "city": "s168",
+        "country": "s169",
+        "elev": 362,
+        "iata_id": "IATA01",
+        "icao_id": "ICAO01",
+        "lat": 365,
+        "lon": 366,
+        "name": "s16f",
+        "state": "s170"
+      }
+    }
+  }
+}

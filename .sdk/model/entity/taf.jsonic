@@ -1,0 +1,130 @@
+# Entity: taf
+
+main: kit: entity: taf: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "bulletin_time"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "elev"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "fcst"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "icao_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "issue_time"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "lat"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "lon"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "raw_taf"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "valid_time_from"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "valid_time_to"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "taf"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "bbox"
+                orig: "bbox"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "raw"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "ids"
+                orig: "ids"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/data/taf"
+          parts: [
+            "api"
+            "data"
+            "taf"
+          ]
+          select: {
+            exist: [
+              "bbox"
+              "date"
+              "format"
+              "ids"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

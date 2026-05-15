@@ -1,0 +1,102 @@
+# Entity: cwa
+
+main: kit: entity: cwa: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "cwsu"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "issue_time"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "raw_text"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "sequence"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "series_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "valid_time_from"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "valid_time_to"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "cwa"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "bbox"
+                orig: "bbox"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "raw"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/data/cwa"
+          parts: [
+            "api"
+            "data"
+            "cwa"
+          ]
+          select: {
+            exist: [
+              "bbox"
+              "date"
+              "format"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

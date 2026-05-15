@@ -1,0 +1,25 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Aviation Weather Center"
+        url: "https://aviationweather.gov/data/api/"
+      }
+      description: "This API provides machine-to-machine access to aviation weather data, including METARs, TAFs, AIRMETs, and SIGMETs. It enables users to fetch up-to-date weather information for flight planning and operations. The service allows queries for the past 15 days of data and provides cache options for efficient data retrieval."
+      servers: [
+        {
+          description: "Aviation Weather Center Production Server"
+          url: "https://aviationweather.gov"
+        }
+      ]
+      termsOfService: "https://aviationweather.gov/data/api/"
+      title: "AviationWeather Data API"
+      version: "4.12"
+    }
+  }
+}
+
+}

@@ -1,0 +1,56 @@
+# Entity: tcf
+
+main: kit: entity: tcf: {
+
+  alias: field: {}
+
+  name: "tcf"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "raw"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/data/tcf"
+          parts: [
+            "api"
+            "data"
+            "tcf"
+          ]
+          select: {
+            exist: [
+              "date"
+              "format"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

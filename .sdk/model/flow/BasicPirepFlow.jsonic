@@ -1,0 +1,22 @@
+# BasicPirepFlow
+
+main: kit: flow: BasicPirepFlow:
+{
+  entity: "pirep",
+  kind: "basic",
+  name: "BasicPirepFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "pirep_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPirepFlow"
+}

@@ -1,0 +1,50 @@
+{
+  "existing": {
+    "g_airmet": {
+      "G_AIRMET00": {
+        "altitude_high": "s50",
+        "altitude_low": "s51",
+        "hazard": "s52",
+        "issue_time": "s53",
+        "qualifier": "s54",
+        "severity": "s55",
+        "valid_time_from": "s56",
+        "valid_time_to": "s57"
+      },
+      "G_AIRMET01": {
+        "altitude_high": "sa0",
+        "altitude_low": "sa1",
+        "hazard": "sa2",
+        "issue_time": "sa3",
+        "qualifier": "sa4",
+        "severity": "sa5",
+        "valid_time_from": "sa6",
+        "valid_time_to": "sa7"
+      },
+      "G_AIRMET02": {
+        "altitude_high": "sf0",
+        "altitude_low": "sf1",
+        "hazard": "sf2",
+        "issue_time": "sf3",
+        "qualifier": "sf4",
+        "severity": "sf5",
+        "valid_time_from": "sf6",
+        "valid_time_to": "sf7"
+      }
+    }
+  },
+  "new": {
+    "g_airmet": {
+      "g_airmet_ref01": {
+        "altitude_high": "s140",
+        "altitude_low": "s141",
+        "hazard": "s142",
+        "issue_time": "s143",
+        "qualifier": "s144",
+        "severity": "s145",
+        "valid_time_from": "s146",
+        "valid_time_to": "s147"
+      }
+    }
+  }
+}

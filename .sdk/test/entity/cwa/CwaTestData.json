@@ -1,0 +1,46 @@
+{
+  "existing": {
+    "cwa": {
+      "CWA00": {
+        "cwsu": "s46",
+        "issue_time": "s47",
+        "raw_text": "s48",
+        "sequence": "s49",
+        "series_id": "SERIES01",
+        "valid_time_from": "s4b",
+        "valid_time_to": "s4c"
+      },
+      "CWA01": {
+        "cwsu": "s8c",
+        "issue_time": "s8d",
+        "raw_text": "s8e",
+        "sequence": "s8f",
+        "series_id": "SERIES01",
+        "valid_time_from": "s91",
+        "valid_time_to": "s92"
+      },
+      "CWA02": {
+        "cwsu": "sd2",
+        "issue_time": "sd3",
+        "raw_text": "sd4",
+        "sequence": "sd5",
+        "series_id": "SERIES01",
+        "valid_time_from": "sd7",
+        "valid_time_to": "sd8"
+      }
+    }
+  },
+  "new": {
+    "cwa": {
+      "cwa_ref01": {
+        "cwsu": "s118",
+        "issue_time": "s119",
+        "raw_text": "s11a",
+        "sequence": "s11b",
+        "series_id": "SERIES01",
+        "valid_time_from": "s11d",
+        "valid_time_to": "s11e"
+      }
+    }
+  }
+}

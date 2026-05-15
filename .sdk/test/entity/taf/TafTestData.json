@@ -1,0 +1,62 @@
+{
+  "existing": {
+    "taf": {
+      "TAF00": {
+        "bulletin_time": "s6e",
+        "elev": 111,
+        "fcst": [],
+        "icao_id": "ICAO01",
+        "issue_time": "s72",
+        "lat": 115,
+        "lon": 116,
+        "name": "s75",
+        "raw_taf": "s76",
+        "valid_time_from": "s77",
+        "valid_time_to": "s78"
+      },
+      "TAF01": {
+        "bulletin_time": "sdc",
+        "elev": 221,
+        "fcst": [],
+        "icao_id": "ICAO01",
+        "issue_time": "se0",
+        "lat": 225,
+        "lon": 226,
+        "name": "se3",
+        "raw_taf": "se4",
+        "valid_time_from": "se5",
+        "valid_time_to": "se6"
+      },
+      "TAF02": {
+        "bulletin_time": "s14a",
+        "elev": 331,
+        "fcst": [],
+        "icao_id": "ICAO01",
+        "issue_time": "s14e",
+        "lat": 335,
+        "lon": 336,
+        "name": "s151",
+        "raw_taf": "s152",
+        "valid_time_from": "s153",
+        "valid_time_to": "s154"
+      }
+    }
+  },
+  "new": {
+    "taf": {
+      "taf_ref01": {
+        "bulletin_time": "s1b8",
+        "elev": 441,
+        "fcst": [],
+        "icao_id": "ICAO01",
+        "issue_time": "s1bc",
+        "lat": 445,
+        "lon": 446,
+        "name": "s1bf",
+        "raw_taf": "s1c0",
+        "valid_time_from": "s1c1",
+        "valid_time_to": "s1c2"
+      }
+    }
+  }
+}

@@ -1,0 +1,105 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 10
+  metrics: count: path: 19
+  metrics: count: method: 19
+
+  entity: air_sigmet: {
+    path: "/api/data/airsigmet": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: airport: {
+    path: "/api/data/airport": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: cache: {
+    path: "/data/cache/aircraftreports.cache.csv.gz": {
+      action: "aircraftreportscachecsvgz": {}
+      op: load: method: *GET
+    }
+    path: "/data/cache/aircraftreports.cache.xml.gz": {
+      action: "aircraftreportscachexmlgz": {}
+      op: load: method: *GET
+    }
+    path: "/data/cache/airsigmets.cache.csv.gz": {
+      action: "airsigmetscachecsvgz": {}
+      op: load: method: *GET
+    }
+    path: "/data/cache/airsigmets.cache.xml.gz": {
+      action: "airsigmetscachexmlgz": {}
+      op: load: method: *GET
+    }
+    path: "/data/cache/gairmets.cache.xml.gz": {
+      action: "gairmetscachexmlgz": {}
+      op: load: method: *GET
+    }
+    path: "/data/cache/metars.cache.csv.gz": {
+      action: "metarscachecsvgz": {}
+      op: load: method: *GET
+    }
+    path: "/data/cache/metars.cache.xml.gz": {
+      action: "metarscachexmlgz": {}
+      op: load: method: *GET
+    }
+    path: "/data/cache/stations.cache.json.gz": {
+      action: "stationscachejsongz": {}
+      op: load: method: *GET
+    }
+    path: "/data/cache/stations.cache.xml.gz": {
+      action: "stationscachexmlgz": {}
+      op: load: method: *GET
+    }
+    path: "/data/cache/tafs.cache.xml.gz": {
+      action: "tafscachexmlgz": {}
+      op: load: method: *GET
+    }
+  }
+
+  entity: cwa: {
+    path: "/api/data/cwa": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: g_airmet: {
+    path: "/api/data/gairmet": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: metar: {
+    path: "/api/data/metar": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: pirep: {
+    path: "/api/data/pirep": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: station_info: {
+    path: "/api/data/stationinfo": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: taf: {
+    path: "/api/data/taf": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: tcf: {
+    path: "/api/data/tcf": {
+      op: load: method: *GET
+    }
+  }
+
+}

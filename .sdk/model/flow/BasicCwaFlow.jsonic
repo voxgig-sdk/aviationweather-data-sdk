@@ -1,0 +1,22 @@
+# BasicCwaFlow
+
+main: kit: flow: BasicCwaFlow:
+{
+  entity: "cwa",
+  kind: "basic",
+  name: "BasicCwaFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "cwa_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCwaFlow"
+}

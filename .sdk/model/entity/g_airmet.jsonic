@@ -1,0 +1,115 @@
+# Entity: g_airmet
+
+main: kit: entity: g_airmet: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "altitude_high"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "altitude_low"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "hazard"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "issue_time"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "qualifier"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "severity"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "valid_time_from"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "valid_time_to"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "g_airmet"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "bbox"
+                orig: "bbox"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "hazard"
+                orig: "hazard"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/data/gairmet"
+          parts: [
+            "api"
+            "data"
+            "gairmet"
+          ]
+          select: {
+            exist: [
+              "bbox"
+              "date"
+              "format"
+              "hazard"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

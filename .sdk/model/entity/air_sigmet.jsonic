@@ -1,0 +1,125 @@
+# Entity: air_sigmet
+
+main: kit: entity: air_sigmet: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "airsigmet_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "altitude_high"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "altitude_low"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "fir"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "hazard"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "issue_time"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "raw_air_sigmet"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "severity"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "valid_time_from"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "valid_time_to"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "air_sigmet"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "bbox"
+                orig: "bbox"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "raw"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "hazard"
+                orig: "hazard"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/data/airsigmet"
+          parts: [
+            "api"
+            "data"
+            "airsigmet"
+          ]
+          select: {
+            exist: [
+              "bbox"
+              "date"
+              "format"
+              "hazard"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,28 @@
+# BasicCacheFlow
+
+main: kit: flow: BasicCacheFlow:
+{
+  entity: "cache",
+  kind: "basic",
+  name: "BasicCacheFlow",
+  step: [
+    {
+      input: {
+        ref: "cache_ref01",
+        srcdatavar: "cache_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-cache_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCacheFlow"
+}

@@ -1,0 +1,1807 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "AviationWeather Data API",
+    "description": "This API provides machine-to-machine access to aviation weather data, including METARs, TAFs, AIRMETs, and SIGMETs. It enables users to fetch up-to-date weather information for flight planning and operations. The service allows queries for the past 15 days of data and provides cache options for efficient data retrieval.",
+    "version": "4.12",
+    "contact": {
+      "name": "Aviation Weather Center",
+      "url": "https://aviationweather.gov/data/api/"
+    },
+    "termsOfService": "https://aviationweather.gov/data/api/"
+  },
+  "servers": [
+    {
+      "url": "https://aviationweather.gov",
+      "description": "Aviation Weather Center Production Server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "METAR",
+      "description": "Terminal weather observations"
+    },
+    {
+      "name": "TAF",
+      "description": "Terminal aerodrome forecasts"
+    },
+    {
+      "name": "PIREP",
+      "description": "Pilot and aircraft reports"
+    },
+    {
+      "name": "SIGMET",
+      "description": "Aviation warnings"
+    },
+    {
+      "name": "G-AIRMET",
+      "description": "Aviation advisories for contiguous US"
+    },
+    {
+      "name": "AIRMET",
+      "description": "Aviation advisories for Alaska"
+    },
+    {
+      "name": "CWA",
+      "description": "Center Weather Advisories"
+    },
+    {
+      "name": "TCF",
+      "description": "TFM Convective Forecast"
+    },
+    {
+      "name": "Station Info",
+      "description": "Weather station information"
+    },
+    {
+      "name": "Airport Info",
+      "description": "Airport information"
+    },
+    {
+      "name": "Cache",
+      "description": "Pre-generated cache files"
+    }
+  ],
+  "paths": {
+    "/api/data/metar": {
+      "get": {
+        "tags": [
+          "METAR"
+        ],
+        "summary": "Get METAR observations",
+        "description": "Retrieve terminal weather observations (METARs) for specified stations. Supports queries for the past 15 days.",
+        "operationId": "getMetars",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "Comma-separated list of ICAO station identifiers (e.g., KMCI,KSFO)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Output format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "raw",
+                "json",
+                "geojson",
+                "csv",
+                "xml",
+                "iwxxm"
+              ],
+              "default": "raw"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Date for historical data (ISO8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "description": "Bounding box coordinates (minLon,minLat,maxLon,maxLat)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taf",
+            "in": "query",
+            "description": "Include only stations with TAF",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Metar"
+                  }
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeoJSONFeatureCollection"
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content - valid request but no data available"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/data/taf": {
+      "get": {
+        "tags": [
+          "TAF"
+        ],
+        "summary": "Get TAF forecasts",
+        "description": "Retrieve terminal aerodrome forecasts (TAFs) for specified stations. Supports queries for the past 15 days.",
+        "operationId": "getTafs",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "Comma-separated list of ICAO station identifiers",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Output format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "raw",
+                "json",
+                "geojson",
+                "xml",
+                "iwxxm"
+              ],
+              "default": "raw"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Date for historical data (ISO8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "description": "Bounding box coordinates (minLon,minLat,maxLon,maxLat)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Taf"
+                  }
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeoJSONFeatureCollection"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content - valid request but no data available"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/data/pirep": {
+      "get": {
+        "tags": [
+          "PIREP"
+        ],
+        "summary": "Get PIREPs/AIREPs",
+        "description": "Retrieve pilot and aircraft reports. Primarily covers US and North Atlantic regions.",
+        "operationId": "getPireps",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Date for historical data (ISO8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "description": "Bounding box coordinates (minLon,minLat,maxLon,maxLat)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Output format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "raw",
+                "json",
+                "geojson",
+                "xml"
+              ],
+              "default": "raw"
+            }
+          },
+          {
+            "name": "age",
+            "in": "query",
+            "description": "Age of reports in hours",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Pirep"
+                  }
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeoJSONFeatureCollection"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content - valid request but no data available"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/data/airsigmet": {
+      "get": {
+        "tags": [
+          "SIGMET"
+        ],
+        "summary": "Get SIGMETs",
+        "description": "Retrieve aviation warnings (SIGMETs) worldwide.",
+        "operationId": "getAirSigmets",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Date for historical data (ISO8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "description": "Bounding box coordinates (minLon,minLat,maxLon,maxLat)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Output format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "raw",
+                "json",
+                "geojson",
+                "xml"
+              ],
+              "default": "raw"
+            }
+          },
+          {
+            "name": "hazard",
+            "in": "query",
+            "description": "Filter by hazard type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AirSigmet"
+                  }
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeoJSONFeatureCollection"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content - valid request but no data available"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/data/gairmet": {
+      "get": {
+        "tags": [
+          "G-AIRMET"
+        ],
+        "summary": "Get G-AIRMETs",
+        "description": "Retrieve aviation advisories (G-AIRMETs) for contiguous 48 United States. G-AIRMETs replaced CONUS text AIRMETs in January 2025.",
+        "operationId": "getGAirmets",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Date for historical data (ISO8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "description": "Bounding box coordinates (minLon,minLat,maxLon,maxLat)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Output format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "geojson",
+                "xml"
+              ],
+              "default": "json"
+            }
+          },
+          {
+            "name": "hazard",
+            "in": "query",
+            "description": "Filter by hazard type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GAirmet"
+                  }
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeoJSONFeatureCollection"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content - valid request but no data available"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/data/cwa": {
+      "get": {
+        "tags": [
+          "CWA"
+        ],
+        "summary": "Get Center Weather Advisories",
+        "description": "Retrieve Center Weather Advisories (CWAs) for the United States.",
+        "operationId": "getCwas",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Date for historical data (ISO8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "description": "Bounding box coordinates (minLon,minLat,maxLon,maxLat)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Output format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "raw",
+                "json",
+                "geojson"
+              ],
+              "default": "raw"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Cwa"
+                  }
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeoJSONFeatureCollection"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content - valid request but no data available"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/data/tcf": {
+      "get": {
+        "tags": [
+          "TCF"
+        ],
+        "summary": "Get TFM Convective Forecast",
+        "description": "Retrieve TFM Convective Forecast for United States and portions of Canada.",
+        "operationId": "getTcf",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Date for historical data (ISO8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Output format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "raw",
+                "geojson"
+              ],
+              "default": "raw"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeoJSONFeatureCollection"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content - valid request but no data available"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/data/stationinfo": {
+      "get": {
+        "tags": [
+          "Station Info"
+        ],
+        "summary": "Get station information",
+        "description": "Retrieve weather observation station information worldwide.",
+        "operationId": "getStationInfo",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "Comma-separated list of ICAO station identifiers",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "description": "Bounding box coordinates (minLon,minLat,maxLon,maxLat)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Output format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "geojson",
+                "xml"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StationInfo"
+                  }
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeoJSONFeatureCollection"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content - valid request but no data available"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/data/airport": {
+      "get": {
+        "tags": [
+          "Airport Info"
+        ],
+        "summary": "Get airport information",
+        "description": "Retrieve airport information worldwide.",
+        "operationId": "getAirportInfo",
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "description": "Comma-separated list of ICAO airport identifiers",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bbox",
+            "in": "query",
+            "description": "Bounding box coordinates (minLon,minLat,maxLon,maxLat)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Output format",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "geojson",
+                "xml"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AirportInfo"
+                  }
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeoJSONFeatureCollection"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No content - valid request but no data available"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/data/cache/metars.cache.xml.gz": {
+      "get": {
+        "tags": [
+          "Cache"
+        ],
+        "summary": "Get all current METARs (XML)",
+        "description": "Download compressed XML file containing all current METAR observations. Updated once per minute.",
+        "operationId": "getMetarsCacheXml",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/cache/metars.cache.csv.gz": {
+      "get": {
+        "tags": [
+          "Cache"
+        ],
+        "summary": "Get all current METARs (CSV)",
+        "description": "Download compressed CSV file containing all current METAR observations. Updated once per minute.",
+        "operationId": "getMetarsCacheCsv",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/cache/tafs.cache.xml.gz": {
+      "get": {
+        "tags": [
+          "Cache"
+        ],
+        "summary": "Get all current TAFs (XML)",
+        "description": "Download compressed XML file containing all current TAF forecasts. Updated every 10 minutes.",
+        "operationId": "getTafsCacheXml",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/cache/airsigmets.cache.xml.gz": {
+      "get": {
+        "tags": [
+          "Cache"
+        ],
+        "summary": "Get all current CONUS SIGMETs (XML)",
+        "description": "Download compressed XML file containing all current CONUS SIGMET warnings. Updated once per minute.",
+        "operationId": "getAirSigmetsCacheXml",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/cache/airsigmets.cache.csv.gz": {
+      "get": {
+        "tags": [
+          "Cache"
+        ],
+        "summary": "Get all current CONUS SIGMETs (CSV)",
+        "description": "Download compressed CSV file containing all current CONUS SIGMET warnings. Updated once per minute.",
+        "operationId": "getAirSigmetsCacheCsv",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/cache/gairmets.cache.xml.gz": {
+      "get": {
+        "tags": [
+          "Cache"
+        ],
+        "summary": "Get all current CONUS G-AIRMETs (XML)",
+        "description": "Download compressed XML file containing all current CONUS G-AIRMET advisories. Updated once per minute.",
+        "operationId": "getGAirmetsCacheXml",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/cache/aircraftreports.cache.xml.gz": {
+      "get": {
+        "tags": [
+          "Cache"
+        ],
+        "summary": "Get all current AIREPs/PIREPs (XML)",
+        "description": "Download compressed XML file containing all current aircraft and pilot reports. Updated once per minute.",
+        "operationId": "getAircraftReportsCacheXml",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/cache/aircraftreports.cache.csv.gz": {
+      "get": {
+        "tags": [
+          "Cache"
+        ],
+        "summary": "Get all current AIREPs/PIREPs (CSV)",
+        "description": "Download compressed CSV file containing all current aircraft and pilot reports. Updated once per minute.",
+        "operationId": "getAircraftReportsCacheCsv",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/cache/stations.cache.xml.gz": {
+      "get": {
+        "tags": [
+          "Cache"
+        ],
+        "summary": "Get stations listing (XML)",
+        "description": "Download compressed XML file containing complete stations listing. Updated once per day.",
+        "operationId": "getStationsCacheXml",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/cache/stations.cache.json.gz": {
+      "get": {
+        "tags": [
+          "Cache"
+        ],
+        "summary": "Get stations listing (JSON)",
+        "description": "Download compressed JSON file containing complete stations listing. Updated once per day.",
+        "operationId": "getStationsCacheJson",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Metar": {
+        "type": "object",
+        "properties": {
+          "rawOb": {
+            "type": "string",
+            "description": "Raw METAR observation text"
+          },
+          "icaoId": {
+            "type": "string",
+            "description": "ICAO station identifier"
+          },
+          "obsTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Observation time in ISO8601 format"
+          },
+          "reportTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Report time in ISO8601 format"
+          },
+          "temp": {
+            "type": "number",
+            "description": "Temperature in Celsius"
+          },
+          "dewp": {
+            "type": "number",
+            "description": "Dewpoint in Celsius"
+          },
+          "wdir": {
+            "type": "integer",
+            "description": "Wind direction in degrees"
+          },
+          "wspd": {
+            "type": "integer",
+            "description": "Wind speed in knots"
+          },
+          "wgst": {
+            "type": "integer",
+            "description": "Wind gust in knots"
+          },
+          "visib": {
+            "type": "string",
+            "description": "Visibility"
+          },
+          "altim": {
+            "type": "number",
+            "description": "Altimeter setting in inches of mercury"
+          },
+          "slp": {
+            "type": "number",
+            "description": "Sea level pressure"
+          },
+          "qcField": {
+            "type": "integer",
+            "description": "Quality control field"
+          },
+          "wxString": {
+            "type": "string",
+            "description": "Weather phenomena string"
+          },
+          "presTend": {
+            "type": "number",
+            "description": "Pressure tendency"
+          },
+          "maxT": {
+            "type": "number",
+            "description": "Maximum temperature"
+          },
+          "minT": {
+            "type": "number",
+            "description": "Minimum temperature"
+          },
+          "maxT24": {
+            "type": "number",
+            "description": "24-hour maximum temperature"
+          },
+          "minT24": {
+            "type": "number",
+            "description": "24-hour minimum temperature"
+          },
+          "precip": {
+            "type": "number",
+            "description": "Precipitation"
+          },
+          "pcp3hr": {
+            "type": "number",
+            "description": "3-hour precipitation"
+          },
+          "pcp6hr": {
+            "type": "number",
+            "description": "6-hour precipitation"
+          },
+          "pcp24hr": {
+            "type": "number",
+            "description": "24-hour precipitation"
+          },
+          "snow": {
+            "type": "number",
+            "description": "Snow depth"
+          },
+          "vertVis": {
+            "type": "integer",
+            "description": "Vertical visibility"
+          },
+          "metarType": {
+            "type": "string",
+            "description": "METAR type (METAR or SPECI)"
+          },
+          "rawTaf": {
+            "type": "string",
+            "description": "Raw TAF if available"
+          },
+          "mostRecent": {
+            "type": "integer",
+            "description": "Most recent observation flag"
+          },
+          "lat": {
+            "type": "number",
+            "description": "Latitude"
+          },
+          "lon": {
+            "type": "number",
+            "description": "Longitude"
+          },
+          "elev": {
+            "type": "number",
+            "description": "Elevation in meters"
+          },
+          "prior": {
+            "type": "integer",
+            "description": "Prior observation indicator"
+          },
+          "name": {
+            "type": "string",
+            "description": "Station name"
+          },
+          "clouds": {
+            "type": "array",
+            "description": "Cloud layers",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cover": {
+                  "type": "string",
+                  "description": "Cloud coverage (SKC, FEW, SCT, BKN, OVC)"
+                },
+                "base": {
+                  "type": "integer",
+                  "description": "Cloud base in feet AGL"
+                }
+              }
+            }
+          },
+          "fltCat": {
+            "type": "string",
+            "description": "Flight category (VFR, MVFR, IFR, LIFR)",
+            "enum": [
+              "VFR",
+              "MVFR",
+              "IFR",
+              "LIFR"
+            ]
+          }
+        }
+      },
+      "Taf": {
+        "type": "object",
+        "properties": {
+          "rawTAF": {
+            "type": "string",
+            "description": "Raw TAF forecast text"
+          },
+          "icaoId": {
+            "type": "string",
+            "description": "ICAO station identifier"
+          },
+          "issueTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "TAF issue time in ISO8601 format"
+          },
+          "bulletinTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Bulletin time in ISO8601 format"
+          },
+          "validTimeFrom": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Valid time from in ISO8601 format"
+          },
+          "validTimeTo": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Valid time to in ISO8601 format"
+          },
+          "lat": {
+            "type": "number",
+            "description": "Latitude"
+          },
+          "lon": {
+            "type": "number",
+            "description": "Longitude"
+          },
+          "elev": {
+            "type": "number",
+            "description": "Elevation in meters"
+          },
+          "name": {
+            "type": "string",
+            "description": "Station name"
+          },
+          "fcsts": {
+            "type": "array",
+            "description": "Forecast periods",
+            "items": {
+              "type": "object",
+              "properties": {
+                "timeFrom": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "timeTo": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "wdir": {
+                  "type": "integer",
+                  "description": "Wind direction in degrees"
+                },
+                "wspd": {
+                  "type": "integer",
+                  "description": "Wind speed in knots"
+                },
+                "wgst": {
+                  "type": "integer",
+                  "description": "Wind gust in knots"
+                },
+                "visib": {
+                  "type": "string",
+                  "description": "Visibility"
+                },
+                "altim": {
+                  "type": "number",
+                  "description": "Altimeter setting"
+                },
+                "wxString": {
+                  "type": "string",
+                  "description": "Weather phenomena string"
+                },
+                "changeIndicator": {
+                  "type": "string",
+                  "description": "Change indicator (FM, TEMPO, PROB)"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Pirep": {
+        "type": "object",
+        "properties": {
+          "rawOb": {
+            "type": "string",
+            "description": "Raw PIREP text"
+          },
+          "obsTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Observation time in ISO8601 format"
+          },
+          "reportType": {
+            "type": "string",
+            "description": "Report type (PIREP or AIREP)"
+          },
+          "lat": {
+            "type": "number",
+            "description": "Latitude"
+          },
+          "lon": {
+            "type": "number",
+            "description": "Longitude"
+          },
+          "altitudeFt": {
+            "type": "integer",
+            "description": "Altitude in feet MSL"
+          },
+          "aircraftType": {
+            "type": "string",
+            "description": "Aircraft type"
+          },
+          "temp": {
+            "type": "number",
+            "description": "Temperature in Celsius"
+          },
+          "wdir": {
+            "type": "integer",
+            "description": "Wind direction in degrees"
+          },
+          "wspd": {
+            "type": "integer",
+            "description": "Wind speed in knots"
+          },
+          "turbulence": {
+            "type": "string",
+            "description": "Turbulence report"
+          },
+          "icing": {
+            "type": "string",
+            "description": "Icing report"
+          },
+          "visibility": {
+            "type": "string",
+            "description": "Visibility"
+          },
+          "wxString": {
+            "type": "string",
+            "description": "Weather phenomena string"
+          },
+          "clouds": {
+            "type": "array",
+            "description": "Cloud reports",
+            "items": {
+              "type": "object",
+              "properties": {
+                "cover": {
+                  "type": "string"
+                },
+                "base": {
+                  "type": "integer"
+                },
+                "top": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "AirSigmet": {
+        "type": "object",
+        "properties": {
+          "rawAirSigmet": {
+            "type": "string",
+            "description": "Raw SIGMET text"
+          },
+          "hazard": {
+            "type": "string",
+            "description": "Hazard type"
+          },
+          "severity": {
+            "type": "string",
+            "description": "Severity level"
+          },
+          "airsigmetType": {
+            "type": "string",
+            "description": "SIGMET type"
+          },
+          "validTimeFrom": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Valid time from in ISO8601 format"
+          },
+          "validTimeTo": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Valid time to in ISO8601 format"
+          },
+          "issueTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Issue time in ISO8601 format"
+          },
+          "fir": {
+            "type": "string",
+            "description": "Flight Information Region"
+          },
+          "altitudeLow": {
+            "type": "integer",
+            "description": "Lower altitude in feet MSL"
+          },
+          "altitudeHigh": {
+            "type": "integer",
+            "description": "Upper altitude in feet MSL"
+          }
+        }
+      },
+      "GAirmet": {
+        "type": "object",
+        "properties": {
+          "hazard": {
+            "type": "string",
+            "description": "Hazard type"
+          },
+          "severity": {
+            "type": "string",
+            "description": "Severity level"
+          },
+          "validTimeFrom": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Valid time from in ISO8601 format"
+          },
+          "validTimeTo": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Valid time to in ISO8601 format"
+          },
+          "issueTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Issue time in ISO8601 format"
+          },
+          "altitudeLow": {
+            "type": "integer",
+            "description": "Lower altitude in feet MSL"
+          },
+          "altitudeHigh": {
+            "type": "integer",
+            "description": "Upper altitude in feet MSL"
+          },
+          "qualifier": {
+            "type": "string",
+            "description": "Forecast qualifier"
+          }
+        }
+      },
+      "Cwa": {
+        "type": "object",
+        "properties": {
+          "rawText": {
+            "type": "string",
+            "description": "Raw CWA text"
+          },
+          "cwsu": {
+            "type": "string",
+            "description": "Center Weather Service Unit"
+          },
+          "issueTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Issue time in ISO8601 format"
+          },
+          "validTimeFrom": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Valid time from in ISO8601 format"
+          },
+          "validTimeTo": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Valid time to in ISO8601 format"
+          },
+          "seriesId": {
+            "type": "string",
+            "description": "Series identifier"
+          },
+          "sequence": {
+            "type": "integer",
+            "description": "Sequence number"
+          }
+        }
+      },
+      "StationInfo": {
+        "type": "object",
+        "properties": {
+          "icaoId": {
+            "type": "string",
+            "description": "ICAO station identifier"
+          },
+          "iataId": {
+            "type": "string",
+            "description": "IATA identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Station name"
+          },
+          "lat": {
+            "type": "number",
+            "description": "Latitude"
+          },
+          "lon": {
+            "type": "number",
+            "description": "Longitude"
+          },
+          "elev": {
+            "type": "number",
+            "description": "Elevation in meters"
+          },
+          "site": {
+            "type": "string",
+            "description": "Site type"
+          },
+          "state": {
+            "type": "string",
+            "description": "State or province"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country code"
+          },
+          "priority": {
+            "type": "integer",
+            "description": "Priority level"
+          }
+        }
+      },
+      "AirportInfo": {
+        "type": "object",
+        "properties": {
+          "icaoId": {
+            "type": "string",
+            "description": "ICAO airport identifier"
+          },
+          "iataId": {
+            "type": "string",
+            "description": "IATA identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Airport name"
+          },
+          "lat": {
+            "type": "number",
+            "description": "Latitude"
+          },
+          "lon": {
+            "type": "number",
+            "description": "Longitude"
+          },
+          "elev": {
+            "type": "number",
+            "description": "Elevation in meters"
+          },
+          "city": {
+            "type": "string",
+            "description": "City"
+          },
+          "state": {
+            "type": "string",
+            "description": "State or province"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country code"
+          }
+        }
+      },
+      "GeoJSONFeatureCollection": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "FeatureCollection"
+            ]
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GeoJSONFeature"
+            }
+          }
+        }
+      },
+      "GeoJSONFeature": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Feature"
+            ]
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/GeoJSONGeometry"
+          },
+          "properties": {
+            "type": "object",
+            "description": "Feature properties specific to each product type"
+          }
+        }
+      },
+      "GeoJSONGeometry": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "Point",
+              "LineString",
+              "Polygon",
+              "MultiPoint",
+              "MultiLineString",
+              "MultiPolygon"
+            ]
+          },
+          "coordinates": {
+            "type": "array",
+            "description": "Coordinate array structure depends on geometry type"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "message": {
+            "type": "string",
+            "description": "Detailed error description"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Invalid request - invalid or missing parameters",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "TooManyRequests": {
+        "description": "Rate limit exceeded - maximum 100 requests per minute",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal server error - request may be valid but system unable to serve it",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          },
+          "text/plain": {
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-ratelimit": {
+    "limit": 100,
+    "period": "1 minute",
+    "description": "Maximum 100 requests per minute. All API endpoints should not be consumed more frequently than 1 request/min per thread."
+  },
+  "x-max-results": {
+    "limit": 400,
+    "description": "Most endpoints return a maximum of 400 entries. Consider using cache files for larger requests."
+  }
+}
