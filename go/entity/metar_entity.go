@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/aviationweather-data-sdk/core"
+	"github.com/voxgig-sdk/aviationweather-data-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/aviationweather-data-sdk/go/utility/struct"
 )
 
 type MetarEntity struct {

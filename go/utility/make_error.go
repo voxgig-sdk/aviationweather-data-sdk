@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/aviationweather-data-sdk/core"
+import "github.com/voxgig-sdk/aviationweather-data-sdk/go/core"
 
 func makeErrorUtil(ctx *core.Context, err error) (any, error) {
 	if ctx == nil {

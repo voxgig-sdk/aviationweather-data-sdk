@@ -1,9 +1,15 @@
 {
   "existing": {
     "cache": {
-      "CACHE00": {},
-      "CACHE01": {},
-      "CACHE02": {}
+      "CACHE00": {
+        "id": "CACHE00"
+      },
+      "CACHE01": {
+        "id": "CACHE01"
+      },
+      "CACHE02": {
+        "id": "CACHE02"
+      }
     }
   },
   "new": {

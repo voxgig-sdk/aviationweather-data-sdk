@@ -1,9 +1,15 @@
 {
   "existing": {
     "tcf": {
-      "TCF00": {},
-      "TCF01": {},
-      "TCF02": {}
+      "TCF00": {
+        "id": "TCF00"
+      },
+      "TCF01": {
+        "id": "TCF01"
+      },
+      "TCF02": {
+        "id": "TCF02"
+      }
     }
   },
   "new": {

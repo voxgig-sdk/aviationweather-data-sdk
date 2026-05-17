@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/aviationweather-data-sdk"
-	"github.com/voxgig-sdk/aviationweather-data-sdk/core"
+	sdk "github.com/voxgig-sdk/aviationweather-data-sdk/go"
+	"github.com/voxgig-sdk/aviationweather-data-sdk/go/core"
 )
 
 func TestTcfDirect(t *testing.T) {

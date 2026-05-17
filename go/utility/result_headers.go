@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/aviationweather-data-sdk/core"
+import "github.com/voxgig-sdk/aviationweather-data-sdk/go/core"
 
 func resultHeadersUtil(ctx *core.Context) *core.Result {
 	response := ctx.Response

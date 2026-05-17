@@ -1,10 +1,10 @@
 package voxgigaviationweatherdatasdk
 
 import (
-	"github.com/voxgig-sdk/aviationweather-data-sdk/core"
-	"github.com/voxgig-sdk/aviationweather-data-sdk/entity"
-	"github.com/voxgig-sdk/aviationweather-data-sdk/feature"
-	_ "github.com/voxgig-sdk/aviationweather-data-sdk/utility"
+	"github.com/voxgig-sdk/aviationweather-data-sdk/go/core"
+	"github.com/voxgig-sdk/aviationweather-data-sdk/go/entity"
+	"github.com/voxgig-sdk/aviationweather-data-sdk/go/feature"
+	_ "github.com/voxgig-sdk/aviationweather-data-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/aviationweather-data-sdk"
-	"github.com/voxgig-sdk/aviationweather-data-sdk/core"
+	sdk "github.com/voxgig-sdk/aviationweather-data-sdk/go"
+	"github.com/voxgig-sdk/aviationweather-data-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/aviationweather-data-sdk/go/utility/struct"
 )
 
 func TestCwaEntity(t *testing.T) {

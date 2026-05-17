@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/aviationweather-data-sdk/core"
+	"github.com/voxgig-sdk/aviationweather-data-sdk/go/core"
 )
 
 type BaseFeature struct {

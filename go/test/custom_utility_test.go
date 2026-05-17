@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/aviationweather-data-sdk"
+	sdk "github.com/voxgig-sdk/aviationweather-data-sdk/go"
 )
 
 func TestCustomUtility(t *testing.T) {
