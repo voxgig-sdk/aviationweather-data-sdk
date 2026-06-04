@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://aviationweather.gov",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },

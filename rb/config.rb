@@ -15,9 +15,6 @@ module AviationweatherDataConfig
       },
       "options" => {
         "base" => "https://aviationweather.gov",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

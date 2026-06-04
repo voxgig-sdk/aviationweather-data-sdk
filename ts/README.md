@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { AviationweatherDataSDK } from 'aviationweather-data'
 
-const client = new AviationweatherDataSDK({
-  apikey: process.env.AVIATIONWEATHER-DATA_APIKEY,
-})
+const client = new AviationweatherDataSDK({})
 ```
 
 ### 2. List airsigmets
@@ -84,7 +82,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new AviationweatherDataSDK({ apikey: '...' })
+const client = new AviationweatherDataSDK()
 const testClient = client.tester()
 ```
 
@@ -120,7 +118,6 @@ const logger = {
 }
 
 const client = new AviationweatherDataSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -131,7 +128,6 @@ Create a `.env.local` file at the project root:
 
 ```
 AVIATIONWEATHER-DATA_TEST_LIVE=TRUE
-AVIATIONWEATHER-DATA_APIKEY=<your-key>
 ```
 
 Then run:
@@ -149,7 +145,6 @@ cd ts && npm test
 
 ```ts
 new AviationweatherDataSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -160,7 +155,6 @@ new AviationweatherDataSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

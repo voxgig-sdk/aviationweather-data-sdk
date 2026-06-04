@@ -99,14 +99,12 @@ func tcfDirectSetup(mockres any) *tcfDirectSetupResult {
 	env := envOverride(map[string]any{
 		"AVIATIONWEATHERDATA_TEST_TCF_ENTID": map[string]any{},
 		"AVIATIONWEATHERDATA_TEST_LIVE":    "FALSE",
-		"AVIATIONWEATHERDATA_APIKEY":       "NONE",
 	})
 
 	live := env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["AVIATIONWEATHERDATA_APIKEY"],
 		}
 		client := sdk.NewAviationweatherDataSDK(mergedOpts)
 
