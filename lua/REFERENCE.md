@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -145,7 +145,7 @@ local air_sigmet = client:AirSigmet(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:AirSigmet(nil):list(nil, nil)
+local results, err = client:AirSigmet():list()
 ```
 
 ### Common Methods
@@ -205,7 +205,7 @@ local airport = client:Airport(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Airport(nil):list(nil, nil)
+local results, err = client:Airport():list()
 ```
 
 ### Common Methods
@@ -251,7 +251,7 @@ local cache = client:Cache(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Cache(nil):load({ id = "cache_id" }, nil)
+local result, err = client:Cache():load({ id = "cache_id" })
 ```
 
 ### Common Methods
@@ -309,7 +309,7 @@ local cwa = client:Cwa(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Cwa(nil):list(nil, nil)
+local results, err = client:Cwa():list()
 ```
 
 ### Common Methods
@@ -368,7 +368,7 @@ local g_airmet = client:GAirmet(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:GAirmet(nil):list(nil, nil)
+local results, err = client:GAirmet():list()
 ```
 
 ### Common Methods
@@ -454,7 +454,7 @@ local metar = client:Metar(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Metar(nil):list(nil, nil)
+local results, err = client:Metar():list()
 ```
 
 ### Common Methods
@@ -520,7 +520,7 @@ local pirep = client:Pirep(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Pirep(nil):list(nil, nil)
+local results, err = client:Pirep():list()
 ```
 
 ### Common Methods
@@ -581,7 +581,7 @@ local station_info = client:StationInfo(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:StationInfo(nil):list(nil, nil)
+local results, err = client:StationInfo():list()
 ```
 
 ### Common Methods
@@ -643,7 +643,7 @@ local taf = client:Taf(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Taf(nil):list(nil, nil)
+local results, err = client:Taf():list()
 ```
 
 ### Common Methods
@@ -689,7 +689,7 @@ local tcf = client:Tcf(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Tcf(nil):load({ id = "tcf_id" }, nil)
+local result, err = client:Tcf():load({ id = "tcf_id" })
 ```
 
 ### Common Methods

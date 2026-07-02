@@ -18,37 +18,7 @@ main: {
       termsOfService: "https://aviationweather.gov/data/api/"
       title: "AviationWeather Data API"
       version: "4.12"
-      tagline: "Fetch METARs, TAFs, SIGMETs, PIREPs and other aviation weather data from the US NOAA Aviation Weather Center"
-      homepage: "https://aviationweather.gov"
-      docs_url: "https://aviationweather.gov/data/api/"
-      license_short: "US Government work, generally public domain; attribute the NOAA Aviation Weather Center."
-      license_md: `- Produced by the US National Oceanic and Atmospheric Administration (NOAA) Aviation Weather Center, so the underlying data is generally in the public domain in the United States.
-- Credit the NOAA / Aviation Weather Center as the data source when redistributing.
-- The service is intended for machine-to-machine use; the docs ask clients to send a descriptive \`User-Agent\` and avoid abusive request patterns.
-- No explicit licence file is published with the API — check [aviationweather.gov](https://aviationweather.gov) for the latest usage policy before relying on it commercially.`
-      about_md: `The [Aviation Weather Data API](https://aviationweather.gov/data/api/) is the public REST interface to the [NOAA Aviation Weather Center](https://aviationweather.gov), part of the US National Weather Service. It is the same data source that powers the AWC website and is intended for flight planning, dispatch, and other aviation operations.
-
-What you can pull from the API:
-- Terminal observations (METAR) and forecasts (TAF), worldwide.
-- Pilot and aircraft reports (PIREP / AIREP), primarily covering the US and North Atlantic.
-- Convective and turbulence/icing advisories: SIGMET (worldwide), G-AIRMET (CONUS), AIRMET (Alaska), CWA (US centers), and the TFM Convective Forecast (TCF).
-- Reference data for stations and airports, queryable by ICAO/IATA identifier.
-- Up to 15 days of historical data per query, returned as raw text, JSON, GeoJSON, CSV, XML, or IWXXM depending on the endpoint.
-
-Operational notes from the AWC documentation: requests are unauthenticated over HTTPS but are rate-limited to roughly 100 requests/minute, most endpoints return at most 400 records per call, and CORS is not enabled (so calls must come from a server, not a browser). For high-volume needs the AWC publishes pre-compiled cache files that are refreshed between once per minute and once per day.`
-      entity_desc: {
-        air_sigmet: "AIRMETs for Alaska — significant meteorological advisories for icing, turbulence and IFR conditions, served from `/api/data/airsigmet`."
-        airport: "Airport reference data (location, runways, identifiers) keyed by ICAO/IATA code, served from `/api/data/airport`."
-        cache: "Pre-compiled bulk data files (METAR, TAF, etc.) refreshed on a schedule, intended as an alternative to repeated live queries."
-        cwa: "Center Weather Advisories issued by US Center Weather Service Units, served from `/api/data/cwa`."
-        g_airmet: "Graphical AIRMETs for the contiguous 48 US states covering icing, turbulence and IFR hazards, served from `/api/data/gairmet`."
-        metar: "METAR surface observations from reporting stations worldwide, served from `/api/data/metar` and supporting up to 15 days of history."
-        pirep: "Pilot reports (PIREP/AIREP) of in-flight weather conditions, primarily over the US and North Atlantic, served from `/api/data/pirep`."
-        station_info: "Metadata for weather reporting stations (location, elevation, identifiers) worldwide, served from `/api/data/stationinfo`."
-        taf: "Terminal Aerodrome Forecasts for airports worldwide, served from `/api/data/taf`."
-        tcf: "Traffic Flow Management Convective Forecast covering the US and parts of Canada, served from `/api/data/tcf`."
-      }
-      auth: false
     }
   }
 }
+

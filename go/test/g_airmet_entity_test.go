@@ -119,6 +119,7 @@ func g_airmetBasicSetup(extra map[string]any) *entityTestSetup {
 		"AVIATIONWEATHERDATA_TEST_G_AIRMET_ENTID": idmap,
 		"AVIATIONWEATHERDATA_TEST_LIVE":      "FALSE",
 		"AVIATIONWEATHERDATA_TEST_EXPLAIN":   "FALSE",
+		"AVIATIONWEATHERDATA_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["AVIATIONWEATHERDATA_TEST_G_AIRMET_ENTID"])
@@ -129,6 +130,7 @@ func g_airmetBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["AVIATIONWEATHERDATA_APIKEY"],
 			},
 			extra,
 		})

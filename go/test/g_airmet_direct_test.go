@@ -93,12 +93,14 @@ func g_airmetDirectSetup(mockres any) *g_airmetDirectSetupResult {
 	env := envOverride(map[string]any{
 		"AVIATIONWEATHERDATA_TEST_G_AIRMET_ENTID": map[string]any{},
 		"AVIATIONWEATHERDATA_TEST_LIVE":    "FALSE",
+		"AVIATIONWEATHERDATA_APIKEY":       "NONE",
 	})
 
 	live := env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["AVIATIONWEATHERDATA_APIKEY"],
 		}
 		client := sdk.NewAviationweatherDataSDK(mergedOpts)
 

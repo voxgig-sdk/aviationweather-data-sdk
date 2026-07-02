@@ -1,21 +1,8 @@
 # AviationweatherData SDK
 
-Fetch METARs, TAFs, SIGMETs, PIREPs and other aviation weather data from the US NOAA Aviation Weather Center
+AviationWeather Data API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About AviationWeather Data API
-
-The [Aviation Weather Data API](https://aviationweather.gov/data/api/) is the public REST interface to the [NOAA Aviation Weather Center](https://aviationweather.gov), part of the US National Weather Service. It is the same data source that powers the AWC website and is intended for flight planning, dispatch, and other aviation operations.
-
-What you can pull from the API:
-- Terminal observations (METAR) and forecasts (TAF), worldwide.
-- Pilot and aircraft reports (PIREP / AIREP), primarily covering the US and North Atlantic.
-- Convective and turbulence/icing advisories: SIGMET (worldwide), G-AIRMET (CONUS), AIRMET (Alaska), CWA (US centers), and the TFM Convective Forecast (TCF).
-- Reference data for stations and airports, queryable by ICAO/IATA identifier.
-- Up to 15 days of historical data per query, returned as raw text, JSON, GeoJSON, CSV, XML, or IWXXM depending on the endpoint.
-
-Operational notes from the AWC documentation: requests are unauthenticated over HTTPS but are rate-limited to roughly 100 requests/minute, most endpoints return at most 400 records per call, and CORS is not enabled (so calls must come from a server, not a browser). For high-volume needs the AWC publishes pre-compiled cache files that are refreshed between once per minute and once per day.
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install aviationweather-data-sdk
 luarocks install aviationweather-data-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { AviationweatherDataSDK } from 'aviationweather-data'
 
-const client = new AviationweatherDataSDK({})
+const client = new AviationweatherDataSDK({
+  apikey: process.env.AVIATIONWEATHER-DATA_APIKEY,
+})
 
 // List all airsigmets
 const airsigmets = await client.AirSigmet().list()
+console.log(airsigmets.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,16 +90,16 @@ The API exposes 10 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **AirSigmet** | AIRMETs for Alaska — significant meteorological advisories for icing, turbulence and IFR conditions, served from `/api/data/airsigmet`. | `/api/data/airsigmet` |
-| **Airport** | Airport reference data (location, runways, identifiers) keyed by ICAO/IATA code, served from `/api/data/airport`. | `/api/data/airport` |
-| **Cache** | Pre-compiled bulk data files (METAR, TAF, etc.) refreshed on a schedule, intended as an alternative to repeated live queries. | `/data/cache/aircraftreports.cache.csv.gz` |
-| **Cwa** | Center Weather Advisories issued by US Center Weather Service Units, served from `/api/data/cwa`. | `/api/data/cwa` |
-| **GAirmet** | Graphical AIRMETs for the contiguous 48 US states covering icing, turbulence and IFR hazards, served from `/api/data/gairmet`. | `/api/data/gairmet` |
-| **Metar** | METAR surface observations from reporting stations worldwide, served from `/api/data/metar` and supporting up to 15 days of history. | `/api/data/metar` |
-| **Pirep** | Pilot reports (PIREP/AIREP) of in-flight weather conditions, primarily over the US and North Atlantic, served from `/api/data/pirep`. | `/api/data/pirep` |
-| **StationInfo** | Metadata for weather reporting stations (location, elevation, identifiers) worldwide, served from `/api/data/stationinfo`. | `/api/data/stationinfo` |
-| **Taf** | Terminal Aerodrome Forecasts for airports worldwide, served from `/api/data/taf`. | `/api/data/taf` |
-| **Tcf** | Traffic Flow Management Convective Forecast covering the US and parts of Canada, served from `/api/data/tcf`. | `/api/data/tcf` |
+| **AirSigmet** |  | `/api/data/airsigmet` |
+| **Airport** |  | `/api/data/airport` |
+| **Cache** |  | `/data/cache/aircraftreports.cache.csv.gz` |
+| **Cwa** |  | `/api/data/cwa` |
+| **GAirmet** |  | `/api/data/gairmet` |
+| **Metar** |  | `/api/data/metar` |
+| **Pirep** |  | `/api/data/pirep` |
+| **StationInfo** |  | `/api/data/stationinfo` |
+| **Taf** |  | `/api/data/taf` |
+| **Tcf** |  | `/api/data/tcf` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -120,12 +109,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from aviationweatherdata_sdk import AviationweatherDataSDK
 
-client = AviationweatherDataSDK({})
+client = AviationweatherDataSDK({
+    "apikey": os.environ.get("AVIATIONWEATHER-DATA_APIKEY"),
+})
 
 # List all airsigmets
-airsigmets, err = client.AirSigmet(None).list(None, None)
+airsigmets, err = client.AirSigmet().list()
+print(airsigmets)
 ```
 
 ### PHP
@@ -134,10 +127,13 @@ airsigmets, err = client.AirSigmet(None).list(None, None)
 <?php
 require_once 'aviationweatherdata_sdk.php';
 
-$client = new AviationweatherDataSDK([]);
+$client = new AviationweatherDataSDK([
+    "apikey" => getenv("AVIATIONWEATHER-DATA_APIKEY"),
+]);
 
 // List all airsigmets
-[$airsigmets, $err] = $client->AirSigmet(null)->list(null, null);
+[$airsigmets, $err] = $client->AirSigmet()->list();
+print_r($airsigmets);
 ```
 
 ### Golang
@@ -145,10 +141,13 @@ $client = new AviationweatherDataSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/aviationweather-data-sdk/go"
 
-client := sdk.NewAviationweatherDataSDK(map[string]any{})
+client := sdk.NewAviationweatherDataSDK(map[string]any{
+    "apikey": os.Getenv("AVIATIONWEATHER-DATA_APIKEY"),
+})
 
 // List all airsigmets
 airsigmets, err := client.AirSigmet(nil).List(nil, nil)
+fmt.Println(airsigmets)
 ```
 
 ### Ruby
@@ -156,10 +155,13 @@ airsigmets, err := client.AirSigmet(nil).List(nil, nil)
 ```ruby
 require_relative "AviationweatherData_sdk"
 
-client = AviationweatherDataSDK.new({})
+client = AviationweatherDataSDK.new({
+  "apikey" => ENV["AVIATIONWEATHER-DATA_APIKEY"],
+})
 
 # List all airsigmets
-airsigmets, err = client.AirSigmet(nil).list(nil, nil)
+airsigmets, err = client.AirSigmet().list
+puts airsigmets
 ```
 
 ### Lua
@@ -167,10 +169,13 @@ airsigmets, err = client.AirSigmet(nil).list(nil, nil)
 ```lua
 local sdk = require("aviationweather-data_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("AVIATIONWEATHER-DATA_APIKEY"),
+})
 
 -- List all airsigmets
-local airsigmets, err = client:AirSigmet(nil):list(nil, nil)
+local airsigmets, err = client:AirSigmet():list()
+print(airsigmets)
 ```
 
 ## Unit testing in offline mode
@@ -189,25 +194,21 @@ const result = await client.AirSigmet().load({ id: 'test01' })
 ### Python
 
 ```python
-client = AviationweatherDataSDK.test(None, None)
-result, err = client.AirSigmet(None).load(
-    {"id": "test01"}, None
-)
+client = AviationweatherDataSDK.test()
+result, err = client.AirSigmet().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = AviationweatherDataSDK::test(null, null);
-[$result, $err] = $client->AirSigmet(null)->load(
-    ["id" => "test01"], null
-);
+$client = AviationweatherDataSDK::test();
+[$result, $err] = $client->AirSigmet()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.AirSigmet(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -216,19 +217,15 @@ result, err := client.AirSigmet(nil).Load(
 ### Ruby
 
 ```ruby
-client = AviationweatherDataSDK.test(nil, nil)
-result, err = client.AirSigmet(nil).load(
-  { "id" => "test01" }, nil
-)
+client = AviationweatherDataSDK.test
+result, err = client.AirSigmet().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:AirSigmet(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:AirSigmet():load({ id = "test01" })
 ```
 
 ## How it works
@@ -332,16 +329,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the AviationWeather Data API
-
-- Upstream: [https://aviationweather.gov](https://aviationweather.gov)
-- API docs: [https://aviationweather.gov/data/api/](https://aviationweather.gov/data/api/)
-
-- Produced by the US National Oceanic and Atmospheric Administration (NOAA) Aviation Weather Center, so the underlying data is generally in the public domain in the United States.
-- Credit the NOAA / Aviation Weather Center as the data source when redistributing.
-- The service is intended for machine-to-machine use; the docs ask clients to send a descriptive `User-Agent` and avoid abusive request patterns.
-- No explicit licence file is published with the API — check [aviationweather.gov](https://aviationweather.gov) for the latest usage policy before relying on it commercially.
 
 ---
 

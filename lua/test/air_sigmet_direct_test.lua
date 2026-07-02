@@ -63,12 +63,14 @@ function air_sigmet_direct_setup(mockres)
   local env = runner.env_override({
     ["AVIATIONWEATHERDATA_TEST_AIR_SIGMET_ENTID"] = {},
     ["AVIATIONWEATHERDATA_TEST_LIVE"] = "FALSE",
+    ["AVIATIONWEATHERDATA_APIKEY"] = "NONE",
   })
 
   local live = env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["AVIATIONWEATHERDATA_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

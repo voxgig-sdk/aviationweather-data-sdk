@@ -68,12 +68,14 @@ function air_sigmet_direct_setup($mockres)
     $env = Runner::env_override([
         "AVIATIONWEATHERDATA_TEST_AIR_SIGMET_ENTID" => [],
         "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
+        "AVIATIONWEATHERDATA_APIKEY" => "NONE",
     ]);
 
     $live = $env["AVIATIONWEATHERDATA_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["AVIATIONWEATHERDATA_APIKEY"],
         ];
         $client = new AviationweatherDataSDK($merged_opts);
         return [

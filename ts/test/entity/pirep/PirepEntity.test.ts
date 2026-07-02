@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'AVIATIONWEATHER_DATA_TEST_PIREP_ENTID': idmap,
     'AVIATIONWEATHER_DATA_TEST_LIVE': 'FALSE',
     'AVIATIONWEATHER_DATA_TEST_EXPLAIN': 'FALSE',
+    'AVIATIONWEATHER_DATA_APIKEY': 'NONE',
   })
 
   idmap = env['AVIATIONWEATHER_DATA_TEST_PIREP_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new AviationweatherDataSDK(merge([
       {
+        apikey: env.AVIATIONWEATHER_DATA_APIKEY,
       },
       extra
     ]))

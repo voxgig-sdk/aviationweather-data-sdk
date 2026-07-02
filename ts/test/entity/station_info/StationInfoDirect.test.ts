@@ -79,12 +79,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'AVIATIONWEATHERDATA_TEST_STATION_INFO_ENTID': {},
     'AVIATIONWEATHERDATA_TEST_LIVE': 'FALSE',
+    'AVIATIONWEATHERDATA_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.AVIATIONWEATHERDATA_TEST_LIVE
 
   if (live) {
     const client = new AviationweatherDataSDK({
+      apikey: env.AVIATIONWEATHERDATA_APIKEY,
     })
 
     let idmap: any = env['AVIATIONWEATHERDATA_TEST_STATION_INFO_ENTID']

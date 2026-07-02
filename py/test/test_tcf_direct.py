@@ -59,12 +59,14 @@ def _tcf_direct_setup(mockres):
     env = runner.env_override({
         "AVIATIONWEATHERDATA_TEST_TCF_ENTID": {},
         "AVIATIONWEATHERDATA_TEST_LIVE": "FALSE",
+        "AVIATIONWEATHERDATA_APIKEY": "NONE",
     })
 
     live = env.get("AVIATIONWEATHERDATA_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("AVIATIONWEATHERDATA_APIKEY"),
         }
         client = AviationweatherDataSDK(merged_opts)
         return {
