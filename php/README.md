@@ -10,7 +10,7 @@ The PHP SDK for the AviationweatherData API — an entity-oriented client using 
 
 ## Install
 ```bash
-composer require voxgig/aviationweather-data-sdk
+composer require voxgig-sdk/aviationweather-data
 ```
 
 

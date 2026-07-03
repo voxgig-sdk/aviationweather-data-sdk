@@ -10,7 +10,7 @@ The TypeScript SDK for the AviationweatherData API — a type-safe, entity-orien
 
 ## Install
 ```bash
-npm install aviationweather-data
+npm install @voxgig-sdk/aviationweather-data
 ```
 ## Tutorial: your first API call
 

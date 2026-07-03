@@ -10,7 +10,7 @@ The Python SDK for the AviationweatherData API — an entity-oriented client fol
 
 ## Install
 ```bash
-pip install aviationweather-data-sdk
+pip install voxgig-sdk-aviationweather-data
 ```
 
 Or install from source:

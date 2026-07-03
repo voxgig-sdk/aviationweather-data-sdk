@@ -10,13 +10,13 @@ The Ruby SDK for the AviationweatherData API — an entity-oriented client using
 
 ## Install
 ```bash
-gem install aviationweather-data-sdk
+gem install voxgig-sdk-aviationweather-data
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "aviationweather-data-sdk"
+gem "voxgig-sdk-aviationweather-data"
 ```
 
 Then run:
