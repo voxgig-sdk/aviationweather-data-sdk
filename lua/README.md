@@ -31,17 +31,17 @@ local sdk = require("aviationweather-data_sdk")
 local client = sdk.new()
 ```
 
-### 2. List airsigmets
+### 2. List airsigmet records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:airsigmet():list()
+local airsigmets, err = client:AirSigmet():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(airsigmets) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:airsigmet():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:AirSigmet():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -167,8 +167,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `AirSigmet` | `(data) -> AirSigmetEntity` | Create a AirSigmet entity instance. |
-| `Airport` | `(data) -> AirportEntity` | Create a Airport entity instance. |
+| `AirSigmet` | `(data) -> AirSigmetEntity` | Create an AirSigmet entity instance. |
+| `Airport` | `(data) -> AirportEntity` | Create an Airport entity instance. |
 | `Cache` | `(data) -> CacheEntity` | Create a Cache entity instance. |
 | `Cwa` | `(data) -> CwaEntity` | Create a Cwa entity instance. |
 | `GAirmet` | `(data) -> GAirmetEntity` | Create a GAirmet entity instance. |
@@ -198,17 +198,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local air_sigmet, err = client:AirSigmet():load({ id = "example_id" })
+    if err then error(err) end
+    -- air_sigmet is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -414,7 +419,7 @@ API path: `/api/data/tcf`
 
 ### AirSigmet
 
-Create an instance: `const air_sigmet = client.air_sigmet`
+Create an instance: `local air_sigmet = client:AirSigmet(nil)`
 
 #### Operations
 
@@ -439,14 +444,14 @@ Create an instance: `const air_sigmet = client.air_sigmet`
 
 #### Example: List
 
-```ts
-const air_sigmets = await client.air_sigmet.list()
+```lua
+local air_sigmets, err = client:AirSigmet():list()
 ```
 
 
 ### Airport
 
-Create an instance: `const airport = client.airport`
+Create an instance: `local airport = client:Airport(nil)`
 
 #### Operations
 
@@ -470,14 +475,14 @@ Create an instance: `const airport = client.airport`
 
 #### Example: List
 
-```ts
-const airports = await client.airport.list()
+```lua
+local airports, err = client:Airport():list()
 ```
 
 
 ### Cache
 
-Create an instance: `const cache = client.cache`
+Create an instance: `local cache = client:Cache(nil)`
 
 #### Operations
 
@@ -487,14 +492,14 @@ Create an instance: `const cache = client.cache`
 
 #### Example: Load
 
-```ts
-const cache = await client.cache.load({ id: 'cache_id' })
+```lua
+local cache, err = client:Cache():load({ id = "cache_id" })
 ```
 
 
 ### Cwa
 
-Create an instance: `const cwa = client.cwa`
+Create an instance: `local cwa = client:Cwa(nil)`
 
 #### Operations
 
@@ -516,14 +521,14 @@ Create an instance: `const cwa = client.cwa`
 
 #### Example: List
 
-```ts
-const cwas = await client.cwa.list()
+```lua
+local cwas, err = client:Cwa():list()
 ```
 
 
 ### GAirmet
 
-Create an instance: `const g_airmet = client.g_airmet`
+Create an instance: `local g_airmet = client:GAirmet(nil)`
 
 #### Operations
 
@@ -546,14 +551,14 @@ Create an instance: `const g_airmet = client.g_airmet`
 
 #### Example: List
 
-```ts
-const g_airmets = await client.g_airmet.list()
+```lua
+local g_airmets, err = client:GAirmet():list()
 ```
 
 
 ### Metar
 
-Create an instance: `const metar = client.metar`
+Create an instance: `local metar = client:Metar(nil)`
 
 #### Operations
 
@@ -603,14 +608,14 @@ Create an instance: `const metar = client.metar`
 
 #### Example: List
 
-```ts
-const metars = await client.metar.list()
+```lua
+local metars, err = client:Metar():list()
 ```
 
 
 ### Pirep
 
-Create an instance: `const pirep = client.pirep`
+Create an instance: `local pirep = client:Pirep(nil)`
 
 #### Operations
 
@@ -640,14 +645,14 @@ Create an instance: `const pirep = client.pirep`
 
 #### Example: List
 
-```ts
-const pireps = await client.pirep.list()
+```lua
+local pireps, err = client:Pirep():list()
 ```
 
 
 ### StationInfo
 
-Create an instance: `const station_info = client.station_info`
+Create an instance: `local station_info = client:StationInfo(nil)`
 
 #### Operations
 
@@ -672,14 +677,14 @@ Create an instance: `const station_info = client.station_info`
 
 #### Example: List
 
-```ts
-const station_infos = await client.station_info.list()
+```lua
+local station_infos, err = client:StationInfo():list()
 ```
 
 
 ### Taf
 
-Create an instance: `const taf = client.taf`
+Create an instance: `local taf = client:Taf(nil)`
 
 #### Operations
 
@@ -705,14 +710,14 @@ Create an instance: `const taf = client.taf`
 
 #### Example: List
 
-```ts
-const tafs = await client.taf.list()
+```lua
+local tafs, err = client:Taf():list()
 ```
 
 
 ### Tcf
 
-Create an instance: `const tcf = client.tcf`
+Create an instance: `local tcf = client:Tcf(nil)`
 
 #### Operations
 
@@ -722,8 +727,8 @@ Create an instance: `const tcf = client.tcf`
 
 #### Example: Load
 
-```ts
-const tcf = await client.tcf.load({ id: 'tcf_id' })
+```lua
+local tcf, err = client:Tcf():load({ id = "tcf_id" })
 ```
 
 
@@ -798,7 +803,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local airsigmet = client:airsigmet()
+local airsigmet = client:AirSigmet()
 airsigmet:load({ id = "example_id" })
 
 -- airsigmet:data_get() now returns the loaded airsigmet data

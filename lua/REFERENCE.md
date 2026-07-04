@@ -119,7 +119,7 @@ same parameters as `direct()`.
 ## AirSigmetEntity
 
 ```lua
-local air_sigmet = client:air_sigmet(nil)
+local air_sigmet = client:AirSigmet(nil)
 ```
 
 ### Fields
@@ -144,7 +144,7 @@ local air_sigmet = client:air_sigmet(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:air_sigmet():list()
+local results, err = client:AirSigmet():list()
 ```
 
 ### Common Methods
@@ -180,7 +180,7 @@ Return the entity name.
 ## AirportEntity
 
 ```lua
-local airport = client:airport(nil)
+local airport = client:Airport(nil)
 ```
 
 ### Fields
@@ -204,7 +204,7 @@ local airport = client:airport(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:airport():list()
+local results, err = client:Airport():list()
 ```
 
 ### Common Methods
@@ -240,7 +240,7 @@ Return the entity name.
 ## CacheEntity
 
 ```lua
-local cache = client:cache(nil)
+local cache = client:Cache(nil)
 ```
 
 ### Operations
@@ -250,7 +250,7 @@ local cache = client:cache(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:cache():load({ id = "cache_id" })
+local result, err = client:Cache():load({ id = "cache_id" })
 ```
 
 ### Common Methods
@@ -286,7 +286,7 @@ Return the entity name.
 ## CwaEntity
 
 ```lua
-local cwa = client:cwa(nil)
+local cwa = client:Cwa(nil)
 ```
 
 ### Fields
@@ -308,7 +308,7 @@ local cwa = client:cwa(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:cwa():list()
+local results, err = client:Cwa():list()
 ```
 
 ### Common Methods
@@ -344,7 +344,7 @@ Return the entity name.
 ## GAirmetEntity
 
 ```lua
-local g_airmet = client:g_airmet(nil)
+local g_airmet = client:GAirmet(nil)
 ```
 
 ### Fields
@@ -367,7 +367,7 @@ local g_airmet = client:g_airmet(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:g_airmet():list()
+local results, err = client:GAirmet():list()
 ```
 
 ### Common Methods
@@ -403,7 +403,7 @@ Return the entity name.
 ## MetarEntity
 
 ```lua
-local metar = client:metar(nil)
+local metar = client:Metar(nil)
 ```
 
 ### Fields
@@ -453,7 +453,7 @@ local metar = client:metar(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:metar():list()
+local results, err = client:Metar():list()
 ```
 
 ### Common Methods
@@ -489,7 +489,7 @@ Return the entity name.
 ## PirepEntity
 
 ```lua
-local pirep = client:pirep(nil)
+local pirep = client:Pirep(nil)
 ```
 
 ### Fields
@@ -519,7 +519,7 @@ local pirep = client:pirep(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:pirep():list()
+local results, err = client:Pirep():list()
 ```
 
 ### Common Methods
@@ -555,7 +555,7 @@ Return the entity name.
 ## StationInfoEntity
 
 ```lua
-local station_info = client:station_info(nil)
+local station_info = client:StationInfo(nil)
 ```
 
 ### Fields
@@ -580,7 +580,7 @@ local station_info = client:station_info(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:station_info():list()
+local results, err = client:StationInfo():list()
 ```
 
 ### Common Methods
@@ -616,7 +616,7 @@ Return the entity name.
 ## TafEntity
 
 ```lua
-local taf = client:taf(nil)
+local taf = client:Taf(nil)
 ```
 
 ### Fields
@@ -642,7 +642,7 @@ local taf = client:taf(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:taf():list()
+local results, err = client:Taf():list()
 ```
 
 ### Common Methods
@@ -678,7 +678,7 @@ Return the entity name.
 ## TcfEntity
 
 ```lua
-local tcf = client:tcf(nil)
+local tcf = client:Tcf(nil)
 ```
 
 ### Operations
@@ -688,7 +688,7 @@ local tcf = client:tcf(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:tcf():load({ id = "tcf_id" })
+local result, err = client:Tcf():load({ id = "tcf_id" })
 ```
 
 ### Common Methods

@@ -26,9 +26,11 @@ import { AviationweatherDataSDK } from '@voxgig-sdk/aviationweather-data'
 
 const client = new AviationweatherDataSDK()
 
-// List all airsigmets
-const airsigmets = await client.airsigmet.list()
-console.log(airsigmets.data)
+// List all airsigmets (returns AirSigmet[])
+const airsigmets = await client.AirSigmet().list()
+for (const airsigmet of airsigmets) {
+  console.log(airsigmet)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -92,9 +94,10 @@ from aviationweatherdata_sdk import AviationweatherDataSDK
 
 client = AviationweatherDataSDK()
 
-# List all airsigmets
-airsigmets = client.airsigmet.list()
-print(airsigmets)
+# List all airsigmets (returns a list, raises on error)
+airsigmets = client.AirSigmet().list({})
+for airsigmet in airsigmets:
+    print(airsigmet)
 ```
 
 ### PHP
@@ -105,8 +108,8 @@ require_once 'aviationweatherdata_sdk.php';
 
 $client = new AviationweatherDataSDK();
 
-// List all airsigmets (throws on error)
-$airsigmets = $client->airsigmet()->list();
+// List all airsigmets (returns an array; throws on error)
+$airsigmets = $client->AirSigmet()->list();
 print_r($airsigmets);
 ```
 
@@ -129,8 +132,8 @@ require_relative "AviationweatherData_sdk"
 
 client = AviationweatherDataSDK.new
 
-# List all airsigmets
-airsigmets = client.airsigmet.list
+# List all airsigmets (returns an Array; raises on error)
+airsigmets = client.AirSigmet.list
 puts airsigmets
 ```
 
@@ -142,7 +145,7 @@ local sdk = require("aviationweather-data_sdk")
 local client = sdk.new()
 
 -- List all airsigmets
-local airsigmets, err = client:airsigmet():list()
+local airsigmets, err = client:AirSigmet():list()
 print(airsigmets)
 ```
 
@@ -155,22 +158,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = AviationweatherDataSDK.test()
-const result = await client.airsigmet.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const airsigmet = await client.AirSigmet().load({ id: 'test01' })
+// airsigmet is a bare AirSigmet populated with mock data
+console.log(airsigmet)
 ```
 
 ### Python
 
 ```python
 client = AviationweatherDataSDK.test()
-result = client.airsigmet.load({"id": "test01"})
+airsigmet = client.AirSigmet().load({"id": "test01"})
+print(airsigmet)
 ```
 
 ### PHP
 
 ```php
-$client = AviationweatherDataSDK::test();
-$result = $client->airsigmet()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = AviationweatherDataSDK::test([
+    "entity" => ["airsigmet" => ["test01" => ["id" => "test01"]]],
+]);
+$airsigmet = $client->AirSigmet()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -185,15 +193,18 @@ result, err := client.AirSigmet(nil).Load(
 ### Ruby
 
 ```ruby
-client = AviationweatherDataSDK.test
-result = client.airsigmet.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = AviationweatherDataSDK.test({
+  "entity" => { "airsigmet" => { "test01" => { "id" => "test01" } } },
+})
+airsigmet = client.AirSigmet.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:airsigmet():load({ id = "test01" })
+local result, err = client:AirSigmet():load({ id = "test01" })
 ```
 
 ## How it works
@@ -241,6 +252,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

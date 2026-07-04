@@ -217,7 +217,7 @@ Alias for `AviationweatherDataSDK.test()`.
 ## AirSigmetEntity
 
 ```ts
-const air_sigmet = client.air_sigmet
+const air_sigmet = client.AirSigmet()
 ```
 
 ### Fields
@@ -242,7 +242,7 @@ const air_sigmet = client.air_sigmet
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.air_sigmet.list()
+const results = await client.AirSigmet().list()
 ```
 
 ### Common Methods
@@ -276,7 +276,7 @@ Return a copy of the entity options.
 ## AirportEntity
 
 ```ts
-const airport = client.airport
+const airport = client.Airport()
 ```
 
 ### Fields
@@ -300,7 +300,7 @@ const airport = client.airport
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.airport.list()
+const results = await client.Airport().list()
 ```
 
 ### Common Methods
@@ -334,7 +334,7 @@ Return a copy of the entity options.
 ## CacheEntity
 
 ```ts
-const cache = client.cache
+const cache = client.Cache()
 ```
 
 ### Operations
@@ -344,7 +344,7 @@ const cache = client.cache
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.cache.load({ id: 'cache_id' })
+const result = await client.Cache().load({ id: 'cache_id' })
 ```
 
 ### Common Methods
@@ -378,7 +378,7 @@ Return a copy of the entity options.
 ## CwaEntity
 
 ```ts
-const cwa = client.cwa
+const cwa = client.Cwa()
 ```
 
 ### Fields
@@ -400,7 +400,7 @@ const cwa = client.cwa
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.cwa.list()
+const results = await client.Cwa().list()
 ```
 
 ### Common Methods
@@ -434,7 +434,7 @@ Return a copy of the entity options.
 ## GAirmetEntity
 
 ```ts
-const g_airmet = client.g_airmet
+const g_airmet = client.GAirmet()
 ```
 
 ### Fields
@@ -457,7 +457,7 @@ const g_airmet = client.g_airmet
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.g_airmet.list()
+const results = await client.GAirmet().list()
 ```
 
 ### Common Methods
@@ -491,7 +491,7 @@ Return a copy of the entity options.
 ## MetarEntity
 
 ```ts
-const metar = client.metar
+const metar = client.Metar()
 ```
 
 ### Fields
@@ -541,7 +541,7 @@ const metar = client.metar
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.metar.list()
+const results = await client.Metar().list()
 ```
 
 ### Common Methods
@@ -575,7 +575,7 @@ Return a copy of the entity options.
 ## PirepEntity
 
 ```ts
-const pirep = client.pirep
+const pirep = client.Pirep()
 ```
 
 ### Fields
@@ -605,7 +605,7 @@ const pirep = client.pirep
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.pirep.list()
+const results = await client.Pirep().list()
 ```
 
 ### Common Methods
@@ -639,7 +639,7 @@ Return a copy of the entity options.
 ## StationInfoEntity
 
 ```ts
-const station_info = client.station_info
+const station_info = client.StationInfo()
 ```
 
 ### Fields
@@ -664,7 +664,7 @@ const station_info = client.station_info
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.station_info.list()
+const results = await client.StationInfo().list()
 ```
 
 ### Common Methods
@@ -698,7 +698,7 @@ Return a copy of the entity options.
 ## TafEntity
 
 ```ts
-const taf = client.taf
+const taf = client.Taf()
 ```
 
 ### Fields
@@ -724,7 +724,7 @@ const taf = client.taf
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.taf.list()
+const results = await client.Taf().list()
 ```
 
 ### Common Methods
@@ -758,7 +758,7 @@ Return a copy of the entity options.
 ## TcfEntity
 
 ```ts
-const tcf = client.tcf
+const tcf = client.Tcf()
 ```
 
 ### Operations
@@ -768,7 +768,7 @@ const tcf = client.tcf
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.tcf.load({ id: 'tcf_id' })
+const result = await client.Tcf().load({ id: 'tcf_id' })
 ```
 
 ### Common Methods

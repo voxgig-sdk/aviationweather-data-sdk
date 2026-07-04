@@ -220,169 +220,69 @@ class AviationweatherDataSDK:
         }
 
 
-    @property
-    def air_sigmet(self):
-        """Idiomatic facade: client.air_sigmet.list() / client.air_sigmet.load({"id": ...})."""
-        from entity.air_sigmet_entity import AirSigmetEntity
-        cached = getattr(self, "_air_sigmet", None)
-        if cached is None:
-            cached = AirSigmetEntity(self, None)
-            self._air_sigmet = cached
-        return cached
-
-    def AirSigmet(self, data=None):
-        # Deprecated: use client.air_sigmet instead.
+    def AirSigmet(self, data=None) -> "AirSigmetEntity":
+        """Entity factory: client.AirSigmet().list({}) / client.AirSigmet().load({"id": ...})."""
         from entity.air_sigmet_entity import AirSigmetEntity
         return AirSigmetEntity(self, data)
 
 
-    @property
-    def airport(self):
-        """Idiomatic facade: client.airport.list() / client.airport.load({"id": ...})."""
-        from entity.airport_entity import AirportEntity
-        cached = getattr(self, "_airport", None)
-        if cached is None:
-            cached = AirportEntity(self, None)
-            self._airport = cached
-        return cached
-
-    def Airport(self, data=None):
-        # Deprecated: use client.airport instead.
+    def Airport(self, data=None) -> "AirportEntity":
+        """Entity factory: client.Airport().list({}) / client.Airport().load({"id": ...})."""
         from entity.airport_entity import AirportEntity
         return AirportEntity(self, data)
 
 
-    @property
-    def cache(self):
-        """Idiomatic facade: client.cache.list() / client.cache.load({"id": ...})."""
-        from entity.cache_entity import CacheEntity
-        cached = getattr(self, "_cache", None)
-        if cached is None:
-            cached = CacheEntity(self, None)
-            self._cache = cached
-        return cached
-
-    def Cache(self, data=None):
-        # Deprecated: use client.cache instead.
+    def Cache(self, data=None) -> "CacheEntity":
+        """Entity factory: client.Cache().list({}) / client.Cache().load({"id": ...})."""
         from entity.cache_entity import CacheEntity
         return CacheEntity(self, data)
 
 
-    @property
-    def cwa(self):
-        """Idiomatic facade: client.cwa.list() / client.cwa.load({"id": ...})."""
-        from entity.cwa_entity import CwaEntity
-        cached = getattr(self, "_cwa", None)
-        if cached is None:
-            cached = CwaEntity(self, None)
-            self._cwa = cached
-        return cached
-
-    def Cwa(self, data=None):
-        # Deprecated: use client.cwa instead.
+    def Cwa(self, data=None) -> "CwaEntity":
+        """Entity factory: client.Cwa().list({}) / client.Cwa().load({"id": ...})."""
         from entity.cwa_entity import CwaEntity
         return CwaEntity(self, data)
 
 
-    @property
-    def g_airmet(self):
-        """Idiomatic facade: client.g_airmet.list() / client.g_airmet.load({"id": ...})."""
-        from entity.g_airmet_entity import GAirmetEntity
-        cached = getattr(self, "_g_airmet", None)
-        if cached is None:
-            cached = GAirmetEntity(self, None)
-            self._g_airmet = cached
-        return cached
-
-    def GAirmet(self, data=None):
-        # Deprecated: use client.g_airmet instead.
+    def GAirmet(self, data=None) -> "GAirmetEntity":
+        """Entity factory: client.GAirmet().list({}) / client.GAirmet().load({"id": ...})."""
         from entity.g_airmet_entity import GAirmetEntity
         return GAirmetEntity(self, data)
 
 
-    @property
-    def metar(self):
-        """Idiomatic facade: client.metar.list() / client.metar.load({"id": ...})."""
-        from entity.metar_entity import MetarEntity
-        cached = getattr(self, "_metar", None)
-        if cached is None:
-            cached = MetarEntity(self, None)
-            self._metar = cached
-        return cached
-
-    def Metar(self, data=None):
-        # Deprecated: use client.metar instead.
+    def Metar(self, data=None) -> "MetarEntity":
+        """Entity factory: client.Metar().list({}) / client.Metar().load({"id": ...})."""
         from entity.metar_entity import MetarEntity
         return MetarEntity(self, data)
 
 
-    @property
-    def pirep(self):
-        """Idiomatic facade: client.pirep.list() / client.pirep.load({"id": ...})."""
-        from entity.pirep_entity import PirepEntity
-        cached = getattr(self, "_pirep", None)
-        if cached is None:
-            cached = PirepEntity(self, None)
-            self._pirep = cached
-        return cached
-
-    def Pirep(self, data=None):
-        # Deprecated: use client.pirep instead.
+    def Pirep(self, data=None) -> "PirepEntity":
+        """Entity factory: client.Pirep().list({}) / client.Pirep().load({"id": ...})."""
         from entity.pirep_entity import PirepEntity
         return PirepEntity(self, data)
 
 
-    @property
-    def station_info(self):
-        """Idiomatic facade: client.station_info.list() / client.station_info.load({"id": ...})."""
-        from entity.station_info_entity import StationInfoEntity
-        cached = getattr(self, "_station_info", None)
-        if cached is None:
-            cached = StationInfoEntity(self, None)
-            self._station_info = cached
-        return cached
-
-    def StationInfo(self, data=None):
-        # Deprecated: use client.station_info instead.
+    def StationInfo(self, data=None) -> "StationInfoEntity":
+        """Entity factory: client.StationInfo().list({}) / client.StationInfo().load({"id": ...})."""
         from entity.station_info_entity import StationInfoEntity
         return StationInfoEntity(self, data)
 
 
-    @property
-    def taf(self):
-        """Idiomatic facade: client.taf.list() / client.taf.load({"id": ...})."""
-        from entity.taf_entity import TafEntity
-        cached = getattr(self, "_taf", None)
-        if cached is None:
-            cached = TafEntity(self, None)
-            self._taf = cached
-        return cached
-
-    def Taf(self, data=None):
-        # Deprecated: use client.taf instead.
+    def Taf(self, data=None) -> "TafEntity":
+        """Entity factory: client.Taf().list({}) / client.Taf().load({"id": ...})."""
         from entity.taf_entity import TafEntity
         return TafEntity(self, data)
 
 
-    @property
-    def tcf(self):
-        """Idiomatic facade: client.tcf.list() / client.tcf.load({"id": ...})."""
-        from entity.tcf_entity import TcfEntity
-        cached = getattr(self, "_tcf", None)
-        if cached is None:
-            cached = TcfEntity(self, None)
-            self._tcf = cached
-        return cached
-
-    def Tcf(self, data=None):
-        # Deprecated: use client.tcf instead.
+    def Tcf(self, data=None) -> "TcfEntity":
+        """Entity factory: client.Tcf().list({}) / client.Tcf().load({"id": ...})."""
         from entity.tcf_entity import TcfEntity
         return TcfEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "AviationweatherDataSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -402,3 +302,18 @@ class AviationweatherDataSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.air_sigmet_entity import AirSigmetEntity
+    from entity.airport_entity import AirportEntity
+    from entity.cache_entity import CacheEntity
+    from entity.cwa_entity import CwaEntity
+    from entity.g_airmet_entity import GAirmetEntity
+    from entity.metar_entity import MetarEntity
+    from entity.pirep_entity import PirepEntity
+    from entity.station_info_entity import StationInfoEntity
+    from entity.taf_entity import TafEntity
+    from entity.tcf_entity import TcfEntity

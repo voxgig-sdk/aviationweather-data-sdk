@@ -31,14 +31,16 @@ from aviationweatherdata_sdk import AviationweatherDataSDK
 client = AviationweatherDataSDK()
 ```
 
-### 2. List airsigmets
+### 2. List airsigmet records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.airsigmet.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    airsigmets = client.AirSigmet().list({})
+    for airsigmet in airsigmets:
+        print(airsigmet)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = AviationweatherDataSDK.test()
 
-result = client.airsigmet.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+airsigmet = client.AirSigmet().load({"id": "test01"})
+# airsigmet contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -163,8 +166,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `AirSigmet` | `(data) -> AirSigmetEntity` | Create a AirSigmet entity instance. |
-| `Airport` | `(data) -> AirportEntity` | Create a Airport entity instance. |
+| `AirSigmet` | `(data) -> AirSigmetEntity` | Create an AirSigmet entity instance. |
+| `Airport` | `(data) -> AirportEntity` | Create an Airport entity instance. |
 | `Cache` | `(data) -> CacheEntity` | Create a Cache entity instance. |
 | `Cwa` | `(data) -> CwaEntity` | Create a Cwa entity instance. |
 | `GAirmet` | `(data) -> GAirmetEntity` | Create a GAirmet entity instance. |
@@ -414,7 +417,7 @@ API path: `/api/data/tcf`
 
 ### AirSigmet
 
-Create an instance: `const air_sigmet = client.air_sigmet`
+Create an instance: `air_sigmet = client.AirSigmet()`
 
 #### Operations
 
@@ -439,14 +442,14 @@ Create an instance: `const air_sigmet = client.air_sigmet`
 
 #### Example: List
 
-```ts
-const air_sigmets = await client.air_sigmet.list()
+```python
+air_sigmets = client.AirSigmet().list({})
 ```
 
 
 ### Airport
 
-Create an instance: `const airport = client.airport`
+Create an instance: `airport = client.Airport()`
 
 #### Operations
 
@@ -470,14 +473,14 @@ Create an instance: `const airport = client.airport`
 
 #### Example: List
 
-```ts
-const airports = await client.airport.list()
+```python
+airports = client.Airport().list({})
 ```
 
 
 ### Cache
 
-Create an instance: `const cache = client.cache`
+Create an instance: `cache = client.Cache()`
 
 #### Operations
 
@@ -487,14 +490,14 @@ Create an instance: `const cache = client.cache`
 
 #### Example: Load
 
-```ts
-const cache = await client.cache.load({ id: 'cache_id' })
+```python
+cache = client.Cache().load({"id": "cache_id"})
 ```
 
 
 ### Cwa
 
-Create an instance: `const cwa = client.cwa`
+Create an instance: `cwa = client.Cwa()`
 
 #### Operations
 
@@ -516,14 +519,14 @@ Create an instance: `const cwa = client.cwa`
 
 #### Example: List
 
-```ts
-const cwas = await client.cwa.list()
+```python
+cwas = client.Cwa().list({})
 ```
 
 
 ### GAirmet
 
-Create an instance: `const g_airmet = client.g_airmet`
+Create an instance: `g_airmet = client.GAirmet()`
 
 #### Operations
 
@@ -546,14 +549,14 @@ Create an instance: `const g_airmet = client.g_airmet`
 
 #### Example: List
 
-```ts
-const g_airmets = await client.g_airmet.list()
+```python
+g_airmets = client.GAirmet().list({})
 ```
 
 
 ### Metar
 
-Create an instance: `const metar = client.metar`
+Create an instance: `metar = client.Metar()`
 
 #### Operations
 
@@ -603,14 +606,14 @@ Create an instance: `const metar = client.metar`
 
 #### Example: List
 
-```ts
-const metars = await client.metar.list()
+```python
+metars = client.Metar().list({})
 ```
 
 
 ### Pirep
 
-Create an instance: `const pirep = client.pirep`
+Create an instance: `pirep = client.Pirep()`
 
 #### Operations
 
@@ -640,14 +643,14 @@ Create an instance: `const pirep = client.pirep`
 
 #### Example: List
 
-```ts
-const pireps = await client.pirep.list()
+```python
+pireps = client.Pirep().list({})
 ```
 
 
 ### StationInfo
 
-Create an instance: `const station_info = client.station_info`
+Create an instance: `station_info = client.StationInfo()`
 
 #### Operations
 
@@ -672,14 +675,14 @@ Create an instance: `const station_info = client.station_info`
 
 #### Example: List
 
-```ts
-const station_infos = await client.station_info.list()
+```python
+station_infos = client.StationInfo().list({})
 ```
 
 
 ### Taf
 
-Create an instance: `const taf = client.taf`
+Create an instance: `taf = client.Taf()`
 
 #### Operations
 
@@ -705,14 +708,14 @@ Create an instance: `const taf = client.taf`
 
 #### Example: List
 
-```ts
-const tafs = await client.taf.list()
+```python
+tafs = client.Taf().list({})
 ```
 
 
 ### Tcf
 
-Create an instance: `const tcf = client.tcf`
+Create an instance: `tcf = client.Tcf()`
 
 #### Operations
 
@@ -722,8 +725,8 @@ Create an instance: `const tcf = client.tcf`
 
 #### Example: Load
 
-```ts
-const tcf = await client.tcf.load({ id: 'tcf_id' })
+```python
+tcf = client.Tcf().load({"id": "tcf_id"})
 ```
 
 
@@ -797,7 +800,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-airsigmet = client.airsigmet
+airsigmet = client.AirSigmet()
 airsigmet.load({"id": "example_id"})
 
 # airsigmet.data_get() now returns the loaded airsigmet data

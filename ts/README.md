@@ -28,15 +28,15 @@ import { AviationweatherDataSDK } from '@voxgig-sdk/aviationweather-data'
 const client = new AviationweatherDataSDK()
 ```
 
-### 2. List airsigmets
+### 2. List airsigmet records
+
+`list()` resolves to an array of AirSigmet objects — iterate it directly:
 
 ```ts
-const result = await client.airsigmet.list()
+const airsigmets = await client.AirSigmet().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const airsigmet of airsigmets) {
+  console.log(airsigmet)
 }
 ```
 
@@ -54,6 +54,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -82,9 +85,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AviationweatherDataSDK.test()
 
-const result = await client.airsigmet.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const airsigmet = await client.AirSigmet().load({ id: 'test01' })
+// airsigmet is a bare entity populated with mock response data
+console.log(airsigmet)
 ```
 
 You can also use the instance method:
@@ -99,7 +102,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.airsigmet
+const entity = client.AirSigmet()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -177,8 +180,8 @@ new AviationweatherDataSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `AirSigmet(data?)` | `AirSigmetEntity` | Create a AirSigmet entity instance. |
-| `Airport(data?)` | `AirportEntity` | Create a Airport entity instance. |
+| `AirSigmet(data?)` | `AirSigmetEntity` | Create an AirSigmet entity instance. |
+| `Airport(data?)` | `AirportEntity` | Create an Airport entity instance. |
 | `Cache(data?)` | `CacheEntity` | Create a Cache entity instance. |
 | `Cwa(data?)` | `CwaEntity` | Create a Cwa entity instance. |
 | `GAirmet(data?)` | `GAirmetEntity` | Create a GAirmet entity instance. |
@@ -203,29 +206,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): AviationweatherDataSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -459,7 +463,7 @@ API path: `/api/data/tcf`
 
 ### AirSigmet
 
-Create an instance: `const air_sigmet = client.air_sigmet`
+Create an instance: `const air_sigmet = client.AirSigmet()`
 
 #### Operations
 
@@ -485,13 +489,13 @@ Create an instance: `const air_sigmet = client.air_sigmet`
 #### Example: List
 
 ```ts
-const air_sigmets = await client.air_sigmet.list()
+const air_sigmets = await client.AirSigmet().list()
 ```
 
 
 ### Airport
 
-Create an instance: `const airport = client.airport`
+Create an instance: `const airport = client.Airport()`
 
 #### Operations
 
@@ -516,13 +520,13 @@ Create an instance: `const airport = client.airport`
 #### Example: List
 
 ```ts
-const airports = await client.airport.list()
+const airports = await client.Airport().list()
 ```
 
 
 ### Cache
 
-Create an instance: `const cache = client.cache`
+Create an instance: `const cache = client.Cache()`
 
 #### Operations
 
@@ -533,13 +537,13 @@ Create an instance: `const cache = client.cache`
 #### Example: Load
 
 ```ts
-const cache = await client.cache.load({ id: 'cache_id' })
+const cache = await client.Cache().load({ id: 'cache_id' })
 ```
 
 
 ### Cwa
 
-Create an instance: `const cwa = client.cwa`
+Create an instance: `const cwa = client.Cwa()`
 
 #### Operations
 
@@ -562,13 +566,13 @@ Create an instance: `const cwa = client.cwa`
 #### Example: List
 
 ```ts
-const cwas = await client.cwa.list()
+const cwas = await client.Cwa().list()
 ```
 
 
 ### GAirmet
 
-Create an instance: `const g_airmet = client.g_airmet`
+Create an instance: `const g_airmet = client.GAirmet()`
 
 #### Operations
 
@@ -592,13 +596,13 @@ Create an instance: `const g_airmet = client.g_airmet`
 #### Example: List
 
 ```ts
-const g_airmets = await client.g_airmet.list()
+const g_airmets = await client.GAirmet().list()
 ```
 
 
 ### Metar
 
-Create an instance: `const metar = client.metar`
+Create an instance: `const metar = client.Metar()`
 
 #### Operations
 
@@ -649,13 +653,13 @@ Create an instance: `const metar = client.metar`
 #### Example: List
 
 ```ts
-const metars = await client.metar.list()
+const metars = await client.Metar().list()
 ```
 
 
 ### Pirep
 
-Create an instance: `const pirep = client.pirep`
+Create an instance: `const pirep = client.Pirep()`
 
 #### Operations
 
@@ -686,13 +690,13 @@ Create an instance: `const pirep = client.pirep`
 #### Example: List
 
 ```ts
-const pireps = await client.pirep.list()
+const pireps = await client.Pirep().list()
 ```
 
 
 ### StationInfo
 
-Create an instance: `const station_info = client.station_info`
+Create an instance: `const station_info = client.StationInfo()`
 
 #### Operations
 
@@ -718,13 +722,13 @@ Create an instance: `const station_info = client.station_info`
 #### Example: List
 
 ```ts
-const station_infos = await client.station_info.list()
+const station_infos = await client.StationInfo().list()
 ```
 
 
 ### Taf
 
-Create an instance: `const taf = client.taf`
+Create an instance: `const taf = client.Taf()`
 
 #### Operations
 
@@ -751,13 +755,13 @@ Create an instance: `const taf = client.taf`
 #### Example: List
 
 ```ts
-const tafs = await client.taf.list()
+const tafs = await client.Taf().list()
 ```
 
 
 ### Tcf
 
-Create an instance: `const tcf = client.tcf`
+Create an instance: `const tcf = client.Tcf()`
 
 #### Operations
 
@@ -768,7 +772,7 @@ Create an instance: `const tcf = client.tcf`
 #### Example: Load
 
 ```ts
-const tcf = await client.tcf.load({ id: 'tcf_id' })
+const tcf = await client.Tcf().load({ id: 'tcf_id' })
 ```
 
 
@@ -839,7 +843,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const airsigmet = client.airsigmet
+const airsigmet = client.AirSigmet()
 await airsigmet.load({ id: "example_id" })
 
 // airsigmet.data() now returns the loaded airsigmet data

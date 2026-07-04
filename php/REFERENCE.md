@@ -121,7 +121,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## AirSigmetEntity
 
 ```php
-$air_sigmet = $client->air_sigmet();
+$air_sigmet = $client->AirSigmet();
 ```
 
 ### Fields
@@ -146,7 +146,7 @@ $air_sigmet = $client->air_sigmet();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->air_sigmet()->list([]);
+$results = $client->AirSigmet()->list([]);
 ```
 
 ### Common Methods
@@ -182,7 +182,7 @@ Return the entity name.
 ## AirportEntity
 
 ```php
-$airport = $client->airport();
+$airport = $client->Airport();
 ```
 
 ### Fields
@@ -206,7 +206,7 @@ $airport = $client->airport();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->airport()->list([]);
+$results = $client->Airport()->list([]);
 ```
 
 ### Common Methods
@@ -242,7 +242,7 @@ Return the entity name.
 ## CacheEntity
 
 ```php
-$cache = $client->cache();
+$cache = $client->Cache();
 ```
 
 ### Operations
@@ -252,7 +252,7 @@ $cache = $client->cache();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->cache()->load(["id" => "cache_id"]);
+$result = $client->Cache()->load(["id" => "cache_id"]);
 ```
 
 ### Common Methods
@@ -288,7 +288,7 @@ Return the entity name.
 ## CwaEntity
 
 ```php
-$cwa = $client->cwa();
+$cwa = $client->Cwa();
 ```
 
 ### Fields
@@ -310,7 +310,7 @@ $cwa = $client->cwa();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->cwa()->list([]);
+$results = $client->Cwa()->list([]);
 ```
 
 ### Common Methods
@@ -346,7 +346,7 @@ Return the entity name.
 ## GAirmetEntity
 
 ```php
-$g_airmet = $client->g_airmet();
+$g_airmet = $client->GAirmet();
 ```
 
 ### Fields
@@ -369,7 +369,7 @@ $g_airmet = $client->g_airmet();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->g_airmet()->list([]);
+$results = $client->GAirmet()->list([]);
 ```
 
 ### Common Methods
@@ -405,7 +405,7 @@ Return the entity name.
 ## MetarEntity
 
 ```php
-$metar = $client->metar();
+$metar = $client->Metar();
 ```
 
 ### Fields
@@ -455,7 +455,7 @@ $metar = $client->metar();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->metar()->list([]);
+$results = $client->Metar()->list([]);
 ```
 
 ### Common Methods
@@ -491,7 +491,7 @@ Return the entity name.
 ## PirepEntity
 
 ```php
-$pirep = $client->pirep();
+$pirep = $client->Pirep();
 ```
 
 ### Fields
@@ -521,7 +521,7 @@ $pirep = $client->pirep();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->pirep()->list([]);
+$results = $client->Pirep()->list([]);
 ```
 
 ### Common Methods
@@ -557,7 +557,7 @@ Return the entity name.
 ## StationInfoEntity
 
 ```php
-$station_info = $client->station_info();
+$station_info = $client->StationInfo();
 ```
 
 ### Fields
@@ -582,7 +582,7 @@ $station_info = $client->station_info();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->station_info()->list([]);
+$results = $client->StationInfo()->list([]);
 ```
 
 ### Common Methods
@@ -618,7 +618,7 @@ Return the entity name.
 ## TafEntity
 
 ```php
-$taf = $client->taf();
+$taf = $client->Taf();
 ```
 
 ### Fields
@@ -644,7 +644,7 @@ $taf = $client->taf();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->taf()->list([]);
+$results = $client->Taf()->list([]);
 ```
 
 ### Common Methods
@@ -680,7 +680,7 @@ Return the entity name.
 ## TcfEntity
 
 ```php
-$tcf = $client->tcf();
+$tcf = $client->Tcf();
 ```
 
 ### Operations
@@ -690,7 +690,7 @@ $tcf = $client->tcf();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->tcf()->load(["id" => "tcf_id"]);
+$result = $client->Tcf()->load(["id" => "tcf_id"]);
 ```
 
 ### Common Methods

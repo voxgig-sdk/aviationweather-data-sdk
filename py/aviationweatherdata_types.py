@@ -4,303 +4,287 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class AirSigmet:
-    airsigmet_type: Optional[str] = None
-    altitude_high: Optional[int] = None
-    altitude_low: Optional[int] = None
-    fir: Optional[str] = None
-    hazard: Optional[str] = None
-    issue_time: Optional[str] = None
-    raw_air_sigmet: Optional[str] = None
-    severity: Optional[str] = None
-    valid_time_from: Optional[str] = None
-    valid_time_to: Optional[str] = None
+class AirSigmet(TypedDict, total=False):
+    airsigmet_type: str
+    altitude_high: int
+    altitude_low: int
+    fir: str
+    hazard: str
+    issue_time: str
+    raw_air_sigmet: str
+    severity: str
+    valid_time_from: str
+    valid_time_to: str
 
 
-@dataclass
-class AirSigmetListMatch:
-    airsigmet_type: Optional[str] = None
-    altitude_high: Optional[int] = None
-    altitude_low: Optional[int] = None
-    fir: Optional[str] = None
-    hazard: Optional[str] = None
-    issue_time: Optional[str] = None
-    raw_air_sigmet: Optional[str] = None
-    severity: Optional[str] = None
-    valid_time_from: Optional[str] = None
-    valid_time_to: Optional[str] = None
+class AirSigmetListMatch(TypedDict, total=False):
+    airsigmet_type: str
+    altitude_high: int
+    altitude_low: int
+    fir: str
+    hazard: str
+    issue_time: str
+    raw_air_sigmet: str
+    severity: str
+    valid_time_from: str
+    valid_time_to: str
 
 
-@dataclass
-class Airport:
-    city: Optional[str] = None
-    country: Optional[str] = None
-    elev: Optional[float] = None
-    iata_id: Optional[str] = None
-    icao_id: Optional[str] = None
-    lat: Optional[float] = None
-    lon: Optional[float] = None
-    name: Optional[str] = None
-    state: Optional[str] = None
+class Airport(TypedDict, total=False):
+    city: str
+    country: str
+    elev: float
+    iata_id: str
+    icao_id: str
+    lat: float
+    lon: float
+    name: str
+    state: str
 
 
-@dataclass
-class AirportListMatch:
-    city: Optional[str] = None
-    country: Optional[str] = None
-    elev: Optional[float] = None
-    iata_id: Optional[str] = None
-    icao_id: Optional[str] = None
-    lat: Optional[float] = None
-    lon: Optional[float] = None
-    name: Optional[str] = None
-    state: Optional[str] = None
+class AirportListMatch(TypedDict, total=False):
+    city: str
+    country: str
+    elev: float
+    iata_id: str
+    icao_id: str
+    lat: float
+    lon: float
+    name: str
+    state: str
 
 
-@dataclass
-class Cache:
+class Cache(TypedDict):
     pass
 
 
-@dataclass
-class CacheLoadMatch:
+class CacheLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class Cwa:
-    cwsu: Optional[str] = None
-    issue_time: Optional[str] = None
-    raw_text: Optional[str] = None
-    sequence: Optional[int] = None
-    series_id: Optional[str] = None
-    valid_time_from: Optional[str] = None
-    valid_time_to: Optional[str] = None
+class Cwa(TypedDict, total=False):
+    cwsu: str
+    issue_time: str
+    raw_text: str
+    sequence: int
+    series_id: str
+    valid_time_from: str
+    valid_time_to: str
 
 
-@dataclass
-class CwaListMatch:
-    cwsu: Optional[str] = None
-    issue_time: Optional[str] = None
-    raw_text: Optional[str] = None
-    sequence: Optional[int] = None
-    series_id: Optional[str] = None
-    valid_time_from: Optional[str] = None
-    valid_time_to: Optional[str] = None
+class CwaListMatch(TypedDict, total=False):
+    cwsu: str
+    issue_time: str
+    raw_text: str
+    sequence: int
+    series_id: str
+    valid_time_from: str
+    valid_time_to: str
 
 
-@dataclass
-class GAirmet:
-    altitude_high: Optional[int] = None
-    altitude_low: Optional[int] = None
-    hazard: Optional[str] = None
-    issue_time: Optional[str] = None
-    qualifier: Optional[str] = None
-    severity: Optional[str] = None
-    valid_time_from: Optional[str] = None
-    valid_time_to: Optional[str] = None
+class GAirmet(TypedDict, total=False):
+    altitude_high: int
+    altitude_low: int
+    hazard: str
+    issue_time: str
+    qualifier: str
+    severity: str
+    valid_time_from: str
+    valid_time_to: str
 
 
-@dataclass
-class GAirmetListMatch:
-    altitude_high: Optional[int] = None
-    altitude_low: Optional[int] = None
-    hazard: Optional[str] = None
-    issue_time: Optional[str] = None
-    qualifier: Optional[str] = None
-    severity: Optional[str] = None
-    valid_time_from: Optional[str] = None
-    valid_time_to: Optional[str] = None
+class GAirmetListMatch(TypedDict, total=False):
+    altitude_high: int
+    altitude_low: int
+    hazard: str
+    issue_time: str
+    qualifier: str
+    severity: str
+    valid_time_from: str
+    valid_time_to: str
 
 
-@dataclass
-class Metar:
-    altim: Optional[float] = None
-    cloud: Optional[list] = None
-    dewp: Optional[float] = None
-    elev: Optional[float] = None
-    flt_cat: Optional[str] = None
-    icao_id: Optional[str] = None
-    lat: Optional[float] = None
-    lon: Optional[float] = None
-    max_t: Optional[float] = None
-    max_t24: Optional[float] = None
-    metar_type: Optional[str] = None
-    min_t: Optional[float] = None
-    min_t24: Optional[float] = None
-    most_recent: Optional[int] = None
-    name: Optional[str] = None
-    obs_time: Optional[str] = None
-    pcp24hr: Optional[float] = None
-    pcp3hr: Optional[float] = None
-    pcp6hr: Optional[float] = None
-    precip: Optional[float] = None
-    pres_tend: Optional[float] = None
-    prior: Optional[int] = None
-    qc_field: Optional[int] = None
-    raw_ob: Optional[str] = None
-    raw_taf: Optional[str] = None
-    report_time: Optional[str] = None
-    slp: Optional[float] = None
-    snow: Optional[float] = None
-    temp: Optional[float] = None
-    vert_vi: Optional[int] = None
-    visib: Optional[str] = None
-    wdir: Optional[int] = None
-    wgst: Optional[int] = None
-    wspd: Optional[int] = None
-    wx_string: Optional[str] = None
+class Metar(TypedDict, total=False):
+    altim: float
+    cloud: list
+    dewp: float
+    elev: float
+    flt_cat: str
+    icao_id: str
+    lat: float
+    lon: float
+    max_t: float
+    max_t24: float
+    metar_type: str
+    min_t: float
+    min_t24: float
+    most_recent: int
+    name: str
+    obs_time: str
+    pcp24hr: float
+    pcp3hr: float
+    pcp6hr: float
+    precip: float
+    pres_tend: float
+    prior: int
+    qc_field: int
+    raw_ob: str
+    raw_taf: str
+    report_time: str
+    slp: float
+    snow: float
+    temp: float
+    vert_vi: int
+    visib: str
+    wdir: int
+    wgst: int
+    wspd: int
+    wx_string: str
 
 
-@dataclass
-class MetarListMatch:
-    altim: Optional[float] = None
-    cloud: Optional[list] = None
-    dewp: Optional[float] = None
-    elev: Optional[float] = None
-    flt_cat: Optional[str] = None
-    icao_id: Optional[str] = None
-    lat: Optional[float] = None
-    lon: Optional[float] = None
-    max_t: Optional[float] = None
-    max_t24: Optional[float] = None
-    metar_type: Optional[str] = None
-    min_t: Optional[float] = None
-    min_t24: Optional[float] = None
-    most_recent: Optional[int] = None
-    name: Optional[str] = None
-    obs_time: Optional[str] = None
-    pcp24hr: Optional[float] = None
-    pcp3hr: Optional[float] = None
-    pcp6hr: Optional[float] = None
-    precip: Optional[float] = None
-    pres_tend: Optional[float] = None
-    prior: Optional[int] = None
-    qc_field: Optional[int] = None
-    raw_ob: Optional[str] = None
-    raw_taf: Optional[str] = None
-    report_time: Optional[str] = None
-    slp: Optional[float] = None
-    snow: Optional[float] = None
-    temp: Optional[float] = None
-    vert_vi: Optional[int] = None
-    visib: Optional[str] = None
-    wdir: Optional[int] = None
-    wgst: Optional[int] = None
-    wspd: Optional[int] = None
-    wx_string: Optional[str] = None
+class MetarListMatch(TypedDict, total=False):
+    altim: float
+    cloud: list
+    dewp: float
+    elev: float
+    flt_cat: str
+    icao_id: str
+    lat: float
+    lon: float
+    max_t: float
+    max_t24: float
+    metar_type: str
+    min_t: float
+    min_t24: float
+    most_recent: int
+    name: str
+    obs_time: str
+    pcp24hr: float
+    pcp3hr: float
+    pcp6hr: float
+    precip: float
+    pres_tend: float
+    prior: int
+    qc_field: int
+    raw_ob: str
+    raw_taf: str
+    report_time: str
+    slp: float
+    snow: float
+    temp: float
+    vert_vi: int
+    visib: str
+    wdir: int
+    wgst: int
+    wspd: int
+    wx_string: str
 
 
-@dataclass
-class Pirep:
-    aircraft_type: Optional[str] = None
-    altitude_ft: Optional[int] = None
-    cloud: Optional[list] = None
-    icing: Optional[str] = None
-    lat: Optional[float] = None
-    lon: Optional[float] = None
-    obs_time: Optional[str] = None
-    raw_ob: Optional[str] = None
-    report_type: Optional[str] = None
-    temp: Optional[float] = None
-    turbulence: Optional[str] = None
-    visibility: Optional[str] = None
-    wdir: Optional[int] = None
-    wspd: Optional[int] = None
-    wx_string: Optional[str] = None
+class Pirep(TypedDict, total=False):
+    aircraft_type: str
+    altitude_ft: int
+    cloud: list
+    icing: str
+    lat: float
+    lon: float
+    obs_time: str
+    raw_ob: str
+    report_type: str
+    temp: float
+    turbulence: str
+    visibility: str
+    wdir: int
+    wspd: int
+    wx_string: str
 
 
-@dataclass
-class PirepListMatch:
-    aircraft_type: Optional[str] = None
-    altitude_ft: Optional[int] = None
-    cloud: Optional[list] = None
-    icing: Optional[str] = None
-    lat: Optional[float] = None
-    lon: Optional[float] = None
-    obs_time: Optional[str] = None
-    raw_ob: Optional[str] = None
-    report_type: Optional[str] = None
-    temp: Optional[float] = None
-    turbulence: Optional[str] = None
-    visibility: Optional[str] = None
-    wdir: Optional[int] = None
-    wspd: Optional[int] = None
-    wx_string: Optional[str] = None
+class PirepListMatch(TypedDict, total=False):
+    aircraft_type: str
+    altitude_ft: int
+    cloud: list
+    icing: str
+    lat: float
+    lon: float
+    obs_time: str
+    raw_ob: str
+    report_type: str
+    temp: float
+    turbulence: str
+    visibility: str
+    wdir: int
+    wspd: int
+    wx_string: str
 
 
-@dataclass
-class StationInfo:
-    country: Optional[str] = None
-    elev: Optional[float] = None
-    iata_id: Optional[str] = None
-    icao_id: Optional[str] = None
-    lat: Optional[float] = None
-    lon: Optional[float] = None
-    name: Optional[str] = None
-    priority: Optional[int] = None
-    site: Optional[str] = None
-    state: Optional[str] = None
+class StationInfo(TypedDict, total=False):
+    country: str
+    elev: float
+    iata_id: str
+    icao_id: str
+    lat: float
+    lon: float
+    name: str
+    priority: int
+    site: str
+    state: str
 
 
-@dataclass
-class StationInfoListMatch:
-    country: Optional[str] = None
-    elev: Optional[float] = None
-    iata_id: Optional[str] = None
-    icao_id: Optional[str] = None
-    lat: Optional[float] = None
-    lon: Optional[float] = None
-    name: Optional[str] = None
-    priority: Optional[int] = None
-    site: Optional[str] = None
-    state: Optional[str] = None
+class StationInfoListMatch(TypedDict, total=False):
+    country: str
+    elev: float
+    iata_id: str
+    icao_id: str
+    lat: float
+    lon: float
+    name: str
+    priority: int
+    site: str
+    state: str
 
 
-@dataclass
-class Taf:
-    bulletin_time: Optional[str] = None
-    elev: Optional[float] = None
-    fcst: Optional[list] = None
-    icao_id: Optional[str] = None
-    issue_time: Optional[str] = None
-    lat: Optional[float] = None
-    lon: Optional[float] = None
-    name: Optional[str] = None
-    raw_taf: Optional[str] = None
-    valid_time_from: Optional[str] = None
-    valid_time_to: Optional[str] = None
+class Taf(TypedDict, total=False):
+    bulletin_time: str
+    elev: float
+    fcst: list
+    icao_id: str
+    issue_time: str
+    lat: float
+    lon: float
+    name: str
+    raw_taf: str
+    valid_time_from: str
+    valid_time_to: str
 
 
-@dataclass
-class TafListMatch:
-    bulletin_time: Optional[str] = None
-    elev: Optional[float] = None
-    fcst: Optional[list] = None
-    icao_id: Optional[str] = None
-    issue_time: Optional[str] = None
-    lat: Optional[float] = None
-    lon: Optional[float] = None
-    name: Optional[str] = None
-    raw_taf: Optional[str] = None
-    valid_time_from: Optional[str] = None
-    valid_time_to: Optional[str] = None
+class TafListMatch(TypedDict, total=False):
+    bulletin_time: str
+    elev: float
+    fcst: list
+    icao_id: str
+    issue_time: str
+    lat: float
+    lon: float
+    name: str
+    raw_taf: str
+    valid_time_from: str
+    valid_time_to: str
 
 
-@dataclass
-class Tcf:
+class Tcf(TypedDict):
     pass
 
 
-@dataclass
-class TcfLoadMatch:
+class TcfLoadMatch(TypedDict):
     pass
-

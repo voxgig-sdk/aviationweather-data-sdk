@@ -30,37 +30,33 @@ go mod edit -replace github.com/voxgig-sdk/aviationweather-data-sdk/go=../aviati
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/aviationweather-data-sdk/go"
-    "github.com/voxgig-sdk/aviationweather-data-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List airsigmets
-
-```go
-    result, err := client.AirSigmet(nil).List(nil, nil)
+    // List airsigmet records — the value is the array of records itself.
+    airsigmets, err := client.AirSigmet(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range airsigmets.([]any) {
+        fmt.Println(item)
     }
+}
 ```
 
 
@@ -110,10 +106,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.AirSigmet(nil).Load(
+airsigmet, err := client.AirSigmet(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(airsigmet) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -190,8 +189,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `AirSigmet` | `(data map[string]any) AviationweatherDataEntity` | Create a AirSigmet entity instance. |
-| `Airport` | `(data map[string]any) AviationweatherDataEntity` | Create a Airport entity instance. |
+| `AirSigmet` | `(data map[string]any) AviationweatherDataEntity` | Create an AirSigmet entity instance. |
+| `Airport` | `(data map[string]any) AviationweatherDataEntity` | Create an Airport entity instance. |
 | `Cache` | `(data map[string]any) AviationweatherDataEntity` | Create a Cache entity instance. |
 | `Cwa` | `(data map[string]any) AviationweatherDataEntity` | Create a Cwa entity instance. |
 | `GAirmet` | `(data map[string]any) AviationweatherDataEntity` | Create a GAirmet entity instance. |
@@ -219,17 +218,24 @@ All entities implement the `AviationweatherDataEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    airsigmet, err := client.AirSigmet(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // airsigmet is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -461,7 +467,11 @@ Create an instance: `air_sigmet := client.AirSigmet(nil)`
 #### Example: List
 
 ```go
-results, err := client.AirSigmet(nil).List(nil, nil)
+air_sigmets, err := client.AirSigmet(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(air_sigmets) // the array of records
 ```
 
 
@@ -492,7 +502,11 @@ Create an instance: `airport := client.Airport(nil)`
 #### Example: List
 
 ```go
-results, err := client.Airport(nil).List(nil, nil)
+airports, err := client.Airport(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(airports) // the array of records
 ```
 
 
@@ -509,7 +523,11 @@ Create an instance: `cache := client.Cache(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Cache(nil).Load(map[string]any{"id": "cache_id"}, nil)
+cache, err := client.Cache(nil).Load(map[string]any{"id": "cache_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(cache) // the loaded record
 ```
 
 
@@ -538,7 +556,11 @@ Create an instance: `cwa := client.Cwa(nil)`
 #### Example: List
 
 ```go
-results, err := client.Cwa(nil).List(nil, nil)
+cwas, err := client.Cwa(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(cwas) // the array of records
 ```
 
 
@@ -568,7 +590,11 @@ Create an instance: `g_airmet := client.GAirmet(nil)`
 #### Example: List
 
 ```go
-results, err := client.GAirmet(nil).List(nil, nil)
+g_airmets, err := client.GAirmet(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(g_airmets) // the array of records
 ```
 
 
@@ -625,7 +651,11 @@ Create an instance: `metar := client.Metar(nil)`
 #### Example: List
 
 ```go
-results, err := client.Metar(nil).List(nil, nil)
+metars, err := client.Metar(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(metars) // the array of records
 ```
 
 
@@ -662,7 +692,11 @@ Create an instance: `pirep := client.Pirep(nil)`
 #### Example: List
 
 ```go
-results, err := client.Pirep(nil).List(nil, nil)
+pireps, err := client.Pirep(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(pireps) // the array of records
 ```
 
 
@@ -694,7 +728,11 @@ Create an instance: `station_info := client.StationInfo(nil)`
 #### Example: List
 
 ```go
-results, err := client.StationInfo(nil).List(nil, nil)
+station_infos, err := client.StationInfo(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(station_infos) // the array of records
 ```
 
 
@@ -727,7 +765,11 @@ Create an instance: `taf := client.Taf(nil)`
 #### Example: List
 
 ```go
-results, err := client.Taf(nil).List(nil, nil)
+tafs, err := client.Taf(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(tafs) // the array of records
 ```
 
 
@@ -744,7 +786,11 @@ Create an instance: `tcf := client.Tcf(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Tcf(nil).Load(map[string]any{"id": "tcf_id"}, nil)
+tcf, err := client.Tcf(nil).Load(map[string]any{"id": "tcf_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(tcf) // the loaded record
 ```
 
 

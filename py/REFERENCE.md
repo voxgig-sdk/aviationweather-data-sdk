@@ -116,7 +116,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## AirSigmetEntity
 
 ```python
-air_sigmet = client.air_sigmet
+air_sigmet = client.AirSigmet()
 ```
 
 ### Fields
@@ -141,7 +141,9 @@ air_sigmet = client.air_sigmet
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.air_sigmet.list({})
+results = client.AirSigmet().list({})
+for air_sigmet in results:
+    print(air_sigmet)
 ```
 
 ### Common Methods
@@ -176,7 +178,7 @@ Return the entity name.
 ## AirportEntity
 
 ```python
-airport = client.airport
+airport = client.Airport()
 ```
 
 ### Fields
@@ -200,7 +202,9 @@ airport = client.airport
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.airport.list({})
+results = client.Airport().list({})
+for airport in results:
+    print(airport)
 ```
 
 ### Common Methods
@@ -235,7 +239,7 @@ Return the entity name.
 ## CacheEntity
 
 ```python
-cache = client.cache
+cache = client.Cache()
 ```
 
 ### Operations
@@ -245,7 +249,7 @@ cache = client.cache
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.cache.load({"id": "cache_id"})
+result = client.Cache().load({"id": "cache_id"})
 ```
 
 ### Common Methods
@@ -280,7 +284,7 @@ Return the entity name.
 ## CwaEntity
 
 ```python
-cwa = client.cwa
+cwa = client.Cwa()
 ```
 
 ### Fields
@@ -302,7 +306,9 @@ cwa = client.cwa
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.cwa.list({})
+results = client.Cwa().list({})
+for cwa in results:
+    print(cwa)
 ```
 
 ### Common Methods
@@ -337,7 +343,7 @@ Return the entity name.
 ## GAirmetEntity
 
 ```python
-g_airmet = client.g_airmet
+g_airmet = client.GAirmet()
 ```
 
 ### Fields
@@ -360,7 +366,9 @@ g_airmet = client.g_airmet
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.g_airmet.list({})
+results = client.GAirmet().list({})
+for g_airmet in results:
+    print(g_airmet)
 ```
 
 ### Common Methods
@@ -395,7 +403,7 @@ Return the entity name.
 ## MetarEntity
 
 ```python
-metar = client.metar
+metar = client.Metar()
 ```
 
 ### Fields
@@ -445,7 +453,9 @@ metar = client.metar
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.metar.list({})
+results = client.Metar().list({})
+for metar in results:
+    print(metar)
 ```
 
 ### Common Methods
@@ -480,7 +490,7 @@ Return the entity name.
 ## PirepEntity
 
 ```python
-pirep = client.pirep
+pirep = client.Pirep()
 ```
 
 ### Fields
@@ -510,7 +520,9 @@ pirep = client.pirep
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.pirep.list({})
+results = client.Pirep().list({})
+for pirep in results:
+    print(pirep)
 ```
 
 ### Common Methods
@@ -545,7 +557,7 @@ Return the entity name.
 ## StationInfoEntity
 
 ```python
-station_info = client.station_info
+station_info = client.StationInfo()
 ```
 
 ### Fields
@@ -570,7 +582,9 @@ station_info = client.station_info
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.station_info.list({})
+results = client.StationInfo().list({})
+for station_info in results:
+    print(station_info)
 ```
 
 ### Common Methods
@@ -605,7 +619,7 @@ Return the entity name.
 ## TafEntity
 
 ```python
-taf = client.taf
+taf = client.Taf()
 ```
 
 ### Fields
@@ -631,7 +645,9 @@ taf = client.taf
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.taf.list({})
+results = client.Taf().list({})
+for taf in results:
+    print(taf)
 ```
 
 ### Common Methods
@@ -666,7 +682,7 @@ Return the entity name.
 ## TcfEntity
 
 ```python
-tcf = client.tcf
+tcf = client.Tcf()
 ```
 
 ### Operations
@@ -676,7 +692,7 @@ tcf = client.tcf
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.tcf.load({"id": "tcf_id"})
+result = client.Tcf().load({"id": "tcf_id"})
 ```
 
 ### Common Methods

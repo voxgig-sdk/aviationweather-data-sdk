@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:air_sigmet():list() / client:air_sigmet():load({ id = ... })
-function AviationweatherDataSDK:air_sigmet(data)
+-- Idiomatic facade: client:AirSigmet():list() / client:AirSigmet():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AviationweatherDataSDK:AirSigmet(data)
   local EntityMod = require("entity.air_sigmet_entity")
   if data == nil then
     if self._air_sigmet == nil then
@@ -256,15 +257,10 @@ function AviationweatherDataSDK:air_sigmet(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:air_sigmet() instead.
-function AviationweatherDataSDK:AirSigmet(data)
-  local EntityMod = require("entity.air_sigmet_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:airport():list() / client:airport():load({ id = ... })
-function AviationweatherDataSDK:airport(data)
+-- Idiomatic facade: client:Airport():list() / client:Airport():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AviationweatherDataSDK:Airport(data)
   local EntityMod = require("entity.airport_entity")
   if data == nil then
     if self._airport == nil then
@@ -275,15 +271,10 @@ function AviationweatherDataSDK:airport(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:airport() instead.
-function AviationweatherDataSDK:Airport(data)
-  local EntityMod = require("entity.airport_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:cache():list() / client:cache():load({ id = ... })
-function AviationweatherDataSDK:cache(data)
+-- Idiomatic facade: client:Cache():list() / client:Cache():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AviationweatherDataSDK:Cache(data)
   local EntityMod = require("entity.cache_entity")
   if data == nil then
     if self._cache == nil then
@@ -294,15 +285,10 @@ function AviationweatherDataSDK:cache(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:cache() instead.
-function AviationweatherDataSDK:Cache(data)
-  local EntityMod = require("entity.cache_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:cwa():list() / client:cwa():load({ id = ... })
-function AviationweatherDataSDK:cwa(data)
+-- Idiomatic facade: client:Cwa():list() / client:Cwa():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AviationweatherDataSDK:Cwa(data)
   local EntityMod = require("entity.cwa_entity")
   if data == nil then
     if self._cwa == nil then
@@ -313,15 +299,10 @@ function AviationweatherDataSDK:cwa(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:cwa() instead.
-function AviationweatherDataSDK:Cwa(data)
-  local EntityMod = require("entity.cwa_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:g_airmet():list() / client:g_airmet():load({ id = ... })
-function AviationweatherDataSDK:g_airmet(data)
+-- Idiomatic facade: client:GAirmet():list() / client:GAirmet():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AviationweatherDataSDK:GAirmet(data)
   local EntityMod = require("entity.g_airmet_entity")
   if data == nil then
     if self._g_airmet == nil then
@@ -332,15 +313,10 @@ function AviationweatherDataSDK:g_airmet(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:g_airmet() instead.
-function AviationweatherDataSDK:GAirmet(data)
-  local EntityMod = require("entity.g_airmet_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:metar():list() / client:metar():load({ id = ... })
-function AviationweatherDataSDK:metar(data)
+-- Idiomatic facade: client:Metar():list() / client:Metar():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AviationweatherDataSDK:Metar(data)
   local EntityMod = require("entity.metar_entity")
   if data == nil then
     if self._metar == nil then
@@ -351,15 +327,10 @@ function AviationweatherDataSDK:metar(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:metar() instead.
-function AviationweatherDataSDK:Metar(data)
-  local EntityMod = require("entity.metar_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:pirep():list() / client:pirep():load({ id = ... })
-function AviationweatherDataSDK:pirep(data)
+-- Idiomatic facade: client:Pirep():list() / client:Pirep():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AviationweatherDataSDK:Pirep(data)
   local EntityMod = require("entity.pirep_entity")
   if data == nil then
     if self._pirep == nil then
@@ -370,15 +341,10 @@ function AviationweatherDataSDK:pirep(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:pirep() instead.
-function AviationweatherDataSDK:Pirep(data)
-  local EntityMod = require("entity.pirep_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:station_info():list() / client:station_info():load({ id = ... })
-function AviationweatherDataSDK:station_info(data)
+-- Idiomatic facade: client:StationInfo():list() / client:StationInfo():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AviationweatherDataSDK:StationInfo(data)
   local EntityMod = require("entity.station_info_entity")
   if data == nil then
     if self._station_info == nil then
@@ -389,15 +355,10 @@ function AviationweatherDataSDK:station_info(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:station_info() instead.
-function AviationweatherDataSDK:StationInfo(data)
-  local EntityMod = require("entity.station_info_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:taf():list() / client:taf():load({ id = ... })
-function AviationweatherDataSDK:taf(data)
+-- Idiomatic facade: client:Taf():list() / client:Taf():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AviationweatherDataSDK:Taf(data)
   local EntityMod = require("entity.taf_entity")
   if data == nil then
     if self._taf == nil then
@@ -408,15 +369,10 @@ function AviationweatherDataSDK:taf(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:taf() instead.
-function AviationweatherDataSDK:Taf(data)
-  local EntityMod = require("entity.taf_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:tcf():list() / client:tcf():load({ id = ... })
-function AviationweatherDataSDK:tcf(data)
+-- Idiomatic facade: client:Tcf():list() / client:Tcf():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AviationweatherDataSDK:Tcf(data)
   local EntityMod = require("entity.tcf_entity")
   if data == nil then
     if self._tcf == nil then
@@ -424,12 +380,6 @@ function AviationweatherDataSDK:tcf(data)
     end
     return self._tcf
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:tcf() instead.
-function AviationweatherDataSDK:Tcf(data)
-  local EntityMod = require("entity.tcf_entity")
   return EntityMod.new(self, data)
 end
 

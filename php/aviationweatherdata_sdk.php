@@ -233,10 +233,10 @@ class AviationweatherDataSDK
 
     private $_air_sigmet = null;
 
-    // Idiomatic facade: $client->air_sigmet()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias AirSigmet() (PHP method
-    // names are case-insensitive).
-    public function air_sigmet($data = null)
+    // Canonical facade: $client->AirSigmet()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->air_sigmet()
+    // resolves here too.
+    public function AirSigmet($data = null)
     {
         require_once __DIR__ . '/entity/air_sigmet_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class AviationweatherDataSDK
 
     private $_airport = null;
 
-    // Idiomatic facade: $client->airport()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Airport() (PHP method
-    // names are case-insensitive).
-    public function airport($data = null)
+    // Canonical facade: $client->Airport()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->airport()
+    // resolves here too.
+    public function Airport($data = null)
     {
         require_once __DIR__ . '/entity/airport_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class AviationweatherDataSDK
 
     private $_cache = null;
 
-    // Idiomatic facade: $client->cache()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Cache() (PHP method
-    // names are case-insensitive).
-    public function cache($data = null)
+    // Canonical facade: $client->Cache()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->cache()
+    // resolves here too.
+    public function Cache($data = null)
     {
         require_once __DIR__ . '/entity/cache_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class AviationweatherDataSDK
 
     private $_cwa = null;
 
-    // Idiomatic facade: $client->cwa()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Cwa() (PHP method
-    // names are case-insensitive).
-    public function cwa($data = null)
+    // Canonical facade: $client->Cwa()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->cwa()
+    // resolves here too.
+    public function Cwa($data = null)
     {
         require_once __DIR__ . '/entity/cwa_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class AviationweatherDataSDK
 
     private $_g_airmet = null;
 
-    // Idiomatic facade: $client->g_airmet()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GAirmet() (PHP method
-    // names are case-insensitive).
-    public function g_airmet($data = null)
+    // Canonical facade: $client->GAirmet()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->g_airmet()
+    // resolves here too.
+    public function GAirmet($data = null)
     {
         require_once __DIR__ . '/entity/g_airmet_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class AviationweatherDataSDK
 
     private $_metar = null;
 
-    // Idiomatic facade: $client->metar()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Metar() (PHP method
-    // names are case-insensitive).
-    public function metar($data = null)
+    // Canonical facade: $client->Metar()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->metar()
+    // resolves here too.
+    public function Metar($data = null)
     {
         require_once __DIR__ . '/entity/metar_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class AviationweatherDataSDK
 
     private $_pirep = null;
 
-    // Idiomatic facade: $client->pirep()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Pirep() (PHP method
-    // names are case-insensitive).
-    public function pirep($data = null)
+    // Canonical facade: $client->Pirep()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->pirep()
+    // resolves here too.
+    public function Pirep($data = null)
     {
         require_once __DIR__ . '/entity/pirep_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class AviationweatherDataSDK
 
     private $_station_info = null;
 
-    // Idiomatic facade: $client->station_info()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias StationInfo() (PHP method
-    // names are case-insensitive).
-    public function station_info($data = null)
+    // Canonical facade: $client->StationInfo()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->station_info()
+    // resolves here too.
+    public function StationInfo($data = null)
     {
         require_once __DIR__ . '/entity/station_info_entity.php';
         if ($data === null) {
@@ -377,10 +377,10 @@ class AviationweatherDataSDK
 
     private $_taf = null;
 
-    // Idiomatic facade: $client->taf()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Taf() (PHP method
-    // names are case-insensitive).
-    public function taf($data = null)
+    // Canonical facade: $client->Taf()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->taf()
+    // resolves here too.
+    public function Taf($data = null)
     {
         require_once __DIR__ . '/entity/taf_entity.php';
         if ($data === null) {
@@ -395,10 +395,10 @@ class AviationweatherDataSDK
 
     private $_tcf = null;
 
-    // Idiomatic facade: $client->tcf()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Tcf() (PHP method
-    // names are case-insensitive).
-    public function tcf($data = null)
+    // Canonical facade: $client->Tcf()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->tcf()
+    // resolves here too.
+    public function Tcf($data = null)
     {
         require_once __DIR__ . '/entity/tcf_entity.php';
         if ($data === null) {
