@@ -244,60 +244,190 @@ end
 
 
 
+-- Idiomatic facade: client:air_sigmet():list() / client:air_sigmet():load({ id = ... })
+function AviationweatherDataSDK:air_sigmet(data)
+  local EntityMod = require("entity.air_sigmet_entity")
+  if data == nil then
+    if self._air_sigmet == nil then
+      self._air_sigmet = EntityMod.new(self, nil)
+    end
+    return self._air_sigmet
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:air_sigmet() instead.
 function AviationweatherDataSDK:AirSigmet(data)
   local EntityMod = require("entity.air_sigmet_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:airport():list() / client:airport():load({ id = ... })
+function AviationweatherDataSDK:airport(data)
+  local EntityMod = require("entity.airport_entity")
+  if data == nil then
+    if self._airport == nil then
+      self._airport = EntityMod.new(self, nil)
+    end
+    return self._airport
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:airport() instead.
 function AviationweatherDataSDK:Airport(data)
   local EntityMod = require("entity.airport_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:cache():list() / client:cache():load({ id = ... })
+function AviationweatherDataSDK:cache(data)
+  local EntityMod = require("entity.cache_entity")
+  if data == nil then
+    if self._cache == nil then
+      self._cache = EntityMod.new(self, nil)
+    end
+    return self._cache
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:cache() instead.
 function AviationweatherDataSDK:Cache(data)
   local EntityMod = require("entity.cache_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:cwa():list() / client:cwa():load({ id = ... })
+function AviationweatherDataSDK:cwa(data)
+  local EntityMod = require("entity.cwa_entity")
+  if data == nil then
+    if self._cwa == nil then
+      self._cwa = EntityMod.new(self, nil)
+    end
+    return self._cwa
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:cwa() instead.
 function AviationweatherDataSDK:Cwa(data)
   local EntityMod = require("entity.cwa_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:g_airmet():list() / client:g_airmet():load({ id = ... })
+function AviationweatherDataSDK:g_airmet(data)
+  local EntityMod = require("entity.g_airmet_entity")
+  if data == nil then
+    if self._g_airmet == nil then
+      self._g_airmet = EntityMod.new(self, nil)
+    end
+    return self._g_airmet
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:g_airmet() instead.
 function AviationweatherDataSDK:GAirmet(data)
   local EntityMod = require("entity.g_airmet_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:metar():list() / client:metar():load({ id = ... })
+function AviationweatherDataSDK:metar(data)
+  local EntityMod = require("entity.metar_entity")
+  if data == nil then
+    if self._metar == nil then
+      self._metar = EntityMod.new(self, nil)
+    end
+    return self._metar
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:metar() instead.
 function AviationweatherDataSDK:Metar(data)
   local EntityMod = require("entity.metar_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:pirep():list() / client:pirep():load({ id = ... })
+function AviationweatherDataSDK:pirep(data)
+  local EntityMod = require("entity.pirep_entity")
+  if data == nil then
+    if self._pirep == nil then
+      self._pirep = EntityMod.new(self, nil)
+    end
+    return self._pirep
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:pirep() instead.
 function AviationweatherDataSDK:Pirep(data)
   local EntityMod = require("entity.pirep_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:station_info():list() / client:station_info():load({ id = ... })
+function AviationweatherDataSDK:station_info(data)
+  local EntityMod = require("entity.station_info_entity")
+  if data == nil then
+    if self._station_info == nil then
+      self._station_info = EntityMod.new(self, nil)
+    end
+    return self._station_info
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:station_info() instead.
 function AviationweatherDataSDK:StationInfo(data)
   local EntityMod = require("entity.station_info_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:taf():list() / client:taf():load({ id = ... })
+function AviationweatherDataSDK:taf(data)
+  local EntityMod = require("entity.taf_entity")
+  if data == nil then
+    if self._taf == nil then
+      self._taf = EntityMod.new(self, nil)
+    end
+    return self._taf
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:taf() instead.
 function AviationweatherDataSDK:Taf(data)
   local EntityMod = require("entity.taf_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:tcf():list() / client:tcf():load({ id = ... })
+function AviationweatherDataSDK:tcf(data)
+  local EntityMod = require("entity.tcf_entity")
+  if data == nil then
+    if self._tcf == nil then
+      self._tcf = EntityMod.new(self, nil)
+    end
+    return self._tcf
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:tcf() instead.
 function AviationweatherDataSDK:Tcf(data)
   local EntityMod = require("entity.tcf_entity")
   return EntityMod.new(self, data)

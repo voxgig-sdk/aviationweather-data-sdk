@@ -245,51 +245,81 @@ func (sdk *AviationweatherDataSDK) Direct(fetchargs map[string]any) (map[string]
 }
 
 
+// AirSigmet returns a AirSigmet entity bound to this client.
+// Idiomatic usage: client.AirSigmet(nil).List(nil, nil) or
+// client.AirSigmet(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AviationweatherDataSDK) AirSigmet(data map[string]any) AviationweatherDataEntity {
 	return NewAirSigmetEntityFunc(sdk, data)
 }
 
 
+// Airport returns a Airport entity bound to this client.
+// Idiomatic usage: client.Airport(nil).List(nil, nil) or
+// client.Airport(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AviationweatherDataSDK) Airport(data map[string]any) AviationweatherDataEntity {
 	return NewAirportEntityFunc(sdk, data)
 }
 
 
+// Cache returns a Cache entity bound to this client.
+// Idiomatic usage: client.Cache(nil).List(nil, nil) or
+// client.Cache(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AviationweatherDataSDK) Cache(data map[string]any) AviationweatherDataEntity {
 	return NewCacheEntityFunc(sdk, data)
 }
 
 
+// Cwa returns a Cwa entity bound to this client.
+// Idiomatic usage: client.Cwa(nil).List(nil, nil) or
+// client.Cwa(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AviationweatherDataSDK) Cwa(data map[string]any) AviationweatherDataEntity {
 	return NewCwaEntityFunc(sdk, data)
 }
 
 
+// GAirmet returns a GAirmet entity bound to this client.
+// Idiomatic usage: client.GAirmet(nil).List(nil, nil) or
+// client.GAirmet(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AviationweatherDataSDK) GAirmet(data map[string]any) AviationweatherDataEntity {
 	return NewGAirmetEntityFunc(sdk, data)
 }
 
 
+// Metar returns a Metar entity bound to this client.
+// Idiomatic usage: client.Metar(nil).List(nil, nil) or
+// client.Metar(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AviationweatherDataSDK) Metar(data map[string]any) AviationweatherDataEntity {
 	return NewMetarEntityFunc(sdk, data)
 }
 
 
+// Pirep returns a Pirep entity bound to this client.
+// Idiomatic usage: client.Pirep(nil).List(nil, nil) or
+// client.Pirep(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AviationweatherDataSDK) Pirep(data map[string]any) AviationweatherDataEntity {
 	return NewPirepEntityFunc(sdk, data)
 }
 
 
+// StationInfo returns a StationInfo entity bound to this client.
+// Idiomatic usage: client.StationInfo(nil).List(nil, nil) or
+// client.StationInfo(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AviationweatherDataSDK) StationInfo(data map[string]any) AviationweatherDataEntity {
 	return NewStationInfoEntityFunc(sdk, data)
 }
 
 
+// Taf returns a Taf entity bound to this client.
+// Idiomatic usage: client.Taf(nil).List(nil, nil) or
+// client.Taf(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AviationweatherDataSDK) Taf(data map[string]any) AviationweatherDataEntity {
 	return NewTafEntityFunc(sdk, data)
 }
 
 
+// Tcf returns a Tcf entity bound to this client.
+// Idiomatic usage: client.Tcf(nil).List(nil, nil) or
+// client.Tcf(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AviationweatherDataSDK) Tcf(data map[string]any) AviationweatherDataEntity {
 	return NewTcfEntityFunc(sdk, data)
 }

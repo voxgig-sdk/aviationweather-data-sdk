@@ -50,8 +50,7 @@ class AirSigmetEntityTest extends TestCase
         $air_sigmet_ref01_ent = $client->AirSigmet(null);
         $air_sigmet_ref01_match = [];
 
-        [$air_sigmet_ref01_list_result, $err] = $air_sigmet_ref01_ent->list($air_sigmet_ref01_match, null);
-        $this->assertNull($err);
+        $air_sigmet_ref01_list_result = $air_sigmet_ref01_ent->list($air_sigmet_ref01_match, null);
         $this->assertIsArray($air_sigmet_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function air_sigmet_basic_setup($extra)
         "AVIATIONWEATHERDATA_TEST_AIR_SIGMET_ENTID" => $idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function air_sigmet_basic_setup($extra)
     if ($env["AVIATIONWEATHERDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["AVIATIONWEATHERDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

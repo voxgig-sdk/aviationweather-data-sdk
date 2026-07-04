@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `$options` | `array` | SDK configuration options. |
-| `$options["apikey"]` | `string` | API key for authentication. |
 | `$options["base"]` | `string` | Base URL for API requests. |
 | `$options["prefix"]` | `string` | URL prefix appended after base. |
 | `$options["suffix"]` | `string` | URL suffix appended after path. |
@@ -92,7 +91,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -106,11 +108,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -118,7 +121,7 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## AirSigmetEntity
 
 ```php
-$air_sigmet = $client->AirSigmet();
+$air_sigmet = $client->air_sigmet();
 ```
 
 ### Fields
@@ -138,12 +141,12 @@ $air_sigmet = $client->AirSigmet();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->AirSigmet()->list([]);
+$results = $client->air_sigmet()->list([]);
 ```
 
 ### Common Methods
@@ -179,7 +182,7 @@ Return the entity name.
 ## AirportEntity
 
 ```php
-$airport = $client->Airport();
+$airport = $client->airport();
 ```
 
 ### Fields
@@ -198,12 +201,12 @@ $airport = $client->Airport();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Airport()->list([]);
+$results = $client->airport()->list([]);
 ```
 
 ### Common Methods
@@ -239,17 +242,17 @@ Return the entity name.
 ## CacheEntity
 
 ```php
-$cache = $client->Cache();
+$cache = $client->cache();
 ```
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Cache()->load(["id" => "cache_id"]);
+$result = $client->cache()->load(["id" => "cache_id"]);
 ```
 
 ### Common Methods
@@ -285,7 +288,7 @@ Return the entity name.
 ## CwaEntity
 
 ```php
-$cwa = $client->Cwa();
+$cwa = $client->cwa();
 ```
 
 ### Fields
@@ -302,12 +305,12 @@ $cwa = $client->Cwa();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Cwa()->list([]);
+$results = $client->cwa()->list([]);
 ```
 
 ### Common Methods
@@ -343,7 +346,7 @@ Return the entity name.
 ## GAirmetEntity
 
 ```php
-$g_airmet = $client->GAirmet();
+$g_airmet = $client->g_airmet();
 ```
 
 ### Fields
@@ -361,12 +364,12 @@ $g_airmet = $client->GAirmet();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->GAirmet()->list([]);
+$results = $client->g_airmet()->list([]);
 ```
 
 ### Common Methods
@@ -402,7 +405,7 @@ Return the entity name.
 ## MetarEntity
 
 ```php
-$metar = $client->Metar();
+$metar = $client->metar();
 ```
 
 ### Fields
@@ -447,12 +450,12 @@ $metar = $client->Metar();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Metar()->list([]);
+$results = $client->metar()->list([]);
 ```
 
 ### Common Methods
@@ -488,7 +491,7 @@ Return the entity name.
 ## PirepEntity
 
 ```php
-$pirep = $client->Pirep();
+$pirep = $client->pirep();
 ```
 
 ### Fields
@@ -513,12 +516,12 @@ $pirep = $client->Pirep();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Pirep()->list([]);
+$results = $client->pirep()->list([]);
 ```
 
 ### Common Methods
@@ -554,7 +557,7 @@ Return the entity name.
 ## StationInfoEntity
 
 ```php
-$station_info = $client->StationInfo();
+$station_info = $client->station_info();
 ```
 
 ### Fields
@@ -574,12 +577,12 @@ $station_info = $client->StationInfo();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->StationInfo()->list([]);
+$results = $client->station_info()->list([]);
 ```
 
 ### Common Methods
@@ -615,7 +618,7 @@ Return the entity name.
 ## TafEntity
 
 ```php
-$taf = $client->Taf();
+$taf = $client->taf();
 ```
 
 ### Fields
@@ -636,12 +639,12 @@ $taf = $client->Taf();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Taf()->list([]);
+$results = $client->taf()->list([]);
 ```
 
 ### Common Methods
@@ -677,17 +680,17 @@ Return the entity name.
 ## TcfEntity
 
 ```php
-$tcf = $client->Tcf();
+$tcf = $client->tcf();
 ```
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Tcf()->load(["id" => "tcf_id"]);
+$result = $client->tcf()->load(["id" => "tcf_id"]);
 ```
 
 ### Common Methods

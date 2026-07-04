@@ -50,8 +50,7 @@ class TestGAirmetEntity:
         g_airmet_ref01_ent = client.GAirmet(None)
         g_airmet_ref01_match = {}
 
-        g_airmet_ref01_list_result, err = g_airmet_ref01_ent.list(g_airmet_ref01_match, None)
-        assert err is None
+        g_airmet_ref01_list_result = g_airmet_ref01_ent.list(g_airmet_ref01_match, None)
         assert isinstance(g_airmet_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _g_airmet_basic_setup(extra):
         "AVIATIONWEATHERDATA_TEST_G_AIRMET_ENTID": idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE": "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN": "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _g_airmet_basic_setup(extra):
     if env.get("AVIATIONWEATHERDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("AVIATIONWEATHERDATA_APIKEY"),
             },
             extra or {},
         ])

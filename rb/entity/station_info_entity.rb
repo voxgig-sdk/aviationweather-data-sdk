@@ -45,6 +45,7 @@ class StationInfoEntity
     end
   end
 
+  # @return [StationInfo, Hash] the current StationInfo data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class StationInfoEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of StationInfo fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class StationInfoEntity
   
 
   
+  # List StationInfo items matching the given filter.
+  #
+  # @param reqmatch [StationInfoListMatch, Hash, nil] match filter (any subset of StationInfo fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<StationInfo>, Array] the matching StationInfo items; raises AviationweatherDataError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

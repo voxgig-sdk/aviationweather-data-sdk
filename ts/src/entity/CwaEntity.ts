@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Cwa,
+  CwaListMatch,
+} from '../AviationweatherDataTypes'
 
 // TODO: needs Entity superclass
-class CwaEntity extends AviationweatherDataEntityBase {
+class CwaEntity extends AviationweatherDataEntityBase<Cwa> {
 
   constructor(client: AviationweatherDataSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class CwaEntity extends AviationweatherDataEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: CwaListMatch, ctrl?: Control): Promise<Cwa[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class CwaEntity extends AviationweatherDataEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Cwa[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

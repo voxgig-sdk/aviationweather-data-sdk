@@ -10,14 +10,18 @@ The Golang SDK for the AviationweatherData API — an entity-oriented client usi
 
 ## Install
 ```bash
-go get github.com/voxgig-sdk/aviationweather-data-sdk/go
+go get github.com/voxgig-sdk/aviationweather-data-sdk/go@latest
 ```
 
-If the module is not yet published to a registry, use a `replace` directive
-in your `go.mod` to point to a local checkout:
+The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
+release tag — see [Releases](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases) for the available versions.
+
+To vendor from a local checkout instead, clone this repo alongside your
+project and add a `replace` directive pointing at the checked-out
+`go/` directory:
 
 ```bash
-go mod edit -replace github.com/voxgig-sdk/aviationweather-data-sdk/go=../path/to/github.com/voxgig-sdk/aviationweather-data-sdk/go
+go mod edit -replace github.com/voxgig-sdk/aviationweather-data-sdk/go=../aviationweather-data-sdk/go
 ```
 
 
@@ -33,16 +37,13 @@ package main
 
 import (
     "fmt"
-    "os"
 
     sdk "github.com/voxgig-sdk/aviationweather-data-sdk/go"
     "github.com/voxgig-sdk/aviationweather-data-sdk/go/core"
 )
 
 func main() {
-    client := sdk.NewAviationweatherDataSDK(map[string]any{
-        "apikey": os.Getenv("AVIATIONWEATHER-DATA_APIKEY"),
-    })
+    client := sdk.New()
 ```
 
 ### 2. List airsigmets
@@ -109,7 +110,7 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Planet(nil).Load(
+result, err := client.AirSigmet(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
 // result contains mock response data
@@ -144,8 +145,7 @@ client := sdk.NewAviationweatherDataSDK(map[string]any{
 Create a `.env.local` file at the project root:
 
 ```
-AVIATIONWEATHER-DATA_TEST_LIVE=TRUE
-AVIATIONWEATHER-DATA_APIKEY=<your-key>
+AVIATIONWEATHER_DATA_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -167,7 +167,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `"apikey"` | `string` | API key for authentication. |
 | `"base"` | `string` | Base URL of the API server. |
 | `"prefix"` | `string` | URL path prefix prepended to all requests. |
 | `"suffix"` | `string` | URL path suffix appended to all requests. |
@@ -818,11 +817,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-moon := client.Moon(nil)
-moon.Load(map[string]any{"planet_id": "earth", "id": "luna"}, nil)
+airsigmet := client.AirSigmet(nil)
+airsigmet.Load(map[string]any{"id": "example_id"}, nil)
 
-// moon.Data() now returns the loaded moon data
-// moon.Match() returns the last match criteria
+// airsigmet.Data() now returns the loaded airsigmet data
+// airsigmet.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

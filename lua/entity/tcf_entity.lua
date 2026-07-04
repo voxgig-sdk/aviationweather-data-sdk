@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch TcfLoadMatch
+---@param ctrl? table
+---@return Tcf
+---@return string? err
 function TcfEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

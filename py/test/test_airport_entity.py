@@ -50,8 +50,7 @@ class TestAirportEntity:
         airport_ref01_ent = client.Airport(None)
         airport_ref01_match = {}
 
-        airport_ref01_list_result, err = airport_ref01_ent.list(airport_ref01_match, None)
-        assert err is None
+        airport_ref01_list_result = airport_ref01_ent.list(airport_ref01_match, None)
         assert isinstance(airport_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _airport_basic_setup(extra):
         "AVIATIONWEATHERDATA_TEST_AIRPORT_ENTID": idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE": "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN": "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _airport_basic_setup(extra):
     if env.get("AVIATIONWEATHERDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("AVIATIONWEATHERDATA_APIKEY"),
             },
             extra or {},
         ])

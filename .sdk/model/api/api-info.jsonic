@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "Aviation Weather Center"
         url: "https://aviationweather.gov/data/api/"

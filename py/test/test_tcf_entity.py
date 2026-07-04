@@ -49,8 +49,7 @@ class TestTcfEntity:
         # LOAD
         tcf_ref01_ent = client.Tcf(None)
         tcf_ref01_match_dt0 = {}
-        tcf_ref01_data_dt0_loaded, err = tcf_ref01_ent.load(tcf_ref01_match_dt0, None)
-        assert err is None
+        tcf_ref01_data_dt0_loaded = tcf_ref01_ent.load(tcf_ref01_match_dt0, None)
         assert tcf_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _tcf_basic_setup(extra):
         "AVIATIONWEATHERDATA_TEST_TCF_ENTID": idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE": "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN": "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _tcf_basic_setup(extra):
     if env.get("AVIATIONWEATHERDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("AVIATIONWEATHERDATA_APIKEY"),
             },
             extra or {},
         ])

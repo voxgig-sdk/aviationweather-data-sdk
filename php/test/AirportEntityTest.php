@@ -50,8 +50,7 @@ class AirportEntityTest extends TestCase
         $airport_ref01_ent = $client->Airport(null);
         $airport_ref01_match = [];
 
-        [$airport_ref01_list_result, $err] = $airport_ref01_ent->list($airport_ref01_match, null);
-        $this->assertNull($err);
+        $airport_ref01_list_result = $airport_ref01_ent->list($airport_ref01_match, null);
         $this->assertIsArray($airport_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function airport_basic_setup($extra)
         "AVIATIONWEATHERDATA_TEST_AIRPORT_ENTID" => $idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function airport_basic_setup($extra)
     if ($env["AVIATIONWEATHERDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["AVIATIONWEATHERDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

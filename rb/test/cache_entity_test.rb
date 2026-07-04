@@ -42,8 +42,7 @@ class CacheEntityTest < Minitest::Test
     # LOAD
     cache_ref01_ent = client.Cache(nil)
     cache_ref01_match_dt0 = {}
-    cache_ref01_data_dt0_loaded, err = cache_ref01_ent.load(cache_ref01_match_dt0, nil)
-    assert_nil err
+    cache_ref01_data_dt0_loaded = cache_ref01_ent.load(cache_ref01_match_dt0, nil)
     assert !cache_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def cache_basic_setup(extra)
     "AVIATIONWEATHERDATA_TEST_CACHE_ENTID" => idmap,
     "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
     "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-    "AVIATIONWEATHERDATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def cache_basic_setup(extra)
   if env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["AVIATIONWEATHERDATA_APIKEY"],
       },
       extra || {},
     ])

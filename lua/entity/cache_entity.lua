@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CacheLoadMatch
+---@param ctrl? table
+---@return Cache
+---@return string? err
 function CacheEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

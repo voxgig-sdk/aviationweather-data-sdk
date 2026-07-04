@@ -49,8 +49,7 @@ class TestCacheEntity:
         # LOAD
         cache_ref01_ent = client.Cache(None)
         cache_ref01_match_dt0 = {}
-        cache_ref01_data_dt0_loaded, err = cache_ref01_ent.load(cache_ref01_match_dt0, None)
-        assert err is None
+        cache_ref01_data_dt0_loaded = cache_ref01_ent.load(cache_ref01_match_dt0, None)
         assert cache_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _cache_basic_setup(extra):
         "AVIATIONWEATHERDATA_TEST_CACHE_ENTID": idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE": "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN": "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _cache_basic_setup(extra):
     if env.get("AVIATIONWEATHERDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("AVIATIONWEATHERDATA_APIKEY"),
             },
             extra or {},
         ])

@@ -85,6 +85,27 @@ func (e *AirportEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Airport; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *AirportEntity) DataTyped(data ...Airport) Airport {
+	if len(data) > 0 {
+		return typedFrom[Airport](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Airport](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Airport (all fields
+// optional at the wire level).
+func (e *AirportEntity) MatchTyped(match ...Airport) Airport {
+	if len(match) > 0 {
+		return typedFrom[Airport](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Airport](e.Match())
+}
+
 func (e *AirportEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -108,6 +129,17 @@ func (e *AirportEntity) List(reqmatch map[string]any, ctrl map[string]any) (any,
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// AirportListMatch and returns []Airport. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *AirportEntity) ListTyped(reqmatch AirportListMatch, ctrl map[string]any) ([]Airport, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Airport](res), nil
 }
 
 

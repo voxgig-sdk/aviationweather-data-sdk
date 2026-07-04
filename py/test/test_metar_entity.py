@@ -50,8 +50,7 @@ class TestMetarEntity:
         metar_ref01_ent = client.Metar(None)
         metar_ref01_match = {}
 
-        metar_ref01_list_result, err = metar_ref01_ent.list(metar_ref01_match, None)
-        assert err is None
+        metar_ref01_list_result = metar_ref01_ent.list(metar_ref01_match, None)
         assert isinstance(metar_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _metar_basic_setup(extra):
         "AVIATIONWEATHERDATA_TEST_METAR_ENTID": idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE": "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN": "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _metar_basic_setup(extra):
     if env.get("AVIATIONWEATHERDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("AVIATIONWEATHERDATA_APIKEY"),
             },
             extra or {},
         ])

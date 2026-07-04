@@ -43,8 +43,7 @@ class GAirmetEntityTest < Minitest::Test
     g_airmet_ref01_ent = client.GAirmet(nil)
     g_airmet_ref01_match = {}
 
-    g_airmet_ref01_list_result, err = g_airmet_ref01_ent.list(g_airmet_ref01_match, nil)
-    assert_nil err
+    g_airmet_ref01_list_result = g_airmet_ref01_ent.list(g_airmet_ref01_match, nil)
     assert g_airmet_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def g_airmet_basic_setup(extra)
     "AVIATIONWEATHERDATA_TEST_G_AIRMET_ENTID" => idmap,
     "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
     "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-    "AVIATIONWEATHERDATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def g_airmet_basic_setup(extra)
   if env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["AVIATIONWEATHERDATA_APIKEY"],
       },
       extra || {},
     ])

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CwaListMatch
+---@param ctrl? table
+---@return Cwa[]
+---@return string? err
 function CwaEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -43,8 +43,7 @@ class PirepEntityTest < Minitest::Test
     pirep_ref01_ent = client.Pirep(nil)
     pirep_ref01_match = {}
 
-    pirep_ref01_list_result, err = pirep_ref01_ent.list(pirep_ref01_match, nil)
-    assert_nil err
+    pirep_ref01_list_result = pirep_ref01_ent.list(pirep_ref01_match, nil)
     assert pirep_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def pirep_basic_setup(extra)
     "AVIATIONWEATHERDATA_TEST_PIREP_ENTID" => idmap,
     "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
     "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-    "AVIATIONWEATHERDATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def pirep_basic_setup(extra)
   if env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["AVIATIONWEATHERDATA_APIKEY"],
       },
       extra || {},
     ])

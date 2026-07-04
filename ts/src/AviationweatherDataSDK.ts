@@ -11,6 +11,8 @@ import { StationInfoEntity } from './entity/StationInfoEntity'
 import { TafEntity } from './entity/TafEntity'
 import { TcfEntity } from './entity/TcfEntity'
 
+export type * from './AviationweatherDataTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -211,60 +213,140 @@ class AviationweatherDataSDK {
 
 
 
+  _air_sigmet?: AirSigmetEntity
+
+  // Idiomatic facade: `client.air_sigmet.list()` / `client.air_sigmet.load({ id })`.
+  get air_sigmet(): AirSigmetEntity {
+    return (this._air_sigmet ??= new AirSigmetEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.air_sigmet` instead. */
   AirSigmet(data?: any) {
     const self = this
     return new AirSigmetEntity(self,data)
   }
 
 
+  _airport?: AirportEntity
+
+  // Idiomatic facade: `client.airport.list()` / `client.airport.load({ id })`.
+  get airport(): AirportEntity {
+    return (this._airport ??= new AirportEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.airport` instead. */
   Airport(data?: any) {
     const self = this
     return new AirportEntity(self,data)
   }
 
 
+  _cache?: CacheEntity
+
+  // Idiomatic facade: `client.cache.list()` / `client.cache.load({ id })`.
+  get cache(): CacheEntity {
+    return (this._cache ??= new CacheEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.cache` instead. */
   Cache(data?: any) {
     const self = this
     return new CacheEntity(self,data)
   }
 
 
+  _cwa?: CwaEntity
+
+  // Idiomatic facade: `client.cwa.list()` / `client.cwa.load({ id })`.
+  get cwa(): CwaEntity {
+    return (this._cwa ??= new CwaEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.cwa` instead. */
   Cwa(data?: any) {
     const self = this
     return new CwaEntity(self,data)
   }
 
 
+  _g_airmet?: GAirmetEntity
+
+  // Idiomatic facade: `client.g_airmet.list()` / `client.g_airmet.load({ id })`.
+  get g_airmet(): GAirmetEntity {
+    return (this._g_airmet ??= new GAirmetEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.g_airmet` instead. */
   GAirmet(data?: any) {
     const self = this
     return new GAirmetEntity(self,data)
   }
 
 
+  _metar?: MetarEntity
+
+  // Idiomatic facade: `client.metar.list()` / `client.metar.load({ id })`.
+  get metar(): MetarEntity {
+    return (this._metar ??= new MetarEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.metar` instead. */
   Metar(data?: any) {
     const self = this
     return new MetarEntity(self,data)
   }
 
 
+  _pirep?: PirepEntity
+
+  // Idiomatic facade: `client.pirep.list()` / `client.pirep.load({ id })`.
+  get pirep(): PirepEntity {
+    return (this._pirep ??= new PirepEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.pirep` instead. */
   Pirep(data?: any) {
     const self = this
     return new PirepEntity(self,data)
   }
 
 
+  _station_info?: StationInfoEntity
+
+  // Idiomatic facade: `client.station_info.list()` / `client.station_info.load({ id })`.
+  get station_info(): StationInfoEntity {
+    return (this._station_info ??= new StationInfoEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.station_info` instead. */
   StationInfo(data?: any) {
     const self = this
     return new StationInfoEntity(self,data)
   }
 
 
+  _taf?: TafEntity
+
+  // Idiomatic facade: `client.taf.list()` / `client.taf.load({ id })`.
+  get taf(): TafEntity {
+    return (this._taf ??= new TafEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.taf` instead. */
   Taf(data?: any) {
     const self = this
     return new TafEntity(self,data)
   }
 
 
+  _tcf?: TcfEntity
+
+  // Idiomatic facade: `client.tcf.list()` / `client.tcf.load({ id })`.
+  get tcf(): TcfEntity {
+    return (this._tcf ??= new TcfEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.tcf` instead. */
   Tcf(data?: any) {
     const self = this
     return new TcfEntity(self,data)

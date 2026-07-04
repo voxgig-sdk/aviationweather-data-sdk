@@ -50,8 +50,7 @@ class TafEntityTest extends TestCase
         $taf_ref01_ent = $client->Taf(null);
         $taf_ref01_match = [];
 
-        [$taf_ref01_list_result, $err] = $taf_ref01_ent->list($taf_ref01_match, null);
-        $this->assertNull($err);
+        $taf_ref01_list_result = $taf_ref01_ent->list($taf_ref01_match, null);
         $this->assertIsArray($taf_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function taf_basic_setup($extra)
         "AVIATIONWEATHERDATA_TEST_TAF_ENTID" => $idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function taf_basic_setup($extra)
     if ($env["AVIATIONWEATHERDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["AVIATIONWEATHERDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

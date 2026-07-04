@@ -50,8 +50,7 @@ class TestCwaEntity:
         cwa_ref01_ent = client.Cwa(None)
         cwa_ref01_match = {}
 
-        cwa_ref01_list_result, err = cwa_ref01_ent.list(cwa_ref01_match, None)
-        assert err is None
+        cwa_ref01_list_result = cwa_ref01_ent.list(cwa_ref01_match, None)
         assert isinstance(cwa_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _cwa_basic_setup(extra):
         "AVIATIONWEATHERDATA_TEST_CWA_ENTID": idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE": "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN": "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _cwa_basic_setup(extra):
     if env.get("AVIATIONWEATHERDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("AVIATIONWEATHERDATA_APIKEY"),
             },
             extra or {},
         ])

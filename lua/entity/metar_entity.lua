@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch MetarListMatch
+---@param ctrl? table
+---@return Metar[]
+---@return string? err
 function MetarEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

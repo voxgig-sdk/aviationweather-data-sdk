@@ -45,6 +45,7 @@ class CwaEntity
     end
   end
 
+  # @return [Cwa, Hash] the current Cwa data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class CwaEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Cwa fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class CwaEntity
   
 
   
+  # List Cwa items matching the given filter.
+  #
+  # @param reqmatch [CwaListMatch, Hash, nil] match filter (any subset of Cwa fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Cwa>, Array] the matching Cwa items; raises AviationweatherDataError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

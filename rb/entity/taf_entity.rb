@@ -45,6 +45,7 @@ class TafEntity
     end
   end
 
+  # @return [Taf, Hash] the current Taf data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class TafEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Taf fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class TafEntity
   
 
   
+  # List Taf items matching the given filter.
+  #
+  # @param reqmatch [TafListMatch, Hash, nil] match filter (any subset of Taf fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Taf>, Array] the matching Taf items; raises AviationweatherDataError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

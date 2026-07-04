@@ -49,8 +49,7 @@ class TcfEntityTest extends TestCase
         // LOAD
         $tcf_ref01_ent = $client->Tcf(null);
         $tcf_ref01_match_dt0 = [];
-        [$tcf_ref01_data_dt0_loaded, $err] = $tcf_ref01_ent->load($tcf_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $tcf_ref01_data_dt0_loaded = $tcf_ref01_ent->load($tcf_ref01_match_dt0, null);
         $this->assertNotNull($tcf_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function tcf_basic_setup($extra)
         "AVIATIONWEATHERDATA_TEST_TCF_ENTID" => $idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function tcf_basic_setup($extra)
     if ($env["AVIATIONWEATHERDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["AVIATIONWEATHERDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

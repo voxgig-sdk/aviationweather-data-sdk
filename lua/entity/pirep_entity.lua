@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch PirepListMatch
+---@param ctrl? table
+---@return Pirep[]
+---@return string? err
 function PirepEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

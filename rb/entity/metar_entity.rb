@@ -45,6 +45,7 @@ class MetarEntity
     end
   end
 
+  # @return [Metar, Hash] the current Metar data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class MetarEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Metar fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class MetarEntity
   
 
   
+  # List Metar items matching the given filter.
+  #
+  # @param reqmatch [MetarListMatch, Hash, nil] match filter (any subset of Metar fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Metar>, Array] the matching Metar items; raises AviationweatherDataError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

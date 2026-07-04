@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch TafListMatch
+---@param ctrl? table
+---@return Taf[]
+---@return string? err
 function TafEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

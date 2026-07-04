@@ -50,8 +50,7 @@ class PirepEntityTest extends TestCase
         $pirep_ref01_ent = $client->Pirep(null);
         $pirep_ref01_match = [];
 
-        [$pirep_ref01_list_result, $err] = $pirep_ref01_ent->list($pirep_ref01_match, null);
-        $this->assertNull($err);
+        $pirep_ref01_list_result = $pirep_ref01_ent->list($pirep_ref01_match, null);
         $this->assertIsArray($pirep_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function pirep_basic_setup($extra)
         "AVIATIONWEATHERDATA_TEST_PIREP_ENTID" => $idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function pirep_basic_setup($extra)
     if ($env["AVIATIONWEATHERDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["AVIATIONWEATHERDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

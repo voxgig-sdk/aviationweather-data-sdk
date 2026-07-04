@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch GAirmetListMatch
+---@param ctrl? table
+---@return GAirmet[]
+---@return string? err
 function GAirmetEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

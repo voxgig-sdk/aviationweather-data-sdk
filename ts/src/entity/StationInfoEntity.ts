@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  StationInfo,
+  StationInfoListMatch,
+} from '../AviationweatherDataTypes'
 
 // TODO: needs Entity superclass
-class StationInfoEntity extends AviationweatherDataEntityBase {
+class StationInfoEntity extends AviationweatherDataEntityBase<StationInfo> {
 
   constructor(client: AviationweatherDataSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class StationInfoEntity extends AviationweatherDataEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: StationInfoListMatch, ctrl?: Control): Promise<StationInfo[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class StationInfoEntity extends AviationweatherDataEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<StationInfo[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

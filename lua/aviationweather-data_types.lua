@@ -1,0 +1,156 @@
+-- Typed models for the AviationweatherData SDK (LuaLS annotations).
+--
+-- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
+-- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
+-- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
+-- edit by hand.
+
+---@class AirSigmet
+---@field airsigmet_type? string
+---@field altitude_high? number
+---@field altitude_low? number
+---@field fir? string
+---@field hazard? string
+---@field issue_time? string
+---@field raw_air_sigmet? string
+---@field severity? string
+---@field valid_time_from? string
+---@field valid_time_to? string
+
+---@class AirSigmetListMatch
+
+---@class Airport
+---@field city? string
+---@field country? string
+---@field elev? number
+---@field iata_id? string
+---@field icao_id? string
+---@field lat? number
+---@field lon? number
+---@field name? string
+---@field state? string
+
+---@class AirportListMatch
+
+---@class Cache
+
+---@class CacheLoadMatch
+
+---@class Cwa
+---@field cwsu? string
+---@field issue_time? string
+---@field raw_text? string
+---@field sequence? number
+---@field series_id? string
+---@field valid_time_from? string
+---@field valid_time_to? string
+
+---@class CwaListMatch
+
+---@class GAirmet
+---@field altitude_high? number
+---@field altitude_low? number
+---@field hazard? string
+---@field issue_time? string
+---@field qualifier? string
+---@field severity? string
+---@field valid_time_from? string
+---@field valid_time_to? string
+
+---@class GAirmetListMatch
+
+---@class Metar
+---@field altim? number
+---@field cloud? table
+---@field dewp? number
+---@field elev? number
+---@field flt_cat? string
+---@field icao_id? string
+---@field lat? number
+---@field lon? number
+---@field max_t? number
+---@field max_t24? number
+---@field metar_type? string
+---@field min_t? number
+---@field min_t24? number
+---@field most_recent? number
+---@field name? string
+---@field obs_time? string
+---@field pcp24hr? number
+---@field pcp3hr? number
+---@field pcp6hr? number
+---@field precip? number
+---@field pres_tend? number
+---@field prior? number
+---@field qc_field? number
+---@field raw_ob? string
+---@field raw_taf? string
+---@field report_time? string
+---@field slp? number
+---@field snow? number
+---@field temp? number
+---@field vert_vi? number
+---@field visib? string
+---@field wdir? number
+---@field wgst? number
+---@field wspd? number
+---@field wx_string? string
+
+---@class MetarListMatch
+
+---@class Pirep
+---@field aircraft_type? string
+---@field altitude_ft? number
+---@field cloud? table
+---@field icing? string
+---@field lat? number
+---@field lon? number
+---@field obs_time? string
+---@field raw_ob? string
+---@field report_type? string
+---@field temp? number
+---@field turbulence? string
+---@field visibility? string
+---@field wdir? number
+---@field wspd? number
+---@field wx_string? string
+
+---@class PirepListMatch
+
+---@class StationInfo
+---@field country? string
+---@field elev? number
+---@field iata_id? string
+---@field icao_id? string
+---@field lat? number
+---@field lon? number
+---@field name? string
+---@field priority? number
+---@field site? string
+---@field state? string
+
+---@class StationInfoListMatch
+
+---@class Taf
+---@field bulletin_time? string
+---@field elev? number
+---@field fcst? table
+---@field icao_id? string
+---@field issue_time? string
+---@field lat? number
+---@field lon? number
+---@field name? string
+---@field raw_taf? string
+---@field valid_time_from? string
+---@field valid_time_to? string
+
+---@class TafListMatch
+
+---@class Tcf
+
+---@class TcfLoadMatch
+
+local M = {}
+
+return M

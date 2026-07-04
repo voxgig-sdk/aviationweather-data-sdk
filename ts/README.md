@@ -9,9 +9,12 @@ The TypeScript SDK for the AviationweatherData API — a type-safe, entity-orien
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/aviationweather-data
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/aviationweather-data-sdk/releases](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AviationweatherDataSDK } from 'aviationweather-data'
+import { AviationweatherDataSDK } from '@voxgig-sdk/aviationweather-data'
 
-const client = new AviationweatherDataSDK({
-  apikey: process.env.AVIATIONWEATHER-DATA_APIKEY,
-})
+const client = new AviationweatherDataSDK()
 ```
 
 ### 2. List airsigmets
 
 ```ts
-const result = await client.AirSigmet().list()
+const result = await client.airsigmet.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AviationweatherDataSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.airsigmet.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new AviationweatherDataSDK({ apikey: '...' })
+const client = new AviationweatherDataSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.airsigmet
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new AviationweatherDataSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -135,8 +135,7 @@ const client = new AviationweatherDataSDK({
 Create a `.env.local` file at the project root:
 
 ```
-AVIATIONWEATHER-DATA_TEST_LIVE=TRUE
-AVIATIONWEATHER-DATA_APIKEY=<your-key>
+AVIATIONWEATHER_DATA_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new AviationweatherDataSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new AviationweatherDataSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -462,7 +459,7 @@ API path: `/api/data/tcf`
 
 ### AirSigmet
 
-Create an instance: `const air_sigmet = client.AirSigmet()`
+Create an instance: `const air_sigmet = client.air_sigmet`
 
 #### Operations
 
@@ -488,13 +485,13 @@ Create an instance: `const air_sigmet = client.AirSigmet()`
 #### Example: List
 
 ```ts
-const air_sigmets = await client.AirSigmet().list()
+const air_sigmets = await client.air_sigmet.list()
 ```
 
 
 ### Airport
 
-Create an instance: `const airport = client.Airport()`
+Create an instance: `const airport = client.airport`
 
 #### Operations
 
@@ -519,13 +516,13 @@ Create an instance: `const airport = client.Airport()`
 #### Example: List
 
 ```ts
-const airports = await client.Airport().list()
+const airports = await client.airport.list()
 ```
 
 
 ### Cache
 
-Create an instance: `const cache = client.Cache()`
+Create an instance: `const cache = client.cache`
 
 #### Operations
 
@@ -536,13 +533,13 @@ Create an instance: `const cache = client.Cache()`
 #### Example: Load
 
 ```ts
-const cache = await client.Cache().load({ id: 'cache_id' })
+const cache = await client.cache.load({ id: 'cache_id' })
 ```
 
 
 ### Cwa
 
-Create an instance: `const cwa = client.Cwa()`
+Create an instance: `const cwa = client.cwa`
 
 #### Operations
 
@@ -565,13 +562,13 @@ Create an instance: `const cwa = client.Cwa()`
 #### Example: List
 
 ```ts
-const cwas = await client.Cwa().list()
+const cwas = await client.cwa.list()
 ```
 
 
 ### GAirmet
 
-Create an instance: `const g_airmet = client.GAirmet()`
+Create an instance: `const g_airmet = client.g_airmet`
 
 #### Operations
 
@@ -595,13 +592,13 @@ Create an instance: `const g_airmet = client.GAirmet()`
 #### Example: List
 
 ```ts
-const g_airmets = await client.GAirmet().list()
+const g_airmets = await client.g_airmet.list()
 ```
 
 
 ### Metar
 
-Create an instance: `const metar = client.Metar()`
+Create an instance: `const metar = client.metar`
 
 #### Operations
 
@@ -652,13 +649,13 @@ Create an instance: `const metar = client.Metar()`
 #### Example: List
 
 ```ts
-const metars = await client.Metar().list()
+const metars = await client.metar.list()
 ```
 
 
 ### Pirep
 
-Create an instance: `const pirep = client.Pirep()`
+Create an instance: `const pirep = client.pirep`
 
 #### Operations
 
@@ -689,13 +686,13 @@ Create an instance: `const pirep = client.Pirep()`
 #### Example: List
 
 ```ts
-const pireps = await client.Pirep().list()
+const pireps = await client.pirep.list()
 ```
 
 
 ### StationInfo
 
-Create an instance: `const station_info = client.StationInfo()`
+Create an instance: `const station_info = client.station_info`
 
 #### Operations
 
@@ -721,13 +718,13 @@ Create an instance: `const station_info = client.StationInfo()`
 #### Example: List
 
 ```ts
-const station_infos = await client.StationInfo().list()
+const station_infos = await client.station_info.list()
 ```
 
 
 ### Taf
 
-Create an instance: `const taf = client.Taf()`
+Create an instance: `const taf = client.taf`
 
 #### Operations
 
@@ -754,13 +751,13 @@ Create an instance: `const taf = client.Taf()`
 #### Example: List
 
 ```ts
-const tafs = await client.Taf().list()
+const tafs = await client.taf.list()
 ```
 
 
 ### Tcf
 
-Create an instance: `const tcf = client.Tcf()`
+Create an instance: `const tcf = client.tcf`
 
 #### Operations
 
@@ -771,7 +768,7 @@ Create an instance: `const tcf = client.Tcf()`
 #### Example: Load
 
 ```ts
-const tcf = await client.Tcf().load({ id: 'tcf_id' })
+const tcf = await client.tcf.load({ id: 'tcf_id' })
 ```
 
 
@@ -832,7 +829,7 @@ aviationweather-data/
 Import the SDK from the package root:
 
 ```ts
-import { AviationweatherDataSDK } from 'aviationweather-data'
+import { AviationweatherDataSDK } from '@voxgig-sdk/aviationweather-data'
 ```
 
 ### Entity state
@@ -842,11 +839,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const airsigmet = client.airsigmet
+await airsigmet.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// airsigmet.data() now returns the loaded airsigmet data
+// airsigmet.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

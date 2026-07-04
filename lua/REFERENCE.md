@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -120,7 +119,7 @@ same parameters as `direct()`.
 ## AirSigmetEntity
 
 ```lua
-local air_sigmet = client:AirSigmet(nil)
+local air_sigmet = client:air_sigmet(nil)
 ```
 
 ### Fields
@@ -145,7 +144,7 @@ local air_sigmet = client:AirSigmet(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:AirSigmet():list()
+local results, err = client:air_sigmet():list()
 ```
 
 ### Common Methods
@@ -181,7 +180,7 @@ Return the entity name.
 ## AirportEntity
 
 ```lua
-local airport = client:Airport(nil)
+local airport = client:airport(nil)
 ```
 
 ### Fields
@@ -205,7 +204,7 @@ local airport = client:Airport(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Airport():list()
+local results, err = client:airport():list()
 ```
 
 ### Common Methods
@@ -241,7 +240,7 @@ Return the entity name.
 ## CacheEntity
 
 ```lua
-local cache = client:Cache(nil)
+local cache = client:cache(nil)
 ```
 
 ### Operations
@@ -251,7 +250,7 @@ local cache = client:Cache(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Cache():load({ id = "cache_id" })
+local result, err = client:cache():load({ id = "cache_id" })
 ```
 
 ### Common Methods
@@ -287,7 +286,7 @@ Return the entity name.
 ## CwaEntity
 
 ```lua
-local cwa = client:Cwa(nil)
+local cwa = client:cwa(nil)
 ```
 
 ### Fields
@@ -309,7 +308,7 @@ local cwa = client:Cwa(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Cwa():list()
+local results, err = client:cwa():list()
 ```
 
 ### Common Methods
@@ -345,7 +344,7 @@ Return the entity name.
 ## GAirmetEntity
 
 ```lua
-local g_airmet = client:GAirmet(nil)
+local g_airmet = client:g_airmet(nil)
 ```
 
 ### Fields
@@ -368,7 +367,7 @@ local g_airmet = client:GAirmet(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:GAirmet():list()
+local results, err = client:g_airmet():list()
 ```
 
 ### Common Methods
@@ -404,7 +403,7 @@ Return the entity name.
 ## MetarEntity
 
 ```lua
-local metar = client:Metar(nil)
+local metar = client:metar(nil)
 ```
 
 ### Fields
@@ -454,7 +453,7 @@ local metar = client:Metar(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Metar():list()
+local results, err = client:metar():list()
 ```
 
 ### Common Methods
@@ -490,7 +489,7 @@ Return the entity name.
 ## PirepEntity
 
 ```lua
-local pirep = client:Pirep(nil)
+local pirep = client:pirep(nil)
 ```
 
 ### Fields
@@ -520,7 +519,7 @@ local pirep = client:Pirep(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Pirep():list()
+local results, err = client:pirep():list()
 ```
 
 ### Common Methods
@@ -556,7 +555,7 @@ Return the entity name.
 ## StationInfoEntity
 
 ```lua
-local station_info = client:StationInfo(nil)
+local station_info = client:station_info(nil)
 ```
 
 ### Fields
@@ -581,7 +580,7 @@ local station_info = client:StationInfo(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:StationInfo():list()
+local results, err = client:station_info():list()
 ```
 
 ### Common Methods
@@ -617,7 +616,7 @@ Return the entity name.
 ## TafEntity
 
 ```lua
-local taf = client:Taf(nil)
+local taf = client:taf(nil)
 ```
 
 ### Fields
@@ -643,7 +642,7 @@ local taf = client:Taf(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Taf():list()
+local results, err = client:taf():list()
 ```
 
 ### Common Methods
@@ -679,7 +678,7 @@ Return the entity name.
 ## TcfEntity
 
 ```lua
-local tcf = client:Tcf(nil)
+local tcf = client:tcf(nil)
 ```
 
 ### Operations
@@ -689,7 +688,7 @@ local tcf = client:Tcf(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Tcf():load({ id = "tcf_id" })
+local result, err = client:tcf():load({ id = "tcf_id" })
 ```
 
 ### Common Methods

@@ -43,8 +43,7 @@ class StationInfoEntityTest < Minitest::Test
     station_info_ref01_ent = client.StationInfo(nil)
     station_info_ref01_match = {}
 
-    station_info_ref01_list_result, err = station_info_ref01_ent.list(station_info_ref01_match, nil)
-    assert_nil err
+    station_info_ref01_list_result = station_info_ref01_ent.list(station_info_ref01_match, nil)
     assert station_info_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def station_info_basic_setup(extra)
     "AVIATIONWEATHERDATA_TEST_STATION_INFO_ENTID" => idmap,
     "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
     "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-    "AVIATIONWEATHERDATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def station_info_basic_setup(extra)
   if env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["AVIATIONWEATHERDATA_APIKEY"],
       },
       extra || {},
     ])

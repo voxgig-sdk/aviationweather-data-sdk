@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `dict` | SDK configuration options. |
-| `options["apikey"]` | `str` | API key for authentication. |
 | `options["base"]` | `str` | Base URL for API requests. |
 | `options["prefix"]` | `str` | URL prefix appended after base. |
 | `options["suffix"]` | `str` | URL suffix appended after path. |
@@ -90,9 +89,9 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs=None) -> tuple`
+#### `direct(fetchargs=None) -> dict`
 
-Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
+Make a direct HTTP request to any API endpoint. Returns a result `dict` with `ok`, `status`, `headers`, and `data` (or `err` on failure). This escape hatch never raises — branch on `result["ok"]`.
 
 **Parameters:**
 
@@ -105,11 +104,11 @@ Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
 | `fetchargs["headers"]` | `dict` | Request headers (merged with defaults). |
 | `fetchargs["body"]` | `any` | Request body (dicts are JSON-serialized). |
 
-**Returns:** `(result_dict, err)`
+**Returns:** `result_dict`
 
-#### `prepare(fetchargs=None) -> tuple`
+#### `prepare(fetchargs=None) -> dict`
 
-Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
+Prepare a fetch definition without sending. Returns the `fetchdef` and raises on error.
 
 
 ---
@@ -117,7 +116,7 @@ Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
 ## AirSigmetEntity
 
 ```python
-air_sigmet = client.AirSigmet()
+air_sigmet = client.air_sigmet
 ```
 
 ### Fields
@@ -137,12 +136,12 @@ air_sigmet = client.AirSigmet()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.AirSigmet().list({})
+results = client.air_sigmet.list({})
 ```
 
 ### Common Methods
@@ -177,7 +176,7 @@ Return the entity name.
 ## AirportEntity
 
 ```python
-airport = client.Airport()
+airport = client.airport
 ```
 
 ### Fields
@@ -196,12 +195,12 @@ airport = client.Airport()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Airport().list({})
+results = client.airport.list({})
 ```
 
 ### Common Methods
@@ -236,17 +235,17 @@ Return the entity name.
 ## CacheEntity
 
 ```python
-cache = client.Cache()
+cache = client.cache
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Cache().load({"id": "cache_id"})
+result = client.cache.load({"id": "cache_id"})
 ```
 
 ### Common Methods
@@ -281,7 +280,7 @@ Return the entity name.
 ## CwaEntity
 
 ```python
-cwa = client.Cwa()
+cwa = client.cwa
 ```
 
 ### Fields
@@ -298,12 +297,12 @@ cwa = client.Cwa()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Cwa().list({})
+results = client.cwa.list({})
 ```
 
 ### Common Methods
@@ -338,7 +337,7 @@ Return the entity name.
 ## GAirmetEntity
 
 ```python
-g_airmet = client.GAirmet()
+g_airmet = client.g_airmet
 ```
 
 ### Fields
@@ -356,12 +355,12 @@ g_airmet = client.GAirmet()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.GAirmet().list({})
+results = client.g_airmet.list({})
 ```
 
 ### Common Methods
@@ -396,7 +395,7 @@ Return the entity name.
 ## MetarEntity
 
 ```python
-metar = client.Metar()
+metar = client.metar
 ```
 
 ### Fields
@@ -441,12 +440,12 @@ metar = client.Metar()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Metar().list({})
+results = client.metar.list({})
 ```
 
 ### Common Methods
@@ -481,7 +480,7 @@ Return the entity name.
 ## PirepEntity
 
 ```python
-pirep = client.Pirep()
+pirep = client.pirep
 ```
 
 ### Fields
@@ -506,12 +505,12 @@ pirep = client.Pirep()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Pirep().list({})
+results = client.pirep.list({})
 ```
 
 ### Common Methods
@@ -546,7 +545,7 @@ Return the entity name.
 ## StationInfoEntity
 
 ```python
-station_info = client.StationInfo()
+station_info = client.station_info
 ```
 
 ### Fields
@@ -566,12 +565,12 @@ station_info = client.StationInfo()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.StationInfo().list({})
+results = client.station_info.list({})
 ```
 
 ### Common Methods
@@ -606,7 +605,7 @@ Return the entity name.
 ## TafEntity
 
 ```python
-taf = client.Taf()
+taf = client.taf
 ```
 
 ### Fields
@@ -627,12 +626,12 @@ taf = client.Taf()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Taf().list({})
+results = client.taf.list({})
 ```
 
 ### Common Methods
@@ -667,17 +666,17 @@ Return the entity name.
 ## TcfEntity
 
 ```python
-tcf = client.Tcf()
+tcf = client.tcf
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Tcf().load({"id": "tcf_id"})
+result = client.tcf.load({"id": "tcf_id"})
 ```
 
 ### Common Methods

@@ -50,8 +50,7 @@ class TestAirSigmetEntity:
         air_sigmet_ref01_ent = client.AirSigmet(None)
         air_sigmet_ref01_match = {}
 
-        air_sigmet_ref01_list_result, err = air_sigmet_ref01_ent.list(air_sigmet_ref01_match, None)
-        assert err is None
+        air_sigmet_ref01_list_result = air_sigmet_ref01_ent.list(air_sigmet_ref01_match, None)
         assert isinstance(air_sigmet_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _air_sigmet_basic_setup(extra):
         "AVIATIONWEATHERDATA_TEST_AIR_SIGMET_ENTID": idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE": "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN": "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _air_sigmet_basic_setup(extra):
     if env.get("AVIATIONWEATHERDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("AVIATIONWEATHERDATA_APIKEY"),
             },
             extra or {},
         ])

@@ -50,8 +50,7 @@ class TestStationInfoEntity:
         station_info_ref01_ent = client.StationInfo(None)
         station_info_ref01_match = {}
 
-        station_info_ref01_list_result, err = station_info_ref01_ent.list(station_info_ref01_match, None)
-        assert err is None
+        station_info_ref01_list_result = station_info_ref01_ent.list(station_info_ref01_match, None)
         assert isinstance(station_info_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _station_info_basic_setup(extra):
         "AVIATIONWEATHERDATA_TEST_STATION_INFO_ENTID": idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE": "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN": "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _station_info_basic_setup(extra):
     if env.get("AVIATIONWEATHERDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("AVIATIONWEATHERDATA_APIKEY"),
             },
             extra or {},
         ])

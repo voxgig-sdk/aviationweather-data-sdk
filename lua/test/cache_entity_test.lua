@@ -91,7 +91,6 @@ function cache_basic_setup(extra)
     ["AVIATIONWEATHERDATA_TEST_CACHE_ENTID"] = idmap,
     ["AVIATIONWEATHERDATA_TEST_LIVE"] = "FALSE",
     ["AVIATIONWEATHERDATA_TEST_EXPLAIN"] = "FALSE",
-    ["AVIATIONWEATHERDATA_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ function cache_basic_setup(extra)
   if env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["AVIATIONWEATHERDATA_APIKEY"],
       },
       extra or {},
     })

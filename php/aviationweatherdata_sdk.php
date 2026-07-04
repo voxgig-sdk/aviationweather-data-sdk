@@ -103,7 +103,7 @@ class AviationweatherDataSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class AviationweatherDataSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class AviationweatherDataSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,87 +216,197 @@ class AviationweatherDataSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function AirSigmet($data = null)
+    private $_air_sigmet = null;
+
+    // Idiomatic facade: $client->air_sigmet()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias AirSigmet() (PHP method
+    // names are case-insensitive).
+    public function air_sigmet($data = null)
     {
         require_once __DIR__ . '/entity/air_sigmet_entity.php';
+        if ($data === null) {
+            if ($this->_air_sigmet === null) {
+                $this->_air_sigmet = new AirSigmetEntity($this, null);
+            }
+            return $this->_air_sigmet;
+        }
         return new AirSigmetEntity($this, $data);
     }
 
 
-    public function Airport($data = null)
+    private $_airport = null;
+
+    // Idiomatic facade: $client->airport()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Airport() (PHP method
+    // names are case-insensitive).
+    public function airport($data = null)
     {
         require_once __DIR__ . '/entity/airport_entity.php';
+        if ($data === null) {
+            if ($this->_airport === null) {
+                $this->_airport = new AirportEntity($this, null);
+            }
+            return $this->_airport;
+        }
         return new AirportEntity($this, $data);
     }
 
 
-    public function Cache($data = null)
+    private $_cache = null;
+
+    // Idiomatic facade: $client->cache()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Cache() (PHP method
+    // names are case-insensitive).
+    public function cache($data = null)
     {
         require_once __DIR__ . '/entity/cache_entity.php';
+        if ($data === null) {
+            if ($this->_cache === null) {
+                $this->_cache = new CacheEntity($this, null);
+            }
+            return $this->_cache;
+        }
         return new CacheEntity($this, $data);
     }
 
 
-    public function Cwa($data = null)
+    private $_cwa = null;
+
+    // Idiomatic facade: $client->cwa()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Cwa() (PHP method
+    // names are case-insensitive).
+    public function cwa($data = null)
     {
         require_once __DIR__ . '/entity/cwa_entity.php';
+        if ($data === null) {
+            if ($this->_cwa === null) {
+                $this->_cwa = new CwaEntity($this, null);
+            }
+            return $this->_cwa;
+        }
         return new CwaEntity($this, $data);
     }
 
 
-    public function GAirmet($data = null)
+    private $_g_airmet = null;
+
+    // Idiomatic facade: $client->g_airmet()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias GAirmet() (PHP method
+    // names are case-insensitive).
+    public function g_airmet($data = null)
     {
         require_once __DIR__ . '/entity/g_airmet_entity.php';
+        if ($data === null) {
+            if ($this->_g_airmet === null) {
+                $this->_g_airmet = new GAirmetEntity($this, null);
+            }
+            return $this->_g_airmet;
+        }
         return new GAirmetEntity($this, $data);
     }
 
 
-    public function Metar($data = null)
+    private $_metar = null;
+
+    // Idiomatic facade: $client->metar()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Metar() (PHP method
+    // names are case-insensitive).
+    public function metar($data = null)
     {
         require_once __DIR__ . '/entity/metar_entity.php';
+        if ($data === null) {
+            if ($this->_metar === null) {
+                $this->_metar = new MetarEntity($this, null);
+            }
+            return $this->_metar;
+        }
         return new MetarEntity($this, $data);
     }
 
 
-    public function Pirep($data = null)
+    private $_pirep = null;
+
+    // Idiomatic facade: $client->pirep()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Pirep() (PHP method
+    // names are case-insensitive).
+    public function pirep($data = null)
     {
         require_once __DIR__ . '/entity/pirep_entity.php';
+        if ($data === null) {
+            if ($this->_pirep === null) {
+                $this->_pirep = new PirepEntity($this, null);
+            }
+            return $this->_pirep;
+        }
         return new PirepEntity($this, $data);
     }
 
 
-    public function StationInfo($data = null)
+    private $_station_info = null;
+
+    // Idiomatic facade: $client->station_info()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias StationInfo() (PHP method
+    // names are case-insensitive).
+    public function station_info($data = null)
     {
         require_once __DIR__ . '/entity/station_info_entity.php';
+        if ($data === null) {
+            if ($this->_station_info === null) {
+                $this->_station_info = new StationInfoEntity($this, null);
+            }
+            return $this->_station_info;
+        }
         return new StationInfoEntity($this, $data);
     }
 
 
-    public function Taf($data = null)
+    private $_taf = null;
+
+    // Idiomatic facade: $client->taf()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Taf() (PHP method
+    // names are case-insensitive).
+    public function taf($data = null)
     {
         require_once __DIR__ . '/entity/taf_entity.php';
+        if ($data === null) {
+            if ($this->_taf === null) {
+                $this->_taf = new TafEntity($this, null);
+            }
+            return $this->_taf;
+        }
         return new TafEntity($this, $data);
     }
 
 
-    public function Tcf($data = null)
+    private $_tcf = null;
+
+    // Idiomatic facade: $client->tcf()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Tcf() (PHP method
+    // names are case-insensitive).
+    public function tcf($data = null)
     {
         require_once __DIR__ . '/entity/tcf_entity.php';
+        if ($data === null) {
+            if ($this->_tcf === null) {
+                $this->_tcf = new TcfEntity($this, null);
+            }
+            return $this->_tcf;
+        }
         return new TcfEntity($this, $data);
     }
 

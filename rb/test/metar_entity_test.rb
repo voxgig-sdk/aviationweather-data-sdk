@@ -43,8 +43,7 @@ class MetarEntityTest < Minitest::Test
     metar_ref01_ent = client.Metar(nil)
     metar_ref01_match = {}
 
-    metar_ref01_list_result, err = metar_ref01_ent.list(metar_ref01_match, nil)
-    assert_nil err
+    metar_ref01_list_result = metar_ref01_ent.list(metar_ref01_match, nil)
     assert metar_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def metar_basic_setup(extra)
     "AVIATIONWEATHERDATA_TEST_METAR_ENTID" => idmap,
     "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
     "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-    "AVIATIONWEATHERDATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def metar_basic_setup(extra)
   if env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["AVIATIONWEATHERDATA_APIKEY"],
       },
       extra || {},
     ])

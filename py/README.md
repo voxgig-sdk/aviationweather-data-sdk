@@ -9,11 +9,9 @@ The Python SDK for the AviationweatherData API — an entity-oriented client fol
 
 
 ## Install
-```bash
-pip install voxgig-sdk-aviationweather-data
-```
-
-Or install from source:
+This package is not yet published to PyPI. Install it from the GitHub
+release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases)) or
+from a source checkout:
 
 ```bash
 pip install -e .
@@ -28,25 +26,21 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from aviationweatherdata_sdk import AviationweatherDataSDK
 
-client = AviationweatherDataSDK({
-    "apikey": os.environ.get("AVIATIONWEATHER-DATA_APIKEY"),
-})
+client = AviationweatherDataSDK()
 ```
 
 ### 2. List airsigmets
 
 ```python
-result, err = client.AirSigmet().list()
-if err:
-    raise Exception(err)
-
-if isinstance(result, list):
+try:
+    result = client.airsigmet.list()
     for item in result:
         d = item.data_get()
         print(d["id"], d["name"])
+except Exception as err:
+    print(f"list failed: {err}")
 ```
 
 
@@ -57,29 +51,28 @@ if isinstance(result, list):
 For endpoints not covered by entity methods:
 
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
+else:
+    print(result["err"])     # error value
 ```
 
 ### Prepare a request without sending it
 
 ```python
-fetchdef, err = client.prepare({
+# prepare() returns the fetch definition and raises on error.
+fetchdef = client.prepare({
     "path": "/api/resource/{id}",
     "method": "DELETE",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 print(fetchdef["url"])
 print(fetchdef["method"])
@@ -93,7 +86,7 @@ Create a mock client for unit testing — no server required:
 ```python
 client = AviationweatherDataSDK.test()
 
-result, err = client.AviationweatherData().load({"id": "test01"})
+result = client.airsigmet.load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -123,8 +116,7 @@ client = AviationweatherDataSDK({
 Create a `.env.local` file at the project root:
 
 ```
-AVIATIONWEATHER-DATA_TEST_LIVE=TRUE
-AVIATIONWEATHER-DATA_APIKEY=<your-key>
+AVIATIONWEATHER_DATA_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -148,7 +140,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |
@@ -170,8 +161,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | --- | --- | --- |
 | `options_map` | `() -> dict` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `AirSigmet` | `(data) -> AirSigmetEntity` | Create a AirSigmet entity instance. |
 | `Airport` | `(data) -> AirportEntity` | Create a Airport entity instance. |
 | `Cache` | `(data) -> CacheEntity` | Create a Cache entity instance. |
@@ -189,11 +180,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> (any, err)` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> (any, err)` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> (any, err)` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> (any, err)` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> (any, err)` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -203,8 +194,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`dict` with these keys:
+Entity operations return the bare result data (a `dict` for single-entity
+ops, a `list` for `list`) and raise on error. Wrap calls in
+`try`/`except` to handle failures.
+
+The `direct()` escape hatch never raises — it returns a result `dict`
+you branch on via `result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -419,7 +414,7 @@ API path: `/api/data/tcf`
 
 ### AirSigmet
 
-Create an instance: `const air_sigmet = client.AirSigmet()`
+Create an instance: `const air_sigmet = client.air_sigmet`
 
 #### Operations
 
@@ -445,13 +440,13 @@ Create an instance: `const air_sigmet = client.AirSigmet()`
 #### Example: List
 
 ```ts
-const air_sigmets = await client.AirSigmet().list()
+const air_sigmets = await client.air_sigmet.list()
 ```
 
 
 ### Airport
 
-Create an instance: `const airport = client.Airport()`
+Create an instance: `const airport = client.airport`
 
 #### Operations
 
@@ -476,13 +471,13 @@ Create an instance: `const airport = client.Airport()`
 #### Example: List
 
 ```ts
-const airports = await client.Airport().list()
+const airports = await client.airport.list()
 ```
 
 
 ### Cache
 
-Create an instance: `const cache = client.Cache()`
+Create an instance: `const cache = client.cache`
 
 #### Operations
 
@@ -493,13 +488,13 @@ Create an instance: `const cache = client.Cache()`
 #### Example: Load
 
 ```ts
-const cache = await client.Cache().load({ id: 'cache_id' })
+const cache = await client.cache.load({ id: 'cache_id' })
 ```
 
 
 ### Cwa
 
-Create an instance: `const cwa = client.Cwa()`
+Create an instance: `const cwa = client.cwa`
 
 #### Operations
 
@@ -522,13 +517,13 @@ Create an instance: `const cwa = client.Cwa()`
 #### Example: List
 
 ```ts
-const cwas = await client.Cwa().list()
+const cwas = await client.cwa.list()
 ```
 
 
 ### GAirmet
 
-Create an instance: `const g_airmet = client.GAirmet()`
+Create an instance: `const g_airmet = client.g_airmet`
 
 #### Operations
 
@@ -552,13 +547,13 @@ Create an instance: `const g_airmet = client.GAirmet()`
 #### Example: List
 
 ```ts
-const g_airmets = await client.GAirmet().list()
+const g_airmets = await client.g_airmet.list()
 ```
 
 
 ### Metar
 
-Create an instance: `const metar = client.Metar()`
+Create an instance: `const metar = client.metar`
 
 #### Operations
 
@@ -609,13 +604,13 @@ Create an instance: `const metar = client.Metar()`
 #### Example: List
 
 ```ts
-const metars = await client.Metar().list()
+const metars = await client.metar.list()
 ```
 
 
 ### Pirep
 
-Create an instance: `const pirep = client.Pirep()`
+Create an instance: `const pirep = client.pirep`
 
 #### Operations
 
@@ -646,13 +641,13 @@ Create an instance: `const pirep = client.Pirep()`
 #### Example: List
 
 ```ts
-const pireps = await client.Pirep().list()
+const pireps = await client.pirep.list()
 ```
 
 
 ### StationInfo
 
-Create an instance: `const station_info = client.StationInfo()`
+Create an instance: `const station_info = client.station_info`
 
 #### Operations
 
@@ -678,13 +673,13 @@ Create an instance: `const station_info = client.StationInfo()`
 #### Example: List
 
 ```ts
-const station_infos = await client.StationInfo().list()
+const station_infos = await client.station_info.list()
 ```
 
 
 ### Taf
 
-Create an instance: `const taf = client.Taf()`
+Create an instance: `const taf = client.taf`
 
 #### Operations
 
@@ -711,13 +706,13 @@ Create an instance: `const taf = client.Taf()`
 #### Example: List
 
 ```ts
-const tafs = await client.Taf().list()
+const tafs = await client.taf.list()
 ```
 
 
 ### Tcf
 
-Create an instance: `const tcf = client.Tcf()`
+Create an instance: `const tcf = client.tcf`
 
 #### Operations
 
@@ -728,7 +723,7 @@ Create an instance: `const tcf = client.Tcf()`
 #### Example: Load
 
 ```ts
-const tcf = await client.Tcf().load({ id: 'tcf_id' })
+const tcf = await client.tcf.load({ id: 'tcf_id' })
 ```
 
 
@@ -802,11 +797,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-moon = client.Moon()
-moon.load({"planet_id": "earth", "id": "luna"})
+airsigmet = client.airsigmet
+airsigmet.load({"id": "example_id"})
 
-# moon.data_get() now returns the loaded moon data
-# moon.match_get() returns the last match criteria
+# airsigmet.data_get() now returns the loaded airsigmet data
+# airsigmet.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

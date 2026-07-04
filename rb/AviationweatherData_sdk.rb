@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'AviationweatherData_types'
+
 
 class AviationweatherDataSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class AviationweatherDataSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class AviationweatherDataSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue AviationweatherDataError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = AviationweatherDataHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class AviationweatherDataSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,70 +198,140 @@ class AviationweatherDataSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.air_sigmet.list / client.air_sigmet.load({ "id" => ... })
+  def air_sigmet
+    require_relative 'entity/air_sigmet_entity'
+    @air_sigmet ||= AirSigmetEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.air_sigmet instead.
   def AirSigmet(data = nil)
     require_relative 'entity/air_sigmet_entity'
     AirSigmetEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.airport.list / client.airport.load({ "id" => ... })
+  def airport
+    require_relative 'entity/airport_entity'
+    @airport ||= AirportEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.airport instead.
   def Airport(data = nil)
     require_relative 'entity/airport_entity'
     AirportEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.cache.list / client.cache.load({ "id" => ... })
+  def cache
+    require_relative 'entity/cache_entity'
+    @cache ||= CacheEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.cache instead.
   def Cache(data = nil)
     require_relative 'entity/cache_entity'
     CacheEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.cwa.list / client.cwa.load({ "id" => ... })
+  def cwa
+    require_relative 'entity/cwa_entity'
+    @cwa ||= CwaEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.cwa instead.
   def Cwa(data = nil)
     require_relative 'entity/cwa_entity'
     CwaEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.g_airmet.list / client.g_airmet.load({ "id" => ... })
+  def g_airmet
+    require_relative 'entity/g_airmet_entity'
+    @g_airmet ||= GAirmetEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.g_airmet instead.
   def GAirmet(data = nil)
     require_relative 'entity/g_airmet_entity'
     GAirmetEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.metar.list / client.metar.load({ "id" => ... })
+  def metar
+    require_relative 'entity/metar_entity'
+    @metar ||= MetarEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.metar instead.
   def Metar(data = nil)
     require_relative 'entity/metar_entity'
     MetarEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.pirep.list / client.pirep.load({ "id" => ... })
+  def pirep
+    require_relative 'entity/pirep_entity'
+    @pirep ||= PirepEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.pirep instead.
   def Pirep(data = nil)
     require_relative 'entity/pirep_entity'
     PirepEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.station_info.list / client.station_info.load({ "id" => ... })
+  def station_info
+    require_relative 'entity/station_info_entity'
+    @station_info ||= StationInfoEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.station_info instead.
   def StationInfo(data = nil)
     require_relative 'entity/station_info_entity'
     StationInfoEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.taf.list / client.taf.load({ "id" => ... })
+  def taf
+    require_relative 'entity/taf_entity'
+    @taf ||= TafEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.taf instead.
   def Taf(data = nil)
     require_relative 'entity/taf_entity'
     TafEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.tcf.list / client.tcf.load({ "id" => ... })
+  def tcf
+    require_relative 'entity/tcf_entity'
+    @tcf ||= TcfEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.tcf instead.
   def Tcf(data = nil)
     require_relative 'entity/tcf_entity'
     TcfEntity.new(self, data)

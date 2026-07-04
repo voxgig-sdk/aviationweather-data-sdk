@@ -144,16 +144,23 @@ class AviationweatherDataSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class AviationweatherDataSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,60 +212,170 @@ class AviationweatherDataSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def air_sigmet(self):
+        """Idiomatic facade: client.air_sigmet.list() / client.air_sigmet.load({"id": ...})."""
+        from entity.air_sigmet_entity import AirSigmetEntity
+        cached = getattr(self, "_air_sigmet", None)
+        if cached is None:
+            cached = AirSigmetEntity(self, None)
+            self._air_sigmet = cached
+        return cached
 
     def AirSigmet(self, data=None):
+        # Deprecated: use client.air_sigmet instead.
         from entity.air_sigmet_entity import AirSigmetEntity
         return AirSigmetEntity(self, data)
 
 
+    @property
+    def airport(self):
+        """Idiomatic facade: client.airport.list() / client.airport.load({"id": ...})."""
+        from entity.airport_entity import AirportEntity
+        cached = getattr(self, "_airport", None)
+        if cached is None:
+            cached = AirportEntity(self, None)
+            self._airport = cached
+        return cached
+
     def Airport(self, data=None):
+        # Deprecated: use client.airport instead.
         from entity.airport_entity import AirportEntity
         return AirportEntity(self, data)
 
 
+    @property
+    def cache(self):
+        """Idiomatic facade: client.cache.list() / client.cache.load({"id": ...})."""
+        from entity.cache_entity import CacheEntity
+        cached = getattr(self, "_cache", None)
+        if cached is None:
+            cached = CacheEntity(self, None)
+            self._cache = cached
+        return cached
+
     def Cache(self, data=None):
+        # Deprecated: use client.cache instead.
         from entity.cache_entity import CacheEntity
         return CacheEntity(self, data)
 
 
+    @property
+    def cwa(self):
+        """Idiomatic facade: client.cwa.list() / client.cwa.load({"id": ...})."""
+        from entity.cwa_entity import CwaEntity
+        cached = getattr(self, "_cwa", None)
+        if cached is None:
+            cached = CwaEntity(self, None)
+            self._cwa = cached
+        return cached
+
     def Cwa(self, data=None):
+        # Deprecated: use client.cwa instead.
         from entity.cwa_entity import CwaEntity
         return CwaEntity(self, data)
 
 
+    @property
+    def g_airmet(self):
+        """Idiomatic facade: client.g_airmet.list() / client.g_airmet.load({"id": ...})."""
+        from entity.g_airmet_entity import GAirmetEntity
+        cached = getattr(self, "_g_airmet", None)
+        if cached is None:
+            cached = GAirmetEntity(self, None)
+            self._g_airmet = cached
+        return cached
+
     def GAirmet(self, data=None):
+        # Deprecated: use client.g_airmet instead.
         from entity.g_airmet_entity import GAirmetEntity
         return GAirmetEntity(self, data)
 
 
+    @property
+    def metar(self):
+        """Idiomatic facade: client.metar.list() / client.metar.load({"id": ...})."""
+        from entity.metar_entity import MetarEntity
+        cached = getattr(self, "_metar", None)
+        if cached is None:
+            cached = MetarEntity(self, None)
+            self._metar = cached
+        return cached
+
     def Metar(self, data=None):
+        # Deprecated: use client.metar instead.
         from entity.metar_entity import MetarEntity
         return MetarEntity(self, data)
 
 
+    @property
+    def pirep(self):
+        """Idiomatic facade: client.pirep.list() / client.pirep.load({"id": ...})."""
+        from entity.pirep_entity import PirepEntity
+        cached = getattr(self, "_pirep", None)
+        if cached is None:
+            cached = PirepEntity(self, None)
+            self._pirep = cached
+        return cached
+
     def Pirep(self, data=None):
+        # Deprecated: use client.pirep instead.
         from entity.pirep_entity import PirepEntity
         return PirepEntity(self, data)
 
 
+    @property
+    def station_info(self):
+        """Idiomatic facade: client.station_info.list() / client.station_info.load({"id": ...})."""
+        from entity.station_info_entity import StationInfoEntity
+        cached = getattr(self, "_station_info", None)
+        if cached is None:
+            cached = StationInfoEntity(self, None)
+            self._station_info = cached
+        return cached
+
     def StationInfo(self, data=None):
+        # Deprecated: use client.station_info instead.
         from entity.station_info_entity import StationInfoEntity
         return StationInfoEntity(self, data)
 
 
+    @property
+    def taf(self):
+        """Idiomatic facade: client.taf.list() / client.taf.load({"id": ...})."""
+        from entity.taf_entity import TafEntity
+        cached = getattr(self, "_taf", None)
+        if cached is None:
+            cached = TafEntity(self, None)
+            self._taf = cached
+        return cached
+
     def Taf(self, data=None):
+        # Deprecated: use client.taf instead.
         from entity.taf_entity import TafEntity
         return TafEntity(self, data)
 
 
+    @property
+    def tcf(self):
+        """Idiomatic facade: client.tcf.list() / client.tcf.load({"id": ...})."""
+        from entity.tcf_entity import TcfEntity
+        cached = getattr(self, "_tcf", None)
+        if cached is None:
+            cached = TcfEntity(self, None)
+            self._tcf = cached
+        return cached
+
     def Tcf(self, data=None):
+        # Deprecated: use client.tcf instead.
         from entity.tcf_entity import TcfEntity
         return TcfEntity(self, data)
 

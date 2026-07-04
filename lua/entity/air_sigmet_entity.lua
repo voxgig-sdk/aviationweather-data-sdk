@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch AirSigmetListMatch
+---@param ctrl? table
+---@return AirSigmet[]
+---@return string? err
 function AirSigmetEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

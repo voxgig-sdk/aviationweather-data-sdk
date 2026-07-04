@@ -49,8 +49,7 @@ class CacheEntityTest extends TestCase
         // LOAD
         $cache_ref01_ent = $client->Cache(null);
         $cache_ref01_match_dt0 = [];
-        [$cache_ref01_data_dt0_loaded, $err] = $cache_ref01_ent->load($cache_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $cache_ref01_data_dt0_loaded = $cache_ref01_ent->load($cache_ref01_match_dt0, null);
         $this->assertNotNull($cache_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function cache_basic_setup($extra)
         "AVIATIONWEATHERDATA_TEST_CACHE_ENTID" => $idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function cache_basic_setup($extra)
     if ($env["AVIATIONWEATHERDATA_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["AVIATIONWEATHERDATA_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -43,8 +43,7 @@ class CwaEntityTest < Minitest::Test
     cwa_ref01_ent = client.Cwa(nil)
     cwa_ref01_match = {}
 
-    cwa_ref01_list_result, err = cwa_ref01_ent.list(cwa_ref01_match, nil)
-    assert_nil err
+    cwa_ref01_list_result = cwa_ref01_ent.list(cwa_ref01_match, nil)
     assert cwa_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def cwa_basic_setup(extra)
     "AVIATIONWEATHERDATA_TEST_CWA_ENTID" => idmap,
     "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
     "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-    "AVIATIONWEATHERDATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def cwa_basic_setup(extra)
   if env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["AVIATIONWEATHERDATA_APIKEY"],
       },
       extra || {},
     ])

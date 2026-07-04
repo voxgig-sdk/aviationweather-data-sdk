@@ -55,6 +55,9 @@ class CwaEntity
         return new CwaEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Cwa|array $args Cwa data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class CwaEntity
         }
     }
 
+    /**
+     * @return Cwa|array The current Cwa data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Cwa fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class CwaEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Cwa fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -86,7 +98,16 @@ class CwaEntity
     
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Cwa items matching the given filter.
+     *
+     * @param CwaListMatch|array|null $reqmatch Match filter (any subset
+     *   of Cwa fields) as an assoc-array; CwaListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Cwa[]|array A list of Cwa items as assoc-arrays at
+     *   the SDK boundary; throws AviationweatherDataError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -114,7 +135,7 @@ class CwaEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

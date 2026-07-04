@@ -43,8 +43,7 @@ class TafEntityTest < Minitest::Test
     taf_ref01_ent = client.Taf(nil)
     taf_ref01_match = {}
 
-    taf_ref01_list_result, err = taf_ref01_ent.list(taf_ref01_match, nil)
-    assert_nil err
+    taf_ref01_list_result = taf_ref01_ent.list(taf_ref01_match, nil)
     assert taf_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def taf_basic_setup(extra)
     "AVIATIONWEATHERDATA_TEST_TAF_ENTID" => idmap,
     "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
     "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-    "AVIATIONWEATHERDATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def taf_basic_setup(extra)
   if env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["AVIATIONWEATHERDATA_APIKEY"],
       },
       extra || {},
     ])

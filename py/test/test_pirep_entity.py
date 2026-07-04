@@ -50,8 +50,7 @@ class TestPirepEntity:
         pirep_ref01_ent = client.Pirep(None)
         pirep_ref01_match = {}
 
-        pirep_ref01_list_result, err = pirep_ref01_ent.list(pirep_ref01_match, None)
-        assert err is None
+        pirep_ref01_list_result = pirep_ref01_ent.list(pirep_ref01_match, None)
         assert isinstance(pirep_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _pirep_basic_setup(extra):
         "AVIATIONWEATHERDATA_TEST_PIREP_ENTID": idmap,
         "AVIATIONWEATHERDATA_TEST_LIVE": "FALSE",
         "AVIATIONWEATHERDATA_TEST_EXPLAIN": "FALSE",
-        "AVIATIONWEATHERDATA_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _pirep_basic_setup(extra):
     if env.get("AVIATIONWEATHERDATA_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("AVIATIONWEATHERDATA_APIKEY"),
             },
             extra or {},
         ])

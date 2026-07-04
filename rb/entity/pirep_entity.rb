@@ -45,6 +45,7 @@ class PirepEntity
     end
   end
 
+  # @return [Pirep, Hash] the current Pirep data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class PirepEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Pirep fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class PirepEntity
   
 
   
+  # List Pirep items matching the given filter.
+  #
+  # @param reqmatch [PirepListMatch, Hash, nil] match filter (any subset of Pirep fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Pirep>, Array] the matching Pirep items; raises AviationweatherDataError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -43,8 +43,7 @@ class AirSigmetEntityTest < Minitest::Test
     air_sigmet_ref01_ent = client.AirSigmet(nil)
     air_sigmet_ref01_match = {}
 
-    air_sigmet_ref01_list_result, err = air_sigmet_ref01_ent.list(air_sigmet_ref01_match, nil)
-    assert_nil err
+    air_sigmet_ref01_list_result = air_sigmet_ref01_ent.list(air_sigmet_ref01_match, nil)
     assert air_sigmet_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def air_sigmet_basic_setup(extra)
     "AVIATIONWEATHERDATA_TEST_AIR_SIGMET_ENTID" => idmap,
     "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
     "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
-    "AVIATIONWEATHERDATA_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def air_sigmet_basic_setup(extra)
   if env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["AVIATIONWEATHERDATA_APIKEY"],
       },
       extra || {},
     ])

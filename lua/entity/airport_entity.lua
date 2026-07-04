@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch AirportListMatch
+---@param ctrl? table
+---@return Airport[]
+---@return string? err
 function AirportEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `Hash` | SDK configuration options. |
-| `options["apikey"]` | `String` | API key for authentication. |
 | `options["base"]` | `String` | Base URL for API requests. |
 | `options["prefix"]` | `String` | URL prefix appended after base. |
 | `options["suffix"]` | `String` | URL suffix appended after path. |
@@ -90,9 +89,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -106,14 +107,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -121,7 +122,7 @@ same parameters as `direct()`.
 ## AirSigmetEntity
 
 ```ruby
-air_sigmet = client.AirSigmet
+air_sigmet = client.air_sigmet
 ```
 
 ### Fields
@@ -141,12 +142,12 @@ air_sigmet = client.AirSigmet
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.AirSigmet.list(nil)
+results = client.air_sigmet.list(nil)
 ```
 
 ### Common Methods
@@ -182,7 +183,7 @@ Return the entity name.
 ## AirportEntity
 
 ```ruby
-airport = client.Airport
+airport = client.airport
 ```
 
 ### Fields
@@ -201,12 +202,12 @@ airport = client.Airport
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Airport.list(nil)
+results = client.airport.list(nil)
 ```
 
 ### Common Methods
@@ -242,17 +243,17 @@ Return the entity name.
 ## CacheEntity
 
 ```ruby
-cache = client.Cache
+cache = client.cache
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Cache.load({ "id" => "cache_id" })
+result = client.cache.load({ "id" => "cache_id" })
 ```
 
 ### Common Methods
@@ -288,7 +289,7 @@ Return the entity name.
 ## CwaEntity
 
 ```ruby
-cwa = client.Cwa
+cwa = client.cwa
 ```
 
 ### Fields
@@ -305,12 +306,12 @@ cwa = client.Cwa
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Cwa.list(nil)
+results = client.cwa.list(nil)
 ```
 
 ### Common Methods
@@ -346,7 +347,7 @@ Return the entity name.
 ## GAirmetEntity
 
 ```ruby
-g_airmet = client.GAirmet
+g_airmet = client.g_airmet
 ```
 
 ### Fields
@@ -364,12 +365,12 @@ g_airmet = client.GAirmet
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.GAirmet.list(nil)
+results = client.g_airmet.list(nil)
 ```
 
 ### Common Methods
@@ -405,7 +406,7 @@ Return the entity name.
 ## MetarEntity
 
 ```ruby
-metar = client.Metar
+metar = client.metar
 ```
 
 ### Fields
@@ -450,12 +451,12 @@ metar = client.Metar
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Metar.list(nil)
+results = client.metar.list(nil)
 ```
 
 ### Common Methods
@@ -491,7 +492,7 @@ Return the entity name.
 ## PirepEntity
 
 ```ruby
-pirep = client.Pirep
+pirep = client.pirep
 ```
 
 ### Fields
@@ -516,12 +517,12 @@ pirep = client.Pirep
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Pirep.list(nil)
+results = client.pirep.list(nil)
 ```
 
 ### Common Methods
@@ -557,7 +558,7 @@ Return the entity name.
 ## StationInfoEntity
 
 ```ruby
-station_info = client.StationInfo
+station_info = client.station_info
 ```
 
 ### Fields
@@ -577,12 +578,12 @@ station_info = client.StationInfo
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.StationInfo.list(nil)
+results = client.station_info.list(nil)
 ```
 
 ### Common Methods
@@ -618,7 +619,7 @@ Return the entity name.
 ## TafEntity
 
 ```ruby
-taf = client.Taf
+taf = client.taf
 ```
 
 ### Fields
@@ -639,12 +640,12 @@ taf = client.Taf
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Taf.list(nil)
+results = client.taf.list(nil)
 ```
 
 ### Common Methods
@@ -680,17 +681,17 @@ Return the entity name.
 ## TcfEntity
 
 ```ruby
-tcf = client.Tcf
+tcf = client.tcf
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Tcf.load({ "id" => "tcf_id" })
+result = client.tcf.load({ "id" => "tcf_id" })
 ```
 
 ### Common Methods

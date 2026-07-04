@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  AirSigmet,
+  AirSigmetListMatch,
+} from '../AviationweatherDataTypes'
 
 // TODO: needs Entity superclass
-class AirSigmetEntity extends AviationweatherDataEntityBase {
+class AirSigmetEntity extends AviationweatherDataEntityBase<AirSigmet> {
 
   constructor(client: AviationweatherDataSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class AirSigmetEntity extends AviationweatherDataEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: AirSigmetListMatch, ctrl?: Control): Promise<AirSigmet[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class AirSigmetEntity extends AviationweatherDataEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<AirSigmet[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

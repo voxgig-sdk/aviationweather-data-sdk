@@ -45,6 +45,7 @@ class GAirmetEntity
     end
   end
 
+  # @return [GAirmet, Hash] the current GAirmet data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class GAirmetEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of GAirmet fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class GAirmetEntity
   
 
   
+  # List GAirmet items matching the given filter.
+  #
+  # @param reqmatch [GAirmetListMatch, Hash, nil] match filter (any subset of GAirmet fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<GAirmet>, Array] the matching GAirmet items; raises AviationweatherDataError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
