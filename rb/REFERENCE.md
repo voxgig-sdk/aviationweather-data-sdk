@@ -8,7 +8,7 @@ Complete API reference for the AviationweatherData Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'aviationweather-data_sdk'
+require_relative 'AviationweatherData_sdk'
 
 client = AviationweatherDataSDK.new(options)
 ```
@@ -129,25 +129,25 @@ air_sigmet = client.AirSigmet
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airsigmet_type` | ``$STRING`` | No |  |
-| `altitude_high` | ``$INTEGER`` | No |  |
-| `altitude_low` | ``$INTEGER`` | No |  |
-| `fir` | ``$STRING`` | No |  |
-| `hazard` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `raw_air_sigmet` | ``$STRING`` | No |  |
-| `severity` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `airsigmet_type` | `String` | No |  |
+| `altitude_high` | `Integer` | No |  |
+| `altitude_low` | `Integer` | No |  |
+| `fir` | `String` | No |  |
+| `hazard` | `String` | No |  |
+| `issue_time` | `String` | No |  |
+| `raw_air_sigmet` | `String` | No |  |
+| `severity` | `String` | No |  |
+| `valid_time_from` | `String` | No |  |
+| `valid_time_to` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.AirSigmet.list(nil)
+results = client.AirSigmet.list
 ```
 
 ### Common Methods
@@ -190,24 +190,24 @@ airport = client.Airport
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `iata_id` | ``$STRING`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state` | ``$STRING`` | No |  |
+| `city` | `String` | No |  |
+| `country` | `String` | No |  |
+| `elev` | `Float` | No |  |
+| `iata_id` | `String` | No |  |
+| `icao_id` | `String` | No |  |
+| `lat` | `Float` | No |  |
+| `lon` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `state` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Airport.list(nil)
+results = client.Airport.list
 ```
 
 ### Common Methods
@@ -253,7 +253,7 @@ cache = client.Cache
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Cache.load({ "id" => "cache_id" })
+result = client.Cache.load()
 ```
 
 ### Common Methods
@@ -296,22 +296,22 @@ cwa = client.Cwa
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cwsu` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `raw_text` | ``$STRING`` | No |  |
-| `sequence` | ``$INTEGER`` | No |  |
-| `series_id` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `cwsu` | `String` | No |  |
+| `issue_time` | `String` | No |  |
+| `raw_text` | `String` | No |  |
+| `sequence` | `Integer` | No |  |
+| `series_id` | `String` | No |  |
+| `valid_time_from` | `String` | No |  |
+| `valid_time_to` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Cwa.list(nil)
+results = client.Cwa.list
 ```
 
 ### Common Methods
@@ -354,23 +354,23 @@ g_airmet = client.GAirmet
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altitude_high` | ``$INTEGER`` | No |  |
-| `altitude_low` | ``$INTEGER`` | No |  |
-| `hazard` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `qualifier` | ``$STRING`` | No |  |
-| `severity` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `altitude_high` | `Integer` | No |  |
+| `altitude_low` | `Integer` | No |  |
+| `hazard` | `String` | No |  |
+| `issue_time` | `String` | No |  |
+| `qualifier` | `String` | No |  |
+| `severity` | `String` | No |  |
+| `valid_time_from` | `String` | No |  |
+| `valid_time_to` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.GAirmet.list(nil)
+results = client.GAirmet.list
 ```
 
 ### Common Methods
@@ -413,50 +413,50 @@ metar = client.Metar
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altim` | ``$NUMBER`` | No |  |
-| `cloud` | ``$ARRAY`` | No |  |
-| `dewp` | ``$NUMBER`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `flt_cat` | ``$STRING`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `max_t` | ``$NUMBER`` | No |  |
-| `max_t24` | ``$NUMBER`` | No |  |
-| `metar_type` | ``$STRING`` | No |  |
-| `min_t` | ``$NUMBER`` | No |  |
-| `min_t24` | ``$NUMBER`` | No |  |
-| `most_recent` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `obs_time` | ``$STRING`` | No |  |
-| `pcp24hr` | ``$NUMBER`` | No |  |
-| `pcp3hr` | ``$NUMBER`` | No |  |
-| `pcp6hr` | ``$NUMBER`` | No |  |
-| `precip` | ``$NUMBER`` | No |  |
-| `pres_tend` | ``$NUMBER`` | No |  |
-| `prior` | ``$INTEGER`` | No |  |
-| `qc_field` | ``$INTEGER`` | No |  |
-| `raw_ob` | ``$STRING`` | No |  |
-| `raw_taf` | ``$STRING`` | No |  |
-| `report_time` | ``$STRING`` | No |  |
-| `slp` | ``$NUMBER`` | No |  |
-| `snow` | ``$NUMBER`` | No |  |
-| `temp` | ``$NUMBER`` | No |  |
-| `vert_vi` | ``$INTEGER`` | No |  |
-| `visib` | ``$STRING`` | No |  |
-| `wdir` | ``$INTEGER`` | No |  |
-| `wgst` | ``$INTEGER`` | No |  |
-| `wspd` | ``$INTEGER`` | No |  |
-| `wx_string` | ``$STRING`` | No |  |
+| `altim` | `Float` | No |  |
+| `cloud` | `Array` | No |  |
+| `dewp` | `Float` | No |  |
+| `elev` | `Float` | No |  |
+| `flt_cat` | `String` | No |  |
+| `icao_id` | `String` | No |  |
+| `lat` | `Float` | No |  |
+| `lon` | `Float` | No |  |
+| `max_t` | `Float` | No |  |
+| `max_t24` | `Float` | No |  |
+| `metar_type` | `String` | No |  |
+| `min_t` | `Float` | No |  |
+| `min_t24` | `Float` | No |  |
+| `most_recent` | `Integer` | No |  |
+| `name` | `String` | No |  |
+| `obs_time` | `String` | No |  |
+| `pcp24hr` | `Float` | No |  |
+| `pcp3hr` | `Float` | No |  |
+| `pcp6hr` | `Float` | No |  |
+| `precip` | `Float` | No |  |
+| `pres_tend` | `Float` | No |  |
+| `prior` | `Integer` | No |  |
+| `qc_field` | `Integer` | No |  |
+| `raw_ob` | `String` | No |  |
+| `raw_taf` | `String` | No |  |
+| `report_time` | `String` | No |  |
+| `slp` | `Float` | No |  |
+| `snow` | `Float` | No |  |
+| `temp` | `Float` | No |  |
+| `vert_vi` | `Integer` | No |  |
+| `visib` | `String` | No |  |
+| `wdir` | `Integer` | No |  |
+| `wgst` | `Integer` | No |  |
+| `wspd` | `Integer` | No |  |
+| `wx_string` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Metar.list(nil)
+results = client.Metar.list
 ```
 
 ### Common Methods
@@ -499,30 +499,30 @@ pirep = client.Pirep
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aircraft_type` | ``$STRING`` | No |  |
-| `altitude_ft` | ``$INTEGER`` | No |  |
-| `cloud` | ``$ARRAY`` | No |  |
-| `icing` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `obs_time` | ``$STRING`` | No |  |
-| `raw_ob` | ``$STRING`` | No |  |
-| `report_type` | ``$STRING`` | No |  |
-| `temp` | ``$NUMBER`` | No |  |
-| `turbulence` | ``$STRING`` | No |  |
-| `visibility` | ``$STRING`` | No |  |
-| `wdir` | ``$INTEGER`` | No |  |
-| `wspd` | ``$INTEGER`` | No |  |
-| `wx_string` | ``$STRING`` | No |  |
+| `aircraft_type` | `String` | No |  |
+| `altitude_ft` | `Integer` | No |  |
+| `cloud` | `Array` | No |  |
+| `icing` | `String` | No |  |
+| `lat` | `Float` | No |  |
+| `lon` | `Float` | No |  |
+| `obs_time` | `String` | No |  |
+| `raw_ob` | `String` | No |  |
+| `report_type` | `String` | No |  |
+| `temp` | `Float` | No |  |
+| `turbulence` | `String` | No |  |
+| `visibility` | `String` | No |  |
+| `wdir` | `Integer` | No |  |
+| `wspd` | `Integer` | No |  |
+| `wx_string` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Pirep.list(nil)
+results = client.Pirep.list
 ```
 
 ### Common Methods
@@ -565,25 +565,25 @@ station_info = client.StationInfo
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `iata_id` | ``$STRING`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `priority` | ``$INTEGER`` | No |  |
-| `site` | ``$STRING`` | No |  |
-| `state` | ``$STRING`` | No |  |
+| `country` | `String` | No |  |
+| `elev` | `Float` | No |  |
+| `iata_id` | `String` | No |  |
+| `icao_id` | `String` | No |  |
+| `lat` | `Float` | No |  |
+| `lon` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `priority` | `Integer` | No |  |
+| `site` | `String` | No |  |
+| `state` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.StationInfo.list(nil)
+results = client.StationInfo.list
 ```
 
 ### Common Methods
@@ -626,26 +626,26 @@ taf = client.Taf
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bulletin_time` | ``$STRING`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `fcst` | ``$ARRAY`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `raw_taf` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `bulletin_time` | `String` | No |  |
+| `elev` | `Float` | No |  |
+| `fcst` | `Array` | No |  |
+| `icao_id` | `String` | No |  |
+| `issue_time` | `String` | No |  |
+| `lat` | `Float` | No |  |
+| `lon` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `raw_taf` | `String` | No |  |
+| `valid_time_from` | `String` | No |  |
+| `valid_time_to` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Taf.list(nil)
+results = client.Taf.list
 ```
 
 ### Common Methods
@@ -691,7 +691,7 @@ tcf = client.Tcf
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Tcf.load({ "id" => "tcf_id" })
+result = client.Tcf.load()
 ```
 
 ### Common Methods

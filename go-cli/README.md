@@ -17,8 +17,6 @@ go build -o aviationweather-data-cli ./...
 ```sh
 # One-shot: arguments form a single AQL expression
 ./aviationweather-data-cli list air_sigmet
-./aviationweather-data-cli load 1 air_sigmet
-./aviationweather-data-cli load '{id:1}' air_sigmet
 
 # REPL
 ./aviationweather-data-cli
@@ -30,7 +28,6 @@ go build -o aviationweather-data-cli ./...
 |----------|----------------------------------------------|----------------------------|
 | `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

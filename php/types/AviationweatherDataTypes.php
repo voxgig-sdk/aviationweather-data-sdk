@@ -27,7 +27,7 @@ class AirSigmet
     public ?string $valid_time_to = null;
 }
 
-/** Match filter for AirSigmet#list (any subset of AirSigmet fields). */
+/** Request payload for AirSigmet#list. */
 class AirSigmetListMatch
 {
     public ?string $airsigmet_type = null;
@@ -56,7 +56,7 @@ class Airport
     public ?string $state = null;
 }
 
-/** Match filter for Airport#list (any subset of Airport fields). */
+/** Request payload for Airport#list. */
 class AirportListMatch
 {
     public ?string $city = null;
@@ -75,7 +75,7 @@ class Cache
 {
 }
 
-/** Match filter for Cache#load (any subset of Cache fields). */
+/** Request payload for Cache#load. */
 class CacheLoadMatch
 {
 }
@@ -92,7 +92,7 @@ class Cwa
     public ?string $valid_time_to = null;
 }
 
-/** Match filter for Cwa#list (any subset of Cwa fields). */
+/** Request payload for Cwa#list. */
 class CwaListMatch
 {
     public ?string $cwsu = null;
@@ -117,7 +117,7 @@ class GAirmet
     public ?string $valid_time_to = null;
 }
 
-/** Match filter for GAirmet#list (any subset of GAirmet fields). */
+/** Request payload for GAirmet#list. */
 class GAirmetListMatch
 {
     public ?int $altitude_high = null;
@@ -170,7 +170,7 @@ class Metar
     public ?string $wx_string = null;
 }
 
-/** Match filter for Metar#list (any subset of Metar fields). */
+/** Request payload for Metar#list. */
 class MetarListMatch
 {
     public ?float $altim = null;
@@ -230,7 +230,7 @@ class Pirep
     public ?string $wx_string = null;
 }
 
-/** Match filter for Pirep#list (any subset of Pirep fields). */
+/** Request payload for Pirep#list. */
 class PirepListMatch
 {
     public ?string $aircraft_type = null;
@@ -265,7 +265,7 @@ class StationInfo
     public ?string $state = null;
 }
 
-/** Match filter for StationInfo#list (any subset of StationInfo fields). */
+/** Request payload for StationInfo#list. */
 class StationInfoListMatch
 {
     public ?string $country = null;
@@ -296,7 +296,7 @@ class Taf
     public ?string $valid_time_to = null;
 }
 
-/** Match filter for Taf#list (any subset of Taf fields). */
+/** Request payload for Taf#list. */
 class TafListMatch
 {
     public ?string $bulletin_time = null;
@@ -317,7 +317,7 @@ class Tcf
 {
 }
 
-/** Match filter for Tcf#load (any subset of Tcf fields). */
+/** Request payload for Tcf#load. */
 class TcfLoadMatch
 {
 }

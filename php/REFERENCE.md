@@ -8,7 +8,7 @@ Complete API reference for the AviationweatherData PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/aviationweather-data_sdk.php';
+require_once __DIR__ . '/aviationweatherdata_sdk.php';
 
 $client = new AviationweatherDataSDK($options);
 ```
@@ -81,11 +81,11 @@ Create a new `TafEntity` instance. Pass `null` for no initial data.
 
 Create a new `TcfEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): AviationweatherDataUtility`
 
 Return a copy of the SDK utility object.
 
@@ -128,42 +128,42 @@ $air_sigmet = $client->AirSigmet();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airsigmet_type` | ``$STRING`` | No |  |
-| `altitude_high` | ``$INTEGER`` | No |  |
-| `altitude_low` | ``$INTEGER`` | No |  |
-| `fir` | ``$STRING`` | No |  |
-| `hazard` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `raw_air_sigmet` | ``$STRING`` | No |  |
-| `severity` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `airsigmet_type` | `string` | No |  |
+| `altitude_high` | `int` | No |  |
+| `altitude_low` | `int` | No |  |
+| `fir` | `string` | No |  |
+| `hazard` | `string` | No |  |
+| `issue_time` | `string` | No |  |
+| `raw_air_sigmet` | `string` | No |  |
+| `severity` | `string` | No |  |
+| `valid_time_from` | `string` | No |  |
+| `valid_time_to` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->AirSigmet()->list([]);
+$results = $client->AirSigmet()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -172,7 +172,7 @@ Set the entity match criteria.
 Create a new `AirSigmetEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -189,41 +189,41 @@ $airport = $client->Airport();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `iata_id` | ``$STRING`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `country` | `string` | No |  |
+| `elev` | `float` | No |  |
+| `iata_id` | `string` | No |  |
+| `icao_id` | `string` | No |  |
+| `lat` | `float` | No |  |
+| `lon` | `float` | No |  |
+| `name` | `string` | No |  |
+| `state` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Airport()->list([]);
+$results = $client->Airport()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -232,7 +232,7 @@ Set the entity match criteria.
 Create a new `AirportEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -252,24 +252,24 @@ $cache = $client->Cache();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Cache()->load(["id" => "cache_id"]);
+$result = $client->Cache()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -278,7 +278,7 @@ Set the entity match criteria.
 Create a new `CacheEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -295,39 +295,39 @@ $cwa = $client->Cwa();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cwsu` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `raw_text` | ``$STRING`` | No |  |
-| `sequence` | ``$INTEGER`` | No |  |
-| `series_id` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `cwsu` | `string` | No |  |
+| `issue_time` | `string` | No |  |
+| `raw_text` | `string` | No |  |
+| `sequence` | `int` | No |  |
+| `series_id` | `string` | No |  |
+| `valid_time_from` | `string` | No |  |
+| `valid_time_to` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Cwa()->list([]);
+$results = $client->Cwa()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -336,7 +336,7 @@ Set the entity match criteria.
 Create a new `CwaEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -353,40 +353,40 @@ $g_airmet = $client->GAirmet();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altitude_high` | ``$INTEGER`` | No |  |
-| `altitude_low` | ``$INTEGER`` | No |  |
-| `hazard` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `qualifier` | ``$STRING`` | No |  |
-| `severity` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `altitude_high` | `int` | No |  |
+| `altitude_low` | `int` | No |  |
+| `hazard` | `string` | No |  |
+| `issue_time` | `string` | No |  |
+| `qualifier` | `string` | No |  |
+| `severity` | `string` | No |  |
+| `valid_time_from` | `string` | No |  |
+| `valid_time_to` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->GAirmet()->list([]);
+$results = $client->GAirmet()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -395,7 +395,7 @@ Set the entity match criteria.
 Create a new `GAirmetEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -412,67 +412,67 @@ $metar = $client->Metar();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altim` | ``$NUMBER`` | No |  |
-| `cloud` | ``$ARRAY`` | No |  |
-| `dewp` | ``$NUMBER`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `flt_cat` | ``$STRING`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `max_t` | ``$NUMBER`` | No |  |
-| `max_t24` | ``$NUMBER`` | No |  |
-| `metar_type` | ``$STRING`` | No |  |
-| `min_t` | ``$NUMBER`` | No |  |
-| `min_t24` | ``$NUMBER`` | No |  |
-| `most_recent` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `obs_time` | ``$STRING`` | No |  |
-| `pcp24hr` | ``$NUMBER`` | No |  |
-| `pcp3hr` | ``$NUMBER`` | No |  |
-| `pcp6hr` | ``$NUMBER`` | No |  |
-| `precip` | ``$NUMBER`` | No |  |
-| `pres_tend` | ``$NUMBER`` | No |  |
-| `prior` | ``$INTEGER`` | No |  |
-| `qc_field` | ``$INTEGER`` | No |  |
-| `raw_ob` | ``$STRING`` | No |  |
-| `raw_taf` | ``$STRING`` | No |  |
-| `report_time` | ``$STRING`` | No |  |
-| `slp` | ``$NUMBER`` | No |  |
-| `snow` | ``$NUMBER`` | No |  |
-| `temp` | ``$NUMBER`` | No |  |
-| `vert_vi` | ``$INTEGER`` | No |  |
-| `visib` | ``$STRING`` | No |  |
-| `wdir` | ``$INTEGER`` | No |  |
-| `wgst` | ``$INTEGER`` | No |  |
-| `wspd` | ``$INTEGER`` | No |  |
-| `wx_string` | ``$STRING`` | No |  |
+| `altim` | `float` | No |  |
+| `cloud` | `array` | No |  |
+| `dewp` | `float` | No |  |
+| `elev` | `float` | No |  |
+| `flt_cat` | `string` | No |  |
+| `icao_id` | `string` | No |  |
+| `lat` | `float` | No |  |
+| `lon` | `float` | No |  |
+| `max_t` | `float` | No |  |
+| `max_t24` | `float` | No |  |
+| `metar_type` | `string` | No |  |
+| `min_t` | `float` | No |  |
+| `min_t24` | `float` | No |  |
+| `most_recent` | `int` | No |  |
+| `name` | `string` | No |  |
+| `obs_time` | `string` | No |  |
+| `pcp24hr` | `float` | No |  |
+| `pcp3hr` | `float` | No |  |
+| `pcp6hr` | `float` | No |  |
+| `precip` | `float` | No |  |
+| `pres_tend` | `float` | No |  |
+| `prior` | `int` | No |  |
+| `qc_field` | `int` | No |  |
+| `raw_ob` | `string` | No |  |
+| `raw_taf` | `string` | No |  |
+| `report_time` | `string` | No |  |
+| `slp` | `float` | No |  |
+| `snow` | `float` | No |  |
+| `temp` | `float` | No |  |
+| `vert_vi` | `int` | No |  |
+| `visib` | `string` | No |  |
+| `wdir` | `int` | No |  |
+| `wgst` | `int` | No |  |
+| `wspd` | `int` | No |  |
+| `wx_string` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Metar()->list([]);
+$results = $client->Metar()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -481,7 +481,7 @@ Set the entity match criteria.
 Create a new `MetarEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -498,47 +498,47 @@ $pirep = $client->Pirep();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aircraft_type` | ``$STRING`` | No |  |
-| `altitude_ft` | ``$INTEGER`` | No |  |
-| `cloud` | ``$ARRAY`` | No |  |
-| `icing` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `obs_time` | ``$STRING`` | No |  |
-| `raw_ob` | ``$STRING`` | No |  |
-| `report_type` | ``$STRING`` | No |  |
-| `temp` | ``$NUMBER`` | No |  |
-| `turbulence` | ``$STRING`` | No |  |
-| `visibility` | ``$STRING`` | No |  |
-| `wdir` | ``$INTEGER`` | No |  |
-| `wspd` | ``$INTEGER`` | No |  |
-| `wx_string` | ``$STRING`` | No |  |
+| `aircraft_type` | `string` | No |  |
+| `altitude_ft` | `int` | No |  |
+| `cloud` | `array` | No |  |
+| `icing` | `string` | No |  |
+| `lat` | `float` | No |  |
+| `lon` | `float` | No |  |
+| `obs_time` | `string` | No |  |
+| `raw_ob` | `string` | No |  |
+| `report_type` | `string` | No |  |
+| `temp` | `float` | No |  |
+| `turbulence` | `string` | No |  |
+| `visibility` | `string` | No |  |
+| `wdir` | `int` | No |  |
+| `wspd` | `int` | No |  |
+| `wx_string` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Pirep()->list([]);
+$results = $client->Pirep()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -547,7 +547,7 @@ Set the entity match criteria.
 Create a new `PirepEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -564,42 +564,42 @@ $station_info = $client->StationInfo();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `iata_id` | ``$STRING`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `priority` | ``$INTEGER`` | No |  |
-| `site` | ``$STRING`` | No |  |
-| `state` | ``$STRING`` | No |  |
+| `country` | `string` | No |  |
+| `elev` | `float` | No |  |
+| `iata_id` | `string` | No |  |
+| `icao_id` | `string` | No |  |
+| `lat` | `float` | No |  |
+| `lon` | `float` | No |  |
+| `name` | `string` | No |  |
+| `priority` | `int` | No |  |
+| `site` | `string` | No |  |
+| `state` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->StationInfo()->list([]);
+$results = $client->StationInfo()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -608,7 +608,7 @@ Set the entity match criteria.
 Create a new `StationInfoEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -625,43 +625,43 @@ $taf = $client->Taf();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bulletin_time` | ``$STRING`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `fcst` | ``$ARRAY`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `raw_taf` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `bulletin_time` | `string` | No |  |
+| `elev` | `float` | No |  |
+| `fcst` | `array` | No |  |
+| `icao_id` | `string` | No |  |
+| `issue_time` | `string` | No |  |
+| `lat` | `float` | No |  |
+| `lon` | `float` | No |  |
+| `name` | `string` | No |  |
+| `raw_taf` | `string` | No |  |
+| `valid_time_from` | `string` | No |  |
+| `valid_time_to` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Taf()->list([]);
+$results = $client->Taf()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -670,7 +670,7 @@ Set the entity match criteria.
 Create a new `TafEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -690,24 +690,24 @@ $tcf = $client->Tcf();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Tcf()->load(["id" => "tcf_id"]);
+$result = $client->Tcf()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -716,7 +716,7 @@ Set the entity match criteria.
 Create a new `TcfEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the AviationweatherData API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.AirSigmet()` — each with a small set of operations (`list`, `load`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,6 +42,35 @@ const airsigmets = await client.AirSigmet().list()
 
 for (const airsigmet of airsigmets) {
   console.log(airsigmet)
+}
+```
+
+
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const airsigmets = await client.AirSigmet().list()
+  console.log(airsigmets)
+} catch (err) {
+  console.error('list failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
 }
 ```
 
@@ -85,7 +119,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AviationweatherDataSDK.test()
 
-const airsigmet = await client.AirSigmet().load({ id: 'test01' })
+const airsigmet = await client.AirSigmet().list()
 // airsigmet is a bare entity populated with mock response data
 console.log(airsigmet)
 ```
@@ -104,12 +138,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.AirSigmet()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.list()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -208,11 +242,8 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): AviationweatherDataSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -222,10 +253,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` resolves to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -475,16 +505,16 @@ Create an instance: `const air_sigmet = client.AirSigmet()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airsigmet_type` | ``$STRING`` |  |
-| `altitude_high` | ``$INTEGER`` |  |
-| `altitude_low` | ``$INTEGER`` |  |
-| `fir` | ``$STRING`` |  |
-| `hazard` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `raw_air_sigmet` | ``$STRING`` |  |
-| `severity` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `airsigmet_type` | `string` |  |
+| `altitude_high` | `number` |  |
+| `altitude_low` | `number` |  |
+| `fir` | `string` |  |
+| `hazard` | `string` |  |
+| `issue_time` | `string` |  |
+| `raw_air_sigmet` | `string` |  |
+| `severity` | `string` |  |
+| `valid_time_from` | `string` |  |
+| `valid_time_to` | `string` |  |
 
 #### Example: List
 
@@ -507,15 +537,15 @@ Create an instance: `const airport = client.Airport()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `iata_id` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `state` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `country` | `string` |  |
+| `elev` | `number` |  |
+| `iata_id` | `string` |  |
+| `icao_id` | `string` |  |
+| `lat` | `number` |  |
+| `lon` | `number` |  |
+| `name` | `string` |  |
+| `state` | `string` |  |
 
 #### Example: List
 
@@ -537,7 +567,7 @@ Create an instance: `const cache = client.Cache()`
 #### Example: Load
 
 ```ts
-const cache = await client.Cache().load({ id: 'cache_id' })
+const cache = await client.Cache().load()
 ```
 
 
@@ -555,13 +585,13 @@ Create an instance: `const cwa = client.Cwa()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cwsu` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `raw_text` | ``$STRING`` |  |
-| `sequence` | ``$INTEGER`` |  |
-| `series_id` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `cwsu` | `string` |  |
+| `issue_time` | `string` |  |
+| `raw_text` | `string` |  |
+| `sequence` | `number` |  |
+| `series_id` | `string` |  |
+| `valid_time_from` | `string` |  |
+| `valid_time_to` | `string` |  |
 
 #### Example: List
 
@@ -584,14 +614,14 @@ Create an instance: `const g_airmet = client.GAirmet()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altitude_high` | ``$INTEGER`` |  |
-| `altitude_low` | ``$INTEGER`` |  |
-| `hazard` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `qualifier` | ``$STRING`` |  |
-| `severity` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `altitude_high` | `number` |  |
+| `altitude_low` | `number` |  |
+| `hazard` | `string` |  |
+| `issue_time` | `string` |  |
+| `qualifier` | `string` |  |
+| `severity` | `string` |  |
+| `valid_time_from` | `string` |  |
+| `valid_time_to` | `string` |  |
 
 #### Example: List
 
@@ -614,41 +644,41 @@ Create an instance: `const metar = client.Metar()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altim` | ``$NUMBER`` |  |
-| `cloud` | ``$ARRAY`` |  |
-| `dewp` | ``$NUMBER`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `flt_cat` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `max_t` | ``$NUMBER`` |  |
-| `max_t24` | ``$NUMBER`` |  |
-| `metar_type` | ``$STRING`` |  |
-| `min_t` | ``$NUMBER`` |  |
-| `min_t24` | ``$NUMBER`` |  |
-| `most_recent` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `obs_time` | ``$STRING`` |  |
-| `pcp24hr` | ``$NUMBER`` |  |
-| `pcp3hr` | ``$NUMBER`` |  |
-| `pcp6hr` | ``$NUMBER`` |  |
-| `precip` | ``$NUMBER`` |  |
-| `pres_tend` | ``$NUMBER`` |  |
-| `prior` | ``$INTEGER`` |  |
-| `qc_field` | ``$INTEGER`` |  |
-| `raw_ob` | ``$STRING`` |  |
-| `raw_taf` | ``$STRING`` |  |
-| `report_time` | ``$STRING`` |  |
-| `slp` | ``$NUMBER`` |  |
-| `snow` | ``$NUMBER`` |  |
-| `temp` | ``$NUMBER`` |  |
-| `vert_vi` | ``$INTEGER`` |  |
-| `visib` | ``$STRING`` |  |
-| `wdir` | ``$INTEGER`` |  |
-| `wgst` | ``$INTEGER`` |  |
-| `wspd` | ``$INTEGER`` |  |
-| `wx_string` | ``$STRING`` |  |
+| `altim` | `number` |  |
+| `cloud` | `any[]` |  |
+| `dewp` | `number` |  |
+| `elev` | `number` |  |
+| `flt_cat` | `string` |  |
+| `icao_id` | `string` |  |
+| `lat` | `number` |  |
+| `lon` | `number` |  |
+| `max_t` | `number` |  |
+| `max_t24` | `number` |  |
+| `metar_type` | `string` |  |
+| `min_t` | `number` |  |
+| `min_t24` | `number` |  |
+| `most_recent` | `number` |  |
+| `name` | `string` |  |
+| `obs_time` | `string` |  |
+| `pcp24hr` | `number` |  |
+| `pcp3hr` | `number` |  |
+| `pcp6hr` | `number` |  |
+| `precip` | `number` |  |
+| `pres_tend` | `number` |  |
+| `prior` | `number` |  |
+| `qc_field` | `number` |  |
+| `raw_ob` | `string` |  |
+| `raw_taf` | `string` |  |
+| `report_time` | `string` |  |
+| `slp` | `number` |  |
+| `snow` | `number` |  |
+| `temp` | `number` |  |
+| `vert_vi` | `number` |  |
+| `visib` | `string` |  |
+| `wdir` | `number` |  |
+| `wgst` | `number` |  |
+| `wspd` | `number` |  |
+| `wx_string` | `string` |  |
 
 #### Example: List
 
@@ -671,21 +701,21 @@ Create an instance: `const pirep = client.Pirep()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aircraft_type` | ``$STRING`` |  |
-| `altitude_ft` | ``$INTEGER`` |  |
-| `cloud` | ``$ARRAY`` |  |
-| `icing` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `obs_time` | ``$STRING`` |  |
-| `raw_ob` | ``$STRING`` |  |
-| `report_type` | ``$STRING`` |  |
-| `temp` | ``$NUMBER`` |  |
-| `turbulence` | ``$STRING`` |  |
-| `visibility` | ``$STRING`` |  |
-| `wdir` | ``$INTEGER`` |  |
-| `wspd` | ``$INTEGER`` |  |
-| `wx_string` | ``$STRING`` |  |
+| `aircraft_type` | `string` |  |
+| `altitude_ft` | `number` |  |
+| `cloud` | `any[]` |  |
+| `icing` | `string` |  |
+| `lat` | `number` |  |
+| `lon` | `number` |  |
+| `obs_time` | `string` |  |
+| `raw_ob` | `string` |  |
+| `report_type` | `string` |  |
+| `temp` | `number` |  |
+| `turbulence` | `string` |  |
+| `visibility` | `string` |  |
+| `wdir` | `number` |  |
+| `wspd` | `number` |  |
+| `wx_string` | `string` |  |
 
 #### Example: List
 
@@ -708,16 +738,16 @@ Create an instance: `const station_info = client.StationInfo()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `iata_id` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `priority` | ``$INTEGER`` |  |
-| `site` | ``$STRING`` |  |
-| `state` | ``$STRING`` |  |
+| `country` | `string` |  |
+| `elev` | `number` |  |
+| `iata_id` | `string` |  |
+| `icao_id` | `string` |  |
+| `lat` | `number` |  |
+| `lon` | `number` |  |
+| `name` | `string` |  |
+| `priority` | `number` |  |
+| `site` | `string` |  |
+| `state` | `string` |  |
 
 #### Example: List
 
@@ -740,17 +770,17 @@ Create an instance: `const taf = client.Taf()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bulletin_time` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `fcst` | ``$ARRAY`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `raw_taf` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `bulletin_time` | `string` |  |
+| `elev` | `number` |  |
+| `fcst` | `any[]` |  |
+| `icao_id` | `string` |  |
+| `issue_time` | `string` |  |
+| `lat` | `number` |  |
+| `lon` | `number` |  |
+| `name` | `string` |  |
+| `raw_taf` | `string` |  |
+| `valid_time_from` | `string` |  |
+| `valid_time_to` | `string` |  |
 
 #### Example: List
 
@@ -772,16 +802,20 @@ Create an instance: `const tcf = client.Tcf()`
 #### Example: Load
 
 ```ts
-const tcf = await client.Tcf().load({ id: 'tcf_id' })
+const tcf = await client.Tcf().load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -798,11 +832,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -838,16 +870,16 @@ import { AviationweatherDataSDK } from '@voxgig-sdk/aviationweather-data'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
 const airsigmet = client.AirSigmet()
-await airsigmet.load({ id: "example_id" })
+await airsigmet.list()
 
-// airsigmet.data() now returns the loaded airsigmet data
-// airsigmet.match() returns { id: "example_id" }
+// airsigmet.data() now returns the airsigmet data from the last `list`
+// airsigmet.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

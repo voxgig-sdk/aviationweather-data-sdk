@@ -53,7 +53,7 @@ AirSigmet = Struct.new(
   keyword_init: true
 )
 
-# Match filter for AirSigmet#list (any subset of AirSigmet fields).
+# Request payload for AirSigmet#list.
 #
 # @!attribute [rw] airsigmet_type
 #   @return [String, nil]
@@ -139,7 +139,7 @@ Airport = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Airport#list (any subset of Airport fields).
+# Request payload for Airport#list.
 #
 # @!attribute [rw] city
 #   @return [String, nil]
@@ -184,7 +184,7 @@ AirportListMatch = Struct.new(
 class Cache
 end
 
-# Match filter for Cache#load (any subset of Cache fields).
+# Request payload for Cache#load.
 class CacheLoadMatch
 end
 
@@ -221,7 +221,7 @@ Cwa = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Cwa#list (any subset of Cwa fields).
+# Request payload for Cwa#list.
 #
 # @!attribute [rw] cwsu
 #   @return [String, nil]
@@ -291,7 +291,7 @@ GAirmet = Struct.new(
   keyword_init: true
 )
 
-# Match filter for GAirmet#list (any subset of GAirmet fields).
+# Request payload for GAirmet#list.
 #
 # @!attribute [rw] altitude_high
 #   @return [Integer, nil]
@@ -473,7 +473,7 @@ Metar = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Metar#list (any subset of Metar fields).
+# Request payload for Metar#list.
 #
 # @!attribute [rw] altim
 #   @return [Float, nil]
@@ -683,7 +683,7 @@ Pirep = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Pirep#list (any subset of Pirep fields).
+# Request payload for Pirep#list.
 #
 # @!attribute [rw] aircraft_type
 #   @return [String, nil]
@@ -793,7 +793,7 @@ StationInfo = Struct.new(
   keyword_init: true
 )
 
-# Match filter for StationInfo#list (any subset of StationInfo fields).
+# Request payload for StationInfo#list.
 #
 # @!attribute [rw] country
 #   @return [String, nil]
@@ -887,7 +887,7 @@ Taf = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Taf#list (any subset of Taf fields).
+# Request payload for Taf#list.
 #
 # @!attribute [rw] bulletin_time
 #   @return [String, nil]
@@ -940,7 +940,7 @@ TafListMatch = Struct.new(
 class Tcf
 end
 
-# Match filter for Tcf#load (any subset of Tcf fields).
+# Request payload for Tcf#load.
 class TcfLoadMatch
 end
 

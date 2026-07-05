@@ -22,8 +22,7 @@ type AirSigmet struct {
 	ValidTimeTo *string `json:"valid_time_to,omitempty"`
 }
 
-// AirSigmetListMatch mirrors the air_sigmet fields as an all-optional match
-// filter (Go analog of Partial<AirSigmet>).
+// AirSigmetListMatch is the typed request payload for AirSigmet.ListTyped.
 type AirSigmetListMatch struct {
 	AirsigmetType *string `json:"airsigmet_type,omitempty"`
 	AltitudeHigh *int `json:"altitude_high,omitempty"`
@@ -50,8 +49,7 @@ type Airport struct {
 	State *string `json:"state,omitempty"`
 }
 
-// AirportListMatch mirrors the airport fields as an all-optional match
-// filter (Go analog of Partial<Airport>).
+// AirportListMatch is the typed request payload for Airport.ListTyped.
 type AirportListMatch struct {
 	City *string `json:"city,omitempty"`
 	Country *string `json:"country,omitempty"`
@@ -68,8 +66,7 @@ type AirportListMatch struct {
 type Cache struct {
 }
 
-// CacheLoadMatch mirrors the cache fields as an all-optional match
-// filter (Go analog of Partial<Cache>).
+// CacheLoadMatch is the typed request payload for Cache.LoadTyped.
 type CacheLoadMatch struct {
 }
 
@@ -84,8 +81,7 @@ type Cwa struct {
 	ValidTimeTo *string `json:"valid_time_to,omitempty"`
 }
 
-// CwaListMatch mirrors the cwa fields as an all-optional match
-// filter (Go analog of Partial<Cwa>).
+// CwaListMatch is the typed request payload for Cwa.ListTyped.
 type CwaListMatch struct {
 	Cwsu *string `json:"cwsu,omitempty"`
 	IssueTime *string `json:"issue_time,omitempty"`
@@ -108,8 +104,7 @@ type GAirmet struct {
 	ValidTimeTo *string `json:"valid_time_to,omitempty"`
 }
 
-// GAirmetListMatch mirrors the g_airmet fields as an all-optional match
-// filter (Go analog of Partial<GAirmet>).
+// GAirmetListMatch is the typed request payload for GAirmet.ListTyped.
 type GAirmetListMatch struct {
 	AltitudeHigh *int `json:"altitude_high,omitempty"`
 	AltitudeLow *int `json:"altitude_low,omitempty"`
@@ -160,8 +155,7 @@ type Metar struct {
 	WxString *string `json:"wx_string,omitempty"`
 }
 
-// MetarListMatch mirrors the metar fields as an all-optional match
-// filter (Go analog of Partial<Metar>).
+// MetarListMatch is the typed request payload for Metar.ListTyped.
 type MetarListMatch struct {
 	Altim *float64 `json:"altim,omitempty"`
 	Cloud *[]any `json:"cloud,omitempty"`
@@ -219,8 +213,7 @@ type Pirep struct {
 	WxString *string `json:"wx_string,omitempty"`
 }
 
-// PirepListMatch mirrors the pirep fields as an all-optional match
-// filter (Go analog of Partial<Pirep>).
+// PirepListMatch is the typed request payload for Pirep.ListTyped.
 type PirepListMatch struct {
 	AircraftType *string `json:"aircraft_type,omitempty"`
 	AltitudeFt *int `json:"altitude_ft,omitempty"`
@@ -253,8 +246,7 @@ type StationInfo struct {
 	State *string `json:"state,omitempty"`
 }
 
-// StationInfoListMatch mirrors the station_info fields as an all-optional match
-// filter (Go analog of Partial<StationInfo>).
+// StationInfoListMatch is the typed request payload for StationInfo.ListTyped.
 type StationInfoListMatch struct {
 	Country *string `json:"country,omitempty"`
 	Elev *float64 `json:"elev,omitempty"`
@@ -283,8 +275,7 @@ type Taf struct {
 	ValidTimeTo *string `json:"valid_time_to,omitempty"`
 }
 
-// TafListMatch mirrors the taf fields as an all-optional match
-// filter (Go analog of Partial<Taf>).
+// TafListMatch is the typed request payload for Taf.ListTyped.
 type TafListMatch struct {
 	BulletinTime *string `json:"bulletin_time,omitempty"`
 	Elev *float64 `json:"elev,omitempty"`
@@ -303,8 +294,7 @@ type TafListMatch struct {
 type Tcf struct {
 }
 
-// TcfLoadMatch mirrors the tcf fields as an all-optional match
-// filter (Go analog of Partial<Tcf>).
+// TcfLoadMatch is the typed request payload for Tcf.LoadTyped.
 type TcfLoadMatch struct {
 }
 

@@ -224,16 +224,16 @@ const air_sigmet = client.AirSigmet()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airsigmet_type` | ``$STRING`` | No |  |
-| `altitude_high` | ``$INTEGER`` | No |  |
-| `altitude_low` | ``$INTEGER`` | No |  |
-| `fir` | ``$STRING`` | No |  |
-| `hazard` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `raw_air_sigmet` | ``$STRING`` | No |  |
-| `severity` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `airsigmet_type` | `string` | No |  |
+| `altitude_high` | `number` | No |  |
+| `altitude_low` | `number` | No |  |
+| `fir` | `string` | No |  |
+| `hazard` | `string` | No |  |
+| `issue_time` | `string` | No |  |
+| `raw_air_sigmet` | `string` | No |  |
+| `severity` | `string` | No |  |
+| `valid_time_from` | `string` | No |  |
+| `valid_time_to` | `string` | No |  |
 
 ### Operations
 
@@ -283,15 +283,15 @@ const airport = client.Airport()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `iata_id` | ``$STRING`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state` | ``$STRING`` | No |  |
+| `city` | `string` | No |  |
+| `country` | `string` | No |  |
+| `elev` | `number` | No |  |
+| `iata_id` | `string` | No |  |
+| `icao_id` | `string` | No |  |
+| `lat` | `number` | No |  |
+| `lon` | `number` | No |  |
+| `name` | `string` | No |  |
+| `state` | `string` | No |  |
 
 ### Operations
 
@@ -344,7 +344,7 @@ const cache = client.Cache()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Cache().load({ id: 'cache_id' })
+const result = await client.Cache().load()
 ```
 
 ### Common Methods
@@ -385,13 +385,13 @@ const cwa = client.Cwa()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cwsu` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `raw_text` | ``$STRING`` | No |  |
-| `sequence` | ``$INTEGER`` | No |  |
-| `series_id` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `cwsu` | `string` | No |  |
+| `issue_time` | `string` | No |  |
+| `raw_text` | `string` | No |  |
+| `sequence` | `number` | No |  |
+| `series_id` | `string` | No |  |
+| `valid_time_from` | `string` | No |  |
+| `valid_time_to` | `string` | No |  |
 
 ### Operations
 
@@ -441,14 +441,14 @@ const g_airmet = client.GAirmet()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altitude_high` | ``$INTEGER`` | No |  |
-| `altitude_low` | ``$INTEGER`` | No |  |
-| `hazard` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `qualifier` | ``$STRING`` | No |  |
-| `severity` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `altitude_high` | `number` | No |  |
+| `altitude_low` | `number` | No |  |
+| `hazard` | `string` | No |  |
+| `issue_time` | `string` | No |  |
+| `qualifier` | `string` | No |  |
+| `severity` | `string` | No |  |
+| `valid_time_from` | `string` | No |  |
+| `valid_time_to` | `string` | No |  |
 
 ### Operations
 
@@ -498,41 +498,41 @@ const metar = client.Metar()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altim` | ``$NUMBER`` | No |  |
-| `cloud` | ``$ARRAY`` | No |  |
-| `dewp` | ``$NUMBER`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `flt_cat` | ``$STRING`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `max_t` | ``$NUMBER`` | No |  |
-| `max_t24` | ``$NUMBER`` | No |  |
-| `metar_type` | ``$STRING`` | No |  |
-| `min_t` | ``$NUMBER`` | No |  |
-| `min_t24` | ``$NUMBER`` | No |  |
-| `most_recent` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `obs_time` | ``$STRING`` | No |  |
-| `pcp24hr` | ``$NUMBER`` | No |  |
-| `pcp3hr` | ``$NUMBER`` | No |  |
-| `pcp6hr` | ``$NUMBER`` | No |  |
-| `precip` | ``$NUMBER`` | No |  |
-| `pres_tend` | ``$NUMBER`` | No |  |
-| `prior` | ``$INTEGER`` | No |  |
-| `qc_field` | ``$INTEGER`` | No |  |
-| `raw_ob` | ``$STRING`` | No |  |
-| `raw_taf` | ``$STRING`` | No |  |
-| `report_time` | ``$STRING`` | No |  |
-| `slp` | ``$NUMBER`` | No |  |
-| `snow` | ``$NUMBER`` | No |  |
-| `temp` | ``$NUMBER`` | No |  |
-| `vert_vi` | ``$INTEGER`` | No |  |
-| `visib` | ``$STRING`` | No |  |
-| `wdir` | ``$INTEGER`` | No |  |
-| `wgst` | ``$INTEGER`` | No |  |
-| `wspd` | ``$INTEGER`` | No |  |
-| `wx_string` | ``$STRING`` | No |  |
+| `altim` | `number` | No |  |
+| `cloud` | `any[]` | No |  |
+| `dewp` | `number` | No |  |
+| `elev` | `number` | No |  |
+| `flt_cat` | `string` | No |  |
+| `icao_id` | `string` | No |  |
+| `lat` | `number` | No |  |
+| `lon` | `number` | No |  |
+| `max_t` | `number` | No |  |
+| `max_t24` | `number` | No |  |
+| `metar_type` | `string` | No |  |
+| `min_t` | `number` | No |  |
+| `min_t24` | `number` | No |  |
+| `most_recent` | `number` | No |  |
+| `name` | `string` | No |  |
+| `obs_time` | `string` | No |  |
+| `pcp24hr` | `number` | No |  |
+| `pcp3hr` | `number` | No |  |
+| `pcp6hr` | `number` | No |  |
+| `precip` | `number` | No |  |
+| `pres_tend` | `number` | No |  |
+| `prior` | `number` | No |  |
+| `qc_field` | `number` | No |  |
+| `raw_ob` | `string` | No |  |
+| `raw_taf` | `string` | No |  |
+| `report_time` | `string` | No |  |
+| `slp` | `number` | No |  |
+| `snow` | `number` | No |  |
+| `temp` | `number` | No |  |
+| `vert_vi` | `number` | No |  |
+| `visib` | `string` | No |  |
+| `wdir` | `number` | No |  |
+| `wgst` | `number` | No |  |
+| `wspd` | `number` | No |  |
+| `wx_string` | `string` | No |  |
 
 ### Operations
 
@@ -582,21 +582,21 @@ const pirep = client.Pirep()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aircraft_type` | ``$STRING`` | No |  |
-| `altitude_ft` | ``$INTEGER`` | No |  |
-| `cloud` | ``$ARRAY`` | No |  |
-| `icing` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `obs_time` | ``$STRING`` | No |  |
-| `raw_ob` | ``$STRING`` | No |  |
-| `report_type` | ``$STRING`` | No |  |
-| `temp` | ``$NUMBER`` | No |  |
-| `turbulence` | ``$STRING`` | No |  |
-| `visibility` | ``$STRING`` | No |  |
-| `wdir` | ``$INTEGER`` | No |  |
-| `wspd` | ``$INTEGER`` | No |  |
-| `wx_string` | ``$STRING`` | No |  |
+| `aircraft_type` | `string` | No |  |
+| `altitude_ft` | `number` | No |  |
+| `cloud` | `any[]` | No |  |
+| `icing` | `string` | No |  |
+| `lat` | `number` | No |  |
+| `lon` | `number` | No |  |
+| `obs_time` | `string` | No |  |
+| `raw_ob` | `string` | No |  |
+| `report_type` | `string` | No |  |
+| `temp` | `number` | No |  |
+| `turbulence` | `string` | No |  |
+| `visibility` | `string` | No |  |
+| `wdir` | `number` | No |  |
+| `wspd` | `number` | No |  |
+| `wx_string` | `string` | No |  |
 
 ### Operations
 
@@ -646,16 +646,16 @@ const station_info = client.StationInfo()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `iata_id` | ``$STRING`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `priority` | ``$INTEGER`` | No |  |
-| `site` | ``$STRING`` | No |  |
-| `state` | ``$STRING`` | No |  |
+| `country` | `string` | No |  |
+| `elev` | `number` | No |  |
+| `iata_id` | `string` | No |  |
+| `icao_id` | `string` | No |  |
+| `lat` | `number` | No |  |
+| `lon` | `number` | No |  |
+| `name` | `string` | No |  |
+| `priority` | `number` | No |  |
+| `site` | `string` | No |  |
+| `state` | `string` | No |  |
 
 ### Operations
 
@@ -705,17 +705,17 @@ const taf = client.Taf()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bulletin_time` | ``$STRING`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `fcst` | ``$ARRAY`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `raw_taf` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `bulletin_time` | `string` | No |  |
+| `elev` | `number` | No |  |
+| `fcst` | `any[]` | No |  |
+| `icao_id` | `string` | No |  |
+| `issue_time` | `string` | No |  |
+| `lat` | `number` | No |  |
+| `lon` | `number` | No |  |
+| `name` | `string` | No |  |
+| `raw_taf` | `string` | No |  |
+| `valid_time_from` | `string` | No |  |
+| `valid_time_to` | `string` | No |  |
 
 ### Operations
 
@@ -768,7 +768,7 @@ const tcf = client.Tcf()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Tcf().load({ id: 'tcf_id' })
+const result = await client.Tcf().load()
 ```
 
 ### Common Methods

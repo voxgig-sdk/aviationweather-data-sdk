@@ -4,6 +4,8 @@
 
 The Ruby SDK for the AviationweatherData API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.AirSigmet` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -35,11 +37,38 @@ begin
   # list returns an Array of AirSigmet records — iterate directly.
   airsigmets = client.AirSigmet.list
   airsigmets.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["airsigmet_type"]}"
   end
 rescue => err
   warn "list failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  airsigmets = client.AirSigmet.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -60,7 +89,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -83,16 +114,13 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = AviationweatherDataSDK.test({
-  "entity" => { "airsigmet" => { "test01" => { "id" => "test01" } } },
-})
+client = AviationweatherDataSDK.test
 
-# load returns the bare mock record (raises on error).
-airsigmet = client.AirSigmet.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+airsigmet = client.AirSigmet.list()
 puts airsigmet
 ```
 
@@ -187,10 +215,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -431,16 +456,16 @@ Create an instance: `air_sigmet = client.AirSigmet`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airsigmet_type` | ``$STRING`` |  |
-| `altitude_high` | ``$INTEGER`` |  |
-| `altitude_low` | ``$INTEGER`` |  |
-| `fir` | ``$STRING`` |  |
-| `hazard` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `raw_air_sigmet` | ``$STRING`` |  |
-| `severity` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `airsigmet_type` | `String` |  |
+| `altitude_high` | `Integer` |  |
+| `altitude_low` | `Integer` |  |
+| `fir` | `String` |  |
+| `hazard` | `String` |  |
+| `issue_time` | `String` |  |
+| `raw_air_sigmet` | `String` |  |
+| `severity` | `String` |  |
+| `valid_time_from` | `String` |  |
+| `valid_time_to` | `String` |  |
 
 #### Example: List
 
@@ -464,15 +489,15 @@ Create an instance: `airport = client.Airport`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `iata_id` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `state` | ``$STRING`` |  |
+| `city` | `String` |  |
+| `country` | `String` |  |
+| `elev` | `Float` |  |
+| `iata_id` | `String` |  |
+| `icao_id` | `String` |  |
+| `lat` | `Float` |  |
+| `lon` | `Float` |  |
+| `name` | `String` |  |
+| `state` | `String` |  |
 
 #### Example: List
 
@@ -496,7 +521,7 @@ Create an instance: `cache = client.Cache`
 
 ```ruby
 # load returns the bare Cache record (raises on error).
-cache = client.Cache.load({ "id" => "cache_id" })
+cache = client.Cache.load()
 ```
 
 
@@ -514,13 +539,13 @@ Create an instance: `cwa = client.Cwa`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cwsu` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `raw_text` | ``$STRING`` |  |
-| `sequence` | ``$INTEGER`` |  |
-| `series_id` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `cwsu` | `String` |  |
+| `issue_time` | `String` |  |
+| `raw_text` | `String` |  |
+| `sequence` | `Integer` |  |
+| `series_id` | `String` |  |
+| `valid_time_from` | `String` |  |
+| `valid_time_to` | `String` |  |
 
 #### Example: List
 
@@ -544,14 +569,14 @@ Create an instance: `g_airmet = client.GAirmet`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altitude_high` | ``$INTEGER`` |  |
-| `altitude_low` | ``$INTEGER`` |  |
-| `hazard` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `qualifier` | ``$STRING`` |  |
-| `severity` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `altitude_high` | `Integer` |  |
+| `altitude_low` | `Integer` |  |
+| `hazard` | `String` |  |
+| `issue_time` | `String` |  |
+| `qualifier` | `String` |  |
+| `severity` | `String` |  |
+| `valid_time_from` | `String` |  |
+| `valid_time_to` | `String` |  |
 
 #### Example: List
 
@@ -575,41 +600,41 @@ Create an instance: `metar = client.Metar`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altim` | ``$NUMBER`` |  |
-| `cloud` | ``$ARRAY`` |  |
-| `dewp` | ``$NUMBER`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `flt_cat` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `max_t` | ``$NUMBER`` |  |
-| `max_t24` | ``$NUMBER`` |  |
-| `metar_type` | ``$STRING`` |  |
-| `min_t` | ``$NUMBER`` |  |
-| `min_t24` | ``$NUMBER`` |  |
-| `most_recent` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `obs_time` | ``$STRING`` |  |
-| `pcp24hr` | ``$NUMBER`` |  |
-| `pcp3hr` | ``$NUMBER`` |  |
-| `pcp6hr` | ``$NUMBER`` |  |
-| `precip` | ``$NUMBER`` |  |
-| `pres_tend` | ``$NUMBER`` |  |
-| `prior` | ``$INTEGER`` |  |
-| `qc_field` | ``$INTEGER`` |  |
-| `raw_ob` | ``$STRING`` |  |
-| `raw_taf` | ``$STRING`` |  |
-| `report_time` | ``$STRING`` |  |
-| `slp` | ``$NUMBER`` |  |
-| `snow` | ``$NUMBER`` |  |
-| `temp` | ``$NUMBER`` |  |
-| `vert_vi` | ``$INTEGER`` |  |
-| `visib` | ``$STRING`` |  |
-| `wdir` | ``$INTEGER`` |  |
-| `wgst` | ``$INTEGER`` |  |
-| `wspd` | ``$INTEGER`` |  |
-| `wx_string` | ``$STRING`` |  |
+| `altim` | `Float` |  |
+| `cloud` | `Array` |  |
+| `dewp` | `Float` |  |
+| `elev` | `Float` |  |
+| `flt_cat` | `String` |  |
+| `icao_id` | `String` |  |
+| `lat` | `Float` |  |
+| `lon` | `Float` |  |
+| `max_t` | `Float` |  |
+| `max_t24` | `Float` |  |
+| `metar_type` | `String` |  |
+| `min_t` | `Float` |  |
+| `min_t24` | `Float` |  |
+| `most_recent` | `Integer` |  |
+| `name` | `String` |  |
+| `obs_time` | `String` |  |
+| `pcp24hr` | `Float` |  |
+| `pcp3hr` | `Float` |  |
+| `pcp6hr` | `Float` |  |
+| `precip` | `Float` |  |
+| `pres_tend` | `Float` |  |
+| `prior` | `Integer` |  |
+| `qc_field` | `Integer` |  |
+| `raw_ob` | `String` |  |
+| `raw_taf` | `String` |  |
+| `report_time` | `String` |  |
+| `slp` | `Float` |  |
+| `snow` | `Float` |  |
+| `temp` | `Float` |  |
+| `vert_vi` | `Integer` |  |
+| `visib` | `String` |  |
+| `wdir` | `Integer` |  |
+| `wgst` | `Integer` |  |
+| `wspd` | `Integer` |  |
+| `wx_string` | `String` |  |
 
 #### Example: List
 
@@ -633,21 +658,21 @@ Create an instance: `pirep = client.Pirep`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aircraft_type` | ``$STRING`` |  |
-| `altitude_ft` | ``$INTEGER`` |  |
-| `cloud` | ``$ARRAY`` |  |
-| `icing` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `obs_time` | ``$STRING`` |  |
-| `raw_ob` | ``$STRING`` |  |
-| `report_type` | ``$STRING`` |  |
-| `temp` | ``$NUMBER`` |  |
-| `turbulence` | ``$STRING`` |  |
-| `visibility` | ``$STRING`` |  |
-| `wdir` | ``$INTEGER`` |  |
-| `wspd` | ``$INTEGER`` |  |
-| `wx_string` | ``$STRING`` |  |
+| `aircraft_type` | `String` |  |
+| `altitude_ft` | `Integer` |  |
+| `cloud` | `Array` |  |
+| `icing` | `String` |  |
+| `lat` | `Float` |  |
+| `lon` | `Float` |  |
+| `obs_time` | `String` |  |
+| `raw_ob` | `String` |  |
+| `report_type` | `String` |  |
+| `temp` | `Float` |  |
+| `turbulence` | `String` |  |
+| `visibility` | `String` |  |
+| `wdir` | `Integer` |  |
+| `wspd` | `Integer` |  |
+| `wx_string` | `String` |  |
 
 #### Example: List
 
@@ -671,16 +696,16 @@ Create an instance: `station_info = client.StationInfo`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `iata_id` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `priority` | ``$INTEGER`` |  |
-| `site` | ``$STRING`` |  |
-| `state` | ``$STRING`` |  |
+| `country` | `String` |  |
+| `elev` | `Float` |  |
+| `iata_id` | `String` |  |
+| `icao_id` | `String` |  |
+| `lat` | `Float` |  |
+| `lon` | `Float` |  |
+| `name` | `String` |  |
+| `priority` | `Integer` |  |
+| `site` | `String` |  |
+| `state` | `String` |  |
 
 #### Example: List
 
@@ -704,17 +729,17 @@ Create an instance: `taf = client.Taf`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bulletin_time` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `fcst` | ``$ARRAY`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `raw_taf` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `bulletin_time` | `String` |  |
+| `elev` | `Float` |  |
+| `fcst` | `Array` |  |
+| `icao_id` | `String` |  |
+| `issue_time` | `String` |  |
+| `lat` | `Float` |  |
+| `lon` | `Float` |  |
+| `name` | `String` |  |
+| `raw_taf` | `String` |  |
+| `valid_time_from` | `String` |  |
+| `valid_time_to` | `String` |  |
 
 #### Example: List
 
@@ -738,16 +763,20 @@ Create an instance: `tcf = client.Tcf`
 
 ```ruby
 # load returns the bare Tcf record (raises on error).
-tcf = client.Tcf.load({ "id" => "tcf_id" })
+tcf = client.Tcf.load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -764,8 +793,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -809,14 +839,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 airsigmet = client.AirSigmet
-airsigmet.load({ "id" => "example_id" })
+airsigmet.list()
 
-# airsigmet.data_get now returns the loaded airsigmet data
+# airsigmet.data_get now returns the airsigmet data from the last list
 # airsigmet.match_get returns the last match criteria
 ```
 

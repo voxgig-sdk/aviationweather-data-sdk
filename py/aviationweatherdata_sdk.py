@@ -221,61 +221,61 @@ class AviationweatherDataSDK:
 
 
     def AirSigmet(self, data=None) -> "AirSigmetEntity":
-        """Entity factory: client.AirSigmet().list({}) / client.AirSigmet().load({"id": ...})."""
+        """Entity factory: client.AirSigmet().list() / client.AirSigmet().load({"id": ...})."""
         from entity.air_sigmet_entity import AirSigmetEntity
         return AirSigmetEntity(self, data)
 
 
     def Airport(self, data=None) -> "AirportEntity":
-        """Entity factory: client.Airport().list({}) / client.Airport().load({"id": ...})."""
+        """Entity factory: client.Airport().list() / client.Airport().load({"id": ...})."""
         from entity.airport_entity import AirportEntity
         return AirportEntity(self, data)
 
 
     def Cache(self, data=None) -> "CacheEntity":
-        """Entity factory: client.Cache().list({}) / client.Cache().load({"id": ...})."""
+        """Entity factory: client.Cache().list() / client.Cache().load({"id": ...})."""
         from entity.cache_entity import CacheEntity
         return CacheEntity(self, data)
 
 
     def Cwa(self, data=None) -> "CwaEntity":
-        """Entity factory: client.Cwa().list({}) / client.Cwa().load({"id": ...})."""
+        """Entity factory: client.Cwa().list() / client.Cwa().load({"id": ...})."""
         from entity.cwa_entity import CwaEntity
         return CwaEntity(self, data)
 
 
     def GAirmet(self, data=None) -> "GAirmetEntity":
-        """Entity factory: client.GAirmet().list({}) / client.GAirmet().load({"id": ...})."""
+        """Entity factory: client.GAirmet().list() / client.GAirmet().load({"id": ...})."""
         from entity.g_airmet_entity import GAirmetEntity
         return GAirmetEntity(self, data)
 
 
     def Metar(self, data=None) -> "MetarEntity":
-        """Entity factory: client.Metar().list({}) / client.Metar().load({"id": ...})."""
+        """Entity factory: client.Metar().list() / client.Metar().load({"id": ...})."""
         from entity.metar_entity import MetarEntity
         return MetarEntity(self, data)
 
 
     def Pirep(self, data=None) -> "PirepEntity":
-        """Entity factory: client.Pirep().list({}) / client.Pirep().load({"id": ...})."""
+        """Entity factory: client.Pirep().list() / client.Pirep().load({"id": ...})."""
         from entity.pirep_entity import PirepEntity
         return PirepEntity(self, data)
 
 
     def StationInfo(self, data=None) -> "StationInfoEntity":
-        """Entity factory: client.StationInfo().list({}) / client.StationInfo().load({"id": ...})."""
+        """Entity factory: client.StationInfo().list() / client.StationInfo().load({"id": ...})."""
         from entity.station_info_entity import StationInfoEntity
         return StationInfoEntity(self, data)
 
 
     def Taf(self, data=None) -> "TafEntity":
-        """Entity factory: client.Taf().list({}) / client.Taf().load({"id": ...})."""
+        """Entity factory: client.Taf().list() / client.Taf().load({"id": ...})."""
         from entity.taf_entity import TafEntity
         return TafEntity(self, data)
 
 
     def Tcf(self, data=None) -> "TcfEntity":
-        """Entity factory: client.Tcf().list({}) / client.Tcf().load({"id": ...})."""
+        """Entity factory: client.Tcf().list() / client.Tcf().load({"id": ...})."""
         from entity.tcf_entity import TcfEntity
         return TcfEntity(self, data)
 

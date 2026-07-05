@@ -8,7 +8,7 @@ Complete API reference for the AviationweatherData Python SDK.
 ### Constructor
 
 ```python
-from aviationweather-data_sdk import AviationweatherDataSDK
+from aviationweatherdata_sdk import AviationweatherDataSDK
 
 client = AviationweatherDataSDK(options)
 ```
@@ -123,25 +123,25 @@ air_sigmet = client.AirSigmet()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airsigmet_type` | ``$STRING`` | No |  |
-| `altitude_high` | ``$INTEGER`` | No |  |
-| `altitude_low` | ``$INTEGER`` | No |  |
-| `fir` | ``$STRING`` | No |  |
-| `hazard` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `raw_air_sigmet` | ``$STRING`` | No |  |
-| `severity` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `airsigmet_type` | `str` | No |  |
+| `altitude_high` | `int` | No |  |
+| `altitude_low` | `int` | No |  |
+| `fir` | `str` | No |  |
+| `hazard` | `str` | No |  |
+| `issue_time` | `str` | No |  |
+| `raw_air_sigmet` | `str` | No |  |
+| `severity` | `str` | No |  |
+| `valid_time_from` | `str` | No |  |
+| `valid_time_to` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.AirSigmet().list({})
+results = client.AirSigmet().list()
 for air_sigmet in results:
     print(air_sigmet)
 ```
@@ -185,24 +185,24 @@ airport = client.Airport()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | ``$STRING`` | No |  |
-| `country` | ``$STRING`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `iata_id` | ``$STRING`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `state` | ``$STRING`` | No |  |
+| `city` | `str` | No |  |
+| `country` | `str` | No |  |
+| `elev` | `float` | No |  |
+| `iata_id` | `str` | No |  |
+| `icao_id` | `str` | No |  |
+| `lat` | `float` | No |  |
+| `lon` | `float` | No |  |
+| `name` | `str` | No |  |
+| `state` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Airport().list({})
+results = client.Airport().list()
 for airport in results:
     print(airport)
 ```
@@ -249,7 +249,7 @@ cache = client.Cache()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Cache().load({"id": "cache_id"})
+result = client.Cache().load()
 ```
 
 ### Common Methods
@@ -291,22 +291,22 @@ cwa = client.Cwa()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cwsu` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `raw_text` | ``$STRING`` | No |  |
-| `sequence` | ``$INTEGER`` | No |  |
-| `series_id` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `cwsu` | `str` | No |  |
+| `issue_time` | `str` | No |  |
+| `raw_text` | `str` | No |  |
+| `sequence` | `int` | No |  |
+| `series_id` | `str` | No |  |
+| `valid_time_from` | `str` | No |  |
+| `valid_time_to` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Cwa().list({})
+results = client.Cwa().list()
 for cwa in results:
     print(cwa)
 ```
@@ -350,23 +350,23 @@ g_airmet = client.GAirmet()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altitude_high` | ``$INTEGER`` | No |  |
-| `altitude_low` | ``$INTEGER`` | No |  |
-| `hazard` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `qualifier` | ``$STRING`` | No |  |
-| `severity` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `altitude_high` | `int` | No |  |
+| `altitude_low` | `int` | No |  |
+| `hazard` | `str` | No |  |
+| `issue_time` | `str` | No |  |
+| `qualifier` | `str` | No |  |
+| `severity` | `str` | No |  |
+| `valid_time_from` | `str` | No |  |
+| `valid_time_to` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GAirmet().list({})
+results = client.GAirmet().list()
 for g_airmet in results:
     print(g_airmet)
 ```
@@ -410,50 +410,50 @@ metar = client.Metar()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altim` | ``$NUMBER`` | No |  |
-| `cloud` | ``$ARRAY`` | No |  |
-| `dewp` | ``$NUMBER`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `flt_cat` | ``$STRING`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `max_t` | ``$NUMBER`` | No |  |
-| `max_t24` | ``$NUMBER`` | No |  |
-| `metar_type` | ``$STRING`` | No |  |
-| `min_t` | ``$NUMBER`` | No |  |
-| `min_t24` | ``$NUMBER`` | No |  |
-| `most_recent` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `obs_time` | ``$STRING`` | No |  |
-| `pcp24hr` | ``$NUMBER`` | No |  |
-| `pcp3hr` | ``$NUMBER`` | No |  |
-| `pcp6hr` | ``$NUMBER`` | No |  |
-| `precip` | ``$NUMBER`` | No |  |
-| `pres_tend` | ``$NUMBER`` | No |  |
-| `prior` | ``$INTEGER`` | No |  |
-| `qc_field` | ``$INTEGER`` | No |  |
-| `raw_ob` | ``$STRING`` | No |  |
-| `raw_taf` | ``$STRING`` | No |  |
-| `report_time` | ``$STRING`` | No |  |
-| `slp` | ``$NUMBER`` | No |  |
-| `snow` | ``$NUMBER`` | No |  |
-| `temp` | ``$NUMBER`` | No |  |
-| `vert_vi` | ``$INTEGER`` | No |  |
-| `visib` | ``$STRING`` | No |  |
-| `wdir` | ``$INTEGER`` | No |  |
-| `wgst` | ``$INTEGER`` | No |  |
-| `wspd` | ``$INTEGER`` | No |  |
-| `wx_string` | ``$STRING`` | No |  |
+| `altim` | `float` | No |  |
+| `cloud` | `list` | No |  |
+| `dewp` | `float` | No |  |
+| `elev` | `float` | No |  |
+| `flt_cat` | `str` | No |  |
+| `icao_id` | `str` | No |  |
+| `lat` | `float` | No |  |
+| `lon` | `float` | No |  |
+| `max_t` | `float` | No |  |
+| `max_t24` | `float` | No |  |
+| `metar_type` | `str` | No |  |
+| `min_t` | `float` | No |  |
+| `min_t24` | `float` | No |  |
+| `most_recent` | `int` | No |  |
+| `name` | `str` | No |  |
+| `obs_time` | `str` | No |  |
+| `pcp24hr` | `float` | No |  |
+| `pcp3hr` | `float` | No |  |
+| `pcp6hr` | `float` | No |  |
+| `precip` | `float` | No |  |
+| `pres_tend` | `float` | No |  |
+| `prior` | `int` | No |  |
+| `qc_field` | `int` | No |  |
+| `raw_ob` | `str` | No |  |
+| `raw_taf` | `str` | No |  |
+| `report_time` | `str` | No |  |
+| `slp` | `float` | No |  |
+| `snow` | `float` | No |  |
+| `temp` | `float` | No |  |
+| `vert_vi` | `int` | No |  |
+| `visib` | `str` | No |  |
+| `wdir` | `int` | No |  |
+| `wgst` | `int` | No |  |
+| `wspd` | `int` | No |  |
+| `wx_string` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Metar().list({})
+results = client.Metar().list()
 for metar in results:
     print(metar)
 ```
@@ -497,30 +497,30 @@ pirep = client.Pirep()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aircraft_type` | ``$STRING`` | No |  |
-| `altitude_ft` | ``$INTEGER`` | No |  |
-| `cloud` | ``$ARRAY`` | No |  |
-| `icing` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `obs_time` | ``$STRING`` | No |  |
-| `raw_ob` | ``$STRING`` | No |  |
-| `report_type` | ``$STRING`` | No |  |
-| `temp` | ``$NUMBER`` | No |  |
-| `turbulence` | ``$STRING`` | No |  |
-| `visibility` | ``$STRING`` | No |  |
-| `wdir` | ``$INTEGER`` | No |  |
-| `wspd` | ``$INTEGER`` | No |  |
-| `wx_string` | ``$STRING`` | No |  |
+| `aircraft_type` | `str` | No |  |
+| `altitude_ft` | `int` | No |  |
+| `cloud` | `list` | No |  |
+| `icing` | `str` | No |  |
+| `lat` | `float` | No |  |
+| `lon` | `float` | No |  |
+| `obs_time` | `str` | No |  |
+| `raw_ob` | `str` | No |  |
+| `report_type` | `str` | No |  |
+| `temp` | `float` | No |  |
+| `turbulence` | `str` | No |  |
+| `visibility` | `str` | No |  |
+| `wdir` | `int` | No |  |
+| `wspd` | `int` | No |  |
+| `wx_string` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Pirep().list({})
+results = client.Pirep().list()
 for pirep in results:
     print(pirep)
 ```
@@ -564,25 +564,25 @@ station_info = client.StationInfo()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | ``$STRING`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `iata_id` | ``$STRING`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `priority` | ``$INTEGER`` | No |  |
-| `site` | ``$STRING`` | No |  |
-| `state` | ``$STRING`` | No |  |
+| `country` | `str` | No |  |
+| `elev` | `float` | No |  |
+| `iata_id` | `str` | No |  |
+| `icao_id` | `str` | No |  |
+| `lat` | `float` | No |  |
+| `lon` | `float` | No |  |
+| `name` | `str` | No |  |
+| `priority` | `int` | No |  |
+| `site` | `str` | No |  |
+| `state` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.StationInfo().list({})
+results = client.StationInfo().list()
 for station_info in results:
     print(station_info)
 ```
@@ -626,26 +626,26 @@ taf = client.Taf()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bulletin_time` | ``$STRING`` | No |  |
-| `elev` | ``$NUMBER`` | No |  |
-| `fcst` | ``$ARRAY`` | No |  |
-| `icao_id` | ``$STRING`` | No |  |
-| `issue_time` | ``$STRING`` | No |  |
-| `lat` | ``$NUMBER`` | No |  |
-| `lon` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `raw_taf` | ``$STRING`` | No |  |
-| `valid_time_from` | ``$STRING`` | No |  |
-| `valid_time_to` | ``$STRING`` | No |  |
+| `bulletin_time` | `str` | No |  |
+| `elev` | `float` | No |  |
+| `fcst` | `list` | No |  |
+| `icao_id` | `str` | No |  |
+| `issue_time` | `str` | No |  |
+| `lat` | `float` | No |  |
+| `lon` | `float` | No |  |
+| `name` | `str` | No |  |
+| `raw_taf` | `str` | No |  |
+| `valid_time_from` | `str` | No |  |
+| `valid_time_to` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Taf().list({})
+results = client.Taf().list()
 for taf in results:
     print(taf)
 ```
@@ -692,7 +692,7 @@ tcf = client.Tcf()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Tcf().load({"id": "tcf_id"})
+result = client.Tcf().load()
 ```
 
 ### Common Methods

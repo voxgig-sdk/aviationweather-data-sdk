@@ -66,8 +66,12 @@ class TafEntity:
     
 
     
-    def list(self, reqmatch: TafListMatch, ctrl=None) -> list[Taf]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Taf]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Taf().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

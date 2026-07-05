@@ -4,6 +4,8 @@
 
 The PHP SDK for the AviationweatherData API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->AirSigmet()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -36,10 +38,41 @@ try {
     // list() returns an array of AirSigmet records — iterate directly.
     $airsigmets = $client->AirSigmet()->list();
     foreach ($airsigmets as $item) {
-        echo $item["id"] . " " . $item["name"] . "\n";
+        echo $item["airsigmet_type"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $airsigmets = $client->AirSigmet()->list();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -63,7 +96,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -84,16 +120,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = AviationweatherDataSDK::test([
-    "entity" => ["airsigmet" => ["test01" => ["id" => "test01"]]],
-]);
+$client = AviationweatherDataSDK::test();
 
-// load() returns the bare mock record (throws on error).
-$airsigmet = $client->AirSigmet()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$airsigmet = $client->AirSigmet()->list();
 print_r($airsigmet);
 ```
 
@@ -191,10 +224,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -436,16 +466,16 @@ Create an instance: `$air_sigmet = $client->AirSigmet();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airsigmet_type` | ``$STRING`` |  |
-| `altitude_high` | ``$INTEGER`` |  |
-| `altitude_low` | ``$INTEGER`` |  |
-| `fir` | ``$STRING`` |  |
-| `hazard` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `raw_air_sigmet` | ``$STRING`` |  |
-| `severity` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `airsigmet_type` | `string` |  |
+| `altitude_high` | `int` |  |
+| `altitude_low` | `int` |  |
+| `fir` | `string` |  |
+| `hazard` | `string` |  |
+| `issue_time` | `string` |  |
+| `raw_air_sigmet` | `string` |  |
+| `severity` | `string` |  |
+| `valid_time_from` | `string` |  |
+| `valid_time_to` | `string` |  |
 
 #### Example: List
 
@@ -469,15 +499,15 @@ Create an instance: `$airport = $client->Airport();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `iata_id` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `state` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `country` | `string` |  |
+| `elev` | `float` |  |
+| `iata_id` | `string` |  |
+| `icao_id` | `string` |  |
+| `lat` | `float` |  |
+| `lon` | `float` |  |
+| `name` | `string` |  |
+| `state` | `string` |  |
 
 #### Example: List
 
@@ -501,7 +531,7 @@ Create an instance: `$cache = $client->Cache();`
 
 ```php
 // load() returns the bare Cache record (throws on error).
-$cache = $client->Cache()->load(["id" => "cache_id"]);
+$cache = $client->Cache()->load();
 ```
 
 
@@ -519,13 +549,13 @@ Create an instance: `$cwa = $client->Cwa();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cwsu` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `raw_text` | ``$STRING`` |  |
-| `sequence` | ``$INTEGER`` |  |
-| `series_id` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `cwsu` | `string` |  |
+| `issue_time` | `string` |  |
+| `raw_text` | `string` |  |
+| `sequence` | `int` |  |
+| `series_id` | `string` |  |
+| `valid_time_from` | `string` |  |
+| `valid_time_to` | `string` |  |
 
 #### Example: List
 
@@ -549,14 +579,14 @@ Create an instance: `$g_airmet = $client->GAirmet();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altitude_high` | ``$INTEGER`` |  |
-| `altitude_low` | ``$INTEGER`` |  |
-| `hazard` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `qualifier` | ``$STRING`` |  |
-| `severity` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `altitude_high` | `int` |  |
+| `altitude_low` | `int` |  |
+| `hazard` | `string` |  |
+| `issue_time` | `string` |  |
+| `qualifier` | `string` |  |
+| `severity` | `string` |  |
+| `valid_time_from` | `string` |  |
+| `valid_time_to` | `string` |  |
 
 #### Example: List
 
@@ -580,41 +610,41 @@ Create an instance: `$metar = $client->Metar();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altim` | ``$NUMBER`` |  |
-| `cloud` | ``$ARRAY`` |  |
-| `dewp` | ``$NUMBER`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `flt_cat` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `max_t` | ``$NUMBER`` |  |
-| `max_t24` | ``$NUMBER`` |  |
-| `metar_type` | ``$STRING`` |  |
-| `min_t` | ``$NUMBER`` |  |
-| `min_t24` | ``$NUMBER`` |  |
-| `most_recent` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `obs_time` | ``$STRING`` |  |
-| `pcp24hr` | ``$NUMBER`` |  |
-| `pcp3hr` | ``$NUMBER`` |  |
-| `pcp6hr` | ``$NUMBER`` |  |
-| `precip` | ``$NUMBER`` |  |
-| `pres_tend` | ``$NUMBER`` |  |
-| `prior` | ``$INTEGER`` |  |
-| `qc_field` | ``$INTEGER`` |  |
-| `raw_ob` | ``$STRING`` |  |
-| `raw_taf` | ``$STRING`` |  |
-| `report_time` | ``$STRING`` |  |
-| `slp` | ``$NUMBER`` |  |
-| `snow` | ``$NUMBER`` |  |
-| `temp` | ``$NUMBER`` |  |
-| `vert_vi` | ``$INTEGER`` |  |
-| `visib` | ``$STRING`` |  |
-| `wdir` | ``$INTEGER`` |  |
-| `wgst` | ``$INTEGER`` |  |
-| `wspd` | ``$INTEGER`` |  |
-| `wx_string` | ``$STRING`` |  |
+| `altim` | `float` |  |
+| `cloud` | `array` |  |
+| `dewp` | `float` |  |
+| `elev` | `float` |  |
+| `flt_cat` | `string` |  |
+| `icao_id` | `string` |  |
+| `lat` | `float` |  |
+| `lon` | `float` |  |
+| `max_t` | `float` |  |
+| `max_t24` | `float` |  |
+| `metar_type` | `string` |  |
+| `min_t` | `float` |  |
+| `min_t24` | `float` |  |
+| `most_recent` | `int` |  |
+| `name` | `string` |  |
+| `obs_time` | `string` |  |
+| `pcp24hr` | `float` |  |
+| `pcp3hr` | `float` |  |
+| `pcp6hr` | `float` |  |
+| `precip` | `float` |  |
+| `pres_tend` | `float` |  |
+| `prior` | `int` |  |
+| `qc_field` | `int` |  |
+| `raw_ob` | `string` |  |
+| `raw_taf` | `string` |  |
+| `report_time` | `string` |  |
+| `slp` | `float` |  |
+| `snow` | `float` |  |
+| `temp` | `float` |  |
+| `vert_vi` | `int` |  |
+| `visib` | `string` |  |
+| `wdir` | `int` |  |
+| `wgst` | `int` |  |
+| `wspd` | `int` |  |
+| `wx_string` | `string` |  |
 
 #### Example: List
 
@@ -638,21 +668,21 @@ Create an instance: `$pirep = $client->Pirep();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aircraft_type` | ``$STRING`` |  |
-| `altitude_ft` | ``$INTEGER`` |  |
-| `cloud` | ``$ARRAY`` |  |
-| `icing` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `obs_time` | ``$STRING`` |  |
-| `raw_ob` | ``$STRING`` |  |
-| `report_type` | ``$STRING`` |  |
-| `temp` | ``$NUMBER`` |  |
-| `turbulence` | ``$STRING`` |  |
-| `visibility` | ``$STRING`` |  |
-| `wdir` | ``$INTEGER`` |  |
-| `wspd` | ``$INTEGER`` |  |
-| `wx_string` | ``$STRING`` |  |
+| `aircraft_type` | `string` |  |
+| `altitude_ft` | `int` |  |
+| `cloud` | `array` |  |
+| `icing` | `string` |  |
+| `lat` | `float` |  |
+| `lon` | `float` |  |
+| `obs_time` | `string` |  |
+| `raw_ob` | `string` |  |
+| `report_type` | `string` |  |
+| `temp` | `float` |  |
+| `turbulence` | `string` |  |
+| `visibility` | `string` |  |
+| `wdir` | `int` |  |
+| `wspd` | `int` |  |
+| `wx_string` | `string` |  |
 
 #### Example: List
 
@@ -676,16 +706,16 @@ Create an instance: `$station_info = $client->StationInfo();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `iata_id` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `priority` | ``$INTEGER`` |  |
-| `site` | ``$STRING`` |  |
-| `state` | ``$STRING`` |  |
+| `country` | `string` |  |
+| `elev` | `float` |  |
+| `iata_id` | `string` |  |
+| `icao_id` | `string` |  |
+| `lat` | `float` |  |
+| `lon` | `float` |  |
+| `name` | `string` |  |
+| `priority` | `int` |  |
+| `site` | `string` |  |
+| `state` | `string` |  |
 
 #### Example: List
 
@@ -709,17 +739,17 @@ Create an instance: `$taf = $client->Taf();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bulletin_time` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `fcst` | ``$ARRAY`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `raw_taf` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `bulletin_time` | `string` |  |
+| `elev` | `float` |  |
+| `fcst` | `array` |  |
+| `icao_id` | `string` |  |
+| `issue_time` | `string` |  |
+| `lat` | `float` |  |
+| `lon` | `float` |  |
+| `name` | `string` |  |
+| `raw_taf` | `string` |  |
+| `valid_time_from` | `string` |  |
+| `valid_time_to` | `string` |  |
 
 #### Example: List
 
@@ -743,16 +773,20 @@ Create an instance: `$tcf = $client->Tcf();`
 
 ```php
 // load() returns the bare Tcf record (throws on error).
-$tcf = $client->Tcf()->load(["id" => "tcf_id"]);
+$tcf = $client->Tcf()->load();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -769,8 +803,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -814,15 +849,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
 $airsigmet = $client->AirSigmet();
-$airsigmet->load(["id" => "example_id"]);
+$airsigmet->list();
 
-// $airsigmet->dataGet() now returns the loaded airsigmet data
-// $airsigmet->matchGet() returns the last match criteria
+// $airsigmet->data_get() now returns the airsigmet data from the last list
+// $airsigmet->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

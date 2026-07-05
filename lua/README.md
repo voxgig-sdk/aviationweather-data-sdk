@@ -4,6 +4,8 @@
 
 The Lua SDK for the AviationweatherData API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:AirSigmet()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -41,8 +43,30 @@ local airsigmets, err = client:AirSigmet():list()
 if err then error(err) end
 
 for _, item in ipairs(airsigmets) do
-  print(item["id"], item["name"])
+  print(item["airsigmet_type"])
 end
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local airsigmets, err = client:AirSigmet():list()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -88,8 +112,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:AirSigmet():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:AirSigmet():list()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -186,9 +210,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -203,12 +224,12 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local air_sigmet, err = client:AirSigmet():load({ id = "example_id" })
+    local air_sigmet, err = client:AirSigmet():load()
     if err then error(err) end
     -- air_sigmet is the loaded record
 
@@ -431,16 +452,16 @@ Create an instance: `local air_sigmet = client:AirSigmet(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airsigmet_type` | ``$STRING`` |  |
-| `altitude_high` | ``$INTEGER`` |  |
-| `altitude_low` | ``$INTEGER`` |  |
-| `fir` | ``$STRING`` |  |
-| `hazard` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `raw_air_sigmet` | ``$STRING`` |  |
-| `severity` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `airsigmet_type` | `string` |  |
+| `altitude_high` | `number` |  |
+| `altitude_low` | `number` |  |
+| `fir` | `string` |  |
+| `hazard` | `string` |  |
+| `issue_time` | `string` |  |
+| `raw_air_sigmet` | `string` |  |
+| `severity` | `string` |  |
+| `valid_time_from` | `string` |  |
+| `valid_time_to` | `string` |  |
 
 #### Example: List
 
@@ -463,15 +484,15 @@ Create an instance: `local airport = client:Airport(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `iata_id` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `state` | ``$STRING`` |  |
+| `city` | `string` |  |
+| `country` | `string` |  |
+| `elev` | `number` |  |
+| `iata_id` | `string` |  |
+| `icao_id` | `string` |  |
+| `lat` | `number` |  |
+| `lon` | `number` |  |
+| `name` | `string` |  |
+| `state` | `string` |  |
 
 #### Example: List
 
@@ -493,7 +514,7 @@ Create an instance: `local cache = client:Cache(nil)`
 #### Example: Load
 
 ```lua
-local cache, err = client:Cache():load({ id = "cache_id" })
+local cache, err = client:Cache():load()
 ```
 
 
@@ -511,13 +532,13 @@ Create an instance: `local cwa = client:Cwa(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cwsu` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `raw_text` | ``$STRING`` |  |
-| `sequence` | ``$INTEGER`` |  |
-| `series_id` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `cwsu` | `string` |  |
+| `issue_time` | `string` |  |
+| `raw_text` | `string` |  |
+| `sequence` | `number` |  |
+| `series_id` | `string` |  |
+| `valid_time_from` | `string` |  |
+| `valid_time_to` | `string` |  |
 
 #### Example: List
 
@@ -540,14 +561,14 @@ Create an instance: `local g_airmet = client:GAirmet(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altitude_high` | ``$INTEGER`` |  |
-| `altitude_low` | ``$INTEGER`` |  |
-| `hazard` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `qualifier` | ``$STRING`` |  |
-| `severity` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `altitude_high` | `number` |  |
+| `altitude_low` | `number` |  |
+| `hazard` | `string` |  |
+| `issue_time` | `string` |  |
+| `qualifier` | `string` |  |
+| `severity` | `string` |  |
+| `valid_time_from` | `string` |  |
+| `valid_time_to` | `string` |  |
 
 #### Example: List
 
@@ -570,41 +591,41 @@ Create an instance: `local metar = client:Metar(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altim` | ``$NUMBER`` |  |
-| `cloud` | ``$ARRAY`` |  |
-| `dewp` | ``$NUMBER`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `flt_cat` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `max_t` | ``$NUMBER`` |  |
-| `max_t24` | ``$NUMBER`` |  |
-| `metar_type` | ``$STRING`` |  |
-| `min_t` | ``$NUMBER`` |  |
-| `min_t24` | ``$NUMBER`` |  |
-| `most_recent` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `obs_time` | ``$STRING`` |  |
-| `pcp24hr` | ``$NUMBER`` |  |
-| `pcp3hr` | ``$NUMBER`` |  |
-| `pcp6hr` | ``$NUMBER`` |  |
-| `precip` | ``$NUMBER`` |  |
-| `pres_tend` | ``$NUMBER`` |  |
-| `prior` | ``$INTEGER`` |  |
-| `qc_field` | ``$INTEGER`` |  |
-| `raw_ob` | ``$STRING`` |  |
-| `raw_taf` | ``$STRING`` |  |
-| `report_time` | ``$STRING`` |  |
-| `slp` | ``$NUMBER`` |  |
-| `snow` | ``$NUMBER`` |  |
-| `temp` | ``$NUMBER`` |  |
-| `vert_vi` | ``$INTEGER`` |  |
-| `visib` | ``$STRING`` |  |
-| `wdir` | ``$INTEGER`` |  |
-| `wgst` | ``$INTEGER`` |  |
-| `wspd` | ``$INTEGER`` |  |
-| `wx_string` | ``$STRING`` |  |
+| `altim` | `number` |  |
+| `cloud` | `table` |  |
+| `dewp` | `number` |  |
+| `elev` | `number` |  |
+| `flt_cat` | `string` |  |
+| `icao_id` | `string` |  |
+| `lat` | `number` |  |
+| `lon` | `number` |  |
+| `max_t` | `number` |  |
+| `max_t24` | `number` |  |
+| `metar_type` | `string` |  |
+| `min_t` | `number` |  |
+| `min_t24` | `number` |  |
+| `most_recent` | `number` |  |
+| `name` | `string` |  |
+| `obs_time` | `string` |  |
+| `pcp24hr` | `number` |  |
+| `pcp3hr` | `number` |  |
+| `pcp6hr` | `number` |  |
+| `precip` | `number` |  |
+| `pres_tend` | `number` |  |
+| `prior` | `number` |  |
+| `qc_field` | `number` |  |
+| `raw_ob` | `string` |  |
+| `raw_taf` | `string` |  |
+| `report_time` | `string` |  |
+| `slp` | `number` |  |
+| `snow` | `number` |  |
+| `temp` | `number` |  |
+| `vert_vi` | `number` |  |
+| `visib` | `string` |  |
+| `wdir` | `number` |  |
+| `wgst` | `number` |  |
+| `wspd` | `number` |  |
+| `wx_string` | `string` |  |
 
 #### Example: List
 
@@ -627,21 +648,21 @@ Create an instance: `local pirep = client:Pirep(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aircraft_type` | ``$STRING`` |  |
-| `altitude_ft` | ``$INTEGER`` |  |
-| `cloud` | ``$ARRAY`` |  |
-| `icing` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `obs_time` | ``$STRING`` |  |
-| `raw_ob` | ``$STRING`` |  |
-| `report_type` | ``$STRING`` |  |
-| `temp` | ``$NUMBER`` |  |
-| `turbulence` | ``$STRING`` |  |
-| `visibility` | ``$STRING`` |  |
-| `wdir` | ``$INTEGER`` |  |
-| `wspd` | ``$INTEGER`` |  |
-| `wx_string` | ``$STRING`` |  |
+| `aircraft_type` | `string` |  |
+| `altitude_ft` | `number` |  |
+| `cloud` | `table` |  |
+| `icing` | `string` |  |
+| `lat` | `number` |  |
+| `lon` | `number` |  |
+| `obs_time` | `string` |  |
+| `raw_ob` | `string` |  |
+| `report_type` | `string` |  |
+| `temp` | `number` |  |
+| `turbulence` | `string` |  |
+| `visibility` | `string` |  |
+| `wdir` | `number` |  |
+| `wspd` | `number` |  |
+| `wx_string` | `string` |  |
 
 #### Example: List
 
@@ -664,16 +685,16 @@ Create an instance: `local station_info = client:StationInfo(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `iata_id` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `priority` | ``$INTEGER`` |  |
-| `site` | ``$STRING`` |  |
-| `state` | ``$STRING`` |  |
+| `country` | `string` |  |
+| `elev` | `number` |  |
+| `iata_id` | `string` |  |
+| `icao_id` | `string` |  |
+| `lat` | `number` |  |
+| `lon` | `number` |  |
+| `name` | `string` |  |
+| `priority` | `number` |  |
+| `site` | `string` |  |
+| `state` | `string` |  |
 
 #### Example: List
 
@@ -696,17 +717,17 @@ Create an instance: `local taf = client:Taf(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bulletin_time` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `fcst` | ``$ARRAY`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `raw_taf` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `bulletin_time` | `string` |  |
+| `elev` | `number` |  |
+| `fcst` | `table` |  |
+| `icao_id` | `string` |  |
+| `issue_time` | `string` |  |
+| `lat` | `number` |  |
+| `lon` | `number` |  |
+| `name` | `string` |  |
+| `raw_taf` | `string` |  |
+| `valid_time_from` | `string` |  |
+| `valid_time_to` | `string` |  |
 
 #### Example: List
 
@@ -728,16 +749,20 @@ Create an instance: `local tcf = client:Tcf(nil)`
 #### Example: Load
 
 ```lua
-local tcf, err = client:Tcf():load({ id = "tcf_id" })
+local tcf, err = client:Tcf():load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -754,8 +779,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -799,14 +825,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
 local airsigmet = client:AirSigmet()
-airsigmet:load({ id = "example_id" })
+airsigmet:list()
 
--- airsigmet:data_get() now returns the loaded airsigmet data
+-- airsigmet:data_get() now returns the airsigmet data from the last list
 -- airsigmet:match_get() returns the last match criteria
 ```
 

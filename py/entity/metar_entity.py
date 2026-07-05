@@ -66,8 +66,12 @@ class MetarEntity:
     
 
     
-    def list(self, reqmatch: MetarListMatch, ctrl=None) -> list[Metar]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Metar]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Metar().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

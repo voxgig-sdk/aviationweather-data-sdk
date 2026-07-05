@@ -4,6 +4,11 @@
 
 The Python SDK for the AviationweatherData API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.AirSigmet()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,11 +43,39 @@ error — iterate it directly.
 
 ```python
 try:
-    airsigmets = client.AirSigmet().list({})
+    airsigmets = client.AirSigmet().list()
     for airsigmet in airsigmets:
         print(airsigmet)
 except Exception as err:
     print(f"list failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    airsigmets = client.AirSigmet().list()
+    print(airsigmets)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -63,7 +96,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -89,7 +125,7 @@ Create a mock client for unit testing — no server required:
 client = AviationweatherDataSDK.test()
 
 # Entity ops return the bare record and raise on error.
-airsigmet = client.AirSigmet().load({"id": "test01"})
+airsigmet = client.AirSigmet().list()
 # airsigmet contains the mock response record
 ```
 
@@ -185,9 +221,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -423,27 +456,27 @@ Create an instance: `air_sigmet = client.AirSigmet()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airsigmet_type` | ``$STRING`` |  |
-| `altitude_high` | ``$INTEGER`` |  |
-| `altitude_low` | ``$INTEGER`` |  |
-| `fir` | ``$STRING`` |  |
-| `hazard` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `raw_air_sigmet` | ``$STRING`` |  |
-| `severity` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `airsigmet_type` | `str` |  |
+| `altitude_high` | `int` |  |
+| `altitude_low` | `int` |  |
+| `fir` | `str` |  |
+| `hazard` | `str` |  |
+| `issue_time` | `str` |  |
+| `raw_air_sigmet` | `str` |  |
+| `severity` | `str` |  |
+| `valid_time_from` | `str` |  |
+| `valid_time_to` | `str` |  |
 
 #### Example: List
 
 ```python
-air_sigmets = client.AirSigmet().list({})
+air_sigmets = client.AirSigmet().list()
 ```
 
 
@@ -455,26 +488,26 @@ Create an instance: `airport = client.Airport()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | ``$STRING`` |  |
-| `country` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `iata_id` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `state` | ``$STRING`` |  |
+| `city` | `str` |  |
+| `country` | `str` |  |
+| `elev` | `float` |  |
+| `iata_id` | `str` |  |
+| `icao_id` | `str` |  |
+| `lat` | `float` |  |
+| `lon` | `float` |  |
+| `name` | `str` |  |
+| `state` | `str` |  |
 
 #### Example: List
 
 ```python
-airports = client.Airport().list({})
+airports = client.Airport().list()
 ```
 
 
@@ -491,7 +524,7 @@ Create an instance: `cache = client.Cache()`
 #### Example: Load
 
 ```python
-cache = client.Cache().load({"id": "cache_id"})
+cache = client.Cache().load()
 ```
 
 
@@ -503,24 +536,24 @@ Create an instance: `cwa = client.Cwa()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cwsu` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `raw_text` | ``$STRING`` |  |
-| `sequence` | ``$INTEGER`` |  |
-| `series_id` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `cwsu` | `str` |  |
+| `issue_time` | `str` |  |
+| `raw_text` | `str` |  |
+| `sequence` | `int` |  |
+| `series_id` | `str` |  |
+| `valid_time_from` | `str` |  |
+| `valid_time_to` | `str` |  |
 
 #### Example: List
 
 ```python
-cwas = client.Cwa().list({})
+cwas = client.Cwa().list()
 ```
 
 
@@ -532,25 +565,25 @@ Create an instance: `g_airmet = client.GAirmet()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altitude_high` | ``$INTEGER`` |  |
-| `altitude_low` | ``$INTEGER`` |  |
-| `hazard` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `qualifier` | ``$STRING`` |  |
-| `severity` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `altitude_high` | `int` |  |
+| `altitude_low` | `int` |  |
+| `hazard` | `str` |  |
+| `issue_time` | `str` |  |
+| `qualifier` | `str` |  |
+| `severity` | `str` |  |
+| `valid_time_from` | `str` |  |
+| `valid_time_to` | `str` |  |
 
 #### Example: List
 
 ```python
-g_airmets = client.GAirmet().list({})
+g_airmets = client.GAirmet().list()
 ```
 
 
@@ -562,52 +595,52 @@ Create an instance: `metar = client.Metar()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altim` | ``$NUMBER`` |  |
-| `cloud` | ``$ARRAY`` |  |
-| `dewp` | ``$NUMBER`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `flt_cat` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `max_t` | ``$NUMBER`` |  |
-| `max_t24` | ``$NUMBER`` |  |
-| `metar_type` | ``$STRING`` |  |
-| `min_t` | ``$NUMBER`` |  |
-| `min_t24` | ``$NUMBER`` |  |
-| `most_recent` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `obs_time` | ``$STRING`` |  |
-| `pcp24hr` | ``$NUMBER`` |  |
-| `pcp3hr` | ``$NUMBER`` |  |
-| `pcp6hr` | ``$NUMBER`` |  |
-| `precip` | ``$NUMBER`` |  |
-| `pres_tend` | ``$NUMBER`` |  |
-| `prior` | ``$INTEGER`` |  |
-| `qc_field` | ``$INTEGER`` |  |
-| `raw_ob` | ``$STRING`` |  |
-| `raw_taf` | ``$STRING`` |  |
-| `report_time` | ``$STRING`` |  |
-| `slp` | ``$NUMBER`` |  |
-| `snow` | ``$NUMBER`` |  |
-| `temp` | ``$NUMBER`` |  |
-| `vert_vi` | ``$INTEGER`` |  |
-| `visib` | ``$STRING`` |  |
-| `wdir` | ``$INTEGER`` |  |
-| `wgst` | ``$INTEGER`` |  |
-| `wspd` | ``$INTEGER`` |  |
-| `wx_string` | ``$STRING`` |  |
+| `altim` | `float` |  |
+| `cloud` | `list` |  |
+| `dewp` | `float` |  |
+| `elev` | `float` |  |
+| `flt_cat` | `str` |  |
+| `icao_id` | `str` |  |
+| `lat` | `float` |  |
+| `lon` | `float` |  |
+| `max_t` | `float` |  |
+| `max_t24` | `float` |  |
+| `metar_type` | `str` |  |
+| `min_t` | `float` |  |
+| `min_t24` | `float` |  |
+| `most_recent` | `int` |  |
+| `name` | `str` |  |
+| `obs_time` | `str` |  |
+| `pcp24hr` | `float` |  |
+| `pcp3hr` | `float` |  |
+| `pcp6hr` | `float` |  |
+| `precip` | `float` |  |
+| `pres_tend` | `float` |  |
+| `prior` | `int` |  |
+| `qc_field` | `int` |  |
+| `raw_ob` | `str` |  |
+| `raw_taf` | `str` |  |
+| `report_time` | `str` |  |
+| `slp` | `float` |  |
+| `snow` | `float` |  |
+| `temp` | `float` |  |
+| `vert_vi` | `int` |  |
+| `visib` | `str` |  |
+| `wdir` | `int` |  |
+| `wgst` | `int` |  |
+| `wspd` | `int` |  |
+| `wx_string` | `str` |  |
 
 #### Example: List
 
 ```python
-metars = client.Metar().list({})
+metars = client.Metar().list()
 ```
 
 
@@ -619,32 +652,32 @@ Create an instance: `pirep = client.Pirep()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aircraft_type` | ``$STRING`` |  |
-| `altitude_ft` | ``$INTEGER`` |  |
-| `cloud` | ``$ARRAY`` |  |
-| `icing` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `obs_time` | ``$STRING`` |  |
-| `raw_ob` | ``$STRING`` |  |
-| `report_type` | ``$STRING`` |  |
-| `temp` | ``$NUMBER`` |  |
-| `turbulence` | ``$STRING`` |  |
-| `visibility` | ``$STRING`` |  |
-| `wdir` | ``$INTEGER`` |  |
-| `wspd` | ``$INTEGER`` |  |
-| `wx_string` | ``$STRING`` |  |
+| `aircraft_type` | `str` |  |
+| `altitude_ft` | `int` |  |
+| `cloud` | `list` |  |
+| `icing` | `str` |  |
+| `lat` | `float` |  |
+| `lon` | `float` |  |
+| `obs_time` | `str` |  |
+| `raw_ob` | `str` |  |
+| `report_type` | `str` |  |
+| `temp` | `float` |  |
+| `turbulence` | `str` |  |
+| `visibility` | `str` |  |
+| `wdir` | `int` |  |
+| `wspd` | `int` |  |
+| `wx_string` | `str` |  |
 
 #### Example: List
 
 ```python
-pireps = client.Pirep().list({})
+pireps = client.Pirep().list()
 ```
 
 
@@ -656,27 +689,27 @@ Create an instance: `station_info = client.StationInfo()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `iata_id` | ``$STRING`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `priority` | ``$INTEGER`` |  |
-| `site` | ``$STRING`` |  |
-| `state` | ``$STRING`` |  |
+| `country` | `str` |  |
+| `elev` | `float` |  |
+| `iata_id` | `str` |  |
+| `icao_id` | `str` |  |
+| `lat` | `float` |  |
+| `lon` | `float` |  |
+| `name` | `str` |  |
+| `priority` | `int` |  |
+| `site` | `str` |  |
+| `state` | `str` |  |
 
 #### Example: List
 
 ```python
-station_infos = client.StationInfo().list({})
+station_infos = client.StationInfo().list()
 ```
 
 
@@ -688,28 +721,28 @@ Create an instance: `taf = client.Taf()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bulletin_time` | ``$STRING`` |  |
-| `elev` | ``$NUMBER`` |  |
-| `fcst` | ``$ARRAY`` |  |
-| `icao_id` | ``$STRING`` |  |
-| `issue_time` | ``$STRING`` |  |
-| `lat` | ``$NUMBER`` |  |
-| `lon` | ``$NUMBER`` |  |
-| `name` | ``$STRING`` |  |
-| `raw_taf` | ``$STRING`` |  |
-| `valid_time_from` | ``$STRING`` |  |
-| `valid_time_to` | ``$STRING`` |  |
+| `bulletin_time` | `str` |  |
+| `elev` | `float` |  |
+| `fcst` | `list` |  |
+| `icao_id` | `str` |  |
+| `issue_time` | `str` |  |
+| `lat` | `float` |  |
+| `lon` | `float` |  |
+| `name` | `str` |  |
+| `raw_taf` | `str` |  |
+| `valid_time_from` | `str` |  |
+| `valid_time_to` | `str` |  |
 
 #### Example: List
 
 ```python
-tafs = client.Taf().list({})
+tafs = client.Taf().list()
 ```
 
 
@@ -726,16 +759,20 @@ Create an instance: `tcf = client.Tcf()`
 #### Example: Load
 
 ```python
-tcf = client.Tcf().load({"id": "tcf_id"})
+tcf = client.Tcf().load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -752,8 +789,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -796,14 +834,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 airsigmet = client.AirSigmet()
-airsigmet.load({"id": "example_id"})
+airsigmet.list()
 
-# airsigmet.data_get() now returns the loaded airsigmet data
+# airsigmet.data_get() now returns the airsigmet data from the last list
 # airsigmet.match_get() returns the last match criteria
 ```
 
