@@ -16,10 +16,10 @@ main: {
           url: "https://aviationweather.gov"
         }
       ]
+      summary: "This API provides machine-to-machine access to aviation weather data, including METARs, TAFs, AIRMETs, and SIGMETs."
       termsOfService: "https://aviationweather.gov/data/api/"
       title: "AviationWeather Data API"
       version: "4.12"
+      website: "https://aviationweather.gov"
     }
   }
-}
-

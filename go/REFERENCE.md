@@ -126,7 +126,8 @@ same parameters as `Direct()`.
 ## AirSigmetEntity
 
 ```go
-air_sigmet := client.AirSigmet(nil)
+airSigmet := client.AirSigmet(nil)
+fmt.Println(airSigmet.GetName()) // "air_sigmet"
 ```
 
 ### Fields
@@ -152,6 +153,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.AirSigmet(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -182,6 +187,7 @@ Return the entity name.
 
 ```go
 airport := client.Airport(nil)
+fmt.Println(airport.GetName()) // "airport"
 ```
 
 ### Fields
@@ -206,6 +212,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Airport(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -236,6 +246,7 @@ Return the entity name.
 
 ```go
 cache := client.Cache(nil)
+fmt.Println(cache.GetName()) // "cache"
 ```
 
 ### Operations
@@ -246,6 +257,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Cache(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -276,6 +291,7 @@ Return the entity name.
 
 ```go
 cwa := client.Cwa(nil)
+fmt.Println(cwa.GetName()) // "cwa"
 ```
 
 ### Fields
@@ -298,6 +314,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Cwa(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -327,7 +347,8 @@ Return the entity name.
 ## GAirmetEntity
 
 ```go
-g_airmet := client.GAirmet(nil)
+gAirmet := client.GAirmet(nil)
+fmt.Println(gAirmet.GetName()) // "g_airmet"
 ```
 
 ### Fields
@@ -351,6 +372,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.GAirmet(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -381,6 +406,7 @@ Return the entity name.
 
 ```go
 metar := client.Metar(nil)
+fmt.Println(metar.GetName()) // "metar"
 ```
 
 ### Fields
@@ -431,6 +457,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Metar(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -461,6 +491,7 @@ Return the entity name.
 
 ```go
 pirep := client.Pirep(nil)
+fmt.Println(pirep.GetName()) // "pirep"
 ```
 
 ### Fields
@@ -491,6 +522,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Pirep(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -520,7 +555,8 @@ Return the entity name.
 ## StationInfoEntity
 
 ```go
-station_info := client.StationInfo(nil)
+stationInfo := client.StationInfo(nil)
+fmt.Println(stationInfo.GetName()) // "station_info"
 ```
 
 ### Fields
@@ -546,6 +582,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.StationInfo(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -576,6 +616,7 @@ Return the entity name.
 
 ```go
 taf := client.Taf(nil)
+fmt.Println(taf.GetName()) // "taf"
 ```
 
 ### Fields
@@ -602,6 +643,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Taf(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -632,6 +677,7 @@ Return the entity name.
 
 ```go
 tcf := client.Tcf(nil)
+fmt.Println(tcf.GetName()) // "tcf"
 ```
 
 ### Operations
@@ -642,6 +688,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Tcf(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

@@ -1,0 +1,12 @@
+# Entity Models
+
+@"air_sigmet.aontu"
+@"airport.aontu"
+@"cache.aontu"
+@"cwa.aontu"
+@"g_airmet.aontu"
+@"metar.aontu"
+@"pirep.aontu"
+@"station_info.aontu"
+@"taf.aontu"
+@"tcf.aontu"

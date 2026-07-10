@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -1896,15 +1893,18 @@
           "url": "https://aviationweather.gov/data/api/"
         },
         "description": "This API provides machine-to-machine access to aviation weather data, including METARs, TAFs, AIRMETs, and SIGMETs. It enables users to fetch up-to-date weather information for flight planning and operations. The service allows queries for the past 15 days of data and provides cache options for efficient data retrieval.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Aviation Weather Center Production Server",
             "url": "https://aviationweather.gov"
           }
         ],
+        "summary": "This API provides machine-to-machine access to aviation weather data, including METARs, TAFs, AIRMETs, and SIGMETs.",
         "termsOfService": "https://aviationweather.gov/data/api/",
         "title": "AviationWeather Data API",
-        "version": "4.12"
+        "version": "4.12",
+        "website": "https://aviationweather.gov"
       },
       "option": {},
       "target": {
@@ -1957,6 +1957,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -2007,6 +2010,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
