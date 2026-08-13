@@ -11,7 +11,7 @@ main: kit: entity: metar: {
       type: "`$NUMBER`"
     }
     {
-      name: "cloud"
+      name: "clouds"
       req: false
       type: "`$ARRAY`"
     }
@@ -26,12 +26,12 @@ main: kit: entity: metar: {
       type: "`$NUMBER`"
     }
     {
-      name: "flt_cat"
+      name: "fltCat"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "icao_id"
+      name: "icaoId"
       req: false
       type: "`$STRING`"
     }
@@ -46,32 +46,32 @@ main: kit: entity: metar: {
       type: "`$NUMBER`"
     }
     {
-      name: "max_t"
+      name: "maxT"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "max_t24"
+      name: "maxT24"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "metar_type"
+      name: "metarType"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "min_t"
+      name: "minT"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "min_t24"
+      name: "minT24"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "most_recent"
+      name: "mostRecent"
       req: false
       type: "`$INTEGER`"
     }
@@ -81,7 +81,7 @@ main: kit: entity: metar: {
       type: "`$STRING`"
     }
     {
-      name: "obs_time"
+      name: "obsTime"
       req: false
       type: "`$STRING`"
     }
@@ -106,7 +106,7 @@ main: kit: entity: metar: {
       type: "`$NUMBER`"
     }
     {
-      name: "pres_tend"
+      name: "presTend"
       req: false
       type: "`$NUMBER`"
     }
@@ -116,22 +116,22 @@ main: kit: entity: metar: {
       type: "`$INTEGER`"
     }
     {
-      name: "qc_field"
+      name: "qcField"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "raw_ob"
+      name: "rawOb"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "raw_taf"
+      name: "rawTaf"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "report_time"
+      name: "reportTime"
       req: false
       type: "`$STRING`"
     }
@@ -151,7 +151,7 @@ main: kit: entity: metar: {
       type: "`$NUMBER`"
     }
     {
-      name: "vert_vi"
+      name: "vertVis"
       req: false
       type: "`$INTEGER`"
     }
@@ -176,7 +176,7 @@ main: kit: entity: metar: {
       type: "`$INTEGER`"
     }
     {
-      name: "wx_string"
+      name: "wxString"
       req: false
       type: "`$STRING`"
     }

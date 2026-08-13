@@ -23,8 +23,8 @@ module AviationweatherDataTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("AVIATIONWEATHERDATA_TEST_LIVE")
-    override = getenv("AVIATIONWEATHERDATA_TEST_OVERRIDE")
+    live = getenv("AVIATIONWEATHER_DATA_TEST_LIVE")
+    override = getenv("AVIATIONWEATHER_DATA_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module AviationweatherDataTestRunner
       end
     end
 
-    explain = getenv("AVIATIONWEATHERDATA_TEST_EXPLAIN")
-    m["AVIATIONWEATHERDATA_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("AVIATIONWEATHER_DATA_TEST_EXPLAIN")
+    m["AVIATIONWEATHER_DATA_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

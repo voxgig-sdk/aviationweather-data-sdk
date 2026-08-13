@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'AviationweatherData',
   }
 
 
@@ -83,21 +83,21 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "airsigmet_type",
+          "name": "airsigmetType",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "altitude_high",
+          "name": "altitudeHigh",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "altitude_low",
+          "name": "altitudeLow",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 2
@@ -118,14 +118,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "issue_time",
+          "name": "issueTime",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "raw_air_sigmet",
+          "name": "rawAirSigmet",
           "req": false,
           "type": "`$STRING`",
           "index$": 6
@@ -139,14 +139,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "valid_time_from",
+          "name": "validTimeFrom",
           "req": false,
           "type": "`$STRING`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "valid_time_to",
+          "name": "validTimeTo",
           "req": false,
           "type": "`$STRING`",
           "index$": 9
@@ -197,6 +197,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/data/airsigmet",
               "parts": [
@@ -251,14 +252,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "iata_id",
+          "name": "iataId",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "icao_id",
+          "name": "icaoId",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
@@ -329,6 +330,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/data/airport",
               "parts": [
@@ -368,6 +370,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/data/cache/aircraftreports.cache.csv.gz",
               "parts": [
@@ -387,6 +390,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/data/cache/aircraftreports.cache.xml.gz",
               "parts": [
@@ -406,6 +410,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/data/cache/airsigmets.cache.csv.gz",
               "parts": [
@@ -425,6 +430,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/data/cache/airsigmets.cache.xml.gz",
               "parts": [
@@ -444,6 +450,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/data/cache/gairmets.cache.xml.gz",
               "parts": [
@@ -463,6 +470,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/data/cache/metars.cache.csv.gz",
               "parts": [
@@ -482,6 +490,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/data/cache/metars.cache.xml.gz",
               "parts": [
@@ -501,6 +510,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/data/cache/stations.cache.json.gz",
               "parts": [
@@ -520,6 +530,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/data/cache/stations.cache.xml.gz",
               "parts": [
@@ -539,6 +550,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/data/cache/tafs.cache.xml.gz",
               "parts": [
@@ -574,14 +586,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "issue_time",
+          "name": "issueTime",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "raw_text",
+          "name": "rawText",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
@@ -595,21 +607,21 @@ class Config {
         },
         {
           "active": true,
-          "name": "series_id",
+          "name": "seriesId",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "valid_time_from",
+          "name": "validTimeFrom",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "valid_time_to",
+          "name": "validTimeTo",
           "req": false,
           "type": "`$STRING`",
           "index$": 6
@@ -652,6 +664,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/data/cwa",
               "parts": [
@@ -684,14 +697,14 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "altitude_high",
+          "name": "altitudeHigh",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "altitude_low",
+          "name": "altitudeLow",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 1
@@ -705,7 +718,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "issue_time",
+          "name": "issueTime",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
@@ -726,14 +739,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "valid_time_from",
+          "name": "validTimeFrom",
           "req": false,
           "type": "`$STRING`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "valid_time_to",
+          "name": "validTimeTo",
           "req": false,
           "type": "`$STRING`",
           "index$": 7
@@ -784,6 +797,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/data/gairmet",
               "parts": [
@@ -824,7 +838,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "cloud",
+          "name": "clouds",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
@@ -845,14 +859,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "flt_cat",
+          "name": "fltCat",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "icao_id",
+          "name": "icaoId",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
@@ -873,42 +887,42 @@ class Config {
         },
         {
           "active": true,
-          "name": "max_t",
+          "name": "maxT",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "max_t24",
+          "name": "maxT24",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 9
         },
         {
           "active": true,
-          "name": "metar_type",
+          "name": "metarType",
           "req": false,
           "type": "`$STRING`",
           "index$": 10
         },
         {
           "active": true,
-          "name": "min_t",
+          "name": "minT",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 11
         },
         {
           "active": true,
-          "name": "min_t24",
+          "name": "minT24",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 12
         },
         {
           "active": true,
-          "name": "most_recent",
+          "name": "mostRecent",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 13
@@ -922,7 +936,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "obs_time",
+          "name": "obsTime",
           "req": false,
           "type": "`$STRING`",
           "index$": 15
@@ -957,7 +971,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "pres_tend",
+          "name": "presTend",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 20
@@ -971,28 +985,28 @@ class Config {
         },
         {
           "active": true,
-          "name": "qc_field",
+          "name": "qcField",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 22
         },
         {
           "active": true,
-          "name": "raw_ob",
+          "name": "rawOb",
           "req": false,
           "type": "`$STRING`",
           "index$": 23
         },
         {
           "active": true,
-          "name": "raw_taf",
+          "name": "rawTaf",
           "req": false,
           "type": "`$STRING`",
           "index$": 24
         },
         {
           "active": true,
-          "name": "report_time",
+          "name": "reportTime",
           "req": false,
           "type": "`$STRING`",
           "index$": 25
@@ -1020,7 +1034,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "vert_vi",
+          "name": "vertVis",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 29
@@ -1055,7 +1069,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "wx_string",
+          "name": "wxString",
           "req": false,
           "type": "`$STRING`",
           "index$": 34
@@ -1114,6 +1128,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/data/metar",
               "parts": [
@@ -1148,21 +1163,21 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "aircraft_type",
+          "name": "aircraftType",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "altitude_ft",
+          "name": "altitudeFt",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "cloud",
+          "name": "clouds",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
@@ -1190,21 +1205,21 @@ class Config {
         },
         {
           "active": true,
-          "name": "obs_time",
+          "name": "obsTime",
           "req": false,
           "type": "`$STRING`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "raw_ob",
+          "name": "rawOb",
           "req": false,
           "type": "`$STRING`",
           "index$": 7
         },
         {
           "active": true,
-          "name": "report_type",
+          "name": "reportType",
           "req": false,
           "type": "`$STRING`",
           "index$": 8
@@ -1246,7 +1261,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "wx_string",
+          "name": "wxString",
           "req": false,
           "type": "`$STRING`",
           "index$": 14
@@ -1297,6 +1312,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/data/pirep",
               "parts": [
@@ -1344,14 +1360,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "iata_id",
+          "name": "iataId",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "icao_id",
+          "name": "icaoId",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
@@ -1436,6 +1452,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/data/stationinfo",
               "parts": [
@@ -1468,7 +1485,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "bulletin_time",
+          "name": "bulletinTime",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -1482,21 +1499,21 @@ class Config {
         },
         {
           "active": true,
-          "name": "fcst",
+          "name": "fcsts",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "icao_id",
+          "name": "icaoId",
           "req": false,
           "type": "`$STRING`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "issue_time",
+          "name": "issueTime",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
@@ -1524,21 +1541,21 @@ class Config {
         },
         {
           "active": true,
-          "name": "raw_taf",
+          "name": "rawTAF",
           "req": false,
           "type": "`$STRING`",
           "index$": 8
         },
         {
           "active": true,
-          "name": "valid_time_from",
+          "name": "validTimeFrom",
           "req": false,
           "type": "`$STRING`",
           "index$": 9
         },
         {
           "active": true,
-          "name": "valid_time_to",
+          "name": "validTimeTo",
           "req": false,
           "type": "`$STRING`",
           "index$": 10
@@ -1589,6 +1606,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/data/taf",
               "parts": [
@@ -1649,6 +1667,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/data/tcf",
               "parts": [

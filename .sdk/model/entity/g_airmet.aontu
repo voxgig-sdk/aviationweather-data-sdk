@@ -6,12 +6,12 @@ main: kit: entity: g_airmet: {
 
   fields: [
     {
-      name: "altitude_high"
+      name: "altitudeHigh"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "altitude_low"
+      name: "altitudeLow"
       req: false
       type: "`$INTEGER`"
     }
@@ -21,7 +21,7 @@ main: kit: entity: g_airmet: {
       type: "`$STRING`"
     }
     {
-      name: "issue_time"
+      name: "issueTime"
       req: false
       type: "`$STRING`"
     }
@@ -36,12 +36,12 @@ main: kit: entity: g_airmet: {
       type: "`$STRING`"
     }
     {
-      name: "valid_time_from"
+      name: "validTimeFrom"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "valid_time_to"
+      name: "validTimeTo"
       req: false
       type: "`$STRING`"
     }

@@ -126,16 +126,16 @@ local air_sigmet = client:AirSigmet(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airsigmet_type` | `string` | No |  |
-| `altitude_high` | `number` | No |  |
-| `altitude_low` | `number` | No |  |
+| `airsigmetType` | `string` | No |  |
+| `altitudeHigh` | `number` | No |  |
+| `altitudeLow` | `number` | No |  |
 | `fir` | `string` | No |  |
 | `hazard` | `string` | No |  |
-| `issue_time` | `string` | No |  |
-| `raw_air_sigmet` | `string` | No |  |
+| `issueTime` | `string` | No |  |
+| `rawAirSigmet` | `string` | No |  |
 | `severity` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 
@@ -190,8 +190,8 @@ local airport = client:Airport(nil)
 | `city` | `string` | No |  |
 | `country` | `string` | No |  |
 | `elev` | `number` | No |  |
-| `iata_id` | `string` | No |  |
-| `icao_id` | `string` | No |  |
+| `iataId` | `string` | No |  |
+| `icaoId` | `string` | No |  |
 | `lat` | `number` | No |  |
 | `lon` | `number` | No |  |
 | `name` | `string` | No |  |
@@ -294,12 +294,12 @@ local cwa = client:Cwa(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cwsu` | `string` | No |  |
-| `issue_time` | `string` | No |  |
-| `raw_text` | `string` | No |  |
+| `issueTime` | `string` | No |  |
+| `rawText` | `string` | No |  |
 | `sequence` | `number` | No |  |
-| `series_id` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `seriesId` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 
@@ -351,14 +351,14 @@ local g_airmet = client:GAirmet(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altitude_high` | `number` | No |  |
-| `altitude_low` | `number` | No |  |
+| `altitudeHigh` | `number` | No |  |
+| `altitudeLow` | `number` | No |  |
 | `hazard` | `string` | No |  |
-| `issue_time` | `string` | No |  |
+| `issueTime` | `string` | No |  |
 | `qualifier` | `string` | No |  |
 | `severity` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 
@@ -411,40 +411,40 @@ local metar = client:Metar(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `altim` | `number` | No |  |
-| `cloud` | `table` | No |  |
+| `clouds` | `table` | No |  |
 | `dewp` | `number` | No |  |
 | `elev` | `number` | No |  |
-| `flt_cat` | `string` | No |  |
-| `icao_id` | `string` | No |  |
+| `fltCat` | `string` | No |  |
+| `icaoId` | `string` | No |  |
 | `lat` | `number` | No |  |
 | `lon` | `number` | No |  |
-| `max_t` | `number` | No |  |
-| `max_t24` | `number` | No |  |
-| `metar_type` | `string` | No |  |
-| `min_t` | `number` | No |  |
-| `min_t24` | `number` | No |  |
-| `most_recent` | `number` | No |  |
+| `maxT` | `number` | No |  |
+| `maxT24` | `number` | No |  |
+| `metarType` | `string` | No |  |
+| `minT` | `number` | No |  |
+| `minT24` | `number` | No |  |
+| `mostRecent` | `number` | No |  |
 | `name` | `string` | No |  |
-| `obs_time` | `string` | No |  |
+| `obsTime` | `string` | No |  |
 | `pcp24hr` | `number` | No |  |
 | `pcp3hr` | `number` | No |  |
 | `pcp6hr` | `number` | No |  |
 | `precip` | `number` | No |  |
-| `pres_tend` | `number` | No |  |
+| `presTend` | `number` | No |  |
 | `prior` | `number` | No |  |
-| `qc_field` | `number` | No |  |
-| `raw_ob` | `string` | No |  |
-| `raw_taf` | `string` | No |  |
-| `report_time` | `string` | No |  |
+| `qcField` | `number` | No |  |
+| `rawOb` | `string` | No |  |
+| `rawTaf` | `string` | No |  |
+| `reportTime` | `string` | No |  |
 | `slp` | `number` | No |  |
 | `snow` | `number` | No |  |
 | `temp` | `number` | No |  |
-| `vert_vi` | `number` | No |  |
+| `vertVis` | `number` | No |  |
 | `visib` | `string` | No |  |
 | `wdir` | `number` | No |  |
 | `wgst` | `number` | No |  |
 | `wspd` | `number` | No |  |
-| `wx_string` | `string` | No |  |
+| `wxString` | `string` | No |  |
 
 ### Operations
 
@@ -496,21 +496,21 @@ local pirep = client:Pirep(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aircraft_type` | `string` | No |  |
-| `altitude_ft` | `number` | No |  |
-| `cloud` | `table` | No |  |
+| `aircraftType` | `string` | No |  |
+| `altitudeFt` | `number` | No |  |
+| `clouds` | `table` | No |  |
 | `icing` | `string` | No |  |
 | `lat` | `number` | No |  |
 | `lon` | `number` | No |  |
-| `obs_time` | `string` | No |  |
-| `raw_ob` | `string` | No |  |
-| `report_type` | `string` | No |  |
+| `obsTime` | `string` | No |  |
+| `rawOb` | `string` | No |  |
+| `reportType` | `string` | No |  |
 | `temp` | `number` | No |  |
 | `turbulence` | `string` | No |  |
 | `visibility` | `string` | No |  |
 | `wdir` | `number` | No |  |
 | `wspd` | `number` | No |  |
-| `wx_string` | `string` | No |  |
+| `wxString` | `string` | No |  |
 
 ### Operations
 
@@ -564,8 +564,8 @@ local station_info = client:StationInfo(nil)
 | --- | --- | --- | --- |
 | `country` | `string` | No |  |
 | `elev` | `number` | No |  |
-| `iata_id` | `string` | No |  |
-| `icao_id` | `string` | No |  |
+| `iataId` | `string` | No |  |
+| `icaoId` | `string` | No |  |
 | `lat` | `number` | No |  |
 | `lon` | `number` | No |  |
 | `name` | `string` | No |  |
@@ -623,17 +623,17 @@ local taf = client:Taf(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bulletin_time` | `string` | No |  |
+| `bulletinTime` | `string` | No |  |
 | `elev` | `number` | No |  |
-| `fcst` | `table` | No |  |
-| `icao_id` | `string` | No |  |
-| `issue_time` | `string` | No |  |
+| `fcsts` | `table` | No |  |
+| `icaoId` | `string` | No |  |
+| `issueTime` | `string` | No |  |
 | `lat` | `number` | No |  |
 | `lon` | `number` | No |  |
 | `name` | `string` | No |  |
-| `raw_taf` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `rawTAF` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 

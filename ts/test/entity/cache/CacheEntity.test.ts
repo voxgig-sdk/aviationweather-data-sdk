@@ -26,8 +26,8 @@ import {
 describe('CacheEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when AVIATIONWEATHERDATA_TEST_LIVE=TRUE.
-  afterEach(liveDelay('AVIATIONWEATHERDATA_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when AVIATIONWEATHER_DATA_TEST_LIVE=TRUE.
+  afterEach(liveDelay('AVIATIONWEATHER_DATA_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = AviationweatherDataSDK.test()
@@ -62,7 +62,7 @@ describe('CacheEntity', async () => {
     // LOAD
     const cache_ref01_ent = client.Cache()
     const cache_ref01_match_dt0: any = {}
-    const cache_ref01_data_dt0 = await cache_ref01_ent.load(cache_ref01_match_dt0)
+    const cache_ref01_data_dt0 = (await cache_ref01_ent.load(cache_ref01_match_dt0)).data()
     assert(null != cache_ref01_data_dt0)
 
 

@@ -37,7 +37,7 @@ class GAirmetEntity extends AviationweatherDataEntityBase<GAirmet> {
 
 
 
-  async list(this: any, reqmatch?: GAirmetListMatch, ctrl?: Control): Promise<GAirmet[]> {
+  async list(this: any, reqmatch?: GAirmetListMatch, ctrl?: Control): Promise<GAirmetEntity[]> {
 
     const utility = this._utility
 

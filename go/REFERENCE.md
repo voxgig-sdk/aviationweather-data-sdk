@@ -134,16 +134,16 @@ fmt.Println(airSigmet.GetName()) // "air_sigmet"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airsigmet_type` | `string` | No |  |
-| `altitude_high` | `int` | No |  |
-| `altitude_low` | `int` | No |  |
+| `airsigmetType` | `string` | No |  |
+| `altitudeHigh` | `int` | No |  |
+| `altitudeLow` | `int` | No |  |
 | `fir` | `string` | No |  |
 | `hazard` | `string` | No |  |
-| `issue_time` | `string` | No |  |
-| `raw_air_sigmet` | `string` | No |  |
+| `issueTime` | `string` | No |  |
+| `rawAirSigmet` | `string` | No |  |
 | `severity` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 
@@ -197,8 +197,8 @@ fmt.Println(airport.GetName()) // "airport"
 | `city` | `string` | No |  |
 | `country` | `string` | No |  |
 | `elev` | `float64` | No |  |
-| `iata_id` | `string` | No |  |
-| `icao_id` | `string` | No |  |
+| `iataId` | `string` | No |  |
+| `icaoId` | `string` | No |  |
 | `lat` | `float64` | No |  |
 | `lon` | `float64` | No |  |
 | `name` | `string` | No |  |
@@ -299,12 +299,12 @@ fmt.Println(cwa.GetName()) // "cwa"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cwsu` | `string` | No |  |
-| `issue_time` | `string` | No |  |
-| `raw_text` | `string` | No |  |
+| `issueTime` | `string` | No |  |
+| `rawText` | `string` | No |  |
 | `sequence` | `int` | No |  |
-| `series_id` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `seriesId` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 
@@ -355,14 +355,14 @@ fmt.Println(gAirmet.GetName()) // "g_airmet"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altitude_high` | `int` | No |  |
-| `altitude_low` | `int` | No |  |
+| `altitudeHigh` | `int` | No |  |
+| `altitudeLow` | `int` | No |  |
 | `hazard` | `string` | No |  |
-| `issue_time` | `string` | No |  |
+| `issueTime` | `string` | No |  |
 | `qualifier` | `string` | No |  |
 | `severity` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 
@@ -414,40 +414,40 @@ fmt.Println(metar.GetName()) // "metar"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `altim` | `float64` | No |  |
-| `cloud` | `[]any` | No |  |
+| `clouds` | `[]any` | No |  |
 | `dewp` | `float64` | No |  |
 | `elev` | `float64` | No |  |
-| `flt_cat` | `string` | No |  |
-| `icao_id` | `string` | No |  |
+| `fltCat` | `string` | No |  |
+| `icaoId` | `string` | No |  |
 | `lat` | `float64` | No |  |
 | `lon` | `float64` | No |  |
-| `max_t` | `float64` | No |  |
-| `max_t24` | `float64` | No |  |
-| `metar_type` | `string` | No |  |
-| `min_t` | `float64` | No |  |
-| `min_t24` | `float64` | No |  |
-| `most_recent` | `int` | No |  |
+| `maxT` | `float64` | No |  |
+| `maxT24` | `float64` | No |  |
+| `metarType` | `string` | No |  |
+| `minT` | `float64` | No |  |
+| `minT24` | `float64` | No |  |
+| `mostRecent` | `int` | No |  |
 | `name` | `string` | No |  |
-| `obs_time` | `string` | No |  |
+| `obsTime` | `string` | No |  |
 | `pcp24hr` | `float64` | No |  |
 | `pcp3hr` | `float64` | No |  |
 | `pcp6hr` | `float64` | No |  |
 | `precip` | `float64` | No |  |
-| `pres_tend` | `float64` | No |  |
+| `presTend` | `float64` | No |  |
 | `prior` | `int` | No |  |
-| `qc_field` | `int` | No |  |
-| `raw_ob` | `string` | No |  |
-| `raw_taf` | `string` | No |  |
-| `report_time` | `string` | No |  |
+| `qcField` | `int` | No |  |
+| `rawOb` | `string` | No |  |
+| `rawTaf` | `string` | No |  |
+| `reportTime` | `string` | No |  |
 | `slp` | `float64` | No |  |
 | `snow` | `float64` | No |  |
 | `temp` | `float64` | No |  |
-| `vert_vi` | `int` | No |  |
+| `vertVis` | `int` | No |  |
 | `visib` | `string` | No |  |
 | `wdir` | `int` | No |  |
 | `wgst` | `int` | No |  |
 | `wspd` | `int` | No |  |
-| `wx_string` | `string` | No |  |
+| `wxString` | `string` | No |  |
 
 ### Operations
 
@@ -498,21 +498,21 @@ fmt.Println(pirep.GetName()) // "pirep"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aircraft_type` | `string` | No |  |
-| `altitude_ft` | `int` | No |  |
-| `cloud` | `[]any` | No |  |
+| `aircraftType` | `string` | No |  |
+| `altitudeFt` | `int` | No |  |
+| `clouds` | `[]any` | No |  |
 | `icing` | `string` | No |  |
 | `lat` | `float64` | No |  |
 | `lon` | `float64` | No |  |
-| `obs_time` | `string` | No |  |
-| `raw_ob` | `string` | No |  |
-| `report_type` | `string` | No |  |
+| `obsTime` | `string` | No |  |
+| `rawOb` | `string` | No |  |
+| `reportType` | `string` | No |  |
 | `temp` | `float64` | No |  |
 | `turbulence` | `string` | No |  |
 | `visibility` | `string` | No |  |
 | `wdir` | `int` | No |  |
 | `wspd` | `int` | No |  |
-| `wx_string` | `string` | No |  |
+| `wxString` | `string` | No |  |
 
 ### Operations
 
@@ -565,8 +565,8 @@ fmt.Println(stationInfo.GetName()) // "station_info"
 | --- | --- | --- | --- |
 | `country` | `string` | No |  |
 | `elev` | `float64` | No |  |
-| `iata_id` | `string` | No |  |
-| `icao_id` | `string` | No |  |
+| `iataId` | `string` | No |  |
+| `icaoId` | `string` | No |  |
 | `lat` | `float64` | No |  |
 | `lon` | `float64` | No |  |
 | `name` | `string` | No |  |
@@ -623,17 +623,17 @@ fmt.Println(taf.GetName()) // "taf"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bulletin_time` | `string` | No |  |
+| `bulletinTime` | `string` | No |  |
 | `elev` | `float64` | No |  |
-| `fcst` | `[]any` | No |  |
-| `icao_id` | `string` | No |  |
-| `issue_time` | `string` | No |  |
+| `fcsts` | `[]any` | No |  |
+| `icaoId` | `string` | No |  |
+| `issueTime` | `string` | No |  |
 | `lat` | `float64` | No |  |
 | `lon` | `float64` | No |  |
 | `name` | `string` | No |  |
-| `raw_taf` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `rawTAF` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 

@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import AviationweatherDataSDK
-from core.error import AviationweatherDataError
-from core.result import AviationweatherDataResult
-from core.response import AviationweatherDataResponse
-from core.spec import AviationweatherDataSpec
-from feature.base_feature import AviationweatherDataBaseFeature
+from projectname_sdk.core.error import AviationweatherDataError
+from projectname_sdk.core.result import AviationweatherDataResult
+from projectname_sdk.core.response import AviationweatherDataResponse
+from projectname_sdk.core.spec import AviationweatherDataSpec
+from projectname_sdk.feature.base_feature import AviationweatherDataBaseFeature
 
 
 def _client():

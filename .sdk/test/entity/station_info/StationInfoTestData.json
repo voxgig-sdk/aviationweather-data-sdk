@@ -4,8 +4,8 @@
       "STATION_INFO00": {
         "country": "s64",
         "elev": 101,
-        "iata_id": "IATA01",
-        "icao_id": "ICAO01",
+        "iataId": "s66",
+        "icaoId": "s67",
         "lat": 104,
         "lon": 105,
         "name": "s6a",
@@ -16,8 +16,8 @@
       "STATION_INFO01": {
         "country": "sc8",
         "elev": 201,
-        "iata_id": "IATA01",
-        "icao_id": "ICAO01",
+        "iataId": "sca",
+        "icaoId": "scb",
         "lat": 204,
         "lon": 205,
         "name": "sce",
@@ -28,8 +28,8 @@
       "STATION_INFO02": {
         "country": "s12c",
         "elev": 301,
-        "iata_id": "IATA01",
-        "icao_id": "ICAO01",
+        "iataId": "s12e",
+        "icaoId": "s12f",
         "lat": 304,
         "lon": 305,
         "name": "s132",
@@ -44,8 +44,8 @@
       "station_info_ref01": {
         "country": "s190",
         "elev": 401,
-        "iata_id": "IATA01",
-        "icao_id": "ICAO01",
+        "iataId": "s192",
+        "icaoId": "s193",
         "lat": 404,
         "lon": 405,
         "name": "s196",

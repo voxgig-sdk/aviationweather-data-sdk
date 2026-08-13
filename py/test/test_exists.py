@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# AviationweatherData SDK exists test
 
 import pytest
 from aviationweatherdata_sdk import AviationweatherDataSDK

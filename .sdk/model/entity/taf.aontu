@@ -6,7 +6,7 @@ main: kit: entity: taf: {
 
   fields: [
     {
-      name: "bulletin_time"
+      name: "bulletinTime"
       req: false
       type: "`$STRING`"
     }
@@ -16,17 +16,17 @@ main: kit: entity: taf: {
       type: "`$NUMBER`"
     }
     {
-      name: "fcst"
+      name: "fcsts"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "icao_id"
+      name: "icaoId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "issue_time"
+      name: "issueTime"
       req: false
       type: "`$STRING`"
     }
@@ -46,17 +46,17 @@ main: kit: entity: taf: {
       type: "`$STRING`"
     }
     {
-      name: "raw_taf"
+      name: "rawTAF"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "valid_time_from"
+      name: "validTimeFrom"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "valid_time_to"
+      name: "validTimeTo"
       req: false
       type: "`$STRING`"
     }

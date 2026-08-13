@@ -26,8 +26,8 @@ import {
 describe('TafEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when AVIATIONWEATHERDATA_TEST_LIVE=TRUE.
-  afterEach(liveDelay('AVIATIONWEATHERDATA_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when AVIATIONWEATHER_DATA_TEST_LIVE=TRUE.
+  afterEach(liveDelay('AVIATIONWEATHER_DATA_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = AviationweatherDataSDK.test()
@@ -63,7 +63,7 @@ describe('TafEntity', async () => {
     const taf_ref01_ent = client.Taf()
     const taf_ref01_match: any = {}
 
-    const taf_ref01_list = await taf_ref01_ent.list(taf_ref01_match)
+    const taf_ref01_list = (await taf_ref01_ent.list(taf_ref01_match)).map((e: any) => e.data())
 
 
   })

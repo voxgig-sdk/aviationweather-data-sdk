@@ -123,16 +123,16 @@ air_sigmet = client.AirSigmet()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airsigmet_type` | `str` | No |  |
-| `altitude_high` | `int` | No |  |
-| `altitude_low` | `int` | No |  |
+| `airsigmetType` | `str` | No |  |
+| `altitudeHigh` | `int` | No |  |
+| `altitudeLow` | `int` | No |  |
 | `fir` | `str` | No |  |
 | `hazard` | `str` | No |  |
-| `issue_time` | `str` | No |  |
-| `raw_air_sigmet` | `str` | No |  |
+| `issueTime` | `str` | No |  |
+| `rawAirSigmet` | `str` | No |  |
 | `severity` | `str` | No |  |
-| `valid_time_from` | `str` | No |  |
-| `valid_time_to` | `str` | No |  |
+| `validTimeFrom` | `str` | No |  |
+| `validTimeTo` | `str` | No |  |
 
 ### Operations
 
@@ -188,8 +188,8 @@ airport = client.Airport()
 | `city` | `str` | No |  |
 | `country` | `str` | No |  |
 | `elev` | `float` | No |  |
-| `iata_id` | `str` | No |  |
-| `icao_id` | `str` | No |  |
+| `iataId` | `str` | No |  |
+| `icaoId` | `str` | No |  |
 | `lat` | `float` | No |  |
 | `lon` | `float` | No |  |
 | `name` | `str` | No |  |
@@ -292,12 +292,12 @@ cwa = client.Cwa()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cwsu` | `str` | No |  |
-| `issue_time` | `str` | No |  |
-| `raw_text` | `str` | No |  |
+| `issueTime` | `str` | No |  |
+| `rawText` | `str` | No |  |
 | `sequence` | `int` | No |  |
-| `series_id` | `str` | No |  |
-| `valid_time_from` | `str` | No |  |
-| `valid_time_to` | `str` | No |  |
+| `seriesId` | `str` | No |  |
+| `validTimeFrom` | `str` | No |  |
+| `validTimeTo` | `str` | No |  |
 
 ### Operations
 
@@ -350,14 +350,14 @@ g_airmet = client.GAirmet()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altitude_high` | `int` | No |  |
-| `altitude_low` | `int` | No |  |
+| `altitudeHigh` | `int` | No |  |
+| `altitudeLow` | `int` | No |  |
 | `hazard` | `str` | No |  |
-| `issue_time` | `str` | No |  |
+| `issueTime` | `str` | No |  |
 | `qualifier` | `str` | No |  |
 | `severity` | `str` | No |  |
-| `valid_time_from` | `str` | No |  |
-| `valid_time_to` | `str` | No |  |
+| `validTimeFrom` | `str` | No |  |
+| `validTimeTo` | `str` | No |  |
 
 ### Operations
 
@@ -411,40 +411,40 @@ metar = client.Metar()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `altim` | `float` | No |  |
-| `cloud` | `list` | No |  |
+| `clouds` | `list` | No |  |
 | `dewp` | `float` | No |  |
 | `elev` | `float` | No |  |
-| `flt_cat` | `str` | No |  |
-| `icao_id` | `str` | No |  |
+| `fltCat` | `str` | No |  |
+| `icaoId` | `str` | No |  |
 | `lat` | `float` | No |  |
 | `lon` | `float` | No |  |
-| `max_t` | `float` | No |  |
-| `max_t24` | `float` | No |  |
-| `metar_type` | `str` | No |  |
-| `min_t` | `float` | No |  |
-| `min_t24` | `float` | No |  |
-| `most_recent` | `int` | No |  |
+| `maxT` | `float` | No |  |
+| `maxT24` | `float` | No |  |
+| `metarType` | `str` | No |  |
+| `minT` | `float` | No |  |
+| `minT24` | `float` | No |  |
+| `mostRecent` | `int` | No |  |
 | `name` | `str` | No |  |
-| `obs_time` | `str` | No |  |
+| `obsTime` | `str` | No |  |
 | `pcp24hr` | `float` | No |  |
 | `pcp3hr` | `float` | No |  |
 | `pcp6hr` | `float` | No |  |
 | `precip` | `float` | No |  |
-| `pres_tend` | `float` | No |  |
+| `presTend` | `float` | No |  |
 | `prior` | `int` | No |  |
-| `qc_field` | `int` | No |  |
-| `raw_ob` | `str` | No |  |
-| `raw_taf` | `str` | No |  |
-| `report_time` | `str` | No |  |
+| `qcField` | `int` | No |  |
+| `rawOb` | `str` | No |  |
+| `rawTaf` | `str` | No |  |
+| `reportTime` | `str` | No |  |
 | `slp` | `float` | No |  |
 | `snow` | `float` | No |  |
 | `temp` | `float` | No |  |
-| `vert_vi` | `int` | No |  |
+| `vertVis` | `int` | No |  |
 | `visib` | `str` | No |  |
 | `wdir` | `int` | No |  |
 | `wgst` | `int` | No |  |
 | `wspd` | `int` | No |  |
-| `wx_string` | `str` | No |  |
+| `wxString` | `str` | No |  |
 
 ### Operations
 
@@ -497,21 +497,21 @@ pirep = client.Pirep()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aircraft_type` | `str` | No |  |
-| `altitude_ft` | `int` | No |  |
-| `cloud` | `list` | No |  |
+| `aircraftType` | `str` | No |  |
+| `altitudeFt` | `int` | No |  |
+| `clouds` | `list` | No |  |
 | `icing` | `str` | No |  |
 | `lat` | `float` | No |  |
 | `lon` | `float` | No |  |
-| `obs_time` | `str` | No |  |
-| `raw_ob` | `str` | No |  |
-| `report_type` | `str` | No |  |
+| `obsTime` | `str` | No |  |
+| `rawOb` | `str` | No |  |
+| `reportType` | `str` | No |  |
 | `temp` | `float` | No |  |
 | `turbulence` | `str` | No |  |
 | `visibility` | `str` | No |  |
 | `wdir` | `int` | No |  |
 | `wspd` | `int` | No |  |
-| `wx_string` | `str` | No |  |
+| `wxString` | `str` | No |  |
 
 ### Operations
 
@@ -566,8 +566,8 @@ station_info = client.StationInfo()
 | --- | --- | --- | --- |
 | `country` | `str` | No |  |
 | `elev` | `float` | No |  |
-| `iata_id` | `str` | No |  |
-| `icao_id` | `str` | No |  |
+| `iataId` | `str` | No |  |
+| `icaoId` | `str` | No |  |
 | `lat` | `float` | No |  |
 | `lon` | `float` | No |  |
 | `name` | `str` | No |  |
@@ -626,17 +626,17 @@ taf = client.Taf()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bulletin_time` | `str` | No |  |
+| `bulletinTime` | `str` | No |  |
 | `elev` | `float` | No |  |
-| `fcst` | `list` | No |  |
-| `icao_id` | `str` | No |  |
-| `issue_time` | `str` | No |  |
+| `fcsts` | `list` | No |  |
+| `icaoId` | `str` | No |  |
+| `issueTime` | `str` | No |  |
 | `lat` | `float` | No |  |
 | `lon` | `float` | No |  |
 | `name` | `str` | No |  |
-| `raw_taf` | `str` | No |  |
-| `valid_time_from` | `str` | No |  |
-| `valid_time_to` | `str` | No |  |
+| `rawTAF` | `str` | No |  |
+| `validTimeFrom` | `str` | No |  |
+| `validTimeTo` | `str` | No |  |
 
 ### Operations
 

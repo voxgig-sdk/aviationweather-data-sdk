@@ -26,8 +26,8 @@ import {
 describe('MetarEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when AVIATIONWEATHERDATA_TEST_LIVE=TRUE.
-  afterEach(liveDelay('AVIATIONWEATHERDATA_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when AVIATIONWEATHER_DATA_TEST_LIVE=TRUE.
+  afterEach(liveDelay('AVIATIONWEATHER_DATA_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = AviationweatherDataSDK.test()
@@ -63,7 +63,7 @@ describe('MetarEntity', async () => {
     const metar_ref01_ent = client.Metar()
     const metar_ref01_match: any = {}
 
-    const metar_ref01_list = await metar_ref01_ent.list(metar_ref01_match)
+    const metar_ref01_list = (await metar_ref01_ent.list(metar_ref01_match)).map((e: any) => e.data())
 
 
   })

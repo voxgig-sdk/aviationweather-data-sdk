@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "air_sigmet": {
           "active": true,
@@ -27,19 +32,19 @@
           "fields": [
             {
               "active": true,
-              "name": "airsigmet_type",
+              "name": "airsigmetType",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "altitude_high",
+              "name": "altitudeHigh",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "altitude_low",
+              "name": "altitudeLow",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -57,13 +62,13 @@
             },
             {
               "active": true,
-              "name": "issue_time",
+              "name": "issueTime",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "raw_air_sigmet",
+              "name": "rawAirSigmet",
               "req": false,
               "type": "`$STRING`"
             },
@@ -75,13 +80,13 @@
             },
             {
               "active": true,
-              "name": "valid_time_from",
+              "name": "validTimeFrom",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "valid_time_to",
+              "name": "validTimeTo",
               "req": false,
               "type": "`$STRING`"
             }
@@ -131,6 +136,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/airsigmet",
                   "parts": [
@@ -184,13 +190,13 @@
             },
             {
               "active": true,
-              "name": "iata_id",
+              "name": "iataId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "icao_id",
+              "name": "icaoId",
               "req": false,
               "type": "`$STRING`"
             },
@@ -256,6 +262,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/airport",
                   "parts": [
@@ -297,6 +304,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/aircraftreports.cache.csv.gz",
                   "parts": [
@@ -315,6 +323,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/aircraftreports.cache.xml.gz",
                   "parts": [
@@ -333,6 +342,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/airsigmets.cache.csv.gz",
                   "parts": [
@@ -351,6 +361,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/airsigmets.cache.xml.gz",
                   "parts": [
@@ -369,6 +380,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/gairmets.cache.xml.gz",
                   "parts": [
@@ -387,6 +399,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/metars.cache.csv.gz",
                   "parts": [
@@ -405,6 +418,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/metars.cache.xml.gz",
                   "parts": [
@@ -423,6 +437,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/stations.cache.json.gz",
                   "parts": [
@@ -441,6 +456,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/stations.cache.xml.gz",
                   "parts": [
@@ -459,6 +475,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/tafs.cache.xml.gz",
                   "parts": [
@@ -495,13 +512,13 @@
             },
             {
               "active": true,
-              "name": "issue_time",
+              "name": "issueTime",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "raw_text",
+              "name": "rawText",
               "req": false,
               "type": "`$STRING`"
             },
@@ -513,19 +530,19 @@
             },
             {
               "active": true,
-              "name": "series_id",
+              "name": "seriesId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "valid_time_from",
+              "name": "validTimeFrom",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "valid_time_to",
+              "name": "validTimeTo",
               "req": false,
               "type": "`$STRING`"
             }
@@ -567,6 +584,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/cwa",
                   "parts": [
@@ -601,13 +619,13 @@
           "fields": [
             {
               "active": true,
-              "name": "altitude_high",
+              "name": "altitudeHigh",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "altitude_low",
+              "name": "altitudeLow",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -619,7 +637,7 @@
             },
             {
               "active": true,
-              "name": "issue_time",
+              "name": "issueTime",
               "req": false,
               "type": "`$STRING`"
             },
@@ -637,13 +655,13 @@
             },
             {
               "active": true,
-              "name": "valid_time_from",
+              "name": "validTimeFrom",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "valid_time_to",
+              "name": "validTimeTo",
               "req": false,
               "type": "`$STRING`"
             }
@@ -693,6 +711,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/gairmet",
                   "parts": [
@@ -734,7 +753,7 @@
             },
             {
               "active": true,
-              "name": "cloud",
+              "name": "clouds",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -752,13 +771,13 @@
             },
             {
               "active": true,
-              "name": "flt_cat",
+              "name": "fltCat",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "icao_id",
+              "name": "icaoId",
               "req": false,
               "type": "`$STRING`"
             },
@@ -776,37 +795,37 @@
             },
             {
               "active": true,
-              "name": "max_t",
+              "name": "maxT",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "max_t24",
+              "name": "maxT24",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "metar_type",
+              "name": "metarType",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "min_t",
+              "name": "minT",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "min_t24",
+              "name": "minT24",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "most_recent",
+              "name": "mostRecent",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -818,7 +837,7 @@
             },
             {
               "active": true,
-              "name": "obs_time",
+              "name": "obsTime",
               "req": false,
               "type": "`$STRING`"
             },
@@ -848,7 +867,7 @@
             },
             {
               "active": true,
-              "name": "pres_tend",
+              "name": "presTend",
               "req": false,
               "type": "`$NUMBER`"
             },
@@ -860,25 +879,25 @@
             },
             {
               "active": true,
-              "name": "qc_field",
+              "name": "qcField",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "raw_ob",
+              "name": "rawOb",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "raw_taf",
+              "name": "rawTaf",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "report_time",
+              "name": "reportTime",
               "req": false,
               "type": "`$STRING`"
             },
@@ -902,7 +921,7 @@
             },
             {
               "active": true,
-              "name": "vert_vi",
+              "name": "vertVis",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -932,7 +951,7 @@
             },
             {
               "active": true,
-              "name": "wx_string",
+              "name": "wxString",
               "req": false,
               "type": "`$STRING`"
             }
@@ -990,6 +1009,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/metar",
                   "parts": [
@@ -1026,19 +1046,19 @@
           "fields": [
             {
               "active": true,
-              "name": "aircraft_type",
+              "name": "aircraftType",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "altitude_ft",
+              "name": "altitudeFt",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "cloud",
+              "name": "clouds",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -1062,19 +1082,19 @@
             },
             {
               "active": true,
-              "name": "obs_time",
+              "name": "obsTime",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "raw_ob",
+              "name": "rawOb",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "report_type",
+              "name": "reportType",
               "req": false,
               "type": "`$STRING`"
             },
@@ -1110,7 +1130,7 @@
             },
             {
               "active": true,
-              "name": "wx_string",
+              "name": "wxString",
               "req": false,
               "type": "`$STRING`"
             }
@@ -1160,6 +1180,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/pirep",
                   "parts": [
@@ -1207,13 +1228,13 @@
             },
             {
               "active": true,
-              "name": "iata_id",
+              "name": "iataId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "icao_id",
+              "name": "icaoId",
               "req": false,
               "type": "`$STRING`"
             },
@@ -1291,6 +1312,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/stationinfo",
                   "parts": [
@@ -1325,7 +1347,7 @@
           "fields": [
             {
               "active": true,
-              "name": "bulletin_time",
+              "name": "bulletinTime",
               "req": false,
               "type": "`$STRING`"
             },
@@ -1337,19 +1359,19 @@
             },
             {
               "active": true,
-              "name": "fcst",
+              "name": "fcsts",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "icao_id",
+              "name": "icaoId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "issue_time",
+              "name": "issueTime",
               "req": false,
               "type": "`$STRING`"
             },
@@ -1373,19 +1395,19 @@
             },
             {
               "active": true,
-              "name": "raw_taf",
+              "name": "rawTAF",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "valid_time_from",
+              "name": "validTimeFrom",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "valid_time_to",
+              "name": "validTimeTo",
               "req": false,
               "type": "`$STRING`"
             }
@@ -1435,6 +1457,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/taf",
                   "parts": [
@@ -1497,6 +1520,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/tcf",
                   "parts": [
@@ -1907,18 +1931,41 @@
         "website": "https://aviationweather.gov"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "aviationweather-data"
+            "goversion": "",
+            "name": "aviationweather-data",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1940,22 +1987,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "aviationweather-data"
+            "goversion": "",
+            "name": "aviationweather-data",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1994,21 +2059,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "aviationweather-data"
+            "goversion": "",
+            "name": "aviationweather-data",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -2047,12 +2130,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -2064,10 +2152,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "aviationweather-data"
+            "goversion": "",
+            "name": "aviationweather-data",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2089,22 +2190,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "aviationweather-data"
+            "goversion": "",
+            "name": "aviationweather-data",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2126,13 +2245,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -2144,10 +2268,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "aviationweather-data"
+            "goversion": "",
+            "name": "aviationweather-data",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2169,13 +2306,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -2192,10 +2334,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "aviationweather-data"
+            "goversion": "",
+            "name": "aviationweather-data",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2217,13 +2372,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -2246,10 +2406,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "aviationweather-data"
+            "goversion": "",
+            "name": "aviationweather-data",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2271,9 +2444,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

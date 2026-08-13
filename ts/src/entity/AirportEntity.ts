@@ -37,7 +37,7 @@ class AirportEntity extends AviationweatherDataEntityBase<Airport> {
 
 
 
-  async list(this: any, reqmatch?: AirportListMatch, ctrl?: Control): Promise<Airport[]> {
+  async list(this: any, reqmatch?: AirportListMatch, ctrl?: Control): Promise<AirportEntity[]> {
 
     const utility = this._utility
 

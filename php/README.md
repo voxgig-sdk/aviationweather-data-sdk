@@ -38,7 +38,7 @@ try {
     // list() returns an array of AirSigmet records — iterate directly.
     $airsigmets = $client->AirSigmet()->list();
     foreach ($airsigmets as $item) {
-        echo $item["airsigmet_type"] . "\n";
+        echo $item["airsigmetType"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $airsigmets = $client->AirSigmet()->list();
+    $airports = $client->Airport()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = AviationweatherDataSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$airsigmet = $client->AirSigmet()->list();
-print_r($airsigmet);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$airport = $client->Airport()->list();
+print_r($airport);
 ```
 
 ### Use a custom fetch function
@@ -234,7 +235,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -256,16 +257,16 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `airsigmet_type` |  |
-| `altitude_high` |  |
-| `altitude_low` |  |
+| `airsigmetType` |  |
+| `altitudeHigh` |  |
+| `altitudeLow` |  |
 | `fir` |  |
 | `hazard` |  |
-| `issue_time` |  |
-| `raw_air_sigmet` |  |
+| `issueTime` |  |
+| `rawAirSigmet` |  |
 | `severity` |  |
-| `valid_time_from` |  |
-| `valid_time_to` |  |
+| `validTimeFrom` |  |
+| `validTimeTo` |  |
 
 Operations: List.
 
@@ -278,8 +279,8 @@ API path: `/api/data/airsigmet`
 | `city` |  |
 | `country` |  |
 | `elev` |  |
-| `iata_id` |  |
-| `icao_id` |  |
+| `iataId` |  |
+| `icaoId` |  |
 | `lat` |  |
 | `lon` |  |
 | `name` |  |
@@ -303,12 +304,12 @@ API path: `/data/cache/aircraftreports.cache.csv.gz`
 | Field | Description |
 | --- | --- |
 | `cwsu` |  |
-| `issue_time` |  |
-| `raw_text` |  |
+| `issueTime` |  |
+| `rawText` |  |
 | `sequence` |  |
-| `series_id` |  |
-| `valid_time_from` |  |
-| `valid_time_to` |  |
+| `seriesId` |  |
+| `validTimeFrom` |  |
+| `validTimeTo` |  |
 
 Operations: List.
 
@@ -318,14 +319,14 @@ API path: `/api/data/cwa`
 
 | Field | Description |
 | --- | --- |
-| `altitude_high` |  |
-| `altitude_low` |  |
+| `altitudeHigh` |  |
+| `altitudeLow` |  |
 | `hazard` |  |
-| `issue_time` |  |
+| `issueTime` |  |
 | `qualifier` |  |
 | `severity` |  |
-| `valid_time_from` |  |
-| `valid_time_to` |  |
+| `validTimeFrom` |  |
+| `validTimeTo` |  |
 
 Operations: List.
 
@@ -336,40 +337,40 @@ API path: `/api/data/gairmet`
 | Field | Description |
 | --- | --- |
 | `altim` |  |
-| `cloud` |  |
+| `clouds` |  |
 | `dewp` |  |
 | `elev` |  |
-| `flt_cat` |  |
-| `icao_id` |  |
+| `fltCat` |  |
+| `icaoId` |  |
 | `lat` |  |
 | `lon` |  |
-| `max_t` |  |
-| `max_t24` |  |
-| `metar_type` |  |
-| `min_t` |  |
-| `min_t24` |  |
-| `most_recent` |  |
+| `maxT` |  |
+| `maxT24` |  |
+| `metarType` |  |
+| `minT` |  |
+| `minT24` |  |
+| `mostRecent` |  |
 | `name` |  |
-| `obs_time` |  |
+| `obsTime` |  |
 | `pcp24hr` |  |
 | `pcp3hr` |  |
 | `pcp6hr` |  |
 | `precip` |  |
-| `pres_tend` |  |
+| `presTend` |  |
 | `prior` |  |
-| `qc_field` |  |
-| `raw_ob` |  |
-| `raw_taf` |  |
-| `report_time` |  |
+| `qcField` |  |
+| `rawOb` |  |
+| `rawTaf` |  |
+| `reportTime` |  |
 | `slp` |  |
 | `snow` |  |
 | `temp` |  |
-| `vert_vi` |  |
+| `vertVis` |  |
 | `visib` |  |
 | `wdir` |  |
 | `wgst` |  |
 | `wspd` |  |
-| `wx_string` |  |
+| `wxString` |  |
 
 Operations: List.
 
@@ -379,21 +380,21 @@ API path: `/api/data/metar`
 
 | Field | Description |
 | --- | --- |
-| `aircraft_type` |  |
-| `altitude_ft` |  |
-| `cloud` |  |
+| `aircraftType` |  |
+| `altitudeFt` |  |
+| `clouds` |  |
 | `icing` |  |
 | `lat` |  |
 | `lon` |  |
-| `obs_time` |  |
-| `raw_ob` |  |
-| `report_type` |  |
+| `obsTime` |  |
+| `rawOb` |  |
+| `reportType` |  |
 | `temp` |  |
 | `turbulence` |  |
 | `visibility` |  |
 | `wdir` |  |
 | `wspd` |  |
-| `wx_string` |  |
+| `wxString` |  |
 
 Operations: List.
 
@@ -405,8 +406,8 @@ API path: `/api/data/pirep`
 | --- | --- |
 | `country` |  |
 | `elev` |  |
-| `iata_id` |  |
-| `icao_id` |  |
+| `iataId` |  |
+| `icaoId` |  |
 | `lat` |  |
 | `lon` |  |
 | `name` |  |
@@ -422,17 +423,17 @@ API path: `/api/data/stationinfo`
 
 | Field | Description |
 | --- | --- |
-| `bulletin_time` |  |
+| `bulletinTime` |  |
 | `elev` |  |
-| `fcst` |  |
-| `icao_id` |  |
-| `issue_time` |  |
+| `fcsts` |  |
+| `icaoId` |  |
+| `issueTime` |  |
 | `lat` |  |
 | `lon` |  |
 | `name` |  |
-| `raw_taf` |  |
-| `valid_time_from` |  |
-| `valid_time_to` |  |
+| `rawTAF` |  |
+| `validTimeFrom` |  |
+| `validTimeTo` |  |
 
 Operations: List.
 
@@ -466,16 +467,16 @@ Create an instance: `$air_sigmet = $client->AirSigmet();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airsigmet_type` | `string` |  |
-| `altitude_high` | `int` |  |
-| `altitude_low` | `int` |  |
+| `airsigmetType` | `string` |  |
+| `altitudeHigh` | `int` |  |
+| `altitudeLow` | `int` |  |
 | `fir` | `string` |  |
 | `hazard` | `string` |  |
-| `issue_time` | `string` |  |
-| `raw_air_sigmet` | `string` |  |
+| `issueTime` | `string` |  |
+| `rawAirSigmet` | `string` |  |
 | `severity` | `string` |  |
-| `valid_time_from` | `string` |  |
-| `valid_time_to` | `string` |  |
+| `validTimeFrom` | `string` |  |
+| `validTimeTo` | `string` |  |
 
 #### Example: List
 
@@ -502,8 +503,8 @@ Create an instance: `$airport = $client->Airport();`
 | `city` | `string` |  |
 | `country` | `string` |  |
 | `elev` | `float` |  |
-| `iata_id` | `string` |  |
-| `icao_id` | `string` |  |
+| `iataId` | `string` |  |
+| `icaoId` | `string` |  |
 | `lat` | `float` |  |
 | `lon` | `float` |  |
 | `name` | `string` |  |
@@ -530,7 +531,7 @@ Create an instance: `$cache = $client->Cache();`
 #### Example: Load
 
 ```php
-// load() returns the bare Cache record (throws on error).
+// load() returns the ENTITY — call data_get() for the Cache record (throws on error).
 $cache = $client->Cache()->load();
 ```
 
@@ -550,12 +551,12 @@ Create an instance: `$cwa = $client->Cwa();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cwsu` | `string` |  |
-| `issue_time` | `string` |  |
-| `raw_text` | `string` |  |
+| `issueTime` | `string` |  |
+| `rawText` | `string` |  |
 | `sequence` | `int` |  |
-| `series_id` | `string` |  |
-| `valid_time_from` | `string` |  |
-| `valid_time_to` | `string` |  |
+| `seriesId` | `string` |  |
+| `validTimeFrom` | `string` |  |
+| `validTimeTo` | `string` |  |
 
 #### Example: List
 
@@ -579,14 +580,14 @@ Create an instance: `$g_airmet = $client->GAirmet();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altitude_high` | `int` |  |
-| `altitude_low` | `int` |  |
+| `altitudeHigh` | `int` |  |
+| `altitudeLow` | `int` |  |
 | `hazard` | `string` |  |
-| `issue_time` | `string` |  |
+| `issueTime` | `string` |  |
 | `qualifier` | `string` |  |
 | `severity` | `string` |  |
-| `valid_time_from` | `string` |  |
-| `valid_time_to` | `string` |  |
+| `validTimeFrom` | `string` |  |
+| `validTimeTo` | `string` |  |
 
 #### Example: List
 
@@ -611,40 +612,40 @@ Create an instance: `$metar = $client->Metar();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `altim` | `float` |  |
-| `cloud` | `array` |  |
+| `clouds` | `array` |  |
 | `dewp` | `float` |  |
 | `elev` | `float` |  |
-| `flt_cat` | `string` |  |
-| `icao_id` | `string` |  |
+| `fltCat` | `string` |  |
+| `icaoId` | `string` |  |
 | `lat` | `float` |  |
 | `lon` | `float` |  |
-| `max_t` | `float` |  |
-| `max_t24` | `float` |  |
-| `metar_type` | `string` |  |
-| `min_t` | `float` |  |
-| `min_t24` | `float` |  |
-| `most_recent` | `int` |  |
+| `maxT` | `float` |  |
+| `maxT24` | `float` |  |
+| `metarType` | `string` |  |
+| `minT` | `float` |  |
+| `minT24` | `float` |  |
+| `mostRecent` | `int` |  |
 | `name` | `string` |  |
-| `obs_time` | `string` |  |
+| `obsTime` | `string` |  |
 | `pcp24hr` | `float` |  |
 | `pcp3hr` | `float` |  |
 | `pcp6hr` | `float` |  |
 | `precip` | `float` |  |
-| `pres_tend` | `float` |  |
+| `presTend` | `float` |  |
 | `prior` | `int` |  |
-| `qc_field` | `int` |  |
-| `raw_ob` | `string` |  |
-| `raw_taf` | `string` |  |
-| `report_time` | `string` |  |
+| `qcField` | `int` |  |
+| `rawOb` | `string` |  |
+| `rawTaf` | `string` |  |
+| `reportTime` | `string` |  |
 | `slp` | `float` |  |
 | `snow` | `float` |  |
 | `temp` | `float` |  |
-| `vert_vi` | `int` |  |
+| `vertVis` | `int` |  |
 | `visib` | `string` |  |
 | `wdir` | `int` |  |
 | `wgst` | `int` |  |
 | `wspd` | `int` |  |
-| `wx_string` | `string` |  |
+| `wxString` | `string` |  |
 
 #### Example: List
 
@@ -668,21 +669,21 @@ Create an instance: `$pirep = $client->Pirep();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aircraft_type` | `string` |  |
-| `altitude_ft` | `int` |  |
-| `cloud` | `array` |  |
+| `aircraftType` | `string` |  |
+| `altitudeFt` | `int` |  |
+| `clouds` | `array` |  |
 | `icing` | `string` |  |
 | `lat` | `float` |  |
 | `lon` | `float` |  |
-| `obs_time` | `string` |  |
-| `raw_ob` | `string` |  |
-| `report_type` | `string` |  |
+| `obsTime` | `string` |  |
+| `rawOb` | `string` |  |
+| `reportType` | `string` |  |
 | `temp` | `float` |  |
 | `turbulence` | `string` |  |
 | `visibility` | `string` |  |
 | `wdir` | `int` |  |
 | `wspd` | `int` |  |
-| `wx_string` | `string` |  |
+| `wxString` | `string` |  |
 
 #### Example: List
 
@@ -708,8 +709,8 @@ Create an instance: `$station_info = $client->StationInfo();`
 | --- | --- | --- |
 | `country` | `string` |  |
 | `elev` | `float` |  |
-| `iata_id` | `string` |  |
-| `icao_id` | `string` |  |
+| `iataId` | `string` |  |
+| `icaoId` | `string` |  |
 | `lat` | `float` |  |
 | `lon` | `float` |  |
 | `name` | `string` |  |
@@ -739,17 +740,17 @@ Create an instance: `$taf = $client->Taf();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bulletin_time` | `string` |  |
+| `bulletinTime` | `string` |  |
 | `elev` | `float` |  |
-| `fcst` | `array` |  |
-| `icao_id` | `string` |  |
-| `issue_time` | `string` |  |
+| `fcsts` | `array` |  |
+| `icaoId` | `string` |  |
+| `issueTime` | `string` |  |
 | `lat` | `float` |  |
 | `lon` | `float` |  |
 | `name` | `string` |  |
-| `raw_taf` | `string` |  |
-| `valid_time_from` | `string` |  |
-| `valid_time_to` | `string` |  |
+| `rawTAF` | `string` |  |
+| `validTimeFrom` | `string` |  |
+| `validTimeTo` | `string` |  |
 
 #### Example: List
 
@@ -772,7 +773,7 @@ Create an instance: `$tcf = $client->Tcf();`
 #### Example: Load
 
 ```php
-// load() returns the bare Tcf record (throws on error).
+// load() returns the ENTITY — call data_get() for the Tcf record (throws on error).
 $tcf = $client->Tcf()->load();
 ```
 
@@ -853,11 +854,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$airsigmet = $client->AirSigmet();
-$airsigmet->list();
+$airport = $client->Airport();
+$airport->list();
 
-// $airsigmet->data_get() now returns the airsigmet data from the last list
-// $airsigmet->match_get() returns the last match criteria
+// $airport->data_get() now returns the airport data from the last list
+// $airport->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

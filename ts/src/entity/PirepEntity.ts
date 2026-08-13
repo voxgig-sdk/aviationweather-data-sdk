@@ -37,7 +37,7 @@ class PirepEntity extends AviationweatherDataEntityBase<Pirep> {
 
 
 
-  async list(this: any, reqmatch?: PirepListMatch, ctrl?: Control): Promise<Pirep[]> {
+  async list(this: any, reqmatch?: PirepListMatch, ctrl?: Control): Promise<PirepEntity[]> {
 
     const utility = this._utility
 

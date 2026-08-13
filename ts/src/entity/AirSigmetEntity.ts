@@ -37,7 +37,7 @@ class AirSigmetEntity extends AviationweatherDataEntityBase<AirSigmet> {
 
 
 
-  async list(this: any, reqmatch?: AirSigmetListMatch, ctrl?: Control): Promise<AirSigmet[]> {
+  async list(this: any, reqmatch?: AirSigmetListMatch, ctrl?: Control): Promise<AirSigmetEntity[]> {
 
     const utility = this._utility
 

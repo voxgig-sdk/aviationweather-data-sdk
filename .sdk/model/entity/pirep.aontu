@@ -6,17 +6,17 @@ main: kit: entity: pirep: {
 
   fields: [
     {
-      name: "aircraft_type"
+      name: "aircraftType"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "altitude_ft"
+      name: "altitudeFt"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "cloud"
+      name: "clouds"
       req: false
       type: "`$ARRAY`"
     }
@@ -36,17 +36,17 @@ main: kit: entity: pirep: {
       type: "`$NUMBER`"
     }
     {
-      name: "obs_time"
+      name: "obsTime"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "raw_ob"
+      name: "rawOb"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "report_type"
+      name: "reportType"
       req: false
       type: "`$STRING`"
     }
@@ -76,7 +76,7 @@ main: kit: entity: pirep: {
       type: "`$INTEGER`"
     }
     {
-      name: "wx_string"
+      name: "wxString"
       req: false
       type: "`$STRING`"
     }

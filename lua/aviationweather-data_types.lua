@@ -7,35 +7,35 @@
 -- edit by hand.
 
 ---@class AirSigmet
----@field airsigmet_type? string
----@field altitude_high? number
----@field altitude_low? number
+---@field airsigmetType? string
+---@field altitudeHigh? number
+---@field altitudeLow? number
 ---@field fir? string
 ---@field hazard? string
----@field issue_time? string
----@field raw_air_sigmet? string
+---@field issueTime? string
+---@field rawAirSigmet? string
 ---@field severity? string
----@field valid_time_from? string
----@field valid_time_to? string
+---@field validTimeFrom? string
+---@field validTimeTo? string
 
 ---@class AirSigmetListMatch
----@field airsigmet_type? string
----@field altitude_high? number
----@field altitude_low? number
+---@field airsigmetType? string
+---@field altitudeHigh? number
+---@field altitudeLow? number
 ---@field fir? string
 ---@field hazard? string
----@field issue_time? string
----@field raw_air_sigmet? string
+---@field issueTime? string
+---@field rawAirSigmet? string
 ---@field severity? string
----@field valid_time_from? string
----@field valid_time_to? string
+---@field validTimeFrom? string
+---@field validTimeTo? string
 
 ---@class Airport
 ---@field city? string
 ---@field country? string
 ---@field elev? number
----@field iata_id? string
----@field icao_id? string
+---@field iataId? string
+---@field icaoId? string
 ---@field lat? number
 ---@field lon? number
 ---@field name? string
@@ -45,8 +45,8 @@
 ---@field city? string
 ---@field country? string
 ---@field elev? number
----@field iata_id? string
----@field icao_id? string
+---@field iataId? string
+---@field icaoId? string
 ---@field lat? number
 ---@field lon? number
 ---@field name? string
@@ -58,155 +58,155 @@
 
 ---@class Cwa
 ---@field cwsu? string
----@field issue_time? string
----@field raw_text? string
+---@field issueTime? string
+---@field rawText? string
 ---@field sequence? number
----@field series_id? string
----@field valid_time_from? string
----@field valid_time_to? string
+---@field seriesId? string
+---@field validTimeFrom? string
+---@field validTimeTo? string
 
 ---@class CwaListMatch
 ---@field cwsu? string
----@field issue_time? string
----@field raw_text? string
+---@field issueTime? string
+---@field rawText? string
 ---@field sequence? number
----@field series_id? string
----@field valid_time_from? string
----@field valid_time_to? string
+---@field seriesId? string
+---@field validTimeFrom? string
+---@field validTimeTo? string
 
 ---@class GAirmet
----@field altitude_high? number
----@field altitude_low? number
+---@field altitudeHigh? number
+---@field altitudeLow? number
 ---@field hazard? string
----@field issue_time? string
+---@field issueTime? string
 ---@field qualifier? string
 ---@field severity? string
----@field valid_time_from? string
----@field valid_time_to? string
+---@field validTimeFrom? string
+---@field validTimeTo? string
 
 ---@class GAirmetListMatch
----@field altitude_high? number
----@field altitude_low? number
+---@field altitudeHigh? number
+---@field altitudeLow? number
 ---@field hazard? string
----@field issue_time? string
+---@field issueTime? string
 ---@field qualifier? string
 ---@field severity? string
----@field valid_time_from? string
----@field valid_time_to? string
+---@field validTimeFrom? string
+---@field validTimeTo? string
 
 ---@class Metar
 ---@field altim? number
----@field cloud? table
+---@field clouds? table
 ---@field dewp? number
 ---@field elev? number
----@field flt_cat? string
----@field icao_id? string
+---@field fltCat? string
+---@field icaoId? string
 ---@field lat? number
 ---@field lon? number
----@field max_t? number
----@field max_t24? number
----@field metar_type? string
----@field min_t? number
----@field min_t24? number
----@field most_recent? number
+---@field maxT? number
+---@field maxT24? number
+---@field metarType? string
+---@field minT? number
+---@field minT24? number
+---@field mostRecent? number
 ---@field name? string
----@field obs_time? string
+---@field obsTime? string
 ---@field pcp24hr? number
 ---@field pcp3hr? number
 ---@field pcp6hr? number
 ---@field precip? number
----@field pres_tend? number
+---@field presTend? number
 ---@field prior? number
----@field qc_field? number
----@field raw_ob? string
----@field raw_taf? string
----@field report_time? string
+---@field qcField? number
+---@field rawOb? string
+---@field rawTaf? string
+---@field reportTime? string
 ---@field slp? number
 ---@field snow? number
 ---@field temp? number
----@field vert_vi? number
+---@field vertVis? number
 ---@field visib? string
 ---@field wdir? number
 ---@field wgst? number
 ---@field wspd? number
----@field wx_string? string
+---@field wxString? string
 
 ---@class MetarListMatch
 ---@field altim? number
----@field cloud? table
+---@field clouds? table
 ---@field dewp? number
 ---@field elev? number
----@field flt_cat? string
----@field icao_id? string
+---@field fltCat? string
+---@field icaoId? string
 ---@field lat? number
 ---@field lon? number
----@field max_t? number
----@field max_t24? number
----@field metar_type? string
----@field min_t? number
----@field min_t24? number
----@field most_recent? number
+---@field maxT? number
+---@field maxT24? number
+---@field metarType? string
+---@field minT? number
+---@field minT24? number
+---@field mostRecent? number
 ---@field name? string
----@field obs_time? string
+---@field obsTime? string
 ---@field pcp24hr? number
 ---@field pcp3hr? number
 ---@field pcp6hr? number
 ---@field precip? number
----@field pres_tend? number
+---@field presTend? number
 ---@field prior? number
----@field qc_field? number
----@field raw_ob? string
----@field raw_taf? string
----@field report_time? string
+---@field qcField? number
+---@field rawOb? string
+---@field rawTaf? string
+---@field reportTime? string
 ---@field slp? number
 ---@field snow? number
 ---@field temp? number
----@field vert_vi? number
+---@field vertVis? number
 ---@field visib? string
 ---@field wdir? number
 ---@field wgst? number
 ---@field wspd? number
----@field wx_string? string
+---@field wxString? string
 
 ---@class Pirep
----@field aircraft_type? string
----@field altitude_ft? number
----@field cloud? table
+---@field aircraftType? string
+---@field altitudeFt? number
+---@field clouds? table
 ---@field icing? string
 ---@field lat? number
 ---@field lon? number
----@field obs_time? string
----@field raw_ob? string
----@field report_type? string
+---@field obsTime? string
+---@field rawOb? string
+---@field reportType? string
 ---@field temp? number
 ---@field turbulence? string
 ---@field visibility? string
 ---@field wdir? number
 ---@field wspd? number
----@field wx_string? string
+---@field wxString? string
 
 ---@class PirepListMatch
----@field aircraft_type? string
----@field altitude_ft? number
----@field cloud? table
+---@field aircraftType? string
+---@field altitudeFt? number
+---@field clouds? table
 ---@field icing? string
 ---@field lat? number
 ---@field lon? number
----@field obs_time? string
----@field raw_ob? string
----@field report_type? string
+---@field obsTime? string
+---@field rawOb? string
+---@field reportType? string
 ---@field temp? number
 ---@field turbulence? string
 ---@field visibility? string
 ---@field wdir? number
 ---@field wspd? number
----@field wx_string? string
+---@field wxString? string
 
 ---@class StationInfo
 ---@field country? string
 ---@field elev? number
----@field iata_id? string
----@field icao_id? string
+---@field iataId? string
+---@field icaoId? string
 ---@field lat? number
 ---@field lon? number
 ---@field name? string
@@ -217,8 +217,8 @@
 ---@class StationInfoListMatch
 ---@field country? string
 ---@field elev? number
----@field iata_id? string
----@field icao_id? string
+---@field iataId? string
+---@field icaoId? string
 ---@field lat? number
 ---@field lon? number
 ---@field name? string
@@ -227,30 +227,30 @@
 ---@field state? string
 
 ---@class Taf
----@field bulletin_time? string
+---@field bulletinTime? string
 ---@field elev? number
----@field fcst? table
----@field icao_id? string
----@field issue_time? string
+---@field fcsts? table
+---@field icaoId? string
+---@field issueTime? string
 ---@field lat? number
 ---@field lon? number
 ---@field name? string
----@field raw_taf? string
----@field valid_time_from? string
----@field valid_time_to? string
+---@field rawTAF? string
+---@field validTimeFrom? string
+---@field validTimeTo? string
 
 ---@class TafListMatch
----@field bulletin_time? string
+---@field bulletinTime? string
 ---@field elev? number
----@field fcst? table
----@field icao_id? string
----@field issue_time? string
+---@field fcsts? table
+---@field icaoId? string
+---@field issueTime? string
 ---@field lat? number
 ---@field lon? number
 ---@field name? string
----@field raw_taf? string
----@field valid_time_from? string
----@field valid_time_to? string
+---@field rawTAF? string
+---@field validTimeFrom? string
+---@field validTimeTo? string
 
 ---@class Tcf
 

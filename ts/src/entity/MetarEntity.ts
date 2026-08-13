@@ -37,7 +37,7 @@ class MetarEntity extends AviationweatherDataEntityBase<Metar> {
 
 
 
-  async list(this: any, reqmatch?: MetarListMatch, ctrl?: Control): Promise<Metar[]> {
+  async list(this: any, reqmatch?: MetarListMatch, ctrl?: Control): Promise<MetarEntity[]> {
 
     const utility = this._utility
 

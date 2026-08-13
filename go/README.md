@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-airsigmets, err := client.AirSigmet(nil).List(nil, nil)
+airports, err := client.Airport(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = airsigmets
+_ = airports
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-airSigmet, err := client.AirSigmet(nil).List(
+airport, err := client.Airport(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(airSigmet) // the returned mock data
+fmt.Println(airport) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -271,16 +271,16 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"airsigmet_type"` |  |
-| `"altitude_high"` |  |
-| `"altitude_low"` |  |
+| `"airsigmetType"` |  |
+| `"altitudeHigh"` |  |
+| `"altitudeLow"` |  |
 | `"fir"` |  |
 | `"hazard"` |  |
-| `"issue_time"` |  |
-| `"raw_air_sigmet"` |  |
+| `"issueTime"` |  |
+| `"rawAirSigmet"` |  |
 | `"severity"` |  |
-| `"valid_time_from"` |  |
-| `"valid_time_to"` |  |
+| `"validTimeFrom"` |  |
+| `"validTimeTo"` |  |
 
 Operations: List.
 
@@ -293,8 +293,8 @@ API path: `/api/data/airsigmet`
 | `"city"` |  |
 | `"country"` |  |
 | `"elev"` |  |
-| `"iata_id"` |  |
-| `"icao_id"` |  |
+| `"iataId"` |  |
+| `"icaoId"` |  |
 | `"lat"` |  |
 | `"lon"` |  |
 | `"name"` |  |
@@ -318,12 +318,12 @@ API path: `/data/cache/aircraftreports.cache.csv.gz`
 | Field | Description |
 | --- | --- |
 | `"cwsu"` |  |
-| `"issue_time"` |  |
-| `"raw_text"` |  |
+| `"issueTime"` |  |
+| `"rawText"` |  |
 | `"sequence"` |  |
-| `"series_id"` |  |
-| `"valid_time_from"` |  |
-| `"valid_time_to"` |  |
+| `"seriesId"` |  |
+| `"validTimeFrom"` |  |
+| `"validTimeTo"` |  |
 
 Operations: List.
 
@@ -333,14 +333,14 @@ API path: `/api/data/cwa`
 
 | Field | Description |
 | --- | --- |
-| `"altitude_high"` |  |
-| `"altitude_low"` |  |
+| `"altitudeHigh"` |  |
+| `"altitudeLow"` |  |
 | `"hazard"` |  |
-| `"issue_time"` |  |
+| `"issueTime"` |  |
 | `"qualifier"` |  |
 | `"severity"` |  |
-| `"valid_time_from"` |  |
-| `"valid_time_to"` |  |
+| `"validTimeFrom"` |  |
+| `"validTimeTo"` |  |
 
 Operations: List.
 
@@ -351,40 +351,40 @@ API path: `/api/data/gairmet`
 | Field | Description |
 | --- | --- |
 | `"altim"` |  |
-| `"cloud"` |  |
+| `"clouds"` |  |
 | `"dewp"` |  |
 | `"elev"` |  |
-| `"flt_cat"` |  |
-| `"icao_id"` |  |
+| `"fltCat"` |  |
+| `"icaoId"` |  |
 | `"lat"` |  |
 | `"lon"` |  |
-| `"max_t"` |  |
-| `"max_t24"` |  |
-| `"metar_type"` |  |
-| `"min_t"` |  |
-| `"min_t24"` |  |
-| `"most_recent"` |  |
+| `"maxT"` |  |
+| `"maxT24"` |  |
+| `"metarType"` |  |
+| `"minT"` |  |
+| `"minT24"` |  |
+| `"mostRecent"` |  |
 | `"name"` |  |
-| `"obs_time"` |  |
+| `"obsTime"` |  |
 | `"pcp24hr"` |  |
 | `"pcp3hr"` |  |
 | `"pcp6hr"` |  |
 | `"precip"` |  |
-| `"pres_tend"` |  |
+| `"presTend"` |  |
 | `"prior"` |  |
-| `"qc_field"` |  |
-| `"raw_ob"` |  |
-| `"raw_taf"` |  |
-| `"report_time"` |  |
+| `"qcField"` |  |
+| `"rawOb"` |  |
+| `"rawTaf"` |  |
+| `"reportTime"` |  |
 | `"slp"` |  |
 | `"snow"` |  |
 | `"temp"` |  |
-| `"vert_vi"` |  |
+| `"vertVis"` |  |
 | `"visib"` |  |
 | `"wdir"` |  |
 | `"wgst"` |  |
 | `"wspd"` |  |
-| `"wx_string"` |  |
+| `"wxString"` |  |
 
 Operations: List.
 
@@ -394,21 +394,21 @@ API path: `/api/data/metar`
 
 | Field | Description |
 | --- | --- |
-| `"aircraft_type"` |  |
-| `"altitude_ft"` |  |
-| `"cloud"` |  |
+| `"aircraftType"` |  |
+| `"altitudeFt"` |  |
+| `"clouds"` |  |
 | `"icing"` |  |
 | `"lat"` |  |
 | `"lon"` |  |
-| `"obs_time"` |  |
-| `"raw_ob"` |  |
-| `"report_type"` |  |
+| `"obsTime"` |  |
+| `"rawOb"` |  |
+| `"reportType"` |  |
 | `"temp"` |  |
 | `"turbulence"` |  |
 | `"visibility"` |  |
 | `"wdir"` |  |
 | `"wspd"` |  |
-| `"wx_string"` |  |
+| `"wxString"` |  |
 
 Operations: List.
 
@@ -420,8 +420,8 @@ API path: `/api/data/pirep`
 | --- | --- |
 | `"country"` |  |
 | `"elev"` |  |
-| `"iata_id"` |  |
-| `"icao_id"` |  |
+| `"iataId"` |  |
+| `"icaoId"` |  |
 | `"lat"` |  |
 | `"lon"` |  |
 | `"name"` |  |
@@ -437,17 +437,17 @@ API path: `/api/data/stationinfo`
 
 | Field | Description |
 | --- | --- |
-| `"bulletin_time"` |  |
+| `"bulletinTime"` |  |
 | `"elev"` |  |
-| `"fcst"` |  |
-| `"icao_id"` |  |
-| `"issue_time"` |  |
+| `"fcsts"` |  |
+| `"icaoId"` |  |
+| `"issueTime"` |  |
 | `"lat"` |  |
 | `"lon"` |  |
 | `"name"` |  |
-| `"raw_taf"` |  |
-| `"valid_time_from"` |  |
-| `"valid_time_to"` |  |
+| `"rawTAF"` |  |
+| `"validTimeFrom"` |  |
+| `"validTimeTo"` |  |
 
 Operations: List.
 
@@ -481,16 +481,16 @@ Create an instance: `airSigmet := client.AirSigmet(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airsigmet_type` | `string` |  |
-| `altitude_high` | `int` |  |
-| `altitude_low` | `int` |  |
+| `airsigmetType` | `string` |  |
+| `altitudeHigh` | `int` |  |
+| `altitudeLow` | `int` |  |
 | `fir` | `string` |  |
 | `hazard` | `string` |  |
-| `issue_time` | `string` |  |
-| `raw_air_sigmet` | `string` |  |
+| `issueTime` | `string` |  |
+| `rawAirSigmet` | `string` |  |
 | `severity` | `string` |  |
-| `valid_time_from` | `string` |  |
-| `valid_time_to` | `string` |  |
+| `validTimeFrom` | `string` |  |
+| `validTimeTo` | `string` |  |
 
 #### Example: List
 
@@ -520,8 +520,8 @@ Create an instance: `airport := client.Airport(nil)`
 | `city` | `string` |  |
 | `country` | `string` |  |
 | `elev` | `float64` |  |
-| `iata_id` | `string` |  |
-| `icao_id` | `string` |  |
+| `iataId` | `string` |  |
+| `icaoId` | `string` |  |
 | `lat` | `float64` |  |
 | `lon` | `float64` |  |
 | `name` | `string` |  |
@@ -574,12 +574,12 @@ Create an instance: `cwa := client.Cwa(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cwsu` | `string` |  |
-| `issue_time` | `string` |  |
-| `raw_text` | `string` |  |
+| `issueTime` | `string` |  |
+| `rawText` | `string` |  |
 | `sequence` | `int` |  |
-| `series_id` | `string` |  |
-| `valid_time_from` | `string` |  |
-| `valid_time_to` | `string` |  |
+| `seriesId` | `string` |  |
+| `validTimeFrom` | `string` |  |
+| `validTimeTo` | `string` |  |
 
 #### Example: List
 
@@ -606,14 +606,14 @@ Create an instance: `gAirmet := client.GAirmet(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altitude_high` | `int` |  |
-| `altitude_low` | `int` |  |
+| `altitudeHigh` | `int` |  |
+| `altitudeLow` | `int` |  |
 | `hazard` | `string` |  |
-| `issue_time` | `string` |  |
+| `issueTime` | `string` |  |
 | `qualifier` | `string` |  |
 | `severity` | `string` |  |
-| `valid_time_from` | `string` |  |
-| `valid_time_to` | `string` |  |
+| `validTimeFrom` | `string` |  |
+| `validTimeTo` | `string` |  |
 
 #### Example: List
 
@@ -641,40 +641,40 @@ Create an instance: `metar := client.Metar(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `altim` | `float64` |  |
-| `cloud` | `[]any` |  |
+| `clouds` | `[]any` |  |
 | `dewp` | `float64` |  |
 | `elev` | `float64` |  |
-| `flt_cat` | `string` |  |
-| `icao_id` | `string` |  |
+| `fltCat` | `string` |  |
+| `icaoId` | `string` |  |
 | `lat` | `float64` |  |
 | `lon` | `float64` |  |
-| `max_t` | `float64` |  |
-| `max_t24` | `float64` |  |
-| `metar_type` | `string` |  |
-| `min_t` | `float64` |  |
-| `min_t24` | `float64` |  |
-| `most_recent` | `int` |  |
+| `maxT` | `float64` |  |
+| `maxT24` | `float64` |  |
+| `metarType` | `string` |  |
+| `minT` | `float64` |  |
+| `minT24` | `float64` |  |
+| `mostRecent` | `int` |  |
 | `name` | `string` |  |
-| `obs_time` | `string` |  |
+| `obsTime` | `string` |  |
 | `pcp24hr` | `float64` |  |
 | `pcp3hr` | `float64` |  |
 | `pcp6hr` | `float64` |  |
 | `precip` | `float64` |  |
-| `pres_tend` | `float64` |  |
+| `presTend` | `float64` |  |
 | `prior` | `int` |  |
-| `qc_field` | `int` |  |
-| `raw_ob` | `string` |  |
-| `raw_taf` | `string` |  |
-| `report_time` | `string` |  |
+| `qcField` | `int` |  |
+| `rawOb` | `string` |  |
+| `rawTaf` | `string` |  |
+| `reportTime` | `string` |  |
 | `slp` | `float64` |  |
 | `snow` | `float64` |  |
 | `temp` | `float64` |  |
-| `vert_vi` | `int` |  |
+| `vertVis` | `int` |  |
 | `visib` | `string` |  |
 | `wdir` | `int` |  |
 | `wgst` | `int` |  |
 | `wspd` | `int` |  |
-| `wx_string` | `string` |  |
+| `wxString` | `string` |  |
 
 #### Example: List
 
@@ -701,21 +701,21 @@ Create an instance: `pirep := client.Pirep(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aircraft_type` | `string` |  |
-| `altitude_ft` | `int` |  |
-| `cloud` | `[]any` |  |
+| `aircraftType` | `string` |  |
+| `altitudeFt` | `int` |  |
+| `clouds` | `[]any` |  |
 | `icing` | `string` |  |
 | `lat` | `float64` |  |
 | `lon` | `float64` |  |
-| `obs_time` | `string` |  |
-| `raw_ob` | `string` |  |
-| `report_type` | `string` |  |
+| `obsTime` | `string` |  |
+| `rawOb` | `string` |  |
+| `reportType` | `string` |  |
 | `temp` | `float64` |  |
 | `turbulence` | `string` |  |
 | `visibility` | `string` |  |
 | `wdir` | `int` |  |
 | `wspd` | `int` |  |
-| `wx_string` | `string` |  |
+| `wxString` | `string` |  |
 
 #### Example: List
 
@@ -744,8 +744,8 @@ Create an instance: `stationInfo := client.StationInfo(nil)`
 | --- | --- | --- |
 | `country` | `string` |  |
 | `elev` | `float64` |  |
-| `iata_id` | `string` |  |
-| `icao_id` | `string` |  |
+| `iataId` | `string` |  |
+| `icaoId` | `string` |  |
 | `lat` | `float64` |  |
 | `lon` | `float64` |  |
 | `name` | `string` |  |
@@ -778,17 +778,17 @@ Create an instance: `taf := client.Taf(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bulletin_time` | `string` |  |
+| `bulletinTime` | `string` |  |
 | `elev` | `float64` |  |
-| `fcst` | `[]any` |  |
-| `icao_id` | `string` |  |
-| `issue_time` | `string` |  |
+| `fcsts` | `[]any` |  |
+| `icaoId` | `string` |  |
+| `issueTime` | `string` |  |
 | `lat` | `float64` |  |
 | `lon` | `float64` |  |
 | `name` | `string` |  |
-| `raw_taf` | `string` |  |
-| `valid_time_from` | `string` |  |
-| `valid_time_to` | `string` |  |
+| `rawTAF` | `string` |  |
+| `validTimeFrom` | `string` |  |
+| `validTimeTo` | `string` |  |
 
 #### Example: List
 
@@ -895,11 +895,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-airsigmet := client.AirSigmet(nil)
-airsigmet.List(nil, nil)
+airport := client.Airport(nil)
+airport.List(nil, nil)
 
-// airsigmet.Data() now returns the airsigmet data from the last list
-// airsigmet.Match() returns the last match criteria
+// airport.Data() now returns the airport data from the last list
+// airport.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

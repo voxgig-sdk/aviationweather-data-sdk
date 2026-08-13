@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = AviationweatherDataSDK.test()
-const airsigmets = await client.AirSigmet().list()
-// airsigmets is an array of bare AirSigmet records populated with mock data
-console.log(airsigmets)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = AviationweatherDataSDK.test({
+  entity: {
+    airport: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const airports = await client.Airport().list()
+// airports is an array of Airport entities, populated with mock data
+// — call airports[0].data() for the record itself
+console.log(airports)
 ```
 
 ### Python
 
 ```python
 client = AviationweatherDataSDK.test()
-airsigmets = client.AirSigmet().list()
-print(airsigmets)
+airports = client.Airport().list()
+print(airports)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(airsigmets)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = AviationweatherDataSDK::test([
-    "entity" => ["airsigmet" => ["test01" => []]],
+    "entity" => ["airport" => ["test01" => []]],
 ]);
-$airsigmets = $client->AirSigmet()->list();
+$airports = $client->Airport()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.AirSigmet(nil).List(
+result, err := client.Airport(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.AirSigmet(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = AviationweatherDataSDK.test({
-  "entity" => { "airsigmet" => { "test01" => {} } },
+  "entity" => { "airport" => { "test01" => {} } },
 })
-airsigmets = client.AirSigmet.list()
+airports = client.Airport.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:AirSigmet():list()
+local results, err = client:Airport():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { AviationweatherDataSDK } from '@voxgig-sdk/aviationweather-data'
 
 const client = new AviationweatherDataSDK()
 
-// List all airsigmets (returns AirSigmet[])
+// List all airsigmets (returns AirSigmetEntity[] — .data() for the record)
 const airsigmets = await client.AirSigmet().list()
 for (const airsigmet of airsigmets) {
   console.log(airsigmet)
@@ -352,6 +361,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://aviationweather.gov/data/api/](https://aviationweather.gov/data/api/)
 

@@ -128,16 +128,16 @@ $air_sigmet = $client->AirSigmet();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airsigmet_type` | `string` | No |  |
-| `altitude_high` | `int` | No |  |
-| `altitude_low` | `int` | No |  |
+| `airsigmetType` | `string` | No |  |
+| `altitudeHigh` | `int` | No |  |
+| `altitudeLow` | `int` | No |  |
 | `fir` | `string` | No |  |
 | `hazard` | `string` | No |  |
-| `issue_time` | `string` | No |  |
-| `raw_air_sigmet` | `string` | No |  |
+| `issueTime` | `string` | No |  |
+| `rawAirSigmet` | `string` | No |  |
 | `severity` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 
@@ -192,8 +192,8 @@ $airport = $client->Airport();
 | `city` | `string` | No |  |
 | `country` | `string` | No |  |
 | `elev` | `float` | No |  |
-| `iata_id` | `string` | No |  |
-| `icao_id` | `string` | No |  |
+| `iataId` | `string` | No |  |
+| `icaoId` | `string` | No |  |
 | `lat` | `float` | No |  |
 | `lon` | `float` | No |  |
 | `name` | `string` | No |  |
@@ -296,12 +296,12 @@ $cwa = $client->Cwa();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cwsu` | `string` | No |  |
-| `issue_time` | `string` | No |  |
-| `raw_text` | `string` | No |  |
+| `issueTime` | `string` | No |  |
+| `rawText` | `string` | No |  |
 | `sequence` | `int` | No |  |
-| `series_id` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `seriesId` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 
@@ -353,14 +353,14 @@ $g_airmet = $client->GAirmet();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altitude_high` | `int` | No |  |
-| `altitude_low` | `int` | No |  |
+| `altitudeHigh` | `int` | No |  |
+| `altitudeLow` | `int` | No |  |
 | `hazard` | `string` | No |  |
-| `issue_time` | `string` | No |  |
+| `issueTime` | `string` | No |  |
 | `qualifier` | `string` | No |  |
 | `severity` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 
@@ -413,40 +413,40 @@ $metar = $client->Metar();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `altim` | `float` | No |  |
-| `cloud` | `array` | No |  |
+| `clouds` | `array` | No |  |
 | `dewp` | `float` | No |  |
 | `elev` | `float` | No |  |
-| `flt_cat` | `string` | No |  |
-| `icao_id` | `string` | No |  |
+| `fltCat` | `string` | No |  |
+| `icaoId` | `string` | No |  |
 | `lat` | `float` | No |  |
 | `lon` | `float` | No |  |
-| `max_t` | `float` | No |  |
-| `max_t24` | `float` | No |  |
-| `metar_type` | `string` | No |  |
-| `min_t` | `float` | No |  |
-| `min_t24` | `float` | No |  |
-| `most_recent` | `int` | No |  |
+| `maxT` | `float` | No |  |
+| `maxT24` | `float` | No |  |
+| `metarType` | `string` | No |  |
+| `minT` | `float` | No |  |
+| `minT24` | `float` | No |  |
+| `mostRecent` | `int` | No |  |
 | `name` | `string` | No |  |
-| `obs_time` | `string` | No |  |
+| `obsTime` | `string` | No |  |
 | `pcp24hr` | `float` | No |  |
 | `pcp3hr` | `float` | No |  |
 | `pcp6hr` | `float` | No |  |
 | `precip` | `float` | No |  |
-| `pres_tend` | `float` | No |  |
+| `presTend` | `float` | No |  |
 | `prior` | `int` | No |  |
-| `qc_field` | `int` | No |  |
-| `raw_ob` | `string` | No |  |
-| `raw_taf` | `string` | No |  |
-| `report_time` | `string` | No |  |
+| `qcField` | `int` | No |  |
+| `rawOb` | `string` | No |  |
+| `rawTaf` | `string` | No |  |
+| `reportTime` | `string` | No |  |
 | `slp` | `float` | No |  |
 | `snow` | `float` | No |  |
 | `temp` | `float` | No |  |
-| `vert_vi` | `int` | No |  |
+| `vertVis` | `int` | No |  |
 | `visib` | `string` | No |  |
 | `wdir` | `int` | No |  |
 | `wgst` | `int` | No |  |
 | `wspd` | `int` | No |  |
-| `wx_string` | `string` | No |  |
+| `wxString` | `string` | No |  |
 
 ### Operations
 
@@ -498,21 +498,21 @@ $pirep = $client->Pirep();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aircraft_type` | `string` | No |  |
-| `altitude_ft` | `int` | No |  |
-| `cloud` | `array` | No |  |
+| `aircraftType` | `string` | No |  |
+| `altitudeFt` | `int` | No |  |
+| `clouds` | `array` | No |  |
 | `icing` | `string` | No |  |
 | `lat` | `float` | No |  |
 | `lon` | `float` | No |  |
-| `obs_time` | `string` | No |  |
-| `raw_ob` | `string` | No |  |
-| `report_type` | `string` | No |  |
+| `obsTime` | `string` | No |  |
+| `rawOb` | `string` | No |  |
+| `reportType` | `string` | No |  |
 | `temp` | `float` | No |  |
 | `turbulence` | `string` | No |  |
 | `visibility` | `string` | No |  |
 | `wdir` | `int` | No |  |
 | `wspd` | `int` | No |  |
-| `wx_string` | `string` | No |  |
+| `wxString` | `string` | No |  |
 
 ### Operations
 
@@ -566,8 +566,8 @@ $station_info = $client->StationInfo();
 | --- | --- | --- | --- |
 | `country` | `string` | No |  |
 | `elev` | `float` | No |  |
-| `iata_id` | `string` | No |  |
-| `icao_id` | `string` | No |  |
+| `iataId` | `string` | No |  |
+| `icaoId` | `string` | No |  |
 | `lat` | `float` | No |  |
 | `lon` | `float` | No |  |
 | `name` | `string` | No |  |
@@ -625,17 +625,17 @@ $taf = $client->Taf();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bulletin_time` | `string` | No |  |
+| `bulletinTime` | `string` | No |  |
 | `elev` | `float` | No |  |
-| `fcst` | `array` | No |  |
-| `icao_id` | `string` | No |  |
-| `issue_time` | `string` | No |  |
+| `fcsts` | `array` | No |  |
+| `icaoId` | `string` | No |  |
+| `issueTime` | `string` | No |  |
 | `lat` | `float` | No |  |
 | `lon` | `float` | No |  |
 | `name` | `string` | No |  |
-| `raw_taf` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `rawTAF` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 

@@ -129,16 +129,16 @@ air_sigmet = client.AirSigmet
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airsigmet_type` | `String` | No |  |
-| `altitude_high` | `Integer` | No |  |
-| `altitude_low` | `Integer` | No |  |
+| `airsigmetType` | `String` | No |  |
+| `altitudeHigh` | `Integer` | No |  |
+| `altitudeLow` | `Integer` | No |  |
 | `fir` | `String` | No |  |
 | `hazard` | `String` | No |  |
-| `issue_time` | `String` | No |  |
-| `raw_air_sigmet` | `String` | No |  |
+| `issueTime` | `String` | No |  |
+| `rawAirSigmet` | `String` | No |  |
 | `severity` | `String` | No |  |
-| `valid_time_from` | `String` | No |  |
-| `valid_time_to` | `String` | No |  |
+| `validTimeFrom` | `String` | No |  |
+| `validTimeTo` | `String` | No |  |
 
 ### Operations
 
@@ -193,8 +193,8 @@ airport = client.Airport
 | `city` | `String` | No |  |
 | `country` | `String` | No |  |
 | `elev` | `Float` | No |  |
-| `iata_id` | `String` | No |  |
-| `icao_id` | `String` | No |  |
+| `iataId` | `String` | No |  |
+| `icaoId` | `String` | No |  |
 | `lat` | `Float` | No |  |
 | `lon` | `Float` | No |  |
 | `name` | `String` | No |  |
@@ -297,12 +297,12 @@ cwa = client.Cwa
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cwsu` | `String` | No |  |
-| `issue_time` | `String` | No |  |
-| `raw_text` | `String` | No |  |
+| `issueTime` | `String` | No |  |
+| `rawText` | `String` | No |  |
 | `sequence` | `Integer` | No |  |
-| `series_id` | `String` | No |  |
-| `valid_time_from` | `String` | No |  |
-| `valid_time_to` | `String` | No |  |
+| `seriesId` | `String` | No |  |
+| `validTimeFrom` | `String` | No |  |
+| `validTimeTo` | `String` | No |  |
 
 ### Operations
 
@@ -354,14 +354,14 @@ g_airmet = client.GAirmet
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altitude_high` | `Integer` | No |  |
-| `altitude_low` | `Integer` | No |  |
+| `altitudeHigh` | `Integer` | No |  |
+| `altitudeLow` | `Integer` | No |  |
 | `hazard` | `String` | No |  |
-| `issue_time` | `String` | No |  |
+| `issueTime` | `String` | No |  |
 | `qualifier` | `String` | No |  |
 | `severity` | `String` | No |  |
-| `valid_time_from` | `String` | No |  |
-| `valid_time_to` | `String` | No |  |
+| `validTimeFrom` | `String` | No |  |
+| `validTimeTo` | `String` | No |  |
 
 ### Operations
 
@@ -414,40 +414,40 @@ metar = client.Metar
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `altim` | `Float` | No |  |
-| `cloud` | `Array` | No |  |
+| `clouds` | `Array` | No |  |
 | `dewp` | `Float` | No |  |
 | `elev` | `Float` | No |  |
-| `flt_cat` | `String` | No |  |
-| `icao_id` | `String` | No |  |
+| `fltCat` | `String` | No |  |
+| `icaoId` | `String` | No |  |
 | `lat` | `Float` | No |  |
 | `lon` | `Float` | No |  |
-| `max_t` | `Float` | No |  |
-| `max_t24` | `Float` | No |  |
-| `metar_type` | `String` | No |  |
-| `min_t` | `Float` | No |  |
-| `min_t24` | `Float` | No |  |
-| `most_recent` | `Integer` | No |  |
+| `maxT` | `Float` | No |  |
+| `maxT24` | `Float` | No |  |
+| `metarType` | `String` | No |  |
+| `minT` | `Float` | No |  |
+| `minT24` | `Float` | No |  |
+| `mostRecent` | `Integer` | No |  |
 | `name` | `String` | No |  |
-| `obs_time` | `String` | No |  |
+| `obsTime` | `String` | No |  |
 | `pcp24hr` | `Float` | No |  |
 | `pcp3hr` | `Float` | No |  |
 | `pcp6hr` | `Float` | No |  |
 | `precip` | `Float` | No |  |
-| `pres_tend` | `Float` | No |  |
+| `presTend` | `Float` | No |  |
 | `prior` | `Integer` | No |  |
-| `qc_field` | `Integer` | No |  |
-| `raw_ob` | `String` | No |  |
-| `raw_taf` | `String` | No |  |
-| `report_time` | `String` | No |  |
+| `qcField` | `Integer` | No |  |
+| `rawOb` | `String` | No |  |
+| `rawTaf` | `String` | No |  |
+| `reportTime` | `String` | No |  |
 | `slp` | `Float` | No |  |
 | `snow` | `Float` | No |  |
 | `temp` | `Float` | No |  |
-| `vert_vi` | `Integer` | No |  |
+| `vertVis` | `Integer` | No |  |
 | `visib` | `String` | No |  |
 | `wdir` | `Integer` | No |  |
 | `wgst` | `Integer` | No |  |
 | `wspd` | `Integer` | No |  |
-| `wx_string` | `String` | No |  |
+| `wxString` | `String` | No |  |
 
 ### Operations
 
@@ -499,21 +499,21 @@ pirep = client.Pirep
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aircraft_type` | `String` | No |  |
-| `altitude_ft` | `Integer` | No |  |
-| `cloud` | `Array` | No |  |
+| `aircraftType` | `String` | No |  |
+| `altitudeFt` | `Integer` | No |  |
+| `clouds` | `Array` | No |  |
 | `icing` | `String` | No |  |
 | `lat` | `Float` | No |  |
 | `lon` | `Float` | No |  |
-| `obs_time` | `String` | No |  |
-| `raw_ob` | `String` | No |  |
-| `report_type` | `String` | No |  |
+| `obsTime` | `String` | No |  |
+| `rawOb` | `String` | No |  |
+| `reportType` | `String` | No |  |
 | `temp` | `Float` | No |  |
 | `turbulence` | `String` | No |  |
 | `visibility` | `String` | No |  |
 | `wdir` | `Integer` | No |  |
 | `wspd` | `Integer` | No |  |
-| `wx_string` | `String` | No |  |
+| `wxString` | `String` | No |  |
 
 ### Operations
 
@@ -567,8 +567,8 @@ station_info = client.StationInfo
 | --- | --- | --- | --- |
 | `country` | `String` | No |  |
 | `elev` | `Float` | No |  |
-| `iata_id` | `String` | No |  |
-| `icao_id` | `String` | No |  |
+| `iataId` | `String` | No |  |
+| `icaoId` | `String` | No |  |
 | `lat` | `Float` | No |  |
 | `lon` | `Float` | No |  |
 | `name` | `String` | No |  |
@@ -626,17 +626,17 @@ taf = client.Taf
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bulletin_time` | `String` | No |  |
+| `bulletinTime` | `String` | No |  |
 | `elev` | `Float` | No |  |
-| `fcst` | `Array` | No |  |
-| `icao_id` | `String` | No |  |
-| `issue_time` | `String` | No |  |
+| `fcsts` | `Array` | No |  |
+| `icaoId` | `String` | No |  |
+| `issueTime` | `String` | No |  |
 | `lat` | `Float` | No |  |
 | `lon` | `Float` | No |  |
 | `name` | `String` | No |  |
-| `raw_taf` | `String` | No |  |
-| `valid_time_from` | `String` | No |  |
-| `valid_time_to` | `String` | No |  |
+| `rawTAF` | `String` | No |  |
+| `validTimeFrom` | `String` | No |  |
+| `validTimeTo` | `String` | No |  |
 
 ### Operations
 

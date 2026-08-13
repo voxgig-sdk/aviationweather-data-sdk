@@ -37,7 +37,7 @@ class TafEntity extends AviationweatherDataEntityBase<Taf> {
 
 
 
-  async list(this: any, reqmatch?: TafListMatch, ctrl?: Control): Promise<Taf[]> {
+  async list(this: any, reqmatch?: TafListMatch, ctrl?: Control): Promise<TafEntity[]> {
 
     const utility = this._utility
 

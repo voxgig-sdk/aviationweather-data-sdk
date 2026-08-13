@@ -57,8 +57,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    airsigmets = client.AirSigmet().list()
-    print(airsigmets)
+    airports = client.Airport().list()
+    print(airports)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -124,9 +124,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = AviationweatherDataSDK.test()
 
-# Entity ops return the bare record and raise on error.
-airsigmet = client.AirSigmet().list()
-# airsigmet contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+airport = client.Airport().list()
+# airport contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -230,7 +231,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -252,16 +253,16 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `airsigmet_type` |  |
-| `altitude_high` |  |
-| `altitude_low` |  |
+| `airsigmetType` |  |
+| `altitudeHigh` |  |
+| `altitudeLow` |  |
 | `fir` |  |
 | `hazard` |  |
-| `issue_time` |  |
-| `raw_air_sigmet` |  |
+| `issueTime` |  |
+| `rawAirSigmet` |  |
 | `severity` |  |
-| `valid_time_from` |  |
-| `valid_time_to` |  |
+| `validTimeFrom` |  |
+| `validTimeTo` |  |
 
 Operations: List.
 
@@ -274,8 +275,8 @@ API path: `/api/data/airsigmet`
 | `city` |  |
 | `country` |  |
 | `elev` |  |
-| `iata_id` |  |
-| `icao_id` |  |
+| `iataId` |  |
+| `icaoId` |  |
 | `lat` |  |
 | `lon` |  |
 | `name` |  |
@@ -299,12 +300,12 @@ API path: `/data/cache/aircraftreports.cache.csv.gz`
 | Field | Description |
 | --- | --- |
 | `cwsu` |  |
-| `issue_time` |  |
-| `raw_text` |  |
+| `issueTime` |  |
+| `rawText` |  |
 | `sequence` |  |
-| `series_id` |  |
-| `valid_time_from` |  |
-| `valid_time_to` |  |
+| `seriesId` |  |
+| `validTimeFrom` |  |
+| `validTimeTo` |  |
 
 Operations: List.
 
@@ -314,14 +315,14 @@ API path: `/api/data/cwa`
 
 | Field | Description |
 | --- | --- |
-| `altitude_high` |  |
-| `altitude_low` |  |
+| `altitudeHigh` |  |
+| `altitudeLow` |  |
 | `hazard` |  |
-| `issue_time` |  |
+| `issueTime` |  |
 | `qualifier` |  |
 | `severity` |  |
-| `valid_time_from` |  |
-| `valid_time_to` |  |
+| `validTimeFrom` |  |
+| `validTimeTo` |  |
 
 Operations: List.
 
@@ -332,40 +333,40 @@ API path: `/api/data/gairmet`
 | Field | Description |
 | --- | --- |
 | `altim` |  |
-| `cloud` |  |
+| `clouds` |  |
 | `dewp` |  |
 | `elev` |  |
-| `flt_cat` |  |
-| `icao_id` |  |
+| `fltCat` |  |
+| `icaoId` |  |
 | `lat` |  |
 | `lon` |  |
-| `max_t` |  |
-| `max_t24` |  |
-| `metar_type` |  |
-| `min_t` |  |
-| `min_t24` |  |
-| `most_recent` |  |
+| `maxT` |  |
+| `maxT24` |  |
+| `metarType` |  |
+| `minT` |  |
+| `minT24` |  |
+| `mostRecent` |  |
 | `name` |  |
-| `obs_time` |  |
+| `obsTime` |  |
 | `pcp24hr` |  |
 | `pcp3hr` |  |
 | `pcp6hr` |  |
 | `precip` |  |
-| `pres_tend` |  |
+| `presTend` |  |
 | `prior` |  |
-| `qc_field` |  |
-| `raw_ob` |  |
-| `raw_taf` |  |
-| `report_time` |  |
+| `qcField` |  |
+| `rawOb` |  |
+| `rawTaf` |  |
+| `reportTime` |  |
 | `slp` |  |
 | `snow` |  |
 | `temp` |  |
-| `vert_vi` |  |
+| `vertVis` |  |
 | `visib` |  |
 | `wdir` |  |
 | `wgst` |  |
 | `wspd` |  |
-| `wx_string` |  |
+| `wxString` |  |
 
 Operations: List.
 
@@ -375,21 +376,21 @@ API path: `/api/data/metar`
 
 | Field | Description |
 | --- | --- |
-| `aircraft_type` |  |
-| `altitude_ft` |  |
-| `cloud` |  |
+| `aircraftType` |  |
+| `altitudeFt` |  |
+| `clouds` |  |
 | `icing` |  |
 | `lat` |  |
 | `lon` |  |
-| `obs_time` |  |
-| `raw_ob` |  |
-| `report_type` |  |
+| `obsTime` |  |
+| `rawOb` |  |
+| `reportType` |  |
 | `temp` |  |
 | `turbulence` |  |
 | `visibility` |  |
 | `wdir` |  |
 | `wspd` |  |
-| `wx_string` |  |
+| `wxString` |  |
 
 Operations: List.
 
@@ -401,8 +402,8 @@ API path: `/api/data/pirep`
 | --- | --- |
 | `country` |  |
 | `elev` |  |
-| `iata_id` |  |
-| `icao_id` |  |
+| `iataId` |  |
+| `icaoId` |  |
 | `lat` |  |
 | `lon` |  |
 | `name` |  |
@@ -418,17 +419,17 @@ API path: `/api/data/stationinfo`
 
 | Field | Description |
 | --- | --- |
-| `bulletin_time` |  |
+| `bulletinTime` |  |
 | `elev` |  |
-| `fcst` |  |
-| `icao_id` |  |
-| `issue_time` |  |
+| `fcsts` |  |
+| `icaoId` |  |
+| `issueTime` |  |
 | `lat` |  |
 | `lon` |  |
 | `name` |  |
-| `raw_taf` |  |
-| `valid_time_from` |  |
-| `valid_time_to` |  |
+| `rawTAF` |  |
+| `validTimeFrom` |  |
+| `validTimeTo` |  |
 
 Operations: List.
 
@@ -462,16 +463,16 @@ Create an instance: `air_sigmet = client.AirSigmet()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airsigmet_type` | `str` |  |
-| `altitude_high` | `int` |  |
-| `altitude_low` | `int` |  |
+| `airsigmetType` | `str` |  |
+| `altitudeHigh` | `int` |  |
+| `altitudeLow` | `int` |  |
 | `fir` | `str` |  |
 | `hazard` | `str` |  |
-| `issue_time` | `str` |  |
-| `raw_air_sigmet` | `str` |  |
+| `issueTime` | `str` |  |
+| `rawAirSigmet` | `str` |  |
 | `severity` | `str` |  |
-| `valid_time_from` | `str` |  |
-| `valid_time_to` | `str` |  |
+| `validTimeFrom` | `str` |  |
+| `validTimeTo` | `str` |  |
 
 #### Example: List
 
@@ -497,8 +498,8 @@ Create an instance: `airport = client.Airport()`
 | `city` | `str` |  |
 | `country` | `str` |  |
 | `elev` | `float` |  |
-| `iata_id` | `str` |  |
-| `icao_id` | `str` |  |
+| `iataId` | `str` |  |
+| `icaoId` | `str` |  |
 | `lat` | `float` |  |
 | `lon` | `float` |  |
 | `name` | `str` |  |
@@ -543,12 +544,12 @@ Create an instance: `cwa = client.Cwa()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cwsu` | `str` |  |
-| `issue_time` | `str` |  |
-| `raw_text` | `str` |  |
+| `issueTime` | `str` |  |
+| `rawText` | `str` |  |
 | `sequence` | `int` |  |
-| `series_id` | `str` |  |
-| `valid_time_from` | `str` |  |
-| `valid_time_to` | `str` |  |
+| `seriesId` | `str` |  |
+| `validTimeFrom` | `str` |  |
+| `validTimeTo` | `str` |  |
 
 #### Example: List
 
@@ -571,14 +572,14 @@ Create an instance: `g_airmet = client.GAirmet()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altitude_high` | `int` |  |
-| `altitude_low` | `int` |  |
+| `altitudeHigh` | `int` |  |
+| `altitudeLow` | `int` |  |
 | `hazard` | `str` |  |
-| `issue_time` | `str` |  |
+| `issueTime` | `str` |  |
 | `qualifier` | `str` |  |
 | `severity` | `str` |  |
-| `valid_time_from` | `str` |  |
-| `valid_time_to` | `str` |  |
+| `validTimeFrom` | `str` |  |
+| `validTimeTo` | `str` |  |
 
 #### Example: List
 
@@ -602,40 +603,40 @@ Create an instance: `metar = client.Metar()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `altim` | `float` |  |
-| `cloud` | `list` |  |
+| `clouds` | `list` |  |
 | `dewp` | `float` |  |
 | `elev` | `float` |  |
-| `flt_cat` | `str` |  |
-| `icao_id` | `str` |  |
+| `fltCat` | `str` |  |
+| `icaoId` | `str` |  |
 | `lat` | `float` |  |
 | `lon` | `float` |  |
-| `max_t` | `float` |  |
-| `max_t24` | `float` |  |
-| `metar_type` | `str` |  |
-| `min_t` | `float` |  |
-| `min_t24` | `float` |  |
-| `most_recent` | `int` |  |
+| `maxT` | `float` |  |
+| `maxT24` | `float` |  |
+| `metarType` | `str` |  |
+| `minT` | `float` |  |
+| `minT24` | `float` |  |
+| `mostRecent` | `int` |  |
 | `name` | `str` |  |
-| `obs_time` | `str` |  |
+| `obsTime` | `str` |  |
 | `pcp24hr` | `float` |  |
 | `pcp3hr` | `float` |  |
 | `pcp6hr` | `float` |  |
 | `precip` | `float` |  |
-| `pres_tend` | `float` |  |
+| `presTend` | `float` |  |
 | `prior` | `int` |  |
-| `qc_field` | `int` |  |
-| `raw_ob` | `str` |  |
-| `raw_taf` | `str` |  |
-| `report_time` | `str` |  |
+| `qcField` | `int` |  |
+| `rawOb` | `str` |  |
+| `rawTaf` | `str` |  |
+| `reportTime` | `str` |  |
 | `slp` | `float` |  |
 | `snow` | `float` |  |
 | `temp` | `float` |  |
-| `vert_vi` | `int` |  |
+| `vertVis` | `int` |  |
 | `visib` | `str` |  |
 | `wdir` | `int` |  |
 | `wgst` | `int` |  |
 | `wspd` | `int` |  |
-| `wx_string` | `str` |  |
+| `wxString` | `str` |  |
 
 #### Example: List
 
@@ -658,21 +659,21 @@ Create an instance: `pirep = client.Pirep()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aircraft_type` | `str` |  |
-| `altitude_ft` | `int` |  |
-| `cloud` | `list` |  |
+| `aircraftType` | `str` |  |
+| `altitudeFt` | `int` |  |
+| `clouds` | `list` |  |
 | `icing` | `str` |  |
 | `lat` | `float` |  |
 | `lon` | `float` |  |
-| `obs_time` | `str` |  |
-| `raw_ob` | `str` |  |
-| `report_type` | `str` |  |
+| `obsTime` | `str` |  |
+| `rawOb` | `str` |  |
+| `reportType` | `str` |  |
 | `temp` | `float` |  |
 | `turbulence` | `str` |  |
 | `visibility` | `str` |  |
 | `wdir` | `int` |  |
 | `wspd` | `int` |  |
-| `wx_string` | `str` |  |
+| `wxString` | `str` |  |
 
 #### Example: List
 
@@ -697,8 +698,8 @@ Create an instance: `station_info = client.StationInfo()`
 | --- | --- | --- |
 | `country` | `str` |  |
 | `elev` | `float` |  |
-| `iata_id` | `str` |  |
-| `icao_id` | `str` |  |
+| `iataId` | `str` |  |
+| `icaoId` | `str` |  |
 | `lat` | `float` |  |
 | `lon` | `float` |  |
 | `name` | `str` |  |
@@ -727,17 +728,17 @@ Create an instance: `taf = client.Taf()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bulletin_time` | `str` |  |
+| `bulletinTime` | `str` |  |
 | `elev` | `float` |  |
-| `fcst` | `list` |  |
-| `icao_id` | `str` |  |
-| `issue_time` | `str` |  |
+| `fcsts` | `list` |  |
+| `icaoId` | `str` |  |
+| `issueTime` | `str` |  |
 | `lat` | `float` |  |
 | `lon` | `float` |  |
 | `name` | `str` |  |
-| `raw_taf` | `str` |  |
-| `valid_time_from` | `str` |  |
-| `valid_time_to` | `str` |  |
+| `rawTAF` | `str` |  |
+| `validTimeFrom` | `str` |  |
+| `validTimeTo` | `str` |  |
 
 #### Example: List
 
@@ -838,11 +839,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-airsigmet = client.AirSigmet()
-airsigmet.list()
+airport = client.Airport()
+airport.list()
 
-# airsigmet.data_get() now returns the airsigmet data from the last list
-# airsigmet.match_get() returns the last match criteria
+# airport.data_get() now returns the airport data from the last list
+# airport.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

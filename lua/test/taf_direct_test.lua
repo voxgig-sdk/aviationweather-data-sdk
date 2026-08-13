@@ -61,11 +61,11 @@ function taf_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["AVIATIONWEATHERDATA_TEST_TAF_ENTID"] = {},
-    ["AVIATIONWEATHERDATA_TEST_LIVE"] = "FALSE",
+    ["AVIATIONWEATHER_DATA_TEST_TAF_ENTID"] = {},
+    ["AVIATIONWEATHER_DATA_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
+  local live = env["AVIATIONWEATHER_DATA_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

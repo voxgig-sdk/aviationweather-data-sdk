@@ -26,8 +26,8 @@ import {
 describe('CwaEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when AVIATIONWEATHERDATA_TEST_LIVE=TRUE.
-  afterEach(liveDelay('AVIATIONWEATHERDATA_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when AVIATIONWEATHER_DATA_TEST_LIVE=TRUE.
+  afterEach(liveDelay('AVIATIONWEATHER_DATA_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = AviationweatherDataSDK.test()
@@ -63,7 +63,7 @@ describe('CwaEntity', async () => {
     const cwa_ref01_ent = client.Cwa()
     const cwa_ref01_match: any = {}
 
-    const cwa_ref01_list = await cwa_ref01_ent.list(cwa_ref01_match)
+    const cwa_ref01_list = (await cwa_ref01_ent.list(cwa_ref01_match)).map((e: any) => e.data())
 
 
   })

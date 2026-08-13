@@ -21,12 +21,12 @@ main: kit: entity: airport: {
       type: "`$NUMBER`"
     }
     {
-      name: "iata_id"
+      name: "iataId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "icao_id"
+      name: "icaoId"
       req: false
       type: "`$STRING`"
     }

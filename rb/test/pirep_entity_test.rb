@@ -62,7 +62,7 @@ class PirepEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set AVIATIONWEATHERDATA_TEST_PIREP_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set AVIATIONWEATHER_DATA_TEST_PIREP_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -111,22 +111,22 @@ def pirep_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["AVIATIONWEATHERDATA_TEST_PIREP_ENTID"]
+  entid_env_raw = ENV["AVIATIONWEATHER_DATA_TEST_PIREP_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "AVIATIONWEATHERDATA_TEST_PIREP_ENTID" => idmap,
-    "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
-    "AVIATIONWEATHERDATA_TEST_EXPLAIN" => "FALSE",
+    "AVIATIONWEATHER_DATA_TEST_PIREP_ENTID" => idmap,
+    "AVIATIONWEATHER_DATA_TEST_LIVE" => "FALSE",
+    "AVIATIONWEATHER_DATA_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["AVIATIONWEATHERDATA_TEST_PIREP_ENTID"])
+    env["AVIATIONWEATHER_DATA_TEST_PIREP_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
+  if env["AVIATIONWEATHER_DATA_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -135,13 +135,13 @@ def pirep_basic_setup(extra)
     client = AviationweatherDataSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
+  live = env["AVIATIONWEATHER_DATA_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["AVIATIONWEATHERDATA_TEST_EXPLAIN"] == "TRUE",
+    explain: env["AVIATIONWEATHER_DATA_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

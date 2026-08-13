@@ -60,11 +60,11 @@ def air_sigmet_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "AVIATIONWEATHERDATA_TEST_AIR_SIGMET_ENTID" => {},
-    "AVIATIONWEATHERDATA_TEST_LIVE" => "FALSE",
+    "AVIATIONWEATHER_DATA_TEST_AIR_SIGMET_ENTID" => {},
+    "AVIATIONWEATHER_DATA_TEST_LIVE" => "FALSE",
   })
 
-  live = env["AVIATIONWEATHERDATA_TEST_LIVE"] == "TRUE"
+  live = env["AVIATIONWEATHER_DATA_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

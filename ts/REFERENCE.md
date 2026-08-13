@@ -224,16 +224,16 @@ const air_sigmet = client.AirSigmet()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airsigmet_type` | `string` | No |  |
-| `altitude_high` | `number` | No |  |
-| `altitude_low` | `number` | No |  |
+| `airsigmetType` | `string` | No |  |
+| `altitudeHigh` | `number` | No |  |
+| `altitudeLow` | `number` | No |  |
 | `fir` | `string` | No |  |
 | `hazard` | `string` | No |  |
-| `issue_time` | `string` | No |  |
-| `raw_air_sigmet` | `string` | No |  |
+| `issueTime` | `string` | No |  |
+| `rawAirSigmet` | `string` | No |  |
 | `severity` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 
@@ -286,8 +286,8 @@ const airport = client.Airport()
 | `city` | `string` | No |  |
 | `country` | `string` | No |  |
 | `elev` | `number` | No |  |
-| `iata_id` | `string` | No |  |
-| `icao_id` | `string` | No |  |
+| `iataId` | `string` | No |  |
+| `icaoId` | `string` | No |  |
 | `lat` | `number` | No |  |
 | `lon` | `number` | No |  |
 | `name` | `string` | No |  |
@@ -335,6 +335,35 @@ Return a copy of the entity options.
 
 ```ts
 const cache = client.Cache()
+```
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `aircraftreportscachecsvgz` | `/data/cache/aircraftreports.cache.csv.gz` | `client.Cache().load({ $action: 'aircraftreportscachecsvgz', ... })` |
+| `aircraftreportscachexmlgz` | `/data/cache/aircraftreports.cache.xml.gz` | `client.Cache().load({ $action: 'aircraftreportscachexmlgz', ... })` |
+| `airsigmetscachecsvgz` | `/data/cache/airsigmets.cache.csv.gz` | `client.Cache().load({ $action: 'airsigmetscachecsvgz', ... })` |
+| `airsigmetscachexmlgz` | `/data/cache/airsigmets.cache.xml.gz` | `client.Cache().load({ $action: 'airsigmetscachexmlgz', ... })` |
+| `gairmetscachexmlgz` | `/data/cache/gairmets.cache.xml.gz` | `client.Cache().load({ $action: 'gairmetscachexmlgz', ... })` |
+| `metarscachecsvgz` | `/data/cache/metars.cache.csv.gz` | `client.Cache().load({ $action: 'metarscachecsvgz', ... })` |
+| `metarscachexmlgz` | `/data/cache/metars.cache.xml.gz` | `client.Cache().load({ $action: 'metarscachexmlgz', ... })` |
+| `stationscachejsongz` | `/data/cache/stations.cache.json.gz` | `client.Cache().load({ $action: 'stationscachejsongz', ... })` |
+| `stationscachexmlgz` | `/data/cache/stations.cache.xml.gz` | `client.Cache().load({ $action: 'stationscachexmlgz', ... })` |
+| `tafscachexmlgz` | `/data/cache/tafs.cache.xml.gz` | `client.Cache().load({ $action: 'tafscachexmlgz', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Cache record — check the API definition for its shape.
+
+```ts
+const result = await client.Cache().load({
+  $action: 'aircraftreportscachecsvgz',
+  /* ...the action's own arguments */
+})
 ```
 
 ### Operations
@@ -386,12 +415,12 @@ const cwa = client.Cwa()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `cwsu` | `string` | No |  |
-| `issue_time` | `string` | No |  |
-| `raw_text` | `string` | No |  |
+| `issueTime` | `string` | No |  |
+| `rawText` | `string` | No |  |
 | `sequence` | `number` | No |  |
-| `series_id` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `seriesId` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 
@@ -441,14 +470,14 @@ const g_airmet = client.GAirmet()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altitude_high` | `number` | No |  |
-| `altitude_low` | `number` | No |  |
+| `altitudeHigh` | `number` | No |  |
+| `altitudeLow` | `number` | No |  |
 | `hazard` | `string` | No |  |
-| `issue_time` | `string` | No |  |
+| `issueTime` | `string` | No |  |
 | `qualifier` | `string` | No |  |
 | `severity` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 
@@ -499,40 +528,40 @@ const metar = client.Metar()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `altim` | `number` | No |  |
-| `cloud` | `any[]` | No |  |
+| `clouds` | `any[]` | No |  |
 | `dewp` | `number` | No |  |
 | `elev` | `number` | No |  |
-| `flt_cat` | `string` | No |  |
-| `icao_id` | `string` | No |  |
+| `fltCat` | `string` | No |  |
+| `icaoId` | `string` | No |  |
 | `lat` | `number` | No |  |
 | `lon` | `number` | No |  |
-| `max_t` | `number` | No |  |
-| `max_t24` | `number` | No |  |
-| `metar_type` | `string` | No |  |
-| `min_t` | `number` | No |  |
-| `min_t24` | `number` | No |  |
-| `most_recent` | `number` | No |  |
+| `maxT` | `number` | No |  |
+| `maxT24` | `number` | No |  |
+| `metarType` | `string` | No |  |
+| `minT` | `number` | No |  |
+| `minT24` | `number` | No |  |
+| `mostRecent` | `number` | No |  |
 | `name` | `string` | No |  |
-| `obs_time` | `string` | No |  |
+| `obsTime` | `string` | No |  |
 | `pcp24hr` | `number` | No |  |
 | `pcp3hr` | `number` | No |  |
 | `pcp6hr` | `number` | No |  |
 | `precip` | `number` | No |  |
-| `pres_tend` | `number` | No |  |
+| `presTend` | `number` | No |  |
 | `prior` | `number` | No |  |
-| `qc_field` | `number` | No |  |
-| `raw_ob` | `string` | No |  |
-| `raw_taf` | `string` | No |  |
-| `report_time` | `string` | No |  |
+| `qcField` | `number` | No |  |
+| `rawOb` | `string` | No |  |
+| `rawTaf` | `string` | No |  |
+| `reportTime` | `string` | No |  |
 | `slp` | `number` | No |  |
 | `snow` | `number` | No |  |
 | `temp` | `number` | No |  |
-| `vert_vi` | `number` | No |  |
+| `vertVis` | `number` | No |  |
 | `visib` | `string` | No |  |
 | `wdir` | `number` | No |  |
 | `wgst` | `number` | No |  |
 | `wspd` | `number` | No |  |
-| `wx_string` | `string` | No |  |
+| `wxString` | `string` | No |  |
 
 ### Operations
 
@@ -582,21 +611,21 @@ const pirep = client.Pirep()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aircraft_type` | `string` | No |  |
-| `altitude_ft` | `number` | No |  |
-| `cloud` | `any[]` | No |  |
+| `aircraftType` | `string` | No |  |
+| `altitudeFt` | `number` | No |  |
+| `clouds` | `any[]` | No |  |
 | `icing` | `string` | No |  |
 | `lat` | `number` | No |  |
 | `lon` | `number` | No |  |
-| `obs_time` | `string` | No |  |
-| `raw_ob` | `string` | No |  |
-| `report_type` | `string` | No |  |
+| `obsTime` | `string` | No |  |
+| `rawOb` | `string` | No |  |
+| `reportType` | `string` | No |  |
 | `temp` | `number` | No |  |
 | `turbulence` | `string` | No |  |
 | `visibility` | `string` | No |  |
 | `wdir` | `number` | No |  |
 | `wspd` | `number` | No |  |
-| `wx_string` | `string` | No |  |
+| `wxString` | `string` | No |  |
 
 ### Operations
 
@@ -648,8 +677,8 @@ const station_info = client.StationInfo()
 | --- | --- | --- | --- |
 | `country` | `string` | No |  |
 | `elev` | `number` | No |  |
-| `iata_id` | `string` | No |  |
-| `icao_id` | `string` | No |  |
+| `iataId` | `string` | No |  |
+| `icaoId` | `string` | No |  |
 | `lat` | `number` | No |  |
 | `lon` | `number` | No |  |
 | `name` | `string` | No |  |
@@ -705,17 +734,17 @@ const taf = client.Taf()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bulletin_time` | `string` | No |  |
+| `bulletinTime` | `string` | No |  |
 | `elev` | `number` | No |  |
-| `fcst` | `any[]` | No |  |
-| `icao_id` | `string` | No |  |
-| `issue_time` | `string` | No |  |
+| `fcsts` | `any[]` | No |  |
+| `icaoId` | `string` | No |  |
+| `issueTime` | `string` | No |  |
 | `lat` | `number` | No |  |
 | `lon` | `number` | No |  |
 | `name` | `string` | No |  |
-| `raw_taf` | `string` | No |  |
-| `valid_time_from` | `string` | No |  |
-| `valid_time_to` | `string` | No |  |
+| `rawTAF` | `string` | No |  |
+| `validTimeFrom` | `string` | No |  |
+| `validTimeTo` | `string` | No |  |
 
 ### Operations
 

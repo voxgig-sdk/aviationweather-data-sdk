@@ -37,7 +37,7 @@ class CwaEntity extends AviationweatherDataEntityBase<Cwa> {
 
 
 
-  async list(this: any, reqmatch?: CwaListMatch, ctrl?: Control): Promise<Cwa[]> {
+  async list(this: any, reqmatch?: CwaListMatch, ctrl?: Control): Promise<CwaEntity[]> {
 
     const utility = this._utility
 

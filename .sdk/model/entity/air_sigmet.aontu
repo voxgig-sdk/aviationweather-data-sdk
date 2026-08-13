@@ -6,17 +6,17 @@ main: kit: entity: air_sigmet: {
 
   fields: [
     {
-      name: "airsigmet_type"
+      name: "airsigmetType"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "altitude_high"
+      name: "altitudeHigh"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "altitude_low"
+      name: "altitudeLow"
       req: false
       type: "`$INTEGER`"
     }
@@ -31,12 +31,12 @@ main: kit: entity: air_sigmet: {
       type: "`$STRING`"
     }
     {
-      name: "issue_time"
+      name: "issueTime"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "raw_air_sigmet"
+      name: "rawAirSigmet"
       req: false
       type: "`$STRING`"
     }
@@ -46,12 +46,12 @@ main: kit: entity: air_sigmet: {
       type: "`$STRING`"
     }
     {
-      name: "valid_time_from"
+      name: "validTimeFrom"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "valid_time_to"
+      name: "validTimeTo"
       req: false
       type: "`$STRING`"
     }

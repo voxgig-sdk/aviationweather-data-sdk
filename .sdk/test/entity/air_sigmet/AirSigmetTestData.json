@@ -2,56 +2,56 @@
   "existing": {
     "air_sigmet": {
       "AIR_SIGMET00": {
-        "airsigmet_type": "s64",
-        "altitude_high": "s65",
-        "altitude_low": "s66",
+        "airsigmetType": "s64",
+        "altitudeHigh": "s65",
+        "altitudeLow": "s66",
         "fir": "s67",
         "hazard": "s68",
-        "issue_time": "s69",
-        "raw_air_sigmet": "s6a",
+        "issueTime": "s69",
+        "rawAirSigmet": "s6a",
         "severity": "s6b",
-        "valid_time_from": "s6c",
-        "valid_time_to": "s6d"
+        "validTimeFrom": "s6c",
+        "validTimeTo": "s6d"
       },
       "AIR_SIGMET01": {
-        "airsigmet_type": "sc8",
-        "altitude_high": "sc9",
-        "altitude_low": "sca",
+        "airsigmetType": "sc8",
+        "altitudeHigh": "sc9",
+        "altitudeLow": "sca",
         "fir": "scb",
         "hazard": "scc",
-        "issue_time": "scd",
-        "raw_air_sigmet": "sce",
+        "issueTime": "scd",
+        "rawAirSigmet": "sce",
         "severity": "scf",
-        "valid_time_from": "sd0",
-        "valid_time_to": "sd1"
+        "validTimeFrom": "sd0",
+        "validTimeTo": "sd1"
       },
       "AIR_SIGMET02": {
-        "airsigmet_type": "s12c",
-        "altitude_high": "s12d",
-        "altitude_low": "s12e",
+        "airsigmetType": "s12c",
+        "altitudeHigh": "s12d",
+        "altitudeLow": "s12e",
         "fir": "s12f",
         "hazard": "s130",
-        "issue_time": "s131",
-        "raw_air_sigmet": "s132",
+        "issueTime": "s131",
+        "rawAirSigmet": "s132",
         "severity": "s133",
-        "valid_time_from": "s134",
-        "valid_time_to": "s135"
+        "validTimeFrom": "s134",
+        "validTimeTo": "s135"
       }
     }
   },
   "new": {
     "air_sigmet": {
       "air_sigmet_ref01": {
-        "airsigmet_type": "s190",
-        "altitude_high": "s191",
-        "altitude_low": "s192",
+        "airsigmetType": "s190",
+        "altitudeHigh": "s191",
+        "altitudeLow": "s192",
         "fir": "s193",
         "hazard": "s194",
-        "issue_time": "s195",
-        "raw_air_sigmet": "s196",
+        "issueTime": "s195",
+        "rawAirSigmet": "s196",
         "severity": "s197",
-        "valid_time_from": "s198",
-        "valid_time_to": "s199"
+        "validTimeFrom": "s198",
+        "validTimeTo": "s199"
       }
     }
   }

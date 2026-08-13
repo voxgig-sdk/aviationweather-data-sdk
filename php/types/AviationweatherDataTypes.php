@@ -15,31 +15,31 @@ declare(strict_types=1);
 /** AirSigmet entity data model. */
 class AirSigmet
 {
-    public ?string $airsigmet_type = null;
-    public ?int $altitude_high = null;
-    public ?int $altitude_low = null;
+    public ?string $airsigmetType = null;
+    public ?int $altitudeHigh = null;
+    public ?int $altitudeLow = null;
     public ?string $fir = null;
     public ?string $hazard = null;
-    public ?string $issue_time = null;
-    public ?string $raw_air_sigmet = null;
+    public ?string $issueTime = null;
+    public ?string $rawAirSigmet = null;
     public ?string $severity = null;
-    public ?string $valid_time_from = null;
-    public ?string $valid_time_to = null;
+    public ?string $validTimeFrom = null;
+    public ?string $validTimeTo = null;
 }
 
 /** Request payload for AirSigmet#list. */
 class AirSigmetListMatch
 {
-    public ?string $airsigmet_type = null;
-    public ?int $altitude_high = null;
-    public ?int $altitude_low = null;
+    public ?string $airsigmetType = null;
+    public ?int $altitudeHigh = null;
+    public ?int $altitudeLow = null;
     public ?string $fir = null;
     public ?string $hazard = null;
-    public ?string $issue_time = null;
-    public ?string $raw_air_sigmet = null;
+    public ?string $issueTime = null;
+    public ?string $rawAirSigmet = null;
     public ?string $severity = null;
-    public ?string $valid_time_from = null;
-    public ?string $valid_time_to = null;
+    public ?string $validTimeFrom = null;
+    public ?string $validTimeTo = null;
 }
 
 /** Airport entity data model. */
@@ -48,8 +48,8 @@ class Airport
     public ?string $city = null;
     public ?string $country = null;
     public ?float $elev = null;
-    public ?string $iata_id = null;
-    public ?string $icao_id = null;
+    public ?string $iataId = null;
+    public ?string $icaoId = null;
     public ?float $lat = null;
     public ?float $lon = null;
     public ?string $name = null;
@@ -62,8 +62,8 @@ class AirportListMatch
     public ?string $city = null;
     public ?string $country = null;
     public ?float $elev = null;
-    public ?string $iata_id = null;
-    public ?string $icao_id = null;
+    public ?string $iataId = null;
+    public ?string $icaoId = null;
     public ?float $lat = null;
     public ?float $lon = null;
     public ?string $name = null;
@@ -84,170 +84,170 @@ class CacheLoadMatch
 class Cwa
 {
     public ?string $cwsu = null;
-    public ?string $issue_time = null;
-    public ?string $raw_text = null;
+    public ?string $issueTime = null;
+    public ?string $rawText = null;
     public ?int $sequence = null;
-    public ?string $series_id = null;
-    public ?string $valid_time_from = null;
-    public ?string $valid_time_to = null;
+    public ?string $seriesId = null;
+    public ?string $validTimeFrom = null;
+    public ?string $validTimeTo = null;
 }
 
 /** Request payload for Cwa#list. */
 class CwaListMatch
 {
     public ?string $cwsu = null;
-    public ?string $issue_time = null;
-    public ?string $raw_text = null;
+    public ?string $issueTime = null;
+    public ?string $rawText = null;
     public ?int $sequence = null;
-    public ?string $series_id = null;
-    public ?string $valid_time_from = null;
-    public ?string $valid_time_to = null;
+    public ?string $seriesId = null;
+    public ?string $validTimeFrom = null;
+    public ?string $validTimeTo = null;
 }
 
 /** GAirmet entity data model. */
 class GAirmet
 {
-    public ?int $altitude_high = null;
-    public ?int $altitude_low = null;
+    public ?int $altitudeHigh = null;
+    public ?int $altitudeLow = null;
     public ?string $hazard = null;
-    public ?string $issue_time = null;
+    public ?string $issueTime = null;
     public ?string $qualifier = null;
     public ?string $severity = null;
-    public ?string $valid_time_from = null;
-    public ?string $valid_time_to = null;
+    public ?string $validTimeFrom = null;
+    public ?string $validTimeTo = null;
 }
 
 /** Request payload for GAirmet#list. */
 class GAirmetListMatch
 {
-    public ?int $altitude_high = null;
-    public ?int $altitude_low = null;
+    public ?int $altitudeHigh = null;
+    public ?int $altitudeLow = null;
     public ?string $hazard = null;
-    public ?string $issue_time = null;
+    public ?string $issueTime = null;
     public ?string $qualifier = null;
     public ?string $severity = null;
-    public ?string $valid_time_from = null;
-    public ?string $valid_time_to = null;
+    public ?string $validTimeFrom = null;
+    public ?string $validTimeTo = null;
 }
 
 /** Metar entity data model. */
 class Metar
 {
     public ?float $altim = null;
-    public ?array $cloud = null;
+    public ?array $clouds = null;
     public ?float $dewp = null;
     public ?float $elev = null;
-    public ?string $flt_cat = null;
-    public ?string $icao_id = null;
+    public ?string $fltCat = null;
+    public ?string $icaoId = null;
     public ?float $lat = null;
     public ?float $lon = null;
-    public ?float $max_t = null;
-    public ?float $max_t24 = null;
-    public ?string $metar_type = null;
-    public ?float $min_t = null;
-    public ?float $min_t24 = null;
-    public ?int $most_recent = null;
+    public ?float $maxT = null;
+    public ?float $maxT24 = null;
+    public ?string $metarType = null;
+    public ?float $minT = null;
+    public ?float $minT24 = null;
+    public ?int $mostRecent = null;
     public ?string $name = null;
-    public ?string $obs_time = null;
+    public ?string $obsTime = null;
     public ?float $pcp24hr = null;
     public ?float $pcp3hr = null;
     public ?float $pcp6hr = null;
     public ?float $precip = null;
-    public ?float $pres_tend = null;
+    public ?float $presTend = null;
     public ?int $prior = null;
-    public ?int $qc_field = null;
-    public ?string $raw_ob = null;
-    public ?string $raw_taf = null;
-    public ?string $report_time = null;
+    public ?int $qcField = null;
+    public ?string $rawOb = null;
+    public ?string $rawTaf = null;
+    public ?string $reportTime = null;
     public ?float $slp = null;
     public ?float $snow = null;
     public ?float $temp = null;
-    public ?int $vert_vi = null;
+    public ?int $vertVis = null;
     public ?string $visib = null;
     public ?int $wdir = null;
     public ?int $wgst = null;
     public ?int $wspd = null;
-    public ?string $wx_string = null;
+    public ?string $wxString = null;
 }
 
 /** Request payload for Metar#list. */
 class MetarListMatch
 {
     public ?float $altim = null;
-    public ?array $cloud = null;
+    public ?array $clouds = null;
     public ?float $dewp = null;
     public ?float $elev = null;
-    public ?string $flt_cat = null;
-    public ?string $icao_id = null;
+    public ?string $fltCat = null;
+    public ?string $icaoId = null;
     public ?float $lat = null;
     public ?float $lon = null;
-    public ?float $max_t = null;
-    public ?float $max_t24 = null;
-    public ?string $metar_type = null;
-    public ?float $min_t = null;
-    public ?float $min_t24 = null;
-    public ?int $most_recent = null;
+    public ?float $maxT = null;
+    public ?float $maxT24 = null;
+    public ?string $metarType = null;
+    public ?float $minT = null;
+    public ?float $minT24 = null;
+    public ?int $mostRecent = null;
     public ?string $name = null;
-    public ?string $obs_time = null;
+    public ?string $obsTime = null;
     public ?float $pcp24hr = null;
     public ?float $pcp3hr = null;
     public ?float $pcp6hr = null;
     public ?float $precip = null;
-    public ?float $pres_tend = null;
+    public ?float $presTend = null;
     public ?int $prior = null;
-    public ?int $qc_field = null;
-    public ?string $raw_ob = null;
-    public ?string $raw_taf = null;
-    public ?string $report_time = null;
+    public ?int $qcField = null;
+    public ?string $rawOb = null;
+    public ?string $rawTaf = null;
+    public ?string $reportTime = null;
     public ?float $slp = null;
     public ?float $snow = null;
     public ?float $temp = null;
-    public ?int $vert_vi = null;
+    public ?int $vertVis = null;
     public ?string $visib = null;
     public ?int $wdir = null;
     public ?int $wgst = null;
     public ?int $wspd = null;
-    public ?string $wx_string = null;
+    public ?string $wxString = null;
 }
 
 /** Pirep entity data model. */
 class Pirep
 {
-    public ?string $aircraft_type = null;
-    public ?int $altitude_ft = null;
-    public ?array $cloud = null;
+    public ?string $aircraftType = null;
+    public ?int $altitudeFt = null;
+    public ?array $clouds = null;
     public ?string $icing = null;
     public ?float $lat = null;
     public ?float $lon = null;
-    public ?string $obs_time = null;
-    public ?string $raw_ob = null;
-    public ?string $report_type = null;
+    public ?string $obsTime = null;
+    public ?string $rawOb = null;
+    public ?string $reportType = null;
     public ?float $temp = null;
     public ?string $turbulence = null;
     public ?string $visibility = null;
     public ?int $wdir = null;
     public ?int $wspd = null;
-    public ?string $wx_string = null;
+    public ?string $wxString = null;
 }
 
 /** Request payload for Pirep#list. */
 class PirepListMatch
 {
-    public ?string $aircraft_type = null;
-    public ?int $altitude_ft = null;
-    public ?array $cloud = null;
+    public ?string $aircraftType = null;
+    public ?int $altitudeFt = null;
+    public ?array $clouds = null;
     public ?string $icing = null;
     public ?float $lat = null;
     public ?float $lon = null;
-    public ?string $obs_time = null;
-    public ?string $raw_ob = null;
-    public ?string $report_type = null;
+    public ?string $obsTime = null;
+    public ?string $rawOb = null;
+    public ?string $reportType = null;
     public ?float $temp = null;
     public ?string $turbulence = null;
     public ?string $visibility = null;
     public ?int $wdir = null;
     public ?int $wspd = null;
-    public ?string $wx_string = null;
+    public ?string $wxString = null;
 }
 
 /** StationInfo entity data model. */
@@ -255,8 +255,8 @@ class StationInfo
 {
     public ?string $country = null;
     public ?float $elev = null;
-    public ?string $iata_id = null;
-    public ?string $icao_id = null;
+    public ?string $iataId = null;
+    public ?string $icaoId = null;
     public ?float $lat = null;
     public ?float $lon = null;
     public ?string $name = null;
@@ -270,8 +270,8 @@ class StationInfoListMatch
 {
     public ?string $country = null;
     public ?float $elev = null;
-    public ?string $iata_id = null;
-    public ?string $icao_id = null;
+    public ?string $iataId = null;
+    public ?string $icaoId = null;
     public ?float $lat = null;
     public ?float $lon = null;
     public ?string $name = null;
@@ -283,33 +283,33 @@ class StationInfoListMatch
 /** Taf entity data model. */
 class Taf
 {
-    public ?string $bulletin_time = null;
+    public ?string $bulletinTime = null;
     public ?float $elev = null;
-    public ?array $fcst = null;
-    public ?string $icao_id = null;
-    public ?string $issue_time = null;
+    public ?array $fcsts = null;
+    public ?string $icaoId = null;
+    public ?string $issueTime = null;
     public ?float $lat = null;
     public ?float $lon = null;
     public ?string $name = null;
-    public ?string $raw_taf = null;
-    public ?string $valid_time_from = null;
-    public ?string $valid_time_to = null;
+    public ?string $rawTAF = null;
+    public ?string $validTimeFrom = null;
+    public ?string $validTimeTo = null;
 }
 
 /** Request payload for Taf#list. */
 class TafListMatch
 {
-    public ?string $bulletin_time = null;
+    public ?string $bulletinTime = null;
     public ?float $elev = null;
-    public ?array $fcst = null;
-    public ?string $icao_id = null;
-    public ?string $issue_time = null;
+    public ?array $fcsts = null;
+    public ?string $icaoId = null;
+    public ?string $issueTime = null;
     public ?float $lat = null;
     public ?float $lon = null;
     public ?string $name = null;
-    public ?string $raw_taf = null;
-    public ?string $valid_time_from = null;
-    public ?string $valid_time_to = null;
+    public ?string $rawTAF = null;
+    public ?string $validTimeFrom = null;
+    public ?string $validTimeTo = null;
 }
 
 /** Tcf entity data model. */

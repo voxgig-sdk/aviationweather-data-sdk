@@ -6,37 +6,37 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface AirSigmet {
-  airsigmet_type?: string
-  altitude_high?: number
-  altitude_low?: number
+  airsigmetType?: string
+  altitudeHigh?: number
+  altitudeLow?: number
   fir?: string
   hazard?: string
-  issue_time?: string
-  raw_air_sigmet?: string
+  issueTime?: string
+  rawAirSigmet?: string
   severity?: string
-  valid_time_from?: string
-  valid_time_to?: string
+  validTimeFrom?: string
+  validTimeTo?: string
 }
 
 export interface AirSigmetListMatch {
-  airsigmet_type?: string
-  altitude_high?: number
-  altitude_low?: number
+  airsigmetType?: string
+  altitudeHigh?: number
+  altitudeLow?: number
   fir?: string
   hazard?: string
-  issue_time?: string
-  raw_air_sigmet?: string
+  issueTime?: string
+  rawAirSigmet?: string
   severity?: string
-  valid_time_from?: string
-  valid_time_to?: string
+  validTimeFrom?: string
+  validTimeTo?: string
 }
 
 export interface Airport {
   city?: string
   country?: string
   elev?: number
-  iata_id?: string
-  icao_id?: string
+  iataId?: string
+  icaoId?: string
   lat?: number
   lon?: number
   name?: string
@@ -47,8 +47,8 @@ export interface AirportListMatch {
   city?: string
   country?: string
   elev?: number
-  iata_id?: string
-  icao_id?: string
+  iataId?: string
+  icaoId?: string
   lat?: number
   lon?: number
   name?: string
@@ -59,167 +59,173 @@ export interface Cache {
 }
 
 export interface CacheLoadMatch {
+
+  // Selects a custom action instead of the plain load:
+  //   'aircraftreportscachecsvgz' | 'aircraftreportscachexmlgz' | 'airsigmetscachecsvgz' | 'airsigmetscachexmlgz' | 'gairmetscachexmlgz' | 'metarscachecsvgz' | 'metarscachexmlgz' | 'stationscachejsongz' | 'stationscachexmlgz' | 'tafscachexmlgz'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 
 export interface Cwa {
   cwsu?: string
-  issue_time?: string
-  raw_text?: string
+  issueTime?: string
+  rawText?: string
   sequence?: number
-  series_id?: string
-  valid_time_from?: string
-  valid_time_to?: string
+  seriesId?: string
+  validTimeFrom?: string
+  validTimeTo?: string
 }
 
 export interface CwaListMatch {
   cwsu?: string
-  issue_time?: string
-  raw_text?: string
+  issueTime?: string
+  rawText?: string
   sequence?: number
-  series_id?: string
-  valid_time_from?: string
-  valid_time_to?: string
+  seriesId?: string
+  validTimeFrom?: string
+  validTimeTo?: string
 }
 
 export interface GAirmet {
-  altitude_high?: number
-  altitude_low?: number
+  altitudeHigh?: number
+  altitudeLow?: number
   hazard?: string
-  issue_time?: string
+  issueTime?: string
   qualifier?: string
   severity?: string
-  valid_time_from?: string
-  valid_time_to?: string
+  validTimeFrom?: string
+  validTimeTo?: string
 }
 
 export interface GAirmetListMatch {
-  altitude_high?: number
-  altitude_low?: number
+  altitudeHigh?: number
+  altitudeLow?: number
   hazard?: string
-  issue_time?: string
+  issueTime?: string
   qualifier?: string
   severity?: string
-  valid_time_from?: string
-  valid_time_to?: string
+  validTimeFrom?: string
+  validTimeTo?: string
 }
 
 export interface Metar {
   altim?: number
-  cloud?: any[]
+  clouds?: any[]
   dewp?: number
   elev?: number
-  flt_cat?: string
-  icao_id?: string
+  fltCat?: string
+  icaoId?: string
   lat?: number
   lon?: number
-  max_t?: number
-  max_t24?: number
-  metar_type?: string
-  min_t?: number
-  min_t24?: number
-  most_recent?: number
+  maxT?: number
+  maxT24?: number
+  metarType?: string
+  minT?: number
+  minT24?: number
+  mostRecent?: number
   name?: string
-  obs_time?: string
+  obsTime?: string
   pcp24hr?: number
   pcp3hr?: number
   pcp6hr?: number
   precip?: number
-  pres_tend?: number
+  presTend?: number
   prior?: number
-  qc_field?: number
-  raw_ob?: string
-  raw_taf?: string
-  report_time?: string
+  qcField?: number
+  rawOb?: string
+  rawTaf?: string
+  reportTime?: string
   slp?: number
   snow?: number
   temp?: number
-  vert_vi?: number
+  vertVis?: number
   visib?: string
   wdir?: number
   wgst?: number
   wspd?: number
-  wx_string?: string
+  wxString?: string
 }
 
 export interface MetarListMatch {
   altim?: number
-  cloud?: any[]
+  clouds?: any[]
   dewp?: number
   elev?: number
-  flt_cat?: string
-  icao_id?: string
+  fltCat?: string
+  icaoId?: string
   lat?: number
   lon?: number
-  max_t?: number
-  max_t24?: number
-  metar_type?: string
-  min_t?: number
-  min_t24?: number
-  most_recent?: number
+  maxT?: number
+  maxT24?: number
+  metarType?: string
+  minT?: number
+  minT24?: number
+  mostRecent?: number
   name?: string
-  obs_time?: string
+  obsTime?: string
   pcp24hr?: number
   pcp3hr?: number
   pcp6hr?: number
   precip?: number
-  pres_tend?: number
+  presTend?: number
   prior?: number
-  qc_field?: number
-  raw_ob?: string
-  raw_taf?: string
-  report_time?: string
+  qcField?: number
+  rawOb?: string
+  rawTaf?: string
+  reportTime?: string
   slp?: number
   snow?: number
   temp?: number
-  vert_vi?: number
+  vertVis?: number
   visib?: string
   wdir?: number
   wgst?: number
   wspd?: number
-  wx_string?: string
+  wxString?: string
 }
 
 export interface Pirep {
-  aircraft_type?: string
-  altitude_ft?: number
-  cloud?: any[]
+  aircraftType?: string
+  altitudeFt?: number
+  clouds?: any[]
   icing?: string
   lat?: number
   lon?: number
-  obs_time?: string
-  raw_ob?: string
-  report_type?: string
+  obsTime?: string
+  rawOb?: string
+  reportType?: string
   temp?: number
   turbulence?: string
   visibility?: string
   wdir?: number
   wspd?: number
-  wx_string?: string
+  wxString?: string
 }
 
 export interface PirepListMatch {
-  aircraft_type?: string
-  altitude_ft?: number
-  cloud?: any[]
+  aircraftType?: string
+  altitudeFt?: number
+  clouds?: any[]
   icing?: string
   lat?: number
   lon?: number
-  obs_time?: string
-  raw_ob?: string
-  report_type?: string
+  obsTime?: string
+  rawOb?: string
+  reportType?: string
   temp?: number
   turbulence?: string
   visibility?: string
   wdir?: number
   wspd?: number
-  wx_string?: string
+  wxString?: string
 }
 
 export interface StationInfo {
   country?: string
   elev?: number
-  iata_id?: string
-  icao_id?: string
+  iataId?: string
+  icaoId?: string
   lat?: number
   lon?: number
   name?: string
@@ -231,8 +237,8 @@ export interface StationInfo {
 export interface StationInfoListMatch {
   country?: string
   elev?: number
-  iata_id?: string
-  icao_id?: string
+  iataId?: string
+  icaoId?: string
   lat?: number
   lon?: number
   name?: string
@@ -242,31 +248,31 @@ export interface StationInfoListMatch {
 }
 
 export interface Taf {
-  bulletin_time?: string
+  bulletinTime?: string
   elev?: number
-  fcst?: any[]
-  icao_id?: string
-  issue_time?: string
+  fcsts?: any[]
+  icaoId?: string
+  issueTime?: string
   lat?: number
   lon?: number
   name?: string
-  raw_taf?: string
-  valid_time_from?: string
-  valid_time_to?: string
+  rawTAF?: string
+  validTimeFrom?: string
+  validTimeTo?: string
 }
 
 export interface TafListMatch {
-  bulletin_time?: string
+  bulletinTime?: string
   elev?: number
-  fcst?: any[]
-  icao_id?: string
-  issue_time?: string
+  fcsts?: any[]
+  icaoId?: string
+  issueTime?: string
   lat?: number
   lon?: number
   name?: string
-  raw_taf?: string
-  valid_time_from?: string
-  valid_time_to?: string
+  rawTAF?: string
+  validTimeFrom?: string
+  validTimeTo?: string
 }
 
 export interface Tcf {

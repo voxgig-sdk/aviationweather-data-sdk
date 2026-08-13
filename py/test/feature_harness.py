@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import AviationweatherDataControl
-from core.error import AviationweatherDataError
-from core.result import AviationweatherDataResult
-from core.spec import AviationweatherDataSpec
+from aviationweatherdata_sdk.config import make_config
+from aviationweatherdata_sdk.features import _make_feature
+from aviationweatherdata_sdk.core.control import AviationweatherDataControl
+from aviationweatherdata_sdk.core.error import AviationweatherDataError
+from aviationweatherdata_sdk.core.result import AviationweatherDataResult
+from aviationweatherdata_sdk.core.spec import AviationweatherDataSpec
 
 
 # True when this SDK was generated with the named feature.

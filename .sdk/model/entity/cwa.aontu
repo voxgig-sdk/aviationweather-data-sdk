@@ -11,12 +11,12 @@ main: kit: entity: cwa: {
       type: "`$STRING`"
     }
     {
-      name: "issue_time"
+      name: "issueTime"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "raw_text"
+      name: "rawText"
       req: false
       type: "`$STRING`"
     }
@@ -26,17 +26,17 @@ main: kit: entity: cwa: {
       type: "`$INTEGER`"
     }
     {
-      name: "series_id"
+      name: "seriesId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "valid_time_from"
+      name: "validTimeFrom"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "valid_time_to"
+      name: "validTimeTo"
       req: false
       type: "`$STRING`"
     }

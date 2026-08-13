@@ -35,7 +35,9 @@ const client = new AviationweatherDataSDK()
 
 ### 2. List airsigmet records
 
-`list()` resolves to an array of AirSigmet objects — iterate it directly:
+`list()` resolves to an array of AirSigmet ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const airsigmets = await client.AirSigmet().list()
@@ -52,8 +54,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const airsigmets = await client.AirSigmet().list()
-  console.log(airsigmets)
+  const airports = await client.Airport().list()
+  console.log(airports)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -119,9 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AviationweatherDataSDK.test()
 
-const airsigmet = await client.AirSigmet().list()
-// airsigmet is a bare entity populated with mock response data
-console.log(airsigmet)
+const airport = await client.Airport().list()
+// airport is the entity, populated with mock response data
+// — call airport.data() for the record itself
+console.log(airport)
 ```
 
 You can also use the instance method:
@@ -136,7 +139,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.AirSigmet()
+const entity = client.Airport()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -295,16 +298,16 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `airsigmet_type` |  |
-| `altitude_high` |  |
-| `altitude_low` |  |
+| `airsigmetType` |  |
+| `altitudeHigh` |  |
+| `altitudeLow` |  |
 | `fir` |  |
 | `hazard` |  |
-| `issue_time` |  |
-| `raw_air_sigmet` |  |
+| `issueTime` |  |
+| `rawAirSigmet` |  |
 | `severity` |  |
-| `valid_time_from` |  |
-| `valid_time_to` |  |
+| `validTimeFrom` |  |
+| `validTimeTo` |  |
 
 Operations: list.
 
@@ -317,8 +320,8 @@ API path: `/api/data/airsigmet`
 | `city` |  |
 | `country` |  |
 | `elev` |  |
-| `iata_id` |  |
-| `icao_id` |  |
+| `iataId` |  |
+| `icaoId` |  |
 | `lat` |  |
 | `lon` |  |
 | `name` |  |
@@ -342,12 +345,12 @@ API path: `/data/cache/aircraftreports.cache.csv.gz`
 | Field | Description |
 | --- | --- |
 | `cwsu` |  |
-| `issue_time` |  |
-| `raw_text` |  |
+| `issueTime` |  |
+| `rawText` |  |
 | `sequence` |  |
-| `series_id` |  |
-| `valid_time_from` |  |
-| `valid_time_to` |  |
+| `seriesId` |  |
+| `validTimeFrom` |  |
+| `validTimeTo` |  |
 
 Operations: list.
 
@@ -357,14 +360,14 @@ API path: `/api/data/cwa`
 
 | Field | Description |
 | --- | --- |
-| `altitude_high` |  |
-| `altitude_low` |  |
+| `altitudeHigh` |  |
+| `altitudeLow` |  |
 | `hazard` |  |
-| `issue_time` |  |
+| `issueTime` |  |
 | `qualifier` |  |
 | `severity` |  |
-| `valid_time_from` |  |
-| `valid_time_to` |  |
+| `validTimeFrom` |  |
+| `validTimeTo` |  |
 
 Operations: list.
 
@@ -375,40 +378,40 @@ API path: `/api/data/gairmet`
 | Field | Description |
 | --- | --- |
 | `altim` |  |
-| `cloud` |  |
+| `clouds` |  |
 | `dewp` |  |
 | `elev` |  |
-| `flt_cat` |  |
-| `icao_id` |  |
+| `fltCat` |  |
+| `icaoId` |  |
 | `lat` |  |
 | `lon` |  |
-| `max_t` |  |
-| `max_t24` |  |
-| `metar_type` |  |
-| `min_t` |  |
-| `min_t24` |  |
-| `most_recent` |  |
+| `maxT` |  |
+| `maxT24` |  |
+| `metarType` |  |
+| `minT` |  |
+| `minT24` |  |
+| `mostRecent` |  |
 | `name` |  |
-| `obs_time` |  |
+| `obsTime` |  |
 | `pcp24hr` |  |
 | `pcp3hr` |  |
 | `pcp6hr` |  |
 | `precip` |  |
-| `pres_tend` |  |
+| `presTend` |  |
 | `prior` |  |
-| `qc_field` |  |
-| `raw_ob` |  |
-| `raw_taf` |  |
-| `report_time` |  |
+| `qcField` |  |
+| `rawOb` |  |
+| `rawTaf` |  |
+| `reportTime` |  |
 | `slp` |  |
 | `snow` |  |
 | `temp` |  |
-| `vert_vi` |  |
+| `vertVis` |  |
 | `visib` |  |
 | `wdir` |  |
 | `wgst` |  |
 | `wspd` |  |
-| `wx_string` |  |
+| `wxString` |  |
 
 Operations: list.
 
@@ -418,21 +421,21 @@ API path: `/api/data/metar`
 
 | Field | Description |
 | --- | --- |
-| `aircraft_type` |  |
-| `altitude_ft` |  |
-| `cloud` |  |
+| `aircraftType` |  |
+| `altitudeFt` |  |
+| `clouds` |  |
 | `icing` |  |
 | `lat` |  |
 | `lon` |  |
-| `obs_time` |  |
-| `raw_ob` |  |
-| `report_type` |  |
+| `obsTime` |  |
+| `rawOb` |  |
+| `reportType` |  |
 | `temp` |  |
 | `turbulence` |  |
 | `visibility` |  |
 | `wdir` |  |
 | `wspd` |  |
-| `wx_string` |  |
+| `wxString` |  |
 
 Operations: list.
 
@@ -444,8 +447,8 @@ API path: `/api/data/pirep`
 | --- | --- |
 | `country` |  |
 | `elev` |  |
-| `iata_id` |  |
-| `icao_id` |  |
+| `iataId` |  |
+| `icaoId` |  |
 | `lat` |  |
 | `lon` |  |
 | `name` |  |
@@ -461,17 +464,17 @@ API path: `/api/data/stationinfo`
 
 | Field | Description |
 | --- | --- |
-| `bulletin_time` |  |
+| `bulletinTime` |  |
 | `elev` |  |
-| `fcst` |  |
-| `icao_id` |  |
-| `issue_time` |  |
+| `fcsts` |  |
+| `icaoId` |  |
+| `issueTime` |  |
 | `lat` |  |
 | `lon` |  |
 | `name` |  |
-| `raw_taf` |  |
-| `valid_time_from` |  |
-| `valid_time_to` |  |
+| `rawTAF` |  |
+| `validTimeFrom` |  |
+| `validTimeTo` |  |
 
 Operations: list.
 
@@ -505,16 +508,16 @@ Create an instance: `const air_sigmet = client.AirSigmet()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airsigmet_type` | `string` |  |
-| `altitude_high` | `number` |  |
-| `altitude_low` | `number` |  |
+| `airsigmetType` | `string` |  |
+| `altitudeHigh` | `number` |  |
+| `altitudeLow` | `number` |  |
 | `fir` | `string` |  |
 | `hazard` | `string` |  |
-| `issue_time` | `string` |  |
-| `raw_air_sigmet` | `string` |  |
+| `issueTime` | `string` |  |
+| `rawAirSigmet` | `string` |  |
 | `severity` | `string` |  |
-| `valid_time_from` | `string` |  |
-| `valid_time_to` | `string` |  |
+| `validTimeFrom` | `string` |  |
+| `validTimeTo` | `string` |  |
 
 #### Example: List
 
@@ -540,8 +543,8 @@ Create an instance: `const airport = client.Airport()`
 | `city` | `string` |  |
 | `country` | `string` |  |
 | `elev` | `number` |  |
-| `iata_id` | `string` |  |
-| `icao_id` | `string` |  |
+| `iataId` | `string` |  |
+| `icaoId` | `string` |  |
 | `lat` | `number` |  |
 | `lon` | `number` |  |
 | `name` | `string` |  |
@@ -586,12 +589,12 @@ Create an instance: `const cwa = client.Cwa()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `cwsu` | `string` |  |
-| `issue_time` | `string` |  |
-| `raw_text` | `string` |  |
+| `issueTime` | `string` |  |
+| `rawText` | `string` |  |
 | `sequence` | `number` |  |
-| `series_id` | `string` |  |
-| `valid_time_from` | `string` |  |
-| `valid_time_to` | `string` |  |
+| `seriesId` | `string` |  |
+| `validTimeFrom` | `string` |  |
+| `validTimeTo` | `string` |  |
 
 #### Example: List
 
@@ -614,14 +617,14 @@ Create an instance: `const g_airmet = client.GAirmet()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altitude_high` | `number` |  |
-| `altitude_low` | `number` |  |
+| `altitudeHigh` | `number` |  |
+| `altitudeLow` | `number` |  |
 | `hazard` | `string` |  |
-| `issue_time` | `string` |  |
+| `issueTime` | `string` |  |
 | `qualifier` | `string` |  |
 | `severity` | `string` |  |
-| `valid_time_from` | `string` |  |
-| `valid_time_to` | `string` |  |
+| `validTimeFrom` | `string` |  |
+| `validTimeTo` | `string` |  |
 
 #### Example: List
 
@@ -645,40 +648,40 @@ Create an instance: `const metar = client.Metar()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `altim` | `number` |  |
-| `cloud` | `any[]` |  |
+| `clouds` | `any[]` |  |
 | `dewp` | `number` |  |
 | `elev` | `number` |  |
-| `flt_cat` | `string` |  |
-| `icao_id` | `string` |  |
+| `fltCat` | `string` |  |
+| `icaoId` | `string` |  |
 | `lat` | `number` |  |
 | `lon` | `number` |  |
-| `max_t` | `number` |  |
-| `max_t24` | `number` |  |
-| `metar_type` | `string` |  |
-| `min_t` | `number` |  |
-| `min_t24` | `number` |  |
-| `most_recent` | `number` |  |
+| `maxT` | `number` |  |
+| `maxT24` | `number` |  |
+| `metarType` | `string` |  |
+| `minT` | `number` |  |
+| `minT24` | `number` |  |
+| `mostRecent` | `number` |  |
 | `name` | `string` |  |
-| `obs_time` | `string` |  |
+| `obsTime` | `string` |  |
 | `pcp24hr` | `number` |  |
 | `pcp3hr` | `number` |  |
 | `pcp6hr` | `number` |  |
 | `precip` | `number` |  |
-| `pres_tend` | `number` |  |
+| `presTend` | `number` |  |
 | `prior` | `number` |  |
-| `qc_field` | `number` |  |
-| `raw_ob` | `string` |  |
-| `raw_taf` | `string` |  |
-| `report_time` | `string` |  |
+| `qcField` | `number` |  |
+| `rawOb` | `string` |  |
+| `rawTaf` | `string` |  |
+| `reportTime` | `string` |  |
 | `slp` | `number` |  |
 | `snow` | `number` |  |
 | `temp` | `number` |  |
-| `vert_vi` | `number` |  |
+| `vertVis` | `number` |  |
 | `visib` | `string` |  |
 | `wdir` | `number` |  |
 | `wgst` | `number` |  |
 | `wspd` | `number` |  |
-| `wx_string` | `string` |  |
+| `wxString` | `string` |  |
 
 #### Example: List
 
@@ -701,21 +704,21 @@ Create an instance: `const pirep = client.Pirep()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aircraft_type` | `string` |  |
-| `altitude_ft` | `number` |  |
-| `cloud` | `any[]` |  |
+| `aircraftType` | `string` |  |
+| `altitudeFt` | `number` |  |
+| `clouds` | `any[]` |  |
 | `icing` | `string` |  |
 | `lat` | `number` |  |
 | `lon` | `number` |  |
-| `obs_time` | `string` |  |
-| `raw_ob` | `string` |  |
-| `report_type` | `string` |  |
+| `obsTime` | `string` |  |
+| `rawOb` | `string` |  |
+| `reportType` | `string` |  |
 | `temp` | `number` |  |
 | `turbulence` | `string` |  |
 | `visibility` | `string` |  |
 | `wdir` | `number` |  |
 | `wspd` | `number` |  |
-| `wx_string` | `string` |  |
+| `wxString` | `string` |  |
 
 #### Example: List
 
@@ -740,8 +743,8 @@ Create an instance: `const station_info = client.StationInfo()`
 | --- | --- | --- |
 | `country` | `string` |  |
 | `elev` | `number` |  |
-| `iata_id` | `string` |  |
-| `icao_id` | `string` |  |
+| `iataId` | `string` |  |
+| `icaoId` | `string` |  |
 | `lat` | `number` |  |
 | `lon` | `number` |  |
 | `name` | `string` |  |
@@ -770,17 +773,17 @@ Create an instance: `const taf = client.Taf()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bulletin_time` | `string` |  |
+| `bulletinTime` | `string` |  |
 | `elev` | `number` |  |
-| `fcst` | `any[]` |  |
-| `icao_id` | `string` |  |
-| `issue_time` | `string` |  |
+| `fcsts` | `any[]` |  |
+| `icaoId` | `string` |  |
+| `issueTime` | `string` |  |
 | `lat` | `number` |  |
 | `lon` | `number` |  |
 | `name` | `string` |  |
-| `raw_taf` | `string` |  |
-| `valid_time_from` | `string` |  |
-| `valid_time_to` | `string` |  |
+| `rawTAF` | `string` |  |
+| `validTimeFrom` | `string` |  |
+| `validTimeTo` | `string` |  |
 
 #### Example: List
 
@@ -875,11 +878,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const airsigmet = client.AirSigmet()
-await airsigmet.list()
+const airport = client.Airport()
+await airport.list()
 
-// airsigmet.data() now returns the airsigmet data from the last `list`
-// airsigmet.match() returns the last match criteria
+// airport.data() now returns the airport data from the last `list`
+// airport.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
