@@ -28,7 +28,7 @@ class AviationweatherDataSDK
     utility = AviationweatherDataUtility.new
     @_utility = utility
 
-    config = AviationweatherDataConfig.make_config
+    config = AviationweatherDataConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

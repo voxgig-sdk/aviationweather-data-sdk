@@ -40,7 +40,7 @@ class AviationweatherDataSDK
         $utility = new AviationweatherDataUtility();
         $this->_utility = $utility;
 
-        $config = AviationweatherDataConfig::make_config();
+        $config = AviationweatherDataConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
