@@ -36,60 +36,70 @@
               "active": true,
               "name": "airsigmetType",
               "req": false,
+              "short": "SIGMET type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "altitudeHigh",
               "req": false,
+              "short": "Upper altitude in feet MSL",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "altitudeLow",
               "req": false,
+              "short": "Lower altitude in feet MSL",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "fir",
               "req": false,
+              "short": "Flight Information Region",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "hazard",
               "req": false,
+              "short": "Hazard type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "issueTime",
               "req": false,
+              "short": "Issue time in ISO8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "rawAirSigmet",
               "req": false,
+              "short": "Raw SIGMET text",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "severity",
               "req": false,
+              "short": "Severity level",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "validTimeFrom",
               "req": false,
+              "short": "Valid time from in ISO8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "validTimeTo",
               "req": false,
+              "short": "Valid time to in ISO8601 format",
               "type": "`$STRING`"
             }
           ],
@@ -176,54 +186,63 @@
               "active": true,
               "name": "city",
               "req": false,
+              "short": "City",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "country",
               "req": false,
+              "short": "Country code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "elev",
               "req": false,
+              "short": "Elevation in meters",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "iataId",
               "req": false,
+              "short": "IATA identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "icaoId",
               "req": false,
+              "short": "ICAO airport identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "lat",
               "req": false,
+              "short": "Latitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "lon",
               "req": false,
+              "short": "Longitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Airport name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "state",
               "req": false,
+              "short": "State or province",
               "type": "`$STRING`"
             }
           ],
@@ -510,42 +529,49 @@
               "active": true,
               "name": "cwsu",
               "req": false,
+              "short": "Center Weather Service Unit",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "issueTime",
               "req": false,
+              "short": "Issue time in ISO8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "rawText",
               "req": false,
+              "short": "Raw CWA text",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "sequence",
               "req": false,
+              "short": "Sequence number",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "seriesId",
               "req": false,
+              "short": "Series identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "validTimeFrom",
               "req": false,
+              "short": "Valid time from in ISO8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "validTimeTo",
               "req": false,
+              "short": "Valid time to in ISO8601 format",
               "type": "`$STRING`"
             }
           ],
@@ -623,48 +649,56 @@
               "active": true,
               "name": "altitudeHigh",
               "req": false,
+              "short": "Upper altitude in feet MSL",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "altitudeLow",
               "req": false,
+              "short": "Lower altitude in feet MSL",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "hazard",
               "req": false,
+              "short": "Hazard type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "issueTime",
               "req": false,
+              "short": "Issue time in ISO8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "qualifier",
               "req": false,
+              "short": "Forecast qualifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "severity",
               "req": false,
+              "short": "Severity level",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "validTimeFrom",
               "req": false,
+              "short": "Valid time from in ISO8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "validTimeTo",
               "req": false,
+              "short": "Valid time to in ISO8601 format",
               "type": "`$STRING`"
             }
           ],
@@ -751,210 +785,245 @@
               "active": true,
               "name": "altim",
               "req": false,
+              "short": "Altimeter setting in inches of mercury",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "clouds",
               "req": false,
+              "short": "Cloud layers",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "dewp",
               "req": false,
+              "short": "Dewpoint in Celsius",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "elev",
               "req": false,
+              "short": "Elevation in meters",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "fltCat",
               "req": false,
+              "short": "Flight category (VFR, MVFR, IFR, LIFR)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "icaoId",
               "req": false,
+              "short": "ICAO station identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "lat",
               "req": false,
+              "short": "Latitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "lon",
               "req": false,
+              "short": "Longitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "maxT",
               "req": false,
+              "short": "Maximum temperature",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "maxT24",
               "req": false,
+              "short": "24-hour maximum temperature",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "metarType",
               "req": false,
+              "short": "METAR type (METAR or SPECI)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "minT",
               "req": false,
+              "short": "Minimum temperature",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "minT24",
               "req": false,
+              "short": "24-hour minimum temperature",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "mostRecent",
               "req": false,
+              "short": "Most recent observation flag",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Station name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "obsTime",
               "req": false,
+              "short": "Observation time in ISO8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "pcp24hr",
               "req": false,
+              "short": "24-hour precipitation",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "pcp3hr",
               "req": false,
+              "short": "3-hour precipitation",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "pcp6hr",
               "req": false,
+              "short": "6-hour precipitation",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "precip",
               "req": false,
+              "short": "Precipitation",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "presTend",
               "req": false,
+              "short": "Pressure tendency",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "prior",
               "req": false,
+              "short": "Prior observation indicator",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "qcField",
               "req": false,
+              "short": "Quality control field",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "rawOb",
               "req": false,
+              "short": "Raw METAR observation text",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "rawTaf",
               "req": false,
+              "short": "Raw TAF if available",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "reportTime",
               "req": false,
+              "short": "Report time in ISO8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "slp",
               "req": false,
+              "short": "Sea level pressure",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "snow",
               "req": false,
+              "short": "Snow depth",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "temp",
               "req": false,
+              "short": "Temperature in Celsius",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "vertVis",
               "req": false,
+              "short": "Vertical visibility",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "visib",
               "req": false,
+              "short": "Visibility",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "wdir",
               "req": false,
+              "short": "Wind direction in degrees",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "wgst",
               "req": false,
+              "short": "Wind gust in knots",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "wspd",
               "req": false,
+              "short": "Wind speed in knots",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "wxString",
               "req": false,
+              "short": "Weather phenomena string",
               "type": "`$STRING`"
             }
           ],
@@ -1050,90 +1119,105 @@
               "active": true,
               "name": "aircraftType",
               "req": false,
+              "short": "Aircraft type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "altitudeFt",
               "req": false,
+              "short": "Altitude in feet MSL",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "clouds",
               "req": false,
+              "short": "Cloud reports",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "icing",
               "req": false,
+              "short": "Icing report",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "lat",
               "req": false,
+              "short": "Latitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "lon",
               "req": false,
+              "short": "Longitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "obsTime",
               "req": false,
+              "short": "Observation time in ISO8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "rawOb",
               "req": false,
+              "short": "Raw PIREP text",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "reportType",
               "req": false,
+              "short": "Report type (PIREP or AIREP)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "temp",
               "req": false,
+              "short": "Temperature in Celsius",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "turbulence",
               "req": false,
+              "short": "Turbulence report",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "visibility",
               "req": false,
+              "short": "Visibility",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "wdir",
               "req": false,
+              "short": "Wind direction in degrees",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "wspd",
               "req": false,
+              "short": "Wind speed in knots",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "wxString",
               "req": false,
+              "short": "Weather phenomena string",
               "type": "`$STRING`"
             }
           ],
@@ -1220,60 +1304,70 @@
               "active": true,
               "name": "country",
               "req": false,
+              "short": "Country code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "elev",
               "req": false,
+              "short": "Elevation in meters",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "iataId",
               "req": false,
+              "short": "IATA identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "icaoId",
               "req": false,
+              "short": "ICAO station identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "lat",
               "req": false,
+              "short": "Latitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "lon",
               "req": false,
+              "short": "Longitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Station name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "priority",
               "req": false,
+              "short": "Priority level",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "site",
               "req": false,
+              "short": "Site type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "state",
               "req": false,
+              "short": "State or province",
               "type": "`$STRING`"
             }
           ],
@@ -1351,66 +1445,77 @@
               "active": true,
               "name": "bulletinTime",
               "req": false,
+              "short": "Bulletin time in ISO8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "elev",
               "req": false,
+              "short": "Elevation in meters",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "fcsts",
               "req": false,
+              "short": "Forecast periods",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "icaoId",
               "req": false,
+              "short": "ICAO station identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "issueTime",
               "req": false,
+              "short": "TAF issue time in ISO8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "lat",
               "req": false,
+              "short": "Latitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "lon",
               "req": false,
+              "short": "Longitude",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Station name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "rawTAF",
               "req": false,
+              "short": "Raw TAF forecast text",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "validTimeFrom",
               "req": false,
+              "short": "Valid time from in ISO8601 format",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "validTimeTo",
               "req": false,
+              "short": "Valid time to in ISO8601 format",
               "type": "`$STRING`"
             }
           ],

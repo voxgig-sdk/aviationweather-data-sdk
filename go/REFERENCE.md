@@ -134,16 +134,16 @@ fmt.Println(airSigmet.GetName()) // "air_sigmet"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `airsigmetType` | `string` | No |  |
-| `altitudeHigh` | `int` | No |  |
-| `altitudeLow` | `int` | No |  |
-| `fir` | `string` | No |  |
-| `hazard` | `string` | No |  |
-| `issueTime` | `string` | No |  |
-| `rawAirSigmet` | `string` | No |  |
-| `severity` | `string` | No |  |
-| `validTimeFrom` | `string` | No |  |
-| `validTimeTo` | `string` | No |  |
+| `airsigmetType` | `string` | No | SIGMET type |
+| `altitudeHigh` | `int` | No | Upper altitude in feet MSL |
+| `altitudeLow` | `int` | No | Lower altitude in feet MSL |
+| `fir` | `string` | No | Flight Information Region |
+| `hazard` | `string` | No | Hazard type |
+| `issueTime` | `string` | No | Issue time in ISO8601 format |
+| `rawAirSigmet` | `string` | No | Raw SIGMET text |
+| `severity` | `string` | No | Severity level |
+| `validTimeFrom` | `string` | No | Valid time from in ISO8601 format |
+| `validTimeTo` | `string` | No | Valid time to in ISO8601 format |
 
 ### Operations
 
@@ -194,15 +194,15 @@ fmt.Println(airport.GetName()) // "airport"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `city` | `string` | No |  |
-| `country` | `string` | No |  |
-| `elev` | `float64` | No |  |
-| `iataId` | `string` | No |  |
-| `icaoId` | `string` | No |  |
-| `lat` | `float64` | No |  |
-| `lon` | `float64` | No |  |
-| `name` | `string` | No |  |
-| `state` | `string` | No |  |
+| `city` | `string` | No | City |
+| `country` | `string` | No | Country code |
+| `elev` | `float64` | No | Elevation in meters |
+| `iataId` | `string` | No | IATA identifier |
+| `icaoId` | `string` | No | ICAO airport identifier |
+| `lat` | `float64` | No | Latitude |
+| `lon` | `float64` | No | Longitude |
+| `name` | `string` | No | Airport name |
+| `state` | `string` | No | State or province |
 
 ### Operations
 
@@ -298,13 +298,13 @@ fmt.Println(cwa.GetName()) // "cwa"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cwsu` | `string` | No |  |
-| `issueTime` | `string` | No |  |
-| `rawText` | `string` | No |  |
-| `sequence` | `int` | No |  |
-| `seriesId` | `string` | No |  |
-| `validTimeFrom` | `string` | No |  |
-| `validTimeTo` | `string` | No |  |
+| `cwsu` | `string` | No | Center Weather Service Unit |
+| `issueTime` | `string` | No | Issue time in ISO8601 format |
+| `rawText` | `string` | No | Raw CWA text |
+| `sequence` | `int` | No | Sequence number |
+| `seriesId` | `string` | No | Series identifier |
+| `validTimeFrom` | `string` | No | Valid time from in ISO8601 format |
+| `validTimeTo` | `string` | No | Valid time to in ISO8601 format |
 
 ### Operations
 
@@ -355,14 +355,14 @@ fmt.Println(gAirmet.GetName()) // "g_airmet"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altitudeHigh` | `int` | No |  |
-| `altitudeLow` | `int` | No |  |
-| `hazard` | `string` | No |  |
-| `issueTime` | `string` | No |  |
-| `qualifier` | `string` | No |  |
-| `severity` | `string` | No |  |
-| `validTimeFrom` | `string` | No |  |
-| `validTimeTo` | `string` | No |  |
+| `altitudeHigh` | `int` | No | Upper altitude in feet MSL |
+| `altitudeLow` | `int` | No | Lower altitude in feet MSL |
+| `hazard` | `string` | No | Hazard type |
+| `issueTime` | `string` | No | Issue time in ISO8601 format |
+| `qualifier` | `string` | No | Forecast qualifier |
+| `severity` | `string` | No | Severity level |
+| `validTimeFrom` | `string` | No | Valid time from in ISO8601 format |
+| `validTimeTo` | `string` | No | Valid time to in ISO8601 format |
 
 ### Operations
 
@@ -413,41 +413,41 @@ fmt.Println(metar.GetName()) // "metar"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `altim` | `float64` | No |  |
-| `clouds` | `[]any` | No |  |
-| `dewp` | `float64` | No |  |
-| `elev` | `float64` | No |  |
-| `fltCat` | `string` | No |  |
-| `icaoId` | `string` | No |  |
-| `lat` | `float64` | No |  |
-| `lon` | `float64` | No |  |
-| `maxT` | `float64` | No |  |
-| `maxT24` | `float64` | No |  |
-| `metarType` | `string` | No |  |
-| `minT` | `float64` | No |  |
-| `minT24` | `float64` | No |  |
-| `mostRecent` | `int` | No |  |
-| `name` | `string` | No |  |
-| `obsTime` | `string` | No |  |
-| `pcp24hr` | `float64` | No |  |
-| `pcp3hr` | `float64` | No |  |
-| `pcp6hr` | `float64` | No |  |
-| `precip` | `float64` | No |  |
-| `presTend` | `float64` | No |  |
-| `prior` | `int` | No |  |
-| `qcField` | `int` | No |  |
-| `rawOb` | `string` | No |  |
-| `rawTaf` | `string` | No |  |
-| `reportTime` | `string` | No |  |
-| `slp` | `float64` | No |  |
-| `snow` | `float64` | No |  |
-| `temp` | `float64` | No |  |
-| `vertVis` | `int` | No |  |
-| `visib` | `string` | No |  |
-| `wdir` | `int` | No |  |
-| `wgst` | `int` | No |  |
-| `wspd` | `int` | No |  |
-| `wxString` | `string` | No |  |
+| `altim` | `float64` | No | Altimeter setting in inches of mercury |
+| `clouds` | `[]any` | No | Cloud layers |
+| `dewp` | `float64` | No | Dewpoint in Celsius |
+| `elev` | `float64` | No | Elevation in meters |
+| `fltCat` | `string` | No | Flight category (VFR, MVFR, IFR, LIFR) |
+| `icaoId` | `string` | No | ICAO station identifier |
+| `lat` | `float64` | No | Latitude |
+| `lon` | `float64` | No | Longitude |
+| `maxT` | `float64` | No | Maximum temperature |
+| `maxT24` | `float64` | No | 24-hour maximum temperature |
+| `metarType` | `string` | No | METAR type (METAR or SPECI) |
+| `minT` | `float64` | No | Minimum temperature |
+| `minT24` | `float64` | No | 24-hour minimum temperature |
+| `mostRecent` | `int` | No | Most recent observation flag |
+| `name` | `string` | No | Station name |
+| `obsTime` | `string` | No | Observation time in ISO8601 format |
+| `pcp24hr` | `float64` | No | 24-hour precipitation |
+| `pcp3hr` | `float64` | No | 3-hour precipitation |
+| `pcp6hr` | `float64` | No | 6-hour precipitation |
+| `precip` | `float64` | No | Precipitation |
+| `presTend` | `float64` | No | Pressure tendency |
+| `prior` | `int` | No | Prior observation indicator |
+| `qcField` | `int` | No | Quality control field |
+| `rawOb` | `string` | No | Raw METAR observation text |
+| `rawTaf` | `string` | No | Raw TAF if available |
+| `reportTime` | `string` | No | Report time in ISO8601 format |
+| `slp` | `float64` | No | Sea level pressure |
+| `snow` | `float64` | No | Snow depth |
+| `temp` | `float64` | No | Temperature in Celsius |
+| `vertVis` | `int` | No | Vertical visibility |
+| `visib` | `string` | No | Visibility |
+| `wdir` | `int` | No | Wind direction in degrees |
+| `wgst` | `int` | No | Wind gust in knots |
+| `wspd` | `int` | No | Wind speed in knots |
+| `wxString` | `string` | No | Weather phenomena string |
 
 ### Operations
 
@@ -498,21 +498,21 @@ fmt.Println(pirep.GetName()) // "pirep"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `aircraftType` | `string` | No |  |
-| `altitudeFt` | `int` | No |  |
-| `clouds` | `[]any` | No |  |
-| `icing` | `string` | No |  |
-| `lat` | `float64` | No |  |
-| `lon` | `float64` | No |  |
-| `obsTime` | `string` | No |  |
-| `rawOb` | `string` | No |  |
-| `reportType` | `string` | No |  |
-| `temp` | `float64` | No |  |
-| `turbulence` | `string` | No |  |
-| `visibility` | `string` | No |  |
-| `wdir` | `int` | No |  |
-| `wspd` | `int` | No |  |
-| `wxString` | `string` | No |  |
+| `aircraftType` | `string` | No | Aircraft type |
+| `altitudeFt` | `int` | No | Altitude in feet MSL |
+| `clouds` | `[]any` | No | Cloud reports |
+| `icing` | `string` | No | Icing report |
+| `lat` | `float64` | No | Latitude |
+| `lon` | `float64` | No | Longitude |
+| `obsTime` | `string` | No | Observation time in ISO8601 format |
+| `rawOb` | `string` | No | Raw PIREP text |
+| `reportType` | `string` | No | Report type (PIREP or AIREP) |
+| `temp` | `float64` | No | Temperature in Celsius |
+| `turbulence` | `string` | No | Turbulence report |
+| `visibility` | `string` | No | Visibility |
+| `wdir` | `int` | No | Wind direction in degrees |
+| `wspd` | `int` | No | Wind speed in knots |
+| `wxString` | `string` | No | Weather phenomena string |
 
 ### Operations
 
@@ -563,16 +563,16 @@ fmt.Println(stationInfo.GetName()) // "station_info"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country` | `string` | No |  |
-| `elev` | `float64` | No |  |
-| `iataId` | `string` | No |  |
-| `icaoId` | `string` | No |  |
-| `lat` | `float64` | No |  |
-| `lon` | `float64` | No |  |
-| `name` | `string` | No |  |
-| `priority` | `int` | No |  |
-| `site` | `string` | No |  |
-| `state` | `string` | No |  |
+| `country` | `string` | No | Country code |
+| `elev` | `float64` | No | Elevation in meters |
+| `iataId` | `string` | No | IATA identifier |
+| `icaoId` | `string` | No | ICAO station identifier |
+| `lat` | `float64` | No | Latitude |
+| `lon` | `float64` | No | Longitude |
+| `name` | `string` | No | Station name |
+| `priority` | `int` | No | Priority level |
+| `site` | `string` | No | Site type |
+| `state` | `string` | No | State or province |
 
 ### Operations
 
@@ -623,17 +623,17 @@ fmt.Println(taf.GetName()) // "taf"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bulletinTime` | `string` | No |  |
-| `elev` | `float64` | No |  |
-| `fcsts` | `[]any` | No |  |
-| `icaoId` | `string` | No |  |
-| `issueTime` | `string` | No |  |
-| `lat` | `float64` | No |  |
-| `lon` | `float64` | No |  |
-| `name` | `string` | No |  |
-| `rawTAF` | `string` | No |  |
-| `validTimeFrom` | `string` | No |  |
-| `validTimeTo` | `string` | No |  |
+| `bulletinTime` | `string` | No | Bulletin time in ISO8601 format |
+| `elev` | `float64` | No | Elevation in meters |
+| `fcsts` | `[]any` | No | Forecast periods |
+| `icaoId` | `string` | No | ICAO station identifier |
+| `issueTime` | `string` | No | TAF issue time in ISO8601 format |
+| `lat` | `float64` | No | Latitude |
+| `lon` | `float64` | No | Longitude |
+| `name` | `string` | No | Station name |
+| `rawTAF` | `string` | No | Raw TAF forecast text |
+| `validTimeFrom` | `string` | No | Valid time from in ISO8601 format |
+| `validTimeTo` | `string` | No | Valid time to in ISO8601 format |
 
 ### Operations
 

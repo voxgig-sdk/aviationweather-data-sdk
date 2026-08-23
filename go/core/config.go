@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "AviationweatherData",
+			"slug": "aviationweather-data",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -42,42 +45,52 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "airsigmetType",
+						"short": "SIGMET type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "altitudeHigh",
+						"short": "Upper altitude in feet MSL",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "altitudeLow",
+						"short": "Lower altitude in feet MSL",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "fir",
+						"short": "Flight Information Region",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "hazard",
+						"short": "Hazard type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "issueTime",
+						"short": "Issue time in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rawAirSigmet",
+						"short": "Raw SIGMET text",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "severity",
+						"short": "Severity level",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "validTimeFrom",
+						"short": "Valid time from in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "validTimeTo",
+						"short": "Valid time to in ISO8601 format",
 						"type": "`$STRING`",
 					},
 				},
@@ -149,38 +162,47 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "city",
+						"short": "City",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country",
+						"short": "Country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "elev",
+						"short": "Elevation in meters",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "iataId",
+						"short": "IATA identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "icaoId",
+						"short": "ICAO airport identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "lat",
+						"short": "Latitude",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "lon",
+						"short": "Longitude",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Airport name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "state",
+						"short": "State or province",
 						"type": "`$STRING`",
 					},
 				},
@@ -440,30 +462,37 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "cwsu",
+						"short": "Center Weather Service Unit",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "issueTime",
+						"short": "Issue time in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rawText",
+						"short": "Raw CWA text",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "sequence",
+						"short": "Sequence number",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "seriesId",
+						"short": "Series identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "validTimeFrom",
+						"short": "Valid time from in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "validTimeTo",
+						"short": "Valid time to in ISO8601 format",
 						"type": "`$STRING`",
 					},
 				},
@@ -528,34 +557,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "altitudeHigh",
+						"short": "Upper altitude in feet MSL",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "altitudeLow",
+						"short": "Lower altitude in feet MSL",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "hazard",
+						"short": "Hazard type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "issueTime",
+						"short": "Issue time in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "qualifier",
+						"short": "Forecast qualifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "severity",
+						"short": "Severity level",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "validTimeFrom",
+						"short": "Valid time from in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "validTimeTo",
+						"short": "Valid time to in ISO8601 format",
 						"type": "`$STRING`",
 					},
 				},
@@ -627,142 +664,177 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "altim",
+						"short": "Altimeter setting in inches of mercury",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "clouds",
+						"short": "Cloud layers",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "dewp",
+						"short": "Dewpoint in Celsius",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "elev",
+						"short": "Elevation in meters",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "fltCat",
+						"short": "Flight category (VFR, MVFR, IFR, LIFR)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "icaoId",
+						"short": "ICAO station identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "lat",
+						"short": "Latitude",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "lon",
+						"short": "Longitude",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "maxT",
+						"short": "Maximum temperature",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "maxT24",
+						"short": "24-hour maximum temperature",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "metarType",
+						"short": "METAR type (METAR or SPECI)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "minT",
+						"short": "Minimum temperature",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "minT24",
+						"short": "24-hour minimum temperature",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "mostRecent",
+						"short": "Most recent observation flag",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Station name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "obsTime",
+						"short": "Observation time in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "pcp24hr",
+						"short": "24-hour precipitation",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "pcp3hr",
+						"short": "3-hour precipitation",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "pcp6hr",
+						"short": "6-hour precipitation",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "precip",
+						"short": "Precipitation",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "presTend",
+						"short": "Pressure tendency",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "prior",
+						"short": "Prior observation indicator",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "qcField",
+						"short": "Quality control field",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "rawOb",
+						"short": "Raw METAR observation text",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rawTaf",
+						"short": "Raw TAF if available",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "reportTime",
+						"short": "Report time in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "slp",
+						"short": "Sea level pressure",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "snow",
+						"short": "Snow depth",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "temp",
+						"short": "Temperature in Celsius",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "vertVis",
+						"short": "Vertical visibility",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "visib",
+						"short": "Visibility",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "wdir",
+						"short": "Wind direction in degrees",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "wgst",
+						"short": "Wind gust in knots",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "wspd",
+						"short": "Wind speed in knots",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "wxString",
+						"short": "Weather phenomena string",
 						"type": "`$STRING`",
 					},
 				},
@@ -841,62 +913,77 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "aircraftType",
+						"short": "Aircraft type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "altitudeFt",
+						"short": "Altitude in feet MSL",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "clouds",
+						"short": "Cloud reports",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "icing",
+						"short": "Icing report",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "lat",
+						"short": "Latitude",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "lon",
+						"short": "Longitude",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "obsTime",
+						"short": "Observation time in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rawOb",
+						"short": "Raw PIREP text",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "reportType",
+						"short": "Report type (PIREP or AIREP)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "temp",
+						"short": "Temperature in Celsius",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "turbulence",
+						"short": "Turbulence report",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "visibility",
+						"short": "Visibility",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "wdir",
+						"short": "Wind direction in degrees",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "wspd",
+						"short": "Wind speed in knots",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "wxString",
+						"short": "Weather phenomena string",
 						"type": "`$STRING`",
 					},
 				},
@@ -968,42 +1055,52 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "country",
+						"short": "Country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "elev",
+						"short": "Elevation in meters",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "iataId",
+						"short": "IATA identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "icaoId",
+						"short": "ICAO station identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "lat",
+						"short": "Latitude",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "lon",
+						"short": "Longitude",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Station name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "priority",
+						"short": "Priority level",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "site",
+						"short": "Site type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "state",
+						"short": "State or province",
 						"type": "`$STRING`",
 					},
 				},
@@ -1068,46 +1165,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "bulletinTime",
+						"short": "Bulletin time in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "elev",
+						"short": "Elevation in meters",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "fcsts",
+						"short": "Forecast periods",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "icaoId",
+						"short": "ICAO station identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "issueTime",
+						"short": "TAF issue time in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "lat",
+						"short": "Latitude",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "lon",
+						"short": "Longitude",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Station name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rawTAF",
+						"short": "Raw TAF forecast text",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "validTimeFrom",
+						"short": "Valid time from in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "validTimeTo",
+						"short": "Valid time to in ISO8601 format",
 						"type": "`$STRING`",
 					},
 				},

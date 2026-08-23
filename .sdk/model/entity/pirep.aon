@@ -1,0 +1,165 @@
+# Entity: pirep
+
+main: kit: entity: pirep: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "aircraftType"
+      req: false
+      short: "Aircraft type"
+      type: "`$STRING`"
+    }
+    {
+      name: "altitudeFt"
+      req: false
+      short: "Altitude in feet MSL"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "clouds"
+      req: false
+      short: "Cloud reports"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "icing"
+      req: false
+      short: "Icing report"
+      type: "`$STRING`"
+    }
+    {
+      name: "lat"
+      req: false
+      short: "Latitude"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "lon"
+      req: false
+      short: "Longitude"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "obsTime"
+      req: false
+      short: "Observation time in ISO8601 format"
+      type: "`$STRING`"
+    }
+    {
+      name: "rawOb"
+      req: false
+      short: "Raw PIREP text"
+      type: "`$STRING`"
+    }
+    {
+      name: "reportType"
+      req: false
+      short: "Report type (PIREP or AIREP)"
+      type: "`$STRING`"
+    }
+    {
+      name: "temp"
+      req: false
+      short: "Temperature in Celsius"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "turbulence"
+      req: false
+      short: "Turbulence report"
+      type: "`$STRING`"
+    }
+    {
+      name: "visibility"
+      req: false
+      short: "Visibility"
+      type: "`$STRING`"
+    }
+    {
+      name: "wdir"
+      req: false
+      short: "Wind direction in degrees"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "wspd"
+      req: false
+      short: "Wind speed in knots"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "wxString"
+      req: false
+      short: "Weather phenomena string"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "pirep"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "age"
+                orig: "age"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "bbox"
+                orig: "bbox"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "raw"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/data/pirep"
+          parts: [
+            "api"
+            "data"
+            "pirep"
+          ]
+          select: {
+            exist: [
+              "age"
+              "bbox"
+              "date"
+              "format"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

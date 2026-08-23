@@ -1,0 +1,123 @@
+# Entity: g_airmet
+
+main: kit: entity: g_airmet: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "altitudeHigh"
+      req: false
+      short: "Upper altitude in feet MSL"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "altitudeLow"
+      req: false
+      short: "Lower altitude in feet MSL"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "hazard"
+      req: false
+      short: "Hazard type"
+      type: "`$STRING`"
+    }
+    {
+      name: "issueTime"
+      req: false
+      short: "Issue time in ISO8601 format"
+      type: "`$STRING`"
+    }
+    {
+      name: "qualifier"
+      req: false
+      short: "Forecast qualifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "severity"
+      req: false
+      short: "Severity level"
+      type: "`$STRING`"
+    }
+    {
+      name: "validTimeFrom"
+      req: false
+      short: "Valid time from in ISO8601 format"
+      type: "`$STRING`"
+    }
+    {
+      name: "validTimeTo"
+      req: false
+      short: "Valid time to in ISO8601 format"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "g_airmet"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "bbox"
+                orig: "bbox"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "hazard"
+                orig: "hazard"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/data/gairmet"
+          parts: [
+            "api"
+            "data"
+            "gairmet"
+          ]
+          select: {
+            exist: [
+              "bbox"
+              "date"
+              "format"
+              "hazard"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

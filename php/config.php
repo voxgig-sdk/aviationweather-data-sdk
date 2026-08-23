@@ -33,6 +33,9 @@ class AviationweatherDataConfig
         return [
             "main" => [
                 "name" => "AviationweatherData",
+                "slug" => "aviationweather-data",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -64,42 +67,52 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'airsigmetType',
+              'short' => 'SIGMET type',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'altitudeHigh',
+              'short' => 'Upper altitude in feet MSL',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'altitudeLow',
+              'short' => 'Lower altitude in feet MSL',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'fir',
+              'short' => 'Flight Information Region',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'hazard',
+              'short' => 'Hazard type',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'issueTime',
+              'short' => 'Issue time in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'rawAirSigmet',
+              'short' => 'Raw SIGMET text',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'severity',
+              'short' => 'Severity level',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'validTimeFrom',
+              'short' => 'Valid time from in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'validTimeTo',
+              'short' => 'Valid time to in ISO8601 format',
               'type' => '`$STRING`',
             ],
           ],
@@ -171,38 +184,47 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'city',
+              'short' => 'City',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'country',
+              'short' => 'Country code',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'elev',
+              'short' => 'Elevation in meters',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'iataId',
+              'short' => 'IATA identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'icaoId',
+              'short' => 'ICAO airport identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'lat',
+              'short' => 'Latitude',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'lon',
+              'short' => 'Longitude',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'name',
+              'short' => 'Airport name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'state',
+              'short' => 'State or province',
               'type' => '`$STRING`',
             ],
           ],
@@ -462,30 +484,37 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'cwsu',
+              'short' => 'Center Weather Service Unit',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'issueTime',
+              'short' => 'Issue time in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'rawText',
+              'short' => 'Raw CWA text',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'sequence',
+              'short' => 'Sequence number',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'seriesId',
+              'short' => 'Series identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'validTimeFrom',
+              'short' => 'Valid time from in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'validTimeTo',
+              'short' => 'Valid time to in ISO8601 format',
               'type' => '`$STRING`',
             ],
           ],
@@ -550,34 +579,42 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'altitudeHigh',
+              'short' => 'Upper altitude in feet MSL',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'altitudeLow',
+              'short' => 'Lower altitude in feet MSL',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'hazard',
+              'short' => 'Hazard type',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'issueTime',
+              'short' => 'Issue time in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'qualifier',
+              'short' => 'Forecast qualifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'severity',
+              'short' => 'Severity level',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'validTimeFrom',
+              'short' => 'Valid time from in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'validTimeTo',
+              'short' => 'Valid time to in ISO8601 format',
               'type' => '`$STRING`',
             ],
           ],
@@ -649,142 +686,177 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'altim',
+              'short' => 'Altimeter setting in inches of mercury',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'clouds',
+              'short' => 'Cloud layers',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'dewp',
+              'short' => 'Dewpoint in Celsius',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'elev',
+              'short' => 'Elevation in meters',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'fltCat',
+              'short' => 'Flight category (VFR, MVFR, IFR, LIFR)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'icaoId',
+              'short' => 'ICAO station identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'lat',
+              'short' => 'Latitude',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'lon',
+              'short' => 'Longitude',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'maxT',
+              'short' => 'Maximum temperature',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'maxT24',
+              'short' => '24-hour maximum temperature',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'metarType',
+              'short' => 'METAR type (METAR or SPECI)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'minT',
+              'short' => 'Minimum temperature',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'minT24',
+              'short' => '24-hour minimum temperature',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'mostRecent',
+              'short' => 'Most recent observation flag',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'name',
+              'short' => 'Station name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'obsTime',
+              'short' => 'Observation time in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'pcp24hr',
+              'short' => '24-hour precipitation',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'pcp3hr',
+              'short' => '3-hour precipitation',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'pcp6hr',
+              'short' => '6-hour precipitation',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'precip',
+              'short' => 'Precipitation',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'presTend',
+              'short' => 'Pressure tendency',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'prior',
+              'short' => 'Prior observation indicator',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'qcField',
+              'short' => 'Quality control field',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'rawOb',
+              'short' => 'Raw METAR observation text',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'rawTaf',
+              'short' => 'Raw TAF if available',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'reportTime',
+              'short' => 'Report time in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'slp',
+              'short' => 'Sea level pressure',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'snow',
+              'short' => 'Snow depth',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'temp',
+              'short' => 'Temperature in Celsius',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'vertVis',
+              'short' => 'Vertical visibility',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'visib',
+              'short' => 'Visibility',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'wdir',
+              'short' => 'Wind direction in degrees',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'wgst',
+              'short' => 'Wind gust in knots',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'wspd',
+              'short' => 'Wind speed in knots',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'wxString',
+              'short' => 'Weather phenomena string',
               'type' => '`$STRING`',
             ],
           ],
@@ -863,62 +935,77 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'aircraftType',
+              'short' => 'Aircraft type',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'altitudeFt',
+              'short' => 'Altitude in feet MSL',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'clouds',
+              'short' => 'Cloud reports',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'icing',
+              'short' => 'Icing report',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'lat',
+              'short' => 'Latitude',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'lon',
+              'short' => 'Longitude',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'obsTime',
+              'short' => 'Observation time in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'rawOb',
+              'short' => 'Raw PIREP text',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'reportType',
+              'short' => 'Report type (PIREP or AIREP)',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'temp',
+              'short' => 'Temperature in Celsius',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'turbulence',
+              'short' => 'Turbulence report',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'visibility',
+              'short' => 'Visibility',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'wdir',
+              'short' => 'Wind direction in degrees',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'wspd',
+              'short' => 'Wind speed in knots',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'wxString',
+              'short' => 'Weather phenomena string',
               'type' => '`$STRING`',
             ],
           ],
@@ -990,42 +1077,52 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'country',
+              'short' => 'Country code',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'elev',
+              'short' => 'Elevation in meters',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'iataId',
+              'short' => 'IATA identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'icaoId',
+              'short' => 'ICAO station identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'lat',
+              'short' => 'Latitude',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'lon',
+              'short' => 'Longitude',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'name',
+              'short' => 'Station name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'priority',
+              'short' => 'Priority level',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'site',
+              'short' => 'Site type',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'state',
+              'short' => 'State or province',
               'type' => '`$STRING`',
             ],
           ],
@@ -1090,46 +1187,57 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'bulletinTime',
+              'short' => 'Bulletin time in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'elev',
+              'short' => 'Elevation in meters',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'fcsts',
+              'short' => 'Forecast periods',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'icaoId',
+              'short' => 'ICAO station identifier',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'issueTime',
+              'short' => 'TAF issue time in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'lat',
+              'short' => 'Latitude',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'lon',
+              'short' => 'Longitude',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'name',
+              'short' => 'Station name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'rawTAF',
+              'short' => 'Raw TAF forecast text',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'validTimeFrom',
+              'short' => 'Valid time from in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'validTimeTo',
+              'short' => 'Valid time to in ISO8601 format',
               'type' => '`$STRING`',
             ],
           ],

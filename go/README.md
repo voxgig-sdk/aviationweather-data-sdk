@@ -6,7 +6,7 @@ The Golang SDK for the AviationweatherData API — an entity-oriented client usi
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.AirSigmet(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -271,16 +271,16 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"airsigmetType"` |  |
-| `"altitudeHigh"` |  |
-| `"altitudeLow"` |  |
-| `"fir"` |  |
-| `"hazard"` |  |
-| `"issueTime"` |  |
-| `"rawAirSigmet"` |  |
-| `"severity"` |  |
-| `"validTimeFrom"` |  |
-| `"validTimeTo"` |  |
+| `"airsigmetType"` | SIGMET type |
+| `"altitudeHigh"` | Upper altitude in feet MSL |
+| `"altitudeLow"` | Lower altitude in feet MSL |
+| `"fir"` | Flight Information Region |
+| `"hazard"` | Hazard type |
+| `"issueTime"` | Issue time in ISO8601 format |
+| `"rawAirSigmet"` | Raw SIGMET text |
+| `"severity"` | Severity level |
+| `"validTimeFrom"` | Valid time from in ISO8601 format |
+| `"validTimeTo"` | Valid time to in ISO8601 format |
 
 Operations: List.
 
@@ -290,15 +290,15 @@ API path: `/api/data/airsigmet`
 
 | Field | Description |
 | --- | --- |
-| `"city"` |  |
-| `"country"` |  |
-| `"elev"` |  |
-| `"iataId"` |  |
-| `"icaoId"` |  |
-| `"lat"` |  |
-| `"lon"` |  |
-| `"name"` |  |
-| `"state"` |  |
+| `"city"` | City |
+| `"country"` | Country code |
+| `"elev"` | Elevation in meters |
+| `"iataId"` | IATA identifier |
+| `"icaoId"` | ICAO airport identifier |
+| `"lat"` | Latitude |
+| `"lon"` | Longitude |
+| `"name"` | Airport name |
+| `"state"` | State or province |
 
 Operations: List.
 
@@ -317,13 +317,13 @@ API path: `/data/cache/aircraftreports.cache.csv.gz`
 
 | Field | Description |
 | --- | --- |
-| `"cwsu"` |  |
-| `"issueTime"` |  |
-| `"rawText"` |  |
-| `"sequence"` |  |
-| `"seriesId"` |  |
-| `"validTimeFrom"` |  |
-| `"validTimeTo"` |  |
+| `"cwsu"` | Center Weather Service Unit |
+| `"issueTime"` | Issue time in ISO8601 format |
+| `"rawText"` | Raw CWA text |
+| `"sequence"` | Sequence number |
+| `"seriesId"` | Series identifier |
+| `"validTimeFrom"` | Valid time from in ISO8601 format |
+| `"validTimeTo"` | Valid time to in ISO8601 format |
 
 Operations: List.
 
@@ -333,14 +333,14 @@ API path: `/api/data/cwa`
 
 | Field | Description |
 | --- | --- |
-| `"altitudeHigh"` |  |
-| `"altitudeLow"` |  |
-| `"hazard"` |  |
-| `"issueTime"` |  |
-| `"qualifier"` |  |
-| `"severity"` |  |
-| `"validTimeFrom"` |  |
-| `"validTimeTo"` |  |
+| `"altitudeHigh"` | Upper altitude in feet MSL |
+| `"altitudeLow"` | Lower altitude in feet MSL |
+| `"hazard"` | Hazard type |
+| `"issueTime"` | Issue time in ISO8601 format |
+| `"qualifier"` | Forecast qualifier |
+| `"severity"` | Severity level |
+| `"validTimeFrom"` | Valid time from in ISO8601 format |
+| `"validTimeTo"` | Valid time to in ISO8601 format |
 
 Operations: List.
 
@@ -350,41 +350,41 @@ API path: `/api/data/gairmet`
 
 | Field | Description |
 | --- | --- |
-| `"altim"` |  |
-| `"clouds"` |  |
-| `"dewp"` |  |
-| `"elev"` |  |
-| `"fltCat"` |  |
-| `"icaoId"` |  |
-| `"lat"` |  |
-| `"lon"` |  |
-| `"maxT"` |  |
-| `"maxT24"` |  |
-| `"metarType"` |  |
-| `"minT"` |  |
-| `"minT24"` |  |
-| `"mostRecent"` |  |
-| `"name"` |  |
-| `"obsTime"` |  |
-| `"pcp24hr"` |  |
-| `"pcp3hr"` |  |
-| `"pcp6hr"` |  |
-| `"precip"` |  |
-| `"presTend"` |  |
-| `"prior"` |  |
-| `"qcField"` |  |
-| `"rawOb"` |  |
-| `"rawTaf"` |  |
-| `"reportTime"` |  |
-| `"slp"` |  |
-| `"snow"` |  |
-| `"temp"` |  |
-| `"vertVis"` |  |
-| `"visib"` |  |
-| `"wdir"` |  |
-| `"wgst"` |  |
-| `"wspd"` |  |
-| `"wxString"` |  |
+| `"altim"` | Altimeter setting in inches of mercury |
+| `"clouds"` | Cloud layers |
+| `"dewp"` | Dewpoint in Celsius |
+| `"elev"` | Elevation in meters |
+| `"fltCat"` | Flight category (VFR, MVFR, IFR, LIFR) |
+| `"icaoId"` | ICAO station identifier |
+| `"lat"` | Latitude |
+| `"lon"` | Longitude |
+| `"maxT"` | Maximum temperature |
+| `"maxT24"` | 24-hour maximum temperature |
+| `"metarType"` | METAR type (METAR or SPECI) |
+| `"minT"` | Minimum temperature |
+| `"minT24"` | 24-hour minimum temperature |
+| `"mostRecent"` | Most recent observation flag |
+| `"name"` | Station name |
+| `"obsTime"` | Observation time in ISO8601 format |
+| `"pcp24hr"` | 24-hour precipitation |
+| `"pcp3hr"` | 3-hour precipitation |
+| `"pcp6hr"` | 6-hour precipitation |
+| `"precip"` | Precipitation |
+| `"presTend"` | Pressure tendency |
+| `"prior"` | Prior observation indicator |
+| `"qcField"` | Quality control field |
+| `"rawOb"` | Raw METAR observation text |
+| `"rawTaf"` | Raw TAF if available |
+| `"reportTime"` | Report time in ISO8601 format |
+| `"slp"` | Sea level pressure |
+| `"snow"` | Snow depth |
+| `"temp"` | Temperature in Celsius |
+| `"vertVis"` | Vertical visibility |
+| `"visib"` | Visibility |
+| `"wdir"` | Wind direction in degrees |
+| `"wgst"` | Wind gust in knots |
+| `"wspd"` | Wind speed in knots |
+| `"wxString"` | Weather phenomena string |
 
 Operations: List.
 
@@ -394,21 +394,21 @@ API path: `/api/data/metar`
 
 | Field | Description |
 | --- | --- |
-| `"aircraftType"` |  |
-| `"altitudeFt"` |  |
-| `"clouds"` |  |
-| `"icing"` |  |
-| `"lat"` |  |
-| `"lon"` |  |
-| `"obsTime"` |  |
-| `"rawOb"` |  |
-| `"reportType"` |  |
-| `"temp"` |  |
-| `"turbulence"` |  |
-| `"visibility"` |  |
-| `"wdir"` |  |
-| `"wspd"` |  |
-| `"wxString"` |  |
+| `"aircraftType"` | Aircraft type |
+| `"altitudeFt"` | Altitude in feet MSL |
+| `"clouds"` | Cloud reports |
+| `"icing"` | Icing report |
+| `"lat"` | Latitude |
+| `"lon"` | Longitude |
+| `"obsTime"` | Observation time in ISO8601 format |
+| `"rawOb"` | Raw PIREP text |
+| `"reportType"` | Report type (PIREP or AIREP) |
+| `"temp"` | Temperature in Celsius |
+| `"turbulence"` | Turbulence report |
+| `"visibility"` | Visibility |
+| `"wdir"` | Wind direction in degrees |
+| `"wspd"` | Wind speed in knots |
+| `"wxString"` | Weather phenomena string |
 
 Operations: List.
 
@@ -418,16 +418,16 @@ API path: `/api/data/pirep`
 
 | Field | Description |
 | --- | --- |
-| `"country"` |  |
-| `"elev"` |  |
-| `"iataId"` |  |
-| `"icaoId"` |  |
-| `"lat"` |  |
-| `"lon"` |  |
-| `"name"` |  |
-| `"priority"` |  |
-| `"site"` |  |
-| `"state"` |  |
+| `"country"` | Country code |
+| `"elev"` | Elevation in meters |
+| `"iataId"` | IATA identifier |
+| `"icaoId"` | ICAO station identifier |
+| `"lat"` | Latitude |
+| `"lon"` | Longitude |
+| `"name"` | Station name |
+| `"priority"` | Priority level |
+| `"site"` | Site type |
+| `"state"` | State or province |
 
 Operations: List.
 
@@ -437,17 +437,17 @@ API path: `/api/data/stationinfo`
 
 | Field | Description |
 | --- | --- |
-| `"bulletinTime"` |  |
-| `"elev"` |  |
-| `"fcsts"` |  |
-| `"icaoId"` |  |
-| `"issueTime"` |  |
-| `"lat"` |  |
-| `"lon"` |  |
-| `"name"` |  |
-| `"rawTAF"` |  |
-| `"validTimeFrom"` |  |
-| `"validTimeTo"` |  |
+| `"bulletinTime"` | Bulletin time in ISO8601 format |
+| `"elev"` | Elevation in meters |
+| `"fcsts"` | Forecast periods |
+| `"icaoId"` | ICAO station identifier |
+| `"issueTime"` | TAF issue time in ISO8601 format |
+| `"lat"` | Latitude |
+| `"lon"` | Longitude |
+| `"name"` | Station name |
+| `"rawTAF"` | Raw TAF forecast text |
+| `"validTimeFrom"` | Valid time from in ISO8601 format |
+| `"validTimeTo"` | Valid time to in ISO8601 format |
 
 Operations: List.
 
@@ -481,16 +481,16 @@ Create an instance: `airSigmet := client.AirSigmet(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `airsigmetType` | `string` |  |
-| `altitudeHigh` | `int` |  |
-| `altitudeLow` | `int` |  |
-| `fir` | `string` |  |
-| `hazard` | `string` |  |
-| `issueTime` | `string` |  |
-| `rawAirSigmet` | `string` |  |
-| `severity` | `string` |  |
-| `validTimeFrom` | `string` |  |
-| `validTimeTo` | `string` |  |
+| `airsigmetType` | `string` | SIGMET type |
+| `altitudeHigh` | `int` | Upper altitude in feet MSL |
+| `altitudeLow` | `int` | Lower altitude in feet MSL |
+| `fir` | `string` | Flight Information Region |
+| `hazard` | `string` | Hazard type |
+| `issueTime` | `string` | Issue time in ISO8601 format |
+| `rawAirSigmet` | `string` | Raw SIGMET text |
+| `severity` | `string` | Severity level |
+| `validTimeFrom` | `string` | Valid time from in ISO8601 format |
+| `validTimeTo` | `string` | Valid time to in ISO8601 format |
 
 #### Example: List
 
@@ -517,15 +517,15 @@ Create an instance: `airport := client.Airport(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `city` | `string` |  |
-| `country` | `string` |  |
-| `elev` | `float64` |  |
-| `iataId` | `string` |  |
-| `icaoId` | `string` |  |
-| `lat` | `float64` |  |
-| `lon` | `float64` |  |
-| `name` | `string` |  |
-| `state` | `string` |  |
+| `city` | `string` | City |
+| `country` | `string` | Country code |
+| `elev` | `float64` | Elevation in meters |
+| `iataId` | `string` | IATA identifier |
+| `icaoId` | `string` | ICAO airport identifier |
+| `lat` | `float64` | Latitude |
+| `lon` | `float64` | Longitude |
+| `name` | `string` | Airport name |
+| `state` | `string` | State or province |
 
 #### Example: List
 
@@ -573,13 +573,13 @@ Create an instance: `cwa := client.Cwa(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cwsu` | `string` |  |
-| `issueTime` | `string` |  |
-| `rawText` | `string` |  |
-| `sequence` | `int` |  |
-| `seriesId` | `string` |  |
-| `validTimeFrom` | `string` |  |
-| `validTimeTo` | `string` |  |
+| `cwsu` | `string` | Center Weather Service Unit |
+| `issueTime` | `string` | Issue time in ISO8601 format |
+| `rawText` | `string` | Raw CWA text |
+| `sequence` | `int` | Sequence number |
+| `seriesId` | `string` | Series identifier |
+| `validTimeFrom` | `string` | Valid time from in ISO8601 format |
+| `validTimeTo` | `string` | Valid time to in ISO8601 format |
 
 #### Example: List
 
@@ -606,14 +606,14 @@ Create an instance: `gAirmet := client.GAirmet(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altitudeHigh` | `int` |  |
-| `altitudeLow` | `int` |  |
-| `hazard` | `string` |  |
-| `issueTime` | `string` |  |
-| `qualifier` | `string` |  |
-| `severity` | `string` |  |
-| `validTimeFrom` | `string` |  |
-| `validTimeTo` | `string` |  |
+| `altitudeHigh` | `int` | Upper altitude in feet MSL |
+| `altitudeLow` | `int` | Lower altitude in feet MSL |
+| `hazard` | `string` | Hazard type |
+| `issueTime` | `string` | Issue time in ISO8601 format |
+| `qualifier` | `string` | Forecast qualifier |
+| `severity` | `string` | Severity level |
+| `validTimeFrom` | `string` | Valid time from in ISO8601 format |
+| `validTimeTo` | `string` | Valid time to in ISO8601 format |
 
 #### Example: List
 
@@ -640,41 +640,41 @@ Create an instance: `metar := client.Metar(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `altim` | `float64` |  |
-| `clouds` | `[]any` |  |
-| `dewp` | `float64` |  |
-| `elev` | `float64` |  |
-| `fltCat` | `string` |  |
-| `icaoId` | `string` |  |
-| `lat` | `float64` |  |
-| `lon` | `float64` |  |
-| `maxT` | `float64` |  |
-| `maxT24` | `float64` |  |
-| `metarType` | `string` |  |
-| `minT` | `float64` |  |
-| `minT24` | `float64` |  |
-| `mostRecent` | `int` |  |
-| `name` | `string` |  |
-| `obsTime` | `string` |  |
-| `pcp24hr` | `float64` |  |
-| `pcp3hr` | `float64` |  |
-| `pcp6hr` | `float64` |  |
-| `precip` | `float64` |  |
-| `presTend` | `float64` |  |
-| `prior` | `int` |  |
-| `qcField` | `int` |  |
-| `rawOb` | `string` |  |
-| `rawTaf` | `string` |  |
-| `reportTime` | `string` |  |
-| `slp` | `float64` |  |
-| `snow` | `float64` |  |
-| `temp` | `float64` |  |
-| `vertVis` | `int` |  |
-| `visib` | `string` |  |
-| `wdir` | `int` |  |
-| `wgst` | `int` |  |
-| `wspd` | `int` |  |
-| `wxString` | `string` |  |
+| `altim` | `float64` | Altimeter setting in inches of mercury |
+| `clouds` | `[]any` | Cloud layers |
+| `dewp` | `float64` | Dewpoint in Celsius |
+| `elev` | `float64` | Elevation in meters |
+| `fltCat` | `string` | Flight category (VFR, MVFR, IFR, LIFR) |
+| `icaoId` | `string` | ICAO station identifier |
+| `lat` | `float64` | Latitude |
+| `lon` | `float64` | Longitude |
+| `maxT` | `float64` | Maximum temperature |
+| `maxT24` | `float64` | 24-hour maximum temperature |
+| `metarType` | `string` | METAR type (METAR or SPECI) |
+| `minT` | `float64` | Minimum temperature |
+| `minT24` | `float64` | 24-hour minimum temperature |
+| `mostRecent` | `int` | Most recent observation flag |
+| `name` | `string` | Station name |
+| `obsTime` | `string` | Observation time in ISO8601 format |
+| `pcp24hr` | `float64` | 24-hour precipitation |
+| `pcp3hr` | `float64` | 3-hour precipitation |
+| `pcp6hr` | `float64` | 6-hour precipitation |
+| `precip` | `float64` | Precipitation |
+| `presTend` | `float64` | Pressure tendency |
+| `prior` | `int` | Prior observation indicator |
+| `qcField` | `int` | Quality control field |
+| `rawOb` | `string` | Raw METAR observation text |
+| `rawTaf` | `string` | Raw TAF if available |
+| `reportTime` | `string` | Report time in ISO8601 format |
+| `slp` | `float64` | Sea level pressure |
+| `snow` | `float64` | Snow depth |
+| `temp` | `float64` | Temperature in Celsius |
+| `vertVis` | `int` | Vertical visibility |
+| `visib` | `string` | Visibility |
+| `wdir` | `int` | Wind direction in degrees |
+| `wgst` | `int` | Wind gust in knots |
+| `wspd` | `int` | Wind speed in knots |
+| `wxString` | `string` | Weather phenomena string |
 
 #### Example: List
 
@@ -701,21 +701,21 @@ Create an instance: `pirep := client.Pirep(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `aircraftType` | `string` |  |
-| `altitudeFt` | `int` |  |
-| `clouds` | `[]any` |  |
-| `icing` | `string` |  |
-| `lat` | `float64` |  |
-| `lon` | `float64` |  |
-| `obsTime` | `string` |  |
-| `rawOb` | `string` |  |
-| `reportType` | `string` |  |
-| `temp` | `float64` |  |
-| `turbulence` | `string` |  |
-| `visibility` | `string` |  |
-| `wdir` | `int` |  |
-| `wspd` | `int` |  |
-| `wxString` | `string` |  |
+| `aircraftType` | `string` | Aircraft type |
+| `altitudeFt` | `int` | Altitude in feet MSL |
+| `clouds` | `[]any` | Cloud reports |
+| `icing` | `string` | Icing report |
+| `lat` | `float64` | Latitude |
+| `lon` | `float64` | Longitude |
+| `obsTime` | `string` | Observation time in ISO8601 format |
+| `rawOb` | `string` | Raw PIREP text |
+| `reportType` | `string` | Report type (PIREP or AIREP) |
+| `temp` | `float64` | Temperature in Celsius |
+| `turbulence` | `string` | Turbulence report |
+| `visibility` | `string` | Visibility |
+| `wdir` | `int` | Wind direction in degrees |
+| `wspd` | `int` | Wind speed in knots |
+| `wxString` | `string` | Weather phenomena string |
 
 #### Example: List
 
@@ -742,16 +742,16 @@ Create an instance: `stationInfo := client.StationInfo(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country` | `string` |  |
-| `elev` | `float64` |  |
-| `iataId` | `string` |  |
-| `icaoId` | `string` |  |
-| `lat` | `float64` |  |
-| `lon` | `float64` |  |
-| `name` | `string` |  |
-| `priority` | `int` |  |
-| `site` | `string` |  |
-| `state` | `string` |  |
+| `country` | `string` | Country code |
+| `elev` | `float64` | Elevation in meters |
+| `iataId` | `string` | IATA identifier |
+| `icaoId` | `string` | ICAO station identifier |
+| `lat` | `float64` | Latitude |
+| `lon` | `float64` | Longitude |
+| `name` | `string` | Station name |
+| `priority` | `int` | Priority level |
+| `site` | `string` | Site type |
+| `state` | `string` | State or province |
 
 #### Example: List
 
@@ -778,17 +778,17 @@ Create an instance: `taf := client.Taf(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bulletinTime` | `string` |  |
-| `elev` | `float64` |  |
-| `fcsts` | `[]any` |  |
-| `icaoId` | `string` |  |
-| `issueTime` | `string` |  |
-| `lat` | `float64` |  |
-| `lon` | `float64` |  |
-| `name` | `string` |  |
-| `rawTAF` | `string` |  |
-| `validTimeFrom` | `string` |  |
-| `validTimeTo` | `string` |  |
+| `bulletinTime` | `string` | Bulletin time in ISO8601 format |
+| `elev` | `float64` | Elevation in meters |
+| `fcsts` | `[]any` | Forecast periods |
+| `icaoId` | `string` | ICAO station identifier |
+| `issueTime` | `string` | TAF issue time in ISO8601 format |
+| `lat` | `float64` | Latitude |
+| `lon` | `float64` | Longitude |
+| `name` | `string` | Station name |
+| `rawTAF` | `string` | Raw TAF forecast text |
+| `validTimeFrom` | `string` | Valid time from in ISO8601 format |
+| `validTimeTo` | `string` | Valid time to in ISO8601 format |
 
 #### Example: List
 

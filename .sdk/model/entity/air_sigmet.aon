@@ -1,0 +1,135 @@
+# Entity: air_sigmet
+
+main: kit: entity: air_sigmet: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "airsigmetType"
+      req: false
+      short: "SIGMET type"
+      type: "`$STRING`"
+    }
+    {
+      name: "altitudeHigh"
+      req: false
+      short: "Upper altitude in feet MSL"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "altitudeLow"
+      req: false
+      short: "Lower altitude in feet MSL"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "fir"
+      req: false
+      short: "Flight Information Region"
+      type: "`$STRING`"
+    }
+    {
+      name: "hazard"
+      req: false
+      short: "Hazard type"
+      type: "`$STRING`"
+    }
+    {
+      name: "issueTime"
+      req: false
+      short: "Issue time in ISO8601 format"
+      type: "`$STRING`"
+    }
+    {
+      name: "rawAirSigmet"
+      req: false
+      short: "Raw SIGMET text"
+      type: "`$STRING`"
+    }
+    {
+      name: "severity"
+      req: false
+      short: "Severity level"
+      type: "`$STRING`"
+    }
+    {
+      name: "validTimeFrom"
+      req: false
+      short: "Valid time from in ISO8601 format"
+      type: "`$STRING`"
+    }
+    {
+      name: "validTimeTo"
+      req: false
+      short: "Valid time to in ISO8601 format"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "air_sigmet"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "bbox"
+                orig: "bbox"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "raw"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "hazard"
+                orig: "hazard"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/data/airsigmet"
+          parts: [
+            "api"
+            "data"
+            "airsigmet"
+          ]
+          select: {
+            exist: [
+              "bbox"
+              "date"
+              "format"
+              "hazard"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
