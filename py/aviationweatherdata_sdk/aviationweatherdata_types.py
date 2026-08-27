@@ -30,16 +30,10 @@ class AirSigmet(TypedDict, total=False):
 
 
 class AirSigmetListMatch(TypedDict, total=False):
-    airsigmetType: str
-    altitudeHigh: int
-    altitudeLow: int
-    fir: str
+    bbox: str
+    date: str
+    format: str
     hazard: str
-    issueTime: str
-    rawAirSigmet: str
-    severity: str
-    validTimeFrom: str
-    validTimeTo: str
 
 
 class Airport(TypedDict, total=False):
@@ -55,15 +49,9 @@ class Airport(TypedDict, total=False):
 
 
 class AirportListMatch(TypedDict, total=False):
-    city: str
-    country: str
-    elev: float
-    iataId: str
-    icaoId: str
-    lat: float
-    lon: float
-    name: str
-    state: str
+    bbox: str
+    format: str
+    ids: str
 
 
 class Cache(TypedDict):
@@ -85,13 +73,9 @@ class Cwa(TypedDict, total=False):
 
 
 class CwaListMatch(TypedDict, total=False):
-    cwsu: str
-    issueTime: str
-    rawText: str
-    sequence: int
-    seriesId: str
-    validTimeFrom: str
-    validTimeTo: str
+    bbox: str
+    date: str
+    format: str
 
 
 class GAirmet(TypedDict, total=False):
@@ -106,14 +90,10 @@ class GAirmet(TypedDict, total=False):
 
 
 class GAirmetListMatch(TypedDict, total=False):
-    altitudeHigh: int
-    altitudeLow: int
+    bbox: str
+    date: str
+    format: str
     hazard: str
-    issueTime: str
-    qualifier: str
-    severity: str
-    validTimeFrom: str
-    validTimeTo: str
 
 
 class Metar(TypedDict, total=False):
@@ -155,41 +135,11 @@ class Metar(TypedDict, total=False):
 
 
 class MetarListMatch(TypedDict, total=False):
-    altim: float
-    clouds: list
-    dewp: float
-    elev: float
-    fltCat: str
-    icaoId: str
-    lat: float
-    lon: float
-    maxT: float
-    maxT24: float
-    metarType: str
-    minT: float
-    minT24: float
-    mostRecent: int
-    name: str
-    obsTime: str
-    pcp24hr: float
-    pcp3hr: float
-    pcp6hr: float
-    precip: float
-    presTend: float
-    prior: int
-    qcField: int
-    rawOb: str
-    rawTaf: str
-    reportTime: str
-    slp: float
-    snow: float
-    temp: float
-    vertVis: int
-    visib: str
-    wdir: int
-    wgst: int
-    wspd: int
-    wxString: str
+    bbox: str
+    date: str
+    format: str
+    ids: str
+    taf: bool
 
 
 class Pirep(TypedDict, total=False):
@@ -211,21 +161,10 @@ class Pirep(TypedDict, total=False):
 
 
 class PirepListMatch(TypedDict, total=False):
-    aircraftType: str
-    altitudeFt: int
-    clouds: list
-    icing: str
-    lat: float
-    lon: float
-    obsTime: str
-    rawOb: str
-    reportType: str
-    temp: float
-    turbulence: str
-    visibility: str
-    wdir: int
-    wspd: int
-    wxString: str
+    age: int
+    bbox: str
+    date: str
+    format: str
 
 
 class StationInfo(TypedDict, total=False):
@@ -242,16 +181,9 @@ class StationInfo(TypedDict, total=False):
 
 
 class StationInfoListMatch(TypedDict, total=False):
-    country: str
-    elev: float
-    iataId: str
-    icaoId: str
-    lat: float
-    lon: float
-    name: str
-    priority: int
-    site: str
-    state: str
+    bbox: str
+    format: str
+    ids: str
 
 
 class Taf(TypedDict, total=False):
@@ -269,22 +201,16 @@ class Taf(TypedDict, total=False):
 
 
 class TafListMatch(TypedDict, total=False):
-    bulletinTime: str
-    elev: float
-    fcsts: list
-    icaoId: str
-    issueTime: str
-    lat: float
-    lon: float
-    name: str
-    rawTAF: str
-    validTimeFrom: str
-    validTimeTo: str
+    bbox: str
+    date: str
+    format: str
+    ids: str
 
 
 class Tcf(TypedDict):
     pass
 
 
-class TcfLoadMatch(TypedDict):
-    pass
+class TcfLoadMatch(TypedDict, total=False):
+    date: str
+    format: str

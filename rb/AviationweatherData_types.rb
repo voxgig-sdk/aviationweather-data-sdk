@@ -55,46 +55,22 @@ AirSigmet = Struct.new(
 
 # Request payload for AirSigmet#list.
 #
-# @!attribute [rw] airsigmetType
+# @!attribute [rw] bbox
 #   @return [String, nil]
 #
-# @!attribute [rw] altitudeHigh
-#   @return [Integer, nil]
+# @!attribute [rw] date
+#   @return [String, nil]
 #
-# @!attribute [rw] altitudeLow
-#   @return [Integer, nil]
-#
-# @!attribute [rw] fir
+# @!attribute [rw] format
 #   @return [String, nil]
 #
 # @!attribute [rw] hazard
 #   @return [String, nil]
-#
-# @!attribute [rw] issueTime
-#   @return [String, nil]
-#
-# @!attribute [rw] rawAirSigmet
-#   @return [String, nil]
-#
-# @!attribute [rw] severity
-#   @return [String, nil]
-#
-# @!attribute [rw] validTimeFrom
-#   @return [String, nil]
-#
-# @!attribute [rw] validTimeTo
-#   @return [String, nil]
 AirSigmetListMatch = Struct.new(
-  :airsigmetType,
-  :altitudeHigh,
-  :altitudeLow,
-  :fir,
+  :bbox,
+  :date,
+  :format,
   :hazard,
-  :issueTime,
-  :rawAirSigmet,
-  :severity,
-  :validTimeFrom,
-  :validTimeTo,
   keyword_init: true
 )
 
@@ -141,42 +117,18 @@ Airport = Struct.new(
 
 # Request payload for Airport#list.
 #
-# @!attribute [rw] city
+# @!attribute [rw] bbox
 #   @return [String, nil]
 #
-# @!attribute [rw] country
+# @!attribute [rw] format
 #   @return [String, nil]
 #
-# @!attribute [rw] elev
-#   @return [Float, nil]
-#
-# @!attribute [rw] iataId
-#   @return [String, nil]
-#
-# @!attribute [rw] icaoId
-#   @return [String, nil]
-#
-# @!attribute [rw] lat
-#   @return [Float, nil]
-#
-# @!attribute [rw] lon
-#   @return [Float, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] state
+# @!attribute [rw] ids
 #   @return [String, nil]
 AirportListMatch = Struct.new(
-  :city,
-  :country,
-  :elev,
-  :iataId,
-  :icaoId,
-  :lat,
-  :lon,
-  :name,
-  :state,
+  :bbox,
+  :format,
+  :ids,
   keyword_init: true
 )
 
@@ -223,34 +175,18 @@ Cwa = Struct.new(
 
 # Request payload for Cwa#list.
 #
-# @!attribute [rw] cwsu
+# @!attribute [rw] bbox
 #   @return [String, nil]
 #
-# @!attribute [rw] issueTime
+# @!attribute [rw] date
 #   @return [String, nil]
 #
-# @!attribute [rw] rawText
-#   @return [String, nil]
-#
-# @!attribute [rw] sequence
-#   @return [Integer, nil]
-#
-# @!attribute [rw] seriesId
-#   @return [String, nil]
-#
-# @!attribute [rw] validTimeFrom
-#   @return [String, nil]
-#
-# @!attribute [rw] validTimeTo
+# @!attribute [rw] format
 #   @return [String, nil]
 CwaListMatch = Struct.new(
-  :cwsu,
-  :issueTime,
-  :rawText,
-  :sequence,
-  :seriesId,
-  :validTimeFrom,
-  :validTimeTo,
+  :bbox,
+  :date,
+  :format,
   keyword_init: true
 )
 
@@ -293,38 +229,22 @@ GAirmet = Struct.new(
 
 # Request payload for GAirmet#list.
 #
-# @!attribute [rw] altitudeHigh
-#   @return [Integer, nil]
+# @!attribute [rw] bbox
+#   @return [String, nil]
 #
-# @!attribute [rw] altitudeLow
-#   @return [Integer, nil]
+# @!attribute [rw] date
+#   @return [String, nil]
+#
+# @!attribute [rw] format
+#   @return [String, nil]
 #
 # @!attribute [rw] hazard
 #   @return [String, nil]
-#
-# @!attribute [rw] issueTime
-#   @return [String, nil]
-#
-# @!attribute [rw] qualifier
-#   @return [String, nil]
-#
-# @!attribute [rw] severity
-#   @return [String, nil]
-#
-# @!attribute [rw] validTimeFrom
-#   @return [String, nil]
-#
-# @!attribute [rw] validTimeTo
-#   @return [String, nil]
 GAirmetListMatch = Struct.new(
-  :altitudeHigh,
-  :altitudeLow,
+  :bbox,
+  :date,
+  :format,
   :hazard,
-  :issueTime,
-  :qualifier,
-  :severity,
-  :validTimeFrom,
-  :validTimeTo,
   keyword_init: true
 )
 
@@ -475,146 +395,26 @@ Metar = Struct.new(
 
 # Request payload for Metar#list.
 #
-# @!attribute [rw] altim
-#   @return [Float, nil]
-#
-# @!attribute [rw] clouds
-#   @return [Array, nil]
-#
-# @!attribute [rw] dewp
-#   @return [Float, nil]
-#
-# @!attribute [rw] elev
-#   @return [Float, nil]
-#
-# @!attribute [rw] fltCat
+# @!attribute [rw] bbox
 #   @return [String, nil]
 #
-# @!attribute [rw] icaoId
+# @!attribute [rw] date
 #   @return [String, nil]
 #
-# @!attribute [rw] lat
-#   @return [Float, nil]
-#
-# @!attribute [rw] lon
-#   @return [Float, nil]
-#
-# @!attribute [rw] maxT
-#   @return [Float, nil]
-#
-# @!attribute [rw] maxT24
-#   @return [Float, nil]
-#
-# @!attribute [rw] metarType
+# @!attribute [rw] format
 #   @return [String, nil]
 #
-# @!attribute [rw] minT
-#   @return [Float, nil]
-#
-# @!attribute [rw] minT24
-#   @return [Float, nil]
-#
-# @!attribute [rw] mostRecent
-#   @return [Integer, nil]
-#
-# @!attribute [rw] name
+# @!attribute [rw] ids
 #   @return [String, nil]
 #
-# @!attribute [rw] obsTime
-#   @return [String, nil]
-#
-# @!attribute [rw] pcp24hr
-#   @return [Float, nil]
-#
-# @!attribute [rw] pcp3hr
-#   @return [Float, nil]
-#
-# @!attribute [rw] pcp6hr
-#   @return [Float, nil]
-#
-# @!attribute [rw] precip
-#   @return [Float, nil]
-#
-# @!attribute [rw] presTend
-#   @return [Float, nil]
-#
-# @!attribute [rw] prior
-#   @return [Integer, nil]
-#
-# @!attribute [rw] qcField
-#   @return [Integer, nil]
-#
-# @!attribute [rw] rawOb
-#   @return [String, nil]
-#
-# @!attribute [rw] rawTaf
-#   @return [String, nil]
-#
-# @!attribute [rw] reportTime
-#   @return [String, nil]
-#
-# @!attribute [rw] slp
-#   @return [Float, nil]
-#
-# @!attribute [rw] snow
-#   @return [Float, nil]
-#
-# @!attribute [rw] temp
-#   @return [Float, nil]
-#
-# @!attribute [rw] vertVis
-#   @return [Integer, nil]
-#
-# @!attribute [rw] visib
-#   @return [String, nil]
-#
-# @!attribute [rw] wdir
-#   @return [Integer, nil]
-#
-# @!attribute [rw] wgst
-#   @return [Integer, nil]
-#
-# @!attribute [rw] wspd
-#   @return [Integer, nil]
-#
-# @!attribute [rw] wxString
-#   @return [String, nil]
+# @!attribute [rw] taf
+#   @return [Boolean, nil]
 MetarListMatch = Struct.new(
-  :altim,
-  :clouds,
-  :dewp,
-  :elev,
-  :fltCat,
-  :icaoId,
-  :lat,
-  :lon,
-  :maxT,
-  :maxT24,
-  :metarType,
-  :minT,
-  :minT24,
-  :mostRecent,
-  :name,
-  :obsTime,
-  :pcp24hr,
-  :pcp3hr,
-  :pcp6hr,
-  :precip,
-  :presTend,
-  :prior,
-  :qcField,
-  :rawOb,
-  :rawTaf,
-  :reportTime,
-  :slp,
-  :snow,
-  :temp,
-  :vertVis,
-  :visib,
-  :wdir,
-  :wgst,
-  :wspd,
-  :wxString,
+  :bbox,
+  :date,
+  :format,
+  :ids,
+  :taf,
   keyword_init: true
 )
 
@@ -685,66 +485,22 @@ Pirep = Struct.new(
 
 # Request payload for Pirep#list.
 #
-# @!attribute [rw] aircraftType
-#   @return [String, nil]
-#
-# @!attribute [rw] altitudeFt
+# @!attribute [rw] age
 #   @return [Integer, nil]
 #
-# @!attribute [rw] clouds
-#   @return [Array, nil]
-#
-# @!attribute [rw] icing
+# @!attribute [rw] bbox
 #   @return [String, nil]
 #
-# @!attribute [rw] lat
-#   @return [Float, nil]
-#
-# @!attribute [rw] lon
-#   @return [Float, nil]
-#
-# @!attribute [rw] obsTime
+# @!attribute [rw] date
 #   @return [String, nil]
 #
-# @!attribute [rw] rawOb
-#   @return [String, nil]
-#
-# @!attribute [rw] reportType
-#   @return [String, nil]
-#
-# @!attribute [rw] temp
-#   @return [Float, nil]
-#
-# @!attribute [rw] turbulence
-#   @return [String, nil]
-#
-# @!attribute [rw] visibility
-#   @return [String, nil]
-#
-# @!attribute [rw] wdir
-#   @return [Integer, nil]
-#
-# @!attribute [rw] wspd
-#   @return [Integer, nil]
-#
-# @!attribute [rw] wxString
+# @!attribute [rw] format
 #   @return [String, nil]
 PirepListMatch = Struct.new(
-  :aircraftType,
-  :altitudeFt,
-  :clouds,
-  :icing,
-  :lat,
-  :lon,
-  :obsTime,
-  :rawOb,
-  :reportType,
-  :temp,
-  :turbulence,
-  :visibility,
-  :wdir,
-  :wspd,
-  :wxString,
+  :age,
+  :bbox,
+  :date,
+  :format,
   keyword_init: true
 )
 
@@ -795,46 +551,18 @@ StationInfo = Struct.new(
 
 # Request payload for StationInfo#list.
 #
-# @!attribute [rw] country
+# @!attribute [rw] bbox
 #   @return [String, nil]
 #
-# @!attribute [rw] elev
-#   @return [Float, nil]
-#
-# @!attribute [rw] iataId
+# @!attribute [rw] format
 #   @return [String, nil]
 #
-# @!attribute [rw] icaoId
-#   @return [String, nil]
-#
-# @!attribute [rw] lat
-#   @return [Float, nil]
-#
-# @!attribute [rw] lon
-#   @return [Float, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] priority
-#   @return [Integer, nil]
-#
-# @!attribute [rw] site
-#   @return [String, nil]
-#
-# @!attribute [rw] state
+# @!attribute [rw] ids
 #   @return [String, nil]
 StationInfoListMatch = Struct.new(
-  :country,
-  :elev,
-  :iataId,
-  :icaoId,
-  :lat,
-  :lon,
-  :name,
-  :priority,
-  :site,
-  :state,
+  :bbox,
+  :format,
+  :ids,
   keyword_init: true
 )
 
@@ -889,50 +617,22 @@ Taf = Struct.new(
 
 # Request payload for Taf#list.
 #
-# @!attribute [rw] bulletinTime
+# @!attribute [rw] bbox
 #   @return [String, nil]
 #
-# @!attribute [rw] elev
-#   @return [Float, nil]
-#
-# @!attribute [rw] fcsts
-#   @return [Array, nil]
-#
-# @!attribute [rw] icaoId
+# @!attribute [rw] date
 #   @return [String, nil]
 #
-# @!attribute [rw] issueTime
+# @!attribute [rw] format
 #   @return [String, nil]
 #
-# @!attribute [rw] lat
-#   @return [Float, nil]
-#
-# @!attribute [rw] lon
-#   @return [Float, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] rawTAF
-#   @return [String, nil]
-#
-# @!attribute [rw] validTimeFrom
-#   @return [String, nil]
-#
-# @!attribute [rw] validTimeTo
+# @!attribute [rw] ids
 #   @return [String, nil]
 TafListMatch = Struct.new(
-  :bulletinTime,
-  :elev,
-  :fcsts,
-  :icaoId,
-  :issueTime,
-  :lat,
-  :lon,
-  :name,
-  :rawTAF,
-  :validTimeFrom,
-  :validTimeTo,
+  :bbox,
+  :date,
+  :format,
+  :ids,
   keyword_init: true
 )
 
@@ -941,6 +641,15 @@ class Tcf
 end
 
 # Request payload for Tcf#load.
-class TcfLoadMatch
-end
+#
+# @!attribute [rw] date
+#   @return [String, nil]
+#
+# @!attribute [rw] format
+#   @return [String, nil]
+TcfLoadMatch = Struct.new(
+  :date,
+  :format,
+  keyword_init: true
+)
 
