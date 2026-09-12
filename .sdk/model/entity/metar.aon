@@ -96,6 +96,7 @@ main: kit: entity: metar: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "obsTime"
       req: false
       short: "Observation time in ISO8601 format"
@@ -156,6 +157,7 @@ main: kit: entity: metar: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "reportTime"
       req: false
       short: "Report time in ISO8601 format"
@@ -265,10 +267,16 @@ main: kit: entity: metar: {
           }
           method: "GET"
           orig: "/api/data/metar"
-          parts: [
-            "api"
-            "data"
-            "metar"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "data"
+            }
+            {
+              lit: "metar"
+            }
           ]
           select: {
             exist: [

@@ -69,6 +69,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "issueTime",
               "req": false,
               "short": "Issue time in ISO8601 format",
@@ -90,6 +91,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "validTimeFrom",
               "req": false,
               "short": "Valid time from in ISO8601 format",
@@ -97,6 +99,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "validTimeTo",
               "req": false,
               "short": "Valid time to in ISO8601 format",
@@ -151,10 +154,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/airsigmet",
-                  "parts": [
-                    "api",
-                    "data",
-                    "airsigmet"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "airsigmet"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -286,10 +295,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/airport",
-                  "parts": [
-                    "api",
-                    "data",
-                    "airport"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "airport"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -328,10 +343,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/aircraftreports.cache.csv.gz",
-                  "parts": [
-                    "data",
-                    "cache",
-                    "aircraftreports.cache.csv.gz"
+                  "segments": [
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "aircraftreports.cache.csv.gz"
+                    }
                   ],
                   "select": {
                     "$action": "aircraftreportscachecsvgz"
@@ -347,10 +368,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/aircraftreports.cache.xml.gz",
-                  "parts": [
-                    "data",
-                    "cache",
-                    "aircraftreports.cache.xml.gz"
+                  "segments": [
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "aircraftreports.cache.xml.gz"
+                    }
                   ],
                   "select": {
                     "$action": "aircraftreportscachexmlgz"
@@ -366,10 +393,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/airsigmets.cache.csv.gz",
-                  "parts": [
-                    "data",
-                    "cache",
-                    "airsigmets.cache.csv.gz"
+                  "segments": [
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "airsigmets.cache.csv.gz"
+                    }
                   ],
                   "select": {
                     "$action": "airsigmetscachecsvgz"
@@ -385,10 +418,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/airsigmets.cache.xml.gz",
-                  "parts": [
-                    "data",
-                    "cache",
-                    "airsigmets.cache.xml.gz"
+                  "segments": [
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "airsigmets.cache.xml.gz"
+                    }
                   ],
                   "select": {
                     "$action": "airsigmetscachexmlgz"
@@ -404,10 +443,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/gairmets.cache.xml.gz",
-                  "parts": [
-                    "data",
-                    "cache",
-                    "gairmets.cache.xml.gz"
+                  "segments": [
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "gairmets.cache.xml.gz"
+                    }
                   ],
                   "select": {
                     "$action": "gairmetscachexmlgz"
@@ -423,10 +468,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/metars.cache.csv.gz",
-                  "parts": [
-                    "data",
-                    "cache",
-                    "metars.cache.csv.gz"
+                  "segments": [
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "metars.cache.csv.gz"
+                    }
                   ],
                   "select": {
                     "$action": "metarscachecsvgz"
@@ -442,10 +493,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/metars.cache.xml.gz",
-                  "parts": [
-                    "data",
-                    "cache",
-                    "metars.cache.xml.gz"
+                  "segments": [
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "metars.cache.xml.gz"
+                    }
                   ],
                   "select": {
                     "$action": "metarscachexmlgz"
@@ -461,10 +518,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/stations.cache.json.gz",
-                  "parts": [
-                    "data",
-                    "cache",
-                    "stations.cache.json.gz"
+                  "segments": [
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "stations.cache.json.gz"
+                    }
                   ],
                   "select": {
                     "$action": "stationscachejsongz"
@@ -480,10 +543,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/stations.cache.xml.gz",
-                  "parts": [
-                    "data",
-                    "cache",
-                    "stations.cache.xml.gz"
+                  "segments": [
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "stations.cache.xml.gz"
+                    }
                   ],
                   "select": {
                     "$action": "stationscachexmlgz"
@@ -499,10 +568,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/cache/tafs.cache.xml.gz",
-                  "parts": [
-                    "data",
-                    "cache",
-                    "tafs.cache.xml.gz"
+                  "segments": [
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "cache"
+                    },
+                    {
+                      "lit": "tafs.cache.xml.gz"
+                    }
                   ],
                   "select": {
                     "$action": "tafscachexmlgz"
@@ -534,6 +609,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "issueTime",
               "req": false,
               "short": "Issue time in ISO8601 format",
@@ -562,6 +638,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "validTimeFrom",
               "req": false,
               "short": "Valid time from in ISO8601 format",
@@ -569,6 +646,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "validTimeTo",
               "req": false,
               "short": "Valid time to in ISO8601 format",
@@ -615,10 +693,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/cwa",
-                  "parts": [
-                    "api",
-                    "data",
-                    "cwa"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "cwa"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -668,6 +752,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "issueTime",
               "req": false,
               "short": "Issue time in ISO8601 format",
@@ -689,6 +774,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "validTimeFrom",
               "req": false,
               "short": "Valid time from in ISO8601 format",
@@ -696,6 +782,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "validTimeTo",
               "req": false,
               "short": "Valid time to in ISO8601 format",
@@ -750,10 +837,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/gairmet",
-                  "parts": [
-                    "api",
-                    "data",
-                    "gairmet"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "gairmet"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -888,6 +981,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "obsTime",
               "req": false,
               "short": "Observation time in ISO8601 format",
@@ -958,6 +1052,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "reportTime",
               "req": false,
               "short": "Report time in ISO8601 format",
@@ -1083,10 +1178,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/metar",
-                  "parts": [
-                    "api",
-                    "data",
-                    "metar"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "metar"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1159,6 +1260,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "obsTime",
               "req": false,
               "short": "Observation time in ISO8601 format",
@@ -1269,10 +1371,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/pirep",
-                  "parts": [
-                    "api",
-                    "data",
-                    "pirep"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "pirep"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1411,10 +1519,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/stationinfo",
-                  "parts": [
-                    "api",
-                    "data",
-                    "stationinfo"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "stationinfo"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1443,6 +1557,7 @@
           "fields": [
             {
               "active": true,
+              "format": "date-time",
               "name": "bulletinTime",
               "req": false,
               "short": "Bulletin time in ISO8601 format",
@@ -1471,6 +1586,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "issueTime",
               "req": false,
               "short": "TAF issue time in ISO8601 format",
@@ -1506,6 +1622,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "validTimeFrom",
               "req": false,
               "short": "Valid time from in ISO8601 format",
@@ -1513,6 +1630,7 @@
             },
             {
               "active": true,
+              "format": "date-time",
               "name": "validTimeTo",
               "req": false,
               "short": "Valid time to in ISO8601 format",
@@ -1567,10 +1685,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/taf",
-                  "parts": [
-                    "api",
-                    "data",
-                    "taf"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "taf"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1630,10 +1754,16 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/api/data/tcf",
-                  "parts": [
-                    "api",
-                    "data",
-                    "tcf"
+                  "segments": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "tcf"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -1718,8 +1848,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -2081,6 +2214,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2106,6 +2242,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -2157,6 +2297,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -2181,6 +2322,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -2232,6 +2374,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -2256,6 +2399,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -2296,6 +2440,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2321,6 +2468,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -2355,6 +2505,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2380,6 +2533,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -2420,6 +2576,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2445,6 +2604,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -2490,6 +2652,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2515,6 +2680,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -2532,11 +2700,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -2565,6 +2728,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -2589,6 +2755,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

@@ -6,6 +6,7 @@ main: kit: entity: taf: {
 
   fields: [
     {
+      format: "date-time"
       name: "bulletinTime"
       req: false
       short: "Bulletin time in ISO8601 format"
@@ -30,6 +31,7 @@ main: kit: entity: taf: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "issueTime"
       req: false
       short: "TAF issue time in ISO8601 format"
@@ -60,12 +62,14 @@ main: kit: entity: taf: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "validTimeFrom"
       req: false
       short: "Valid time from in ISO8601 format"
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "validTimeTo"
       req: false
       short: "Valid time to in ISO8601 format"
@@ -114,10 +118,16 @@ main: kit: entity: taf: {
           }
           method: "GET"
           orig: "/api/data/taf"
-          parts: [
-            "api"
-            "data"
-            "taf"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "data"
+            }
+            {
+              lit: "taf"
+            }
           ]
           select: {
             exist: [

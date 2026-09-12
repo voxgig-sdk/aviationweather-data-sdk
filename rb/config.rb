@@ -78,6 +78,7 @@ module AviationweatherDataConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "issueTime",
               "short" => "Issue time in ISO8601 format",
               "type" => "`$STRING`",
@@ -93,11 +94,13 @@ module AviationweatherDataConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "validTimeFrom",
               "short" => "Valid time from in ISO8601 format",
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "validTimeTo",
               "short" => "Valid time to in ISO8601 format",
               "type" => "`$STRING`",
@@ -142,10 +145,16 @@ module AviationweatherDataConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/data/airsigmet",
-                  "parts" => [
-                    "api",
-                    "data",
-                    "airsigmet",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "airsigmet",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -159,6 +168,11 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "data",
+                    "airsigmet",
+                  ],
                 },
               ],
             },
@@ -248,10 +262,16 @@ module AviationweatherDataConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/data/airport",
-                  "parts" => [
-                    "api",
-                    "data",
-                    "airport",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "airport",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -264,6 +284,11 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "data",
+                    "airport",
+                  ],
                 },
               ],
             },
@@ -285,10 +310,16 @@ module AviationweatherDataConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/cache/aircraftreports.cache.csv.gz",
-                  "parts" => [
-                    "data",
-                    "cache",
-                    "aircraftreports.cache.csv.gz",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "aircraftreports.cache.csv.gz",
+                    },
                   ],
                   "select" => {
                     "$action" => "aircraftreportscachecsvgz",
@@ -297,16 +328,27 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "cache",
+                    "aircraftreports.cache.csv.gz",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/cache/aircraftreports.cache.xml.gz",
-                  "parts" => [
-                    "data",
-                    "cache",
-                    "aircraftreports.cache.xml.gz",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "aircraftreports.cache.xml.gz",
+                    },
                   ],
                   "select" => {
                     "$action" => "aircraftreportscachexmlgz",
@@ -315,16 +357,27 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "cache",
+                    "aircraftreports.cache.xml.gz",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/cache/airsigmets.cache.csv.gz",
-                  "parts" => [
-                    "data",
-                    "cache",
-                    "airsigmets.cache.csv.gz",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "airsigmets.cache.csv.gz",
+                    },
                   ],
                   "select" => {
                     "$action" => "airsigmetscachecsvgz",
@@ -333,16 +386,27 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "cache",
+                    "airsigmets.cache.csv.gz",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/cache/airsigmets.cache.xml.gz",
-                  "parts" => [
-                    "data",
-                    "cache",
-                    "airsigmets.cache.xml.gz",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "airsigmets.cache.xml.gz",
+                    },
                   ],
                   "select" => {
                     "$action" => "airsigmetscachexmlgz",
@@ -351,16 +415,27 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "cache",
+                    "airsigmets.cache.xml.gz",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/cache/gairmets.cache.xml.gz",
-                  "parts" => [
-                    "data",
-                    "cache",
-                    "gairmets.cache.xml.gz",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "gairmets.cache.xml.gz",
+                    },
                   ],
                   "select" => {
                     "$action" => "gairmetscachexmlgz",
@@ -369,16 +444,27 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "cache",
+                    "gairmets.cache.xml.gz",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/cache/metars.cache.csv.gz",
-                  "parts" => [
-                    "data",
-                    "cache",
-                    "metars.cache.csv.gz",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "metars.cache.csv.gz",
+                    },
                   ],
                   "select" => {
                     "$action" => "metarscachecsvgz",
@@ -387,16 +473,27 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "cache",
+                    "metars.cache.csv.gz",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/cache/metars.cache.xml.gz",
-                  "parts" => [
-                    "data",
-                    "cache",
-                    "metars.cache.xml.gz",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "metars.cache.xml.gz",
+                    },
                   ],
                   "select" => {
                     "$action" => "metarscachexmlgz",
@@ -405,16 +502,27 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "cache",
+                    "metars.cache.xml.gz",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/cache/stations.cache.json.gz",
-                  "parts" => [
-                    "data",
-                    "cache",
-                    "stations.cache.json.gz",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "stations.cache.json.gz",
+                    },
                   ],
                   "select" => {
                     "$action" => "stationscachejsongz",
@@ -423,16 +531,27 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "cache",
+                    "stations.cache.json.gz",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/cache/stations.cache.xml.gz",
-                  "parts" => [
-                    "data",
-                    "cache",
-                    "stations.cache.xml.gz",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "stations.cache.xml.gz",
+                    },
                   ],
                   "select" => {
                     "$action" => "stationscachexmlgz",
@@ -441,16 +560,27 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "cache",
+                    "stations.cache.xml.gz",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/cache/tafs.cache.xml.gz",
-                  "parts" => [
-                    "data",
-                    "cache",
-                    "tafs.cache.xml.gz",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "cache",
+                    },
+                    {
+                      "lit" => "tafs.cache.xml.gz",
+                    },
                   ],
                   "select" => {
                     "$action" => "tafscachexmlgz",
@@ -459,6 +589,11 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "cache",
+                    "tafs.cache.xml.gz",
+                  ],
                 },
               ],
             },
@@ -475,6 +610,7 @@ module AviationweatherDataConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "issueTime",
               "short" => "Issue time in ISO8601 format",
               "type" => "`$STRING`",
@@ -495,11 +631,13 @@ module AviationweatherDataConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "validTimeFrom",
               "short" => "Valid time from in ISO8601 format",
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "validTimeTo",
               "short" => "Valid time to in ISO8601 format",
               "type" => "`$STRING`",
@@ -538,10 +676,16 @@ module AviationweatherDataConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/data/cwa",
-                  "parts" => [
-                    "api",
-                    "data",
-                    "cwa",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "cwa",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -554,6 +698,11 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "data",
+                    "cwa",
+                  ],
                 },
               ],
             },
@@ -580,6 +729,7 @@ module AviationweatherDataConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "issueTime",
               "short" => "Issue time in ISO8601 format",
               "type" => "`$STRING`",
@@ -595,11 +745,13 @@ module AviationweatherDataConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "validTimeFrom",
               "short" => "Valid time from in ISO8601 format",
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "validTimeTo",
               "short" => "Valid time to in ISO8601 format",
               "type" => "`$STRING`",
@@ -644,10 +796,16 @@ module AviationweatherDataConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/data/gairmet",
-                  "parts" => [
-                    "api",
-                    "data",
-                    "gairmet",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "gairmet",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -661,6 +819,11 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "data",
+                    "gairmet",
+                  ],
                 },
               ],
             },
@@ -747,6 +910,7 @@ module AviationweatherDataConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "obsTime",
               "short" => "Observation time in ISO8601 format",
               "type" => "`$STRING`",
@@ -797,6 +961,7 @@ module AviationweatherDataConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "reportTime",
               "short" => "Report time in ISO8601 format",
               "type" => "`$STRING`",
@@ -892,10 +1057,16 @@ module AviationweatherDataConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/data/metar",
-                  "parts" => [
-                    "api",
-                    "data",
-                    "metar",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "metar",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -910,6 +1081,11 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "data",
+                    "metar",
+                  ],
                 },
               ],
             },
@@ -951,6 +1127,7 @@ module AviationweatherDataConfig
               "type" => "`$NUMBER`",
             },
             {
+              "format" => "date-time",
               "name" => "obsTime",
               "short" => "Observation time in ISO8601 format",
               "type" => "`$STRING`",
@@ -1035,10 +1212,16 @@ module AviationweatherDataConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/data/pirep",
-                  "parts" => [
-                    "api",
-                    "data",
-                    "pirep",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "pirep",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1052,6 +1235,11 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "data",
+                    "pirep",
+                  ],
                 },
               ],
             },
@@ -1146,10 +1334,16 @@ module AviationweatherDataConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/data/stationinfo",
-                  "parts" => [
-                    "api",
-                    "data",
-                    "stationinfo",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "stationinfo",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1162,6 +1356,11 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "data",
+                    "stationinfo",
+                  ],
                 },
               ],
             },
@@ -1173,6 +1372,7 @@ module AviationweatherDataConfig
         "taf" => {
           "fields" => [
             {
+              "format" => "date-time",
               "name" => "bulletinTime",
               "short" => "Bulletin time in ISO8601 format",
               "type" => "`$STRING`",
@@ -1193,6 +1393,7 @@ module AviationweatherDataConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "issueTime",
               "short" => "TAF issue time in ISO8601 format",
               "type" => "`$STRING`",
@@ -1218,11 +1419,13 @@ module AviationweatherDataConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "validTimeFrom",
               "short" => "Valid time from in ISO8601 format",
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "validTimeTo",
               "short" => "Valid time to in ISO8601 format",
               "type" => "`$STRING`",
@@ -1267,10 +1470,16 @@ module AviationweatherDataConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/data/taf",
-                  "parts" => [
-                    "api",
-                    "data",
-                    "taf",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "taf",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1284,6 +1493,11 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "data",
+                    "taf",
+                  ],
                 },
               ],
             },
@@ -1321,10 +1535,16 @@ module AviationweatherDataConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/data/tcf",
-                  "parts" => [
-                    "api",
-                    "data",
-                    "tcf",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "tcf",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -1336,6 +1556,11 @@ module AviationweatherDataConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "data",
+                    "tcf",
+                  ],
                 },
               ],
             },

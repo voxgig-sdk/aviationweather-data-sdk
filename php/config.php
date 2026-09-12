@@ -92,6 +92,7 @@ class AviationweatherDataConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'issueTime',
               'short' => 'Issue time in ISO8601 format',
               'type' => '`$STRING`',
@@ -107,11 +108,13 @@ class AviationweatherDataConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'validTimeFrom',
               'short' => 'Valid time from in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'validTimeTo',
               'short' => 'Valid time to in ISO8601 format',
               'type' => '`$STRING`',
@@ -156,10 +159,16 @@ class AviationweatherDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/airsigmet',
-                  'parts' => [
-                    'api',
-                    'data',
-                    'airsigmet',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'airsigmet',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -172,6 +181,11 @@ class AviationweatherDataConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'airsigmet',
                   ],
                 ],
               ],
@@ -262,10 +276,16 @@ class AviationweatherDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/airport',
-                  'parts' => [
-                    'api',
-                    'data',
-                    'airport',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'airport',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -277,6 +297,11 @@ class AviationweatherDataConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'airport',
                   ],
                 ],
               ],
@@ -299,10 +324,16 @@ class AviationweatherDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/aircraftreports.cache.csv.gz',
-                  'parts' => [
-                    'data',
-                    'cache',
-                    'aircraftreports.cache.csv.gz',
+                  'segments' => [
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'cache',
+                    ],
+                    [
+                      'lit' => 'aircraftreports.cache.csv.gz',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'aircraftreportscachecsvgz',
@@ -311,16 +342,27 @@ class AviationweatherDataConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'data',
+                    'cache',
+                    'aircraftreports.cache.csv.gz',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/aircraftreports.cache.xml.gz',
-                  'parts' => [
-                    'data',
-                    'cache',
-                    'aircraftreports.cache.xml.gz',
+                  'segments' => [
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'cache',
+                    ],
+                    [
+                      'lit' => 'aircraftreports.cache.xml.gz',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'aircraftreportscachexmlgz',
@@ -329,16 +371,27 @@ class AviationweatherDataConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'data',
+                    'cache',
+                    'aircraftreports.cache.xml.gz',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/airsigmets.cache.csv.gz',
-                  'parts' => [
-                    'data',
-                    'cache',
-                    'airsigmets.cache.csv.gz',
+                  'segments' => [
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'cache',
+                    ],
+                    [
+                      'lit' => 'airsigmets.cache.csv.gz',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'airsigmetscachecsvgz',
@@ -347,16 +400,27 @@ class AviationweatherDataConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'data',
+                    'cache',
+                    'airsigmets.cache.csv.gz',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/airsigmets.cache.xml.gz',
-                  'parts' => [
-                    'data',
-                    'cache',
-                    'airsigmets.cache.xml.gz',
+                  'segments' => [
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'cache',
+                    ],
+                    [
+                      'lit' => 'airsigmets.cache.xml.gz',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'airsigmetscachexmlgz',
@@ -365,16 +429,27 @@ class AviationweatherDataConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'data',
+                    'cache',
+                    'airsigmets.cache.xml.gz',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/gairmets.cache.xml.gz',
-                  'parts' => [
-                    'data',
-                    'cache',
-                    'gairmets.cache.xml.gz',
+                  'segments' => [
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'cache',
+                    ],
+                    [
+                      'lit' => 'gairmets.cache.xml.gz',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'gairmetscachexmlgz',
@@ -383,16 +458,27 @@ class AviationweatherDataConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'data',
+                    'cache',
+                    'gairmets.cache.xml.gz',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/metars.cache.csv.gz',
-                  'parts' => [
-                    'data',
-                    'cache',
-                    'metars.cache.csv.gz',
+                  'segments' => [
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'cache',
+                    ],
+                    [
+                      'lit' => 'metars.cache.csv.gz',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'metarscachecsvgz',
@@ -401,16 +487,27 @@ class AviationweatherDataConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'data',
+                    'cache',
+                    'metars.cache.csv.gz',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/metars.cache.xml.gz',
-                  'parts' => [
-                    'data',
-                    'cache',
-                    'metars.cache.xml.gz',
+                  'segments' => [
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'cache',
+                    ],
+                    [
+                      'lit' => 'metars.cache.xml.gz',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'metarscachexmlgz',
@@ -419,16 +516,27 @@ class AviationweatherDataConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'data',
+                    'cache',
+                    'metars.cache.xml.gz',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/stations.cache.json.gz',
-                  'parts' => [
-                    'data',
-                    'cache',
-                    'stations.cache.json.gz',
+                  'segments' => [
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'cache',
+                    ],
+                    [
+                      'lit' => 'stations.cache.json.gz',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'stationscachejsongz',
@@ -437,16 +545,27 @@ class AviationweatherDataConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'data',
+                    'cache',
+                    'stations.cache.json.gz',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/stations.cache.xml.gz',
-                  'parts' => [
-                    'data',
-                    'cache',
-                    'stations.cache.xml.gz',
+                  'segments' => [
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'cache',
+                    ],
+                    [
+                      'lit' => 'stations.cache.xml.gz',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'stationscachexmlgz',
@@ -455,16 +574,27 @@ class AviationweatherDataConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'data',
+                    'cache',
+                    'stations.cache.xml.gz',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/tafs.cache.xml.gz',
-                  'parts' => [
-                    'data',
-                    'cache',
-                    'tafs.cache.xml.gz',
+                  'segments' => [
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'cache',
+                    ],
+                    [
+                      'lit' => 'tafs.cache.xml.gz',
+                    ],
                   ],
                   'select' => [
                     '$action' => 'tafscachexmlgz',
@@ -472,6 +602,11 @@ class AviationweatherDataConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'data',
+                    'cache',
+                    'tafs.cache.xml.gz',
                   ],
                 ],
               ],
@@ -489,6 +624,7 @@ class AviationweatherDataConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'issueTime',
               'short' => 'Issue time in ISO8601 format',
               'type' => '`$STRING`',
@@ -509,11 +645,13 @@ class AviationweatherDataConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'validTimeFrom',
               'short' => 'Valid time from in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'validTimeTo',
               'short' => 'Valid time to in ISO8601 format',
               'type' => '`$STRING`',
@@ -552,10 +690,16 @@ class AviationweatherDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/cwa',
-                  'parts' => [
-                    'api',
-                    'data',
-                    'cwa',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'cwa',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -567,6 +711,11 @@ class AviationweatherDataConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'cwa',
                   ],
                 ],
               ],
@@ -594,6 +743,7 @@ class AviationweatherDataConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'issueTime',
               'short' => 'Issue time in ISO8601 format',
               'type' => '`$STRING`',
@@ -609,11 +759,13 @@ class AviationweatherDataConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'validTimeFrom',
               'short' => 'Valid time from in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'validTimeTo',
               'short' => 'Valid time to in ISO8601 format',
               'type' => '`$STRING`',
@@ -658,10 +810,16 @@ class AviationweatherDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/gairmet',
-                  'parts' => [
-                    'api',
-                    'data',
-                    'gairmet',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'gairmet',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -674,6 +832,11 @@ class AviationweatherDataConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'gairmet',
                   ],
                 ],
               ],
@@ -761,6 +924,7 @@ class AviationweatherDataConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'obsTime',
               'short' => 'Observation time in ISO8601 format',
               'type' => '`$STRING`',
@@ -811,6 +975,7 @@ class AviationweatherDataConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'reportTime',
               'short' => 'Report time in ISO8601 format',
               'type' => '`$STRING`',
@@ -906,10 +1071,16 @@ class AviationweatherDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/metar',
-                  'parts' => [
-                    'api',
-                    'data',
-                    'metar',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'metar',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -923,6 +1094,11 @@ class AviationweatherDataConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'metar',
                   ],
                 ],
               ],
@@ -965,6 +1141,7 @@ class AviationweatherDataConfig
               'type' => '`$NUMBER`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'obsTime',
               'short' => 'Observation time in ISO8601 format',
               'type' => '`$STRING`',
@@ -1049,10 +1226,16 @@ class AviationweatherDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/pirep',
-                  'parts' => [
-                    'api',
-                    'data',
-                    'pirep',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'pirep',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1065,6 +1248,11 @@ class AviationweatherDataConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'pirep',
                   ],
                 ],
               ],
@@ -1160,10 +1348,16 @@ class AviationweatherDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/stationinfo',
-                  'parts' => [
-                    'api',
-                    'data',
-                    'stationinfo',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'stationinfo',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1176,6 +1370,11 @@ class AviationweatherDataConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'stationinfo',
+                  ],
                 ],
               ],
             ],
@@ -1187,6 +1386,7 @@ class AviationweatherDataConfig
         'taf' => [
           'fields' => [
             [
+              'format' => 'date-time',
               'name' => 'bulletinTime',
               'short' => 'Bulletin time in ISO8601 format',
               'type' => '`$STRING`',
@@ -1207,6 +1407,7 @@ class AviationweatherDataConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'issueTime',
               'short' => 'TAF issue time in ISO8601 format',
               'type' => '`$STRING`',
@@ -1232,11 +1433,13 @@ class AviationweatherDataConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'validTimeFrom',
               'short' => 'Valid time from in ISO8601 format',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'validTimeTo',
               'short' => 'Valid time to in ISO8601 format',
               'type' => '`$STRING`',
@@ -1281,10 +1484,16 @@ class AviationweatherDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/taf',
-                  'parts' => [
-                    'api',
-                    'data',
-                    'taf',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'taf',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1297,6 +1506,11 @@ class AviationweatherDataConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'taf',
                   ],
                 ],
               ],
@@ -1335,10 +1549,16 @@ class AviationweatherDataConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/tcf',
-                  'parts' => [
-                    'api',
-                    'data',
-                    'tcf',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'lit' => 'tcf',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -1349,6 +1569,11 @@ class AviationweatherDataConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'tcf',
                   ],
                 ],
               ],

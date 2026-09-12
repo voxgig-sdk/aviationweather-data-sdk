@@ -31,10 +31,16 @@ main: kit: entity: tcf: {
           }
           method: "GET"
           orig: "/api/data/tcf"
-          parts: [
-            "api"
-            "data"
-            "tcf"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "data"
+            }
+            {
+              lit: "tcf"
+            }
           ]
           select: {
             exist: [

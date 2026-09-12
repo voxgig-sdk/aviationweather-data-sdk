@@ -95,10 +95,16 @@ main: kit: entity: airport: {
           }
           method: "GET"
           orig: "/api/data/airport"
-          parts: [
-            "api"
-            "data"
-            "airport"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "data"
+            }
+            {
+              lit: "airport"
+            }
           ]
           select: {
             exist: [

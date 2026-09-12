@@ -12,10 +12,16 @@ main: kit: entity: cache: {
         {
           method: "GET"
           orig: "/data/cache/aircraftreports.cache.csv.gz"
-          parts: [
-            "data"
-            "cache"
-            "aircraftreports.cache.csv.gz"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "aircraftreports.cache.csv.gz"
+            }
           ]
           select: {
             "$action": "aircraftreportscachecsvgz"
@@ -28,10 +34,16 @@ main: kit: entity: cache: {
         {
           method: "GET"
           orig: "/data/cache/aircraftreports.cache.xml.gz"
-          parts: [
-            "data"
-            "cache"
-            "aircraftreports.cache.xml.gz"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "aircraftreports.cache.xml.gz"
+            }
           ]
           select: {
             "$action": "aircraftreportscachexmlgz"
@@ -44,10 +56,16 @@ main: kit: entity: cache: {
         {
           method: "GET"
           orig: "/data/cache/airsigmets.cache.csv.gz"
-          parts: [
-            "data"
-            "cache"
-            "airsigmets.cache.csv.gz"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "airsigmets.cache.csv.gz"
+            }
           ]
           select: {
             "$action": "airsigmetscachecsvgz"
@@ -60,10 +78,16 @@ main: kit: entity: cache: {
         {
           method: "GET"
           orig: "/data/cache/airsigmets.cache.xml.gz"
-          parts: [
-            "data"
-            "cache"
-            "airsigmets.cache.xml.gz"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "airsigmets.cache.xml.gz"
+            }
           ]
           select: {
             "$action": "airsigmetscachexmlgz"
@@ -76,10 +100,16 @@ main: kit: entity: cache: {
         {
           method: "GET"
           orig: "/data/cache/gairmets.cache.xml.gz"
-          parts: [
-            "data"
-            "cache"
-            "gairmets.cache.xml.gz"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "gairmets.cache.xml.gz"
+            }
           ]
           select: {
             "$action": "gairmetscachexmlgz"
@@ -92,10 +122,16 @@ main: kit: entity: cache: {
         {
           method: "GET"
           orig: "/data/cache/metars.cache.csv.gz"
-          parts: [
-            "data"
-            "cache"
-            "metars.cache.csv.gz"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "metars.cache.csv.gz"
+            }
           ]
           select: {
             "$action": "metarscachecsvgz"
@@ -108,10 +144,16 @@ main: kit: entity: cache: {
         {
           method: "GET"
           orig: "/data/cache/metars.cache.xml.gz"
-          parts: [
-            "data"
-            "cache"
-            "metars.cache.xml.gz"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "metars.cache.xml.gz"
+            }
           ]
           select: {
             "$action": "metarscachexmlgz"
@@ -124,10 +166,16 @@ main: kit: entity: cache: {
         {
           method: "GET"
           orig: "/data/cache/stations.cache.json.gz"
-          parts: [
-            "data"
-            "cache"
-            "stations.cache.json.gz"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "stations.cache.json.gz"
+            }
           ]
           select: {
             "$action": "stationscachejsongz"
@@ -140,10 +188,16 @@ main: kit: entity: cache: {
         {
           method: "GET"
           orig: "/data/cache/stations.cache.xml.gz"
-          parts: [
-            "data"
-            "cache"
-            "stations.cache.xml.gz"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "stations.cache.xml.gz"
+            }
           ]
           select: {
             "$action": "stationscachexmlgz"
@@ -156,10 +210,16 @@ main: kit: entity: cache: {
         {
           method: "GET"
           orig: "/data/cache/tafs.cache.xml.gz"
-          parts: [
-            "data"
-            "cache"
-            "tafs.cache.xml.gz"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "tafs.cache.xml.gz"
+            }
           ]
           select: {
             "$action": "tafscachexmlgz"

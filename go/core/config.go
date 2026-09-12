@@ -70,6 +70,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "issueTime",
 						"short": "Issue time in ISO8601 format",
 						"type": "`$STRING`",
@@ -85,11 +86,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "validTimeFrom",
 						"short": "Valid time from in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "validTimeTo",
 						"short": "Valid time to in ISO8601 format",
 						"type": "`$STRING`",
@@ -134,10 +137,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/airsigmet",
-								"parts": []any{
-									"api",
-									"data",
-									"airsigmet",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "airsigmet",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -150,6 +159,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"data",
+									"airsigmet",
 								},
 							},
 						},
@@ -240,10 +254,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/airport",
-								"parts": []any{
-									"api",
-									"data",
-									"airport",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "airport",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -255,6 +275,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"data",
+									"airport",
 								},
 							},
 						},
@@ -277,10 +302,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/aircraftreports.cache.csv.gz",
-								"parts": []any{
-									"data",
-									"cache",
-									"aircraftreports.cache.csv.gz",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "cache",
+									},
+									map[string]any{
+										"lit": "aircraftreports.cache.csv.gz",
+									},
 								},
 								"select": map[string]any{
 									"$action": "aircraftreportscachecsvgz",
@@ -289,16 +320,27 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"data",
+									"cache",
+									"aircraftreports.cache.csv.gz",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/aircraftreports.cache.xml.gz",
-								"parts": []any{
-									"data",
-									"cache",
-									"aircraftreports.cache.xml.gz",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "cache",
+									},
+									map[string]any{
+										"lit": "aircraftreports.cache.xml.gz",
+									},
 								},
 								"select": map[string]any{
 									"$action": "aircraftreportscachexmlgz",
@@ -307,16 +349,27 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"data",
+									"cache",
+									"aircraftreports.cache.xml.gz",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/airsigmets.cache.csv.gz",
-								"parts": []any{
-									"data",
-									"cache",
-									"airsigmets.cache.csv.gz",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "cache",
+									},
+									map[string]any{
+										"lit": "airsigmets.cache.csv.gz",
+									},
 								},
 								"select": map[string]any{
 									"$action": "airsigmetscachecsvgz",
@@ -325,16 +378,27 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"data",
+									"cache",
+									"airsigmets.cache.csv.gz",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/airsigmets.cache.xml.gz",
-								"parts": []any{
-									"data",
-									"cache",
-									"airsigmets.cache.xml.gz",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "cache",
+									},
+									map[string]any{
+										"lit": "airsigmets.cache.xml.gz",
+									},
 								},
 								"select": map[string]any{
 									"$action": "airsigmetscachexmlgz",
@@ -343,16 +407,27 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"data",
+									"cache",
+									"airsigmets.cache.xml.gz",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/gairmets.cache.xml.gz",
-								"parts": []any{
-									"data",
-									"cache",
-									"gairmets.cache.xml.gz",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "cache",
+									},
+									map[string]any{
+										"lit": "gairmets.cache.xml.gz",
+									},
 								},
 								"select": map[string]any{
 									"$action": "gairmetscachexmlgz",
@@ -361,16 +436,27 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"data",
+									"cache",
+									"gairmets.cache.xml.gz",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/metars.cache.csv.gz",
-								"parts": []any{
-									"data",
-									"cache",
-									"metars.cache.csv.gz",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "cache",
+									},
+									map[string]any{
+										"lit": "metars.cache.csv.gz",
+									},
 								},
 								"select": map[string]any{
 									"$action": "metarscachecsvgz",
@@ -379,16 +465,27 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"data",
+									"cache",
+									"metars.cache.csv.gz",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/metars.cache.xml.gz",
-								"parts": []any{
-									"data",
-									"cache",
-									"metars.cache.xml.gz",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "cache",
+									},
+									map[string]any{
+										"lit": "metars.cache.xml.gz",
+									},
 								},
 								"select": map[string]any{
 									"$action": "metarscachexmlgz",
@@ -397,16 +494,27 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"data",
+									"cache",
+									"metars.cache.xml.gz",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/stations.cache.json.gz",
-								"parts": []any{
-									"data",
-									"cache",
-									"stations.cache.json.gz",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "cache",
+									},
+									map[string]any{
+										"lit": "stations.cache.json.gz",
+									},
 								},
 								"select": map[string]any{
 									"$action": "stationscachejsongz",
@@ -415,16 +523,27 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"data",
+									"cache",
+									"stations.cache.json.gz",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/stations.cache.xml.gz",
-								"parts": []any{
-									"data",
-									"cache",
-									"stations.cache.xml.gz",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "cache",
+									},
+									map[string]any{
+										"lit": "stations.cache.xml.gz",
+									},
 								},
 								"select": map[string]any{
 									"$action": "stationscachexmlgz",
@@ -433,16 +552,27 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"data",
+									"cache",
+									"stations.cache.xml.gz",
+								},
 							},
 							map[string]any{
 								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/tafs.cache.xml.gz",
-								"parts": []any{
-									"data",
-									"cache",
-									"tafs.cache.xml.gz",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "cache",
+									},
+									map[string]any{
+										"lit": "tafs.cache.xml.gz",
+									},
 								},
 								"select": map[string]any{
 									"$action": "tafscachexmlgz",
@@ -450,6 +580,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"data",
+									"cache",
+									"tafs.cache.xml.gz",
 								},
 							},
 						},
@@ -467,6 +602,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "issueTime",
 						"short": "Issue time in ISO8601 format",
 						"type": "`$STRING`",
@@ -487,11 +623,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "validTimeFrom",
 						"short": "Valid time from in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "validTimeTo",
 						"short": "Valid time to in ISO8601 format",
 						"type": "`$STRING`",
@@ -530,10 +668,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/cwa",
-								"parts": []any{
-									"api",
-									"data",
-									"cwa",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "cwa",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -545,6 +689,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"data",
+									"cwa",
 								},
 							},
 						},
@@ -572,6 +721,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "issueTime",
 						"short": "Issue time in ISO8601 format",
 						"type": "`$STRING`",
@@ -587,11 +737,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "validTimeFrom",
 						"short": "Valid time from in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "validTimeTo",
 						"short": "Valid time to in ISO8601 format",
 						"type": "`$STRING`",
@@ -636,10 +788,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/gairmet",
-								"parts": []any{
-									"api",
-									"data",
-									"gairmet",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "gairmet",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -652,6 +810,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"data",
+									"gairmet",
 								},
 							},
 						},
@@ -739,6 +902,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "obsTime",
 						"short": "Observation time in ISO8601 format",
 						"type": "`$STRING`",
@@ -789,6 +953,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "reportTime",
 						"short": "Report time in ISO8601 format",
 						"type": "`$STRING`",
@@ -884,10 +1049,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/metar",
-								"parts": []any{
-									"api",
-									"data",
-									"metar",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "metar",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -901,6 +1072,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"data",
+									"metar",
 								},
 							},
 						},
@@ -943,6 +1119,7 @@ func MakeConfig() map[string]any {
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "obsTime",
 						"short": "Observation time in ISO8601 format",
 						"type": "`$STRING`",
@@ -1027,10 +1204,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/pirep",
-								"parts": []any{
-									"api",
-									"data",
-									"pirep",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "pirep",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1043,6 +1226,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"data",
+									"pirep",
 								},
 							},
 						},
@@ -1138,10 +1326,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/stationinfo",
-								"parts": []any{
-									"api",
-									"data",
-									"stationinfo",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "stationinfo",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1154,6 +1348,11 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"api",
+									"data",
+									"stationinfo",
+								},
 							},
 						},
 					},
@@ -1165,6 +1364,7 @@ func MakeConfig() map[string]any {
 			"taf": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "date-time",
 						"name": "bulletinTime",
 						"short": "Bulletin time in ISO8601 format",
 						"type": "`$STRING`",
@@ -1185,6 +1385,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "issueTime",
 						"short": "TAF issue time in ISO8601 format",
 						"type": "`$STRING`",
@@ -1210,11 +1411,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "validTimeFrom",
 						"short": "Valid time from in ISO8601 format",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "validTimeTo",
 						"short": "Valid time to in ISO8601 format",
 						"type": "`$STRING`",
@@ -1259,10 +1462,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/taf",
-								"parts": []any{
-									"api",
-									"data",
-									"taf",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "taf",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1275,6 +1484,11 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"data",
+									"taf",
 								},
 							},
 						},
@@ -1313,10 +1527,16 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/tcf",
-								"parts": []any{
-									"api",
-									"data",
-									"tcf",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "tcf",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -1328,6 +1548,11 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"api",
+									"data",
+									"tcf",
+								},
 							},
 						},
 					},
@@ -1338,6 +1563,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

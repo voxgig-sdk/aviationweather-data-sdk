@@ -12,6 +12,7 @@ main: kit: entity: cwa: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "issueTime"
       req: false
       short: "Issue time in ISO8601 format"
@@ -36,12 +37,14 @@ main: kit: entity: cwa: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "validTimeFrom"
       req: false
       short: "Valid time from in ISO8601 format"
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "validTimeTo"
       req: false
       short: "Valid time to in ISO8601 format"
@@ -83,10 +86,16 @@ main: kit: entity: cwa: {
           }
           method: "GET"
           orig: "/api/data/cwa"
-          parts: [
-            "api"
-            "data"
-            "cwa"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "data"
+            }
+            {
+              lit: "cwa"
+            }
           ]
           select: {
             exist: [

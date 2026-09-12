@@ -36,6 +36,7 @@ main: kit: entity: air_sigmet: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "issueTime"
       req: false
       short: "Issue time in ISO8601 format"
@@ -54,12 +55,14 @@ main: kit: entity: air_sigmet: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "validTimeFrom"
       req: false
       short: "Valid time from in ISO8601 format"
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "validTimeTo"
       req: false
       short: "Valid time to in ISO8601 format"
@@ -108,10 +111,16 @@ main: kit: entity: air_sigmet: {
           }
           method: "GET"
           orig: "/api/data/airsigmet"
-          parts: [
-            "api"
-            "data"
-            "airsigmet"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "data"
+            }
+            {
+              lit: "airsigmet"
+            }
           ]
           select: {
             exist: [

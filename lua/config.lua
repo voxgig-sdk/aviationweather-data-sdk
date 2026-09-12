@@ -66,6 +66,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "issueTime",
             ["short"] = "Issue time in ISO8601 format",
             ["type"] = "`$STRING`",
@@ -81,11 +82,13 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "validTimeFrom",
             ["short"] = "Valid time from in ISO8601 format",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "validTimeTo",
             ["short"] = "Valid time to in ISO8601 format",
             ["type"] = "`$STRING`",
@@ -130,10 +133,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/data/airsigmet",
-                ["parts"] = {
-                  "api",
-                  "data",
-                  "airsigmet",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "airsigmet",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -146,6 +155,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "data",
+                  "airsigmet",
                 },
               },
             },
@@ -236,10 +250,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/data/airport",
-                ["parts"] = {
-                  "api",
-                  "data",
-                  "airport",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "airport",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -251,6 +271,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "data",
+                  "airport",
                 },
               },
             },
@@ -273,10 +298,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/data/cache/aircraftreports.cache.csv.gz",
-                ["parts"] = {
-                  "data",
-                  "cache",
-                  "aircraftreports.cache.csv.gz",
+                ["segments"] = {
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "cache",
+                  },
+                  {
+                    ["lit"] = "aircraftreports.cache.csv.gz",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "aircraftreportscachecsvgz",
@@ -285,16 +316,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "data",
+                  "cache",
+                  "aircraftreports.cache.csv.gz",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/data/cache/aircraftreports.cache.xml.gz",
-                ["parts"] = {
-                  "data",
-                  "cache",
-                  "aircraftreports.cache.xml.gz",
+                ["segments"] = {
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "cache",
+                  },
+                  {
+                    ["lit"] = "aircraftreports.cache.xml.gz",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "aircraftreportscachexmlgz",
@@ -303,16 +345,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "data",
+                  "cache",
+                  "aircraftreports.cache.xml.gz",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/data/cache/airsigmets.cache.csv.gz",
-                ["parts"] = {
-                  "data",
-                  "cache",
-                  "airsigmets.cache.csv.gz",
+                ["segments"] = {
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "cache",
+                  },
+                  {
+                    ["lit"] = "airsigmets.cache.csv.gz",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "airsigmetscachecsvgz",
@@ -321,16 +374,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "data",
+                  "cache",
+                  "airsigmets.cache.csv.gz",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/data/cache/airsigmets.cache.xml.gz",
-                ["parts"] = {
-                  "data",
-                  "cache",
-                  "airsigmets.cache.xml.gz",
+                ["segments"] = {
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "cache",
+                  },
+                  {
+                    ["lit"] = "airsigmets.cache.xml.gz",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "airsigmetscachexmlgz",
@@ -339,16 +403,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "data",
+                  "cache",
+                  "airsigmets.cache.xml.gz",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/data/cache/gairmets.cache.xml.gz",
-                ["parts"] = {
-                  "data",
-                  "cache",
-                  "gairmets.cache.xml.gz",
+                ["segments"] = {
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "cache",
+                  },
+                  {
+                    ["lit"] = "gairmets.cache.xml.gz",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "gairmetscachexmlgz",
@@ -357,16 +432,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "data",
+                  "cache",
+                  "gairmets.cache.xml.gz",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/data/cache/metars.cache.csv.gz",
-                ["parts"] = {
-                  "data",
-                  "cache",
-                  "metars.cache.csv.gz",
+                ["segments"] = {
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "cache",
+                  },
+                  {
+                    ["lit"] = "metars.cache.csv.gz",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "metarscachecsvgz",
@@ -375,16 +461,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "data",
+                  "cache",
+                  "metars.cache.csv.gz",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/data/cache/metars.cache.xml.gz",
-                ["parts"] = {
-                  "data",
-                  "cache",
-                  "metars.cache.xml.gz",
+                ["segments"] = {
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "cache",
+                  },
+                  {
+                    ["lit"] = "metars.cache.xml.gz",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "metarscachexmlgz",
@@ -393,16 +490,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "data",
+                  "cache",
+                  "metars.cache.xml.gz",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/data/cache/stations.cache.json.gz",
-                ["parts"] = {
-                  "data",
-                  "cache",
-                  "stations.cache.json.gz",
+                ["segments"] = {
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "cache",
+                  },
+                  {
+                    ["lit"] = "stations.cache.json.gz",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "stationscachejsongz",
@@ -411,16 +519,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "data",
+                  "cache",
+                  "stations.cache.json.gz",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/data/cache/stations.cache.xml.gz",
-                ["parts"] = {
-                  "data",
-                  "cache",
-                  "stations.cache.xml.gz",
+                ["segments"] = {
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "cache",
+                  },
+                  {
+                    ["lit"] = "stations.cache.xml.gz",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "stationscachexmlgz",
@@ -429,16 +548,27 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "data",
+                  "cache",
+                  "stations.cache.xml.gz",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/data/cache/tafs.cache.xml.gz",
-                ["parts"] = {
-                  "data",
-                  "cache",
-                  "tafs.cache.xml.gz",
+                ["segments"] = {
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "cache",
+                  },
+                  {
+                    ["lit"] = "tafs.cache.xml.gz",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "tafscachexmlgz",
@@ -446,6 +576,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "data",
+                  "cache",
+                  "tafs.cache.xml.gz",
                 },
               },
             },
@@ -463,6 +598,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "issueTime",
             ["short"] = "Issue time in ISO8601 format",
             ["type"] = "`$STRING`",
@@ -483,11 +619,13 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "validTimeFrom",
             ["short"] = "Valid time from in ISO8601 format",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "validTimeTo",
             ["short"] = "Valid time to in ISO8601 format",
             ["type"] = "`$STRING`",
@@ -526,10 +664,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/data/cwa",
-                ["parts"] = {
-                  "api",
-                  "data",
-                  "cwa",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "cwa",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -541,6 +685,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "data",
+                  "cwa",
                 },
               },
             },
@@ -568,6 +717,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "issueTime",
             ["short"] = "Issue time in ISO8601 format",
             ["type"] = "`$STRING`",
@@ -583,11 +733,13 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "validTimeFrom",
             ["short"] = "Valid time from in ISO8601 format",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "validTimeTo",
             ["short"] = "Valid time to in ISO8601 format",
             ["type"] = "`$STRING`",
@@ -632,10 +784,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/data/gairmet",
-                ["parts"] = {
-                  "api",
-                  "data",
-                  "gairmet",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "gairmet",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -648,6 +806,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "data",
+                  "gairmet",
                 },
               },
             },
@@ -735,6 +898,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "obsTime",
             ["short"] = "Observation time in ISO8601 format",
             ["type"] = "`$STRING`",
@@ -785,6 +949,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "reportTime",
             ["short"] = "Report time in ISO8601 format",
             ["type"] = "`$STRING`",
@@ -880,10 +1045,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/data/metar",
-                ["parts"] = {
-                  "api",
-                  "data",
-                  "metar",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "metar",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -897,6 +1068,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "data",
+                  "metar",
                 },
               },
             },
@@ -939,6 +1115,7 @@ local function make_config()
             ["type"] = "`$NUMBER`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "obsTime",
             ["short"] = "Observation time in ISO8601 format",
             ["type"] = "`$STRING`",
@@ -1023,10 +1200,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/data/pirep",
-                ["parts"] = {
-                  "api",
-                  "data",
-                  "pirep",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "pirep",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1039,6 +1222,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "data",
+                  "pirep",
                 },
               },
             },
@@ -1134,10 +1322,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/data/stationinfo",
-                ["parts"] = {
-                  "api",
-                  "data",
-                  "stationinfo",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "stationinfo",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1150,6 +1344,11 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "api",
+                  "data",
+                  "stationinfo",
+                },
               },
             },
           },
@@ -1161,6 +1360,7 @@ local function make_config()
       ["taf"] = {
         ["fields"] = {
           {
+            ["format"] = "date-time",
             ["name"] = "bulletinTime",
             ["short"] = "Bulletin time in ISO8601 format",
             ["type"] = "`$STRING`",
@@ -1181,6 +1381,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "issueTime",
             ["short"] = "TAF issue time in ISO8601 format",
             ["type"] = "`$STRING`",
@@ -1206,11 +1407,13 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "validTimeFrom",
             ["short"] = "Valid time from in ISO8601 format",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "validTimeTo",
             ["short"] = "Valid time to in ISO8601 format",
             ["type"] = "`$STRING`",
@@ -1255,10 +1458,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/data/taf",
-                ["parts"] = {
-                  "api",
-                  "data",
-                  "taf",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "taf",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1271,6 +1480,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "data",
+                  "taf",
                 },
               },
             },
@@ -1309,10 +1523,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/data/tcf",
-                ["parts"] = {
-                  "api",
-                  "data",
-                  "tcf",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["lit"] = "tcf",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -1323,6 +1543,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "data",
+                  "tcf",
                 },
               },
             },
