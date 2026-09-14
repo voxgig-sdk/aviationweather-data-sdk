@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AviationweatherDataSDK } from '@voxgig-sdk/aviationweather-data'
+import { AviationweatherDataSDK } from '@voxgig-sdk/aviationweather-data-sdk'
 
 const client = new AviationweatherDataSDK()
 ```
@@ -891,7 +891,7 @@ aviationweather-data/
 Import the SDK from the package root:
 
 ```ts
-import { AviationweatherDataSDK } from '@voxgig-sdk/aviationweather-data'
+import { AviationweatherDataSDK } from '@voxgig-sdk/aviationweather-data-sdk'
 ```
 
 ### Entity state

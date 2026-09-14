@@ -105,7 +105,7 @@ local results, err = client:Airport():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/aviationweather-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases) |
+| TypeScript | `@voxgig-sdk/aviationweather-data-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases) |
 | Python | `voxgig-sdk-aviationweather-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases) |
 | PHP | `voxgig-sdk/aviationweather-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/aviationweather-data-sdk/go` | `go get github.com/voxgig-sdk/aviationweather-data-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Airport():list()
 ### TypeScript
 
 ```ts
-import { AviationweatherDataSDK } from '@voxgig-sdk/aviationweather-data'
+import { AviationweatherDataSDK } from '@voxgig-sdk/aviationweather-data-sdk'
 
 const client = new AviationweatherDataSDK()
 
