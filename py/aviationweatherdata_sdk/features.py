@@ -1,12 +1,18 @@
 # AviationweatherData SDK feature factory
 
 from aviationweatherdata_sdk.feature.base_feature import AviationweatherDataBaseFeature
+from aviationweatherdata_sdk.feature.ratelimit_feature import AviationweatherDataRatelimitFeature
+from aviationweatherdata_sdk.feature.retry_feature import AviationweatherDataRetryFeature
 from aviationweatherdata_sdk.feature.test_feature import AviationweatherDataTestFeature
+from aviationweatherdata_sdk.feature.timeout_feature import AviationweatherDataTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: AviationweatherDataBaseFeature(),
+    "ratelimit": lambda: AviationweatherDataRatelimitFeature(),
+    "retry": lambda: AviationweatherDataRetryFeature(),
     "test": lambda: AviationweatherDataTestFeature(),
+    "timeout": lambda: AviationweatherDataTimeoutFeature(),
 }
 
 

@@ -10,6 +10,12 @@ main: kit: entity: cache: {
       name: "load"
       points: [
         {
+          contract: {
+            id: "GET /data/cache/aircraftreports.cache.csv.gz"
+            json: "{\"operationId\":\"getAircraftReportsCacheCsv\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/data/cache/aircraftreports.cache.csv.gz"
           segments: [
@@ -32,6 +38,12 @@ main: kit: entity: cache: {
           }
         }
         {
+          contract: {
+            id: "GET /data/cache/aircraftreports.cache.xml.gz"
+            json: "{\"operationId\":\"getAircraftReportsCacheXml\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/data/cache/aircraftreports.cache.xml.gz"
           segments: [
@@ -54,6 +66,12 @@ main: kit: entity: cache: {
           }
         }
         {
+          contract: {
+            id: "GET /data/cache/airsigmets.cache.csv.gz"
+            json: "{\"operationId\":\"getAirSigmetsCacheCsv\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/data/cache/airsigmets.cache.csv.gz"
           segments: [
@@ -76,6 +94,12 @@ main: kit: entity: cache: {
           }
         }
         {
+          contract: {
+            id: "GET /data/cache/airsigmets.cache.xml.gz"
+            json: "{\"operationId\":\"getAirSigmetsCacheXml\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/data/cache/airsigmets.cache.xml.gz"
           segments: [
@@ -98,6 +122,12 @@ main: kit: entity: cache: {
           }
         }
         {
+          contract: {
+            id: "GET /data/cache/gairmets.cache.xml.gz"
+            json: "{\"operationId\":\"getGAirmetsCacheXml\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/data/cache/gairmets.cache.xml.gz"
           segments: [
@@ -120,6 +150,12 @@ main: kit: entity: cache: {
           }
         }
         {
+          contract: {
+            id: "GET /data/cache/metars.cache.csv.gz"
+            json: "{\"operationId\":\"getMetarsCacheCsv\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/data/cache/metars.cache.csv.gz"
           segments: [
@@ -142,6 +178,12 @@ main: kit: entity: cache: {
           }
         }
         {
+          contract: {
+            id: "GET /data/cache/metars.cache.xml.gz"
+            json: "{\"operationId\":\"getMetarsCacheXml\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/data/cache/metars.cache.xml.gz"
           segments: [
@@ -164,6 +206,12 @@ main: kit: entity: cache: {
           }
         }
         {
+          contract: {
+            id: "GET /data/cache/stations.cache.json.gz"
+            json: "{\"operationId\":\"getStationsCacheJson\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/data/cache/stations.cache.json.gz"
           segments: [
@@ -186,6 +234,12 @@ main: kit: entity: cache: {
           }
         }
         {
+          contract: {
+            id: "GET /data/cache/stations.cache.xml.gz"
+            json: "{\"operationId\":\"getStationsCacheXml\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/data/cache/stations.cache.xml.gz"
           segments: [
@@ -208,6 +262,12 @@ main: kit: entity: cache: {
           }
         }
         {
+          contract: {
+            id: "GET /data/cache/tafs.cache.xml.gz"
+            json: "{\"operationId\":\"getTafsCacheXml\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/data/cache/tafs.cache.xml.gz"
           segments: [

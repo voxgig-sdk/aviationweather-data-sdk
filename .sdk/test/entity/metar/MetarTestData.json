@@ -15,7 +15,7 @@
         "metarType": "s168",
         "minT": 361,
         "minT24": 362,
-        "mostRecent": "s16b",
+        "mostRecent": 363,
         "name": "s16c",
         "obsTime": "s16d",
         "pcp24hr": 366,
@@ -23,19 +23,19 @@
         "pcp6hr": 368,
         "precip": 369,
         "presTend": 370,
-        "prior": "s173",
-        "qcField": "s174",
+        "prior": 371,
+        "qcField": 372,
         "rawOb": "s175",
         "rawTaf": "s176",
         "reportTime": "s177",
         "slp": 376,
         "snow": 377,
         "temp": 378,
-        "vertVis": "s17b",
+        "vertVis": 379,
         "visib": "s17c",
-        "wdir": "s17d",
-        "wgst": "s17e",
-        "wspd": "s17f",
+        "wdir": 381,
+        "wgst": 382,
+        "wspd": 383,
         "wxString": "s180"
       },
       "METAR01": {
@@ -52,7 +52,7 @@
         "metarType": "s2c6",
         "minT": 711,
         "minT24": 712,
-        "mostRecent": "s2c9",
+        "mostRecent": 713,
         "name": "s2ca",
         "obsTime": "s2cb",
         "pcp24hr": 716,
@@ -60,19 +60,19 @@
         "pcp6hr": 718,
         "precip": 719,
         "presTend": 720,
-        "prior": "s2d1",
-        "qcField": "s2d2",
+        "prior": 721,
+        "qcField": 722,
         "rawOb": "s2d3",
         "rawTaf": "s2d4",
         "reportTime": "s2d5",
         "slp": 726,
         "snow": 727,
         "temp": 728,
-        "vertVis": "s2d9",
+        "vertVis": 729,
         "visib": "s2da",
-        "wdir": "s2db",
-        "wgst": "s2dc",
-        "wspd": "s2dd",
+        "wdir": 731,
+        "wgst": 732,
+        "wspd": 733,
         "wxString": "s2de"
       },
       "METAR02": {
@@ -89,7 +89,7 @@
         "metarType": "s424",
         "minT": 1061,
         "minT24": 1062,
-        "mostRecent": "s427",
+        "mostRecent": 1063,
         "name": "s428",
         "obsTime": "s429",
         "pcp24hr": 1066,
@@ -97,19 +97,19 @@
         "pcp6hr": 1068,
         "precip": 1069,
         "presTend": 1070,
-        "prior": "s42f",
-        "qcField": "s430",
+        "prior": 1071,
+        "qcField": 1072,
         "rawOb": "s431",
         "rawTaf": "s432",
         "reportTime": "s433",
         "slp": 1076,
         "snow": 1077,
         "temp": 1078,
-        "vertVis": "s437",
+        "vertVis": 1079,
         "visib": "s438",
-        "wdir": "s439",
-        "wgst": "s43a",
-        "wspd": "s43b",
+        "wdir": 1081,
+        "wgst": 1082,
+        "wspd": 1083,
         "wxString": "s43c"
       }
     }
@@ -130,7 +130,7 @@
         "metarType": "s582",
         "minT": 1411,
         "minT24": 1412,
-        "mostRecent": "s585",
+        "mostRecent": 1413,
         "name": "s586",
         "obsTime": "s587",
         "pcp24hr": 1416,
@@ -138,20 +138,478 @@
         "pcp6hr": 1418,
         "precip": 1419,
         "presTend": 1420,
-        "prior": "s58d",
-        "qcField": "s58e",
+        "prior": 1421,
+        "qcField": 1422,
         "rawOb": "s58f",
         "rawTaf": "s590",
         "reportTime": "s591",
         "slp": 1426,
         "snow": 1427,
         "temp": 1428,
-        "vertVis": "s595",
+        "vertVis": 1429,
         "visib": "s596",
-        "wdir": "s597",
-        "wgst": "s598",
-        "wspd": "s599",
+        "wdir": 1431,
+        "wgst": 1432,
+        "wspd": 1433,
         "wxString": "s59a"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/data/metar": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getMetars",
+        "parameters": [
+          {
+            "description": "Comma-separated list of ICAO station identifiers (e.g., KMCI,KSFO)",
+            "in": "query",
+            "name": "ids",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Output format",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "default": "raw",
+              "enum": [
+                "raw",
+                "json",
+                "geojson",
+                "csv",
+                "xml",
+                "iwxxm"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Date for historical data (ISO8601 format)",
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Bounding box coordinates (minLon,minLat,maxLon,maxLat)",
+            "in": "query",
+            "name": "bbox",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include only stations with TAF",
+            "in": "query",
+            "name": "taf",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/geo+json": {
+                "schema": {
+                  "properties": {
+                    "features": {
+                      "items": {
+                        "properties": {
+                          "geometry": {
+                            "properties": {
+                              "coordinates": {
+                                "description": "Coordinate array structure depends on geometry type",
+                                "type": "array"
+                              },
+                              "type": {
+                                "enum": [
+                                  "Point",
+                                  "LineString",
+                                  "Polygon",
+                                  "MultiPoint",
+                                  "MultiLineString",
+                                  "MultiPolygon"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "properties": {
+                            "description": "Feature properties specific to each product type",
+                            "type": "object"
+                          },
+                          "type": {
+                            "enum": [
+                              "Feature"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "enum": [
+                        "FeatureCollection"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "altim": {
+                        "description": "Altimeter setting in inches of mercury",
+                        "type": "number"
+                      },
+                      "clouds": {
+                        "description": "Cloud layers",
+                        "items": {
+                          "properties": {
+                            "base": {
+                              "description": "Cloud base in feet AGL",
+                              "type": "integer"
+                            },
+                            "cover": {
+                              "description": "Cloud coverage (SKC, FEW, SCT, BKN, OVC)",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "dewp": {
+                        "description": "Dewpoint in Celsius",
+                        "type": "number"
+                      },
+                      "elev": {
+                        "description": "Elevation in meters",
+                        "type": "number"
+                      },
+                      "fltCat": {
+                        "description": "Flight category (VFR, MVFR, IFR, LIFR)",
+                        "enum": [
+                          "VFR",
+                          "MVFR",
+                          "IFR",
+                          "LIFR"
+                        ],
+                        "type": "string"
+                      },
+                      "icaoId": {
+                        "description": "ICAO station identifier",
+                        "type": "string"
+                      },
+                      "lat": {
+                        "description": "Latitude",
+                        "type": "number"
+                      },
+                      "lon": {
+                        "description": "Longitude",
+                        "type": "number"
+                      },
+                      "maxT": {
+                        "description": "Maximum temperature",
+                        "type": "number"
+                      },
+                      "maxT24": {
+                        "description": "24-hour maximum temperature",
+                        "type": "number"
+                      },
+                      "metarType": {
+                        "description": "METAR type (METAR or SPECI)",
+                        "type": "string"
+                      },
+                      "minT": {
+                        "description": "Minimum temperature",
+                        "type": "number"
+                      },
+                      "minT24": {
+                        "description": "24-hour minimum temperature",
+                        "type": "number"
+                      },
+                      "mostRecent": {
+                        "description": "Most recent observation flag",
+                        "type": "integer"
+                      },
+                      "name": {
+                        "description": "Station name",
+                        "type": "string"
+                      },
+                      "obsTime": {
+                        "description": "Observation time in ISO8601 format",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "pcp24hr": {
+                        "description": "24-hour precipitation",
+                        "type": "number"
+                      },
+                      "pcp3hr": {
+                        "description": "3-hour precipitation",
+                        "type": "number"
+                      },
+                      "pcp6hr": {
+                        "description": "6-hour precipitation",
+                        "type": "number"
+                      },
+                      "precip": {
+                        "description": "Precipitation",
+                        "type": "number"
+                      },
+                      "presTend": {
+                        "description": "Pressure tendency",
+                        "type": "number"
+                      },
+                      "prior": {
+                        "description": "Prior observation indicator",
+                        "type": "integer"
+                      },
+                      "qcField": {
+                        "description": "Quality control field",
+                        "type": "integer"
+                      },
+                      "rawOb": {
+                        "description": "Raw METAR observation text",
+                        "type": "string"
+                      },
+                      "rawTaf": {
+                        "description": "Raw TAF if available",
+                        "type": "string"
+                      },
+                      "reportTime": {
+                        "description": "Report time in ISO8601 format",
+                        "format": "date-time",
+                        "type": "string"
+                      },
+                      "slp": {
+                        "description": "Sea level pressure",
+                        "type": "number"
+                      },
+                      "snow": {
+                        "description": "Snow depth",
+                        "type": "number"
+                      },
+                      "temp": {
+                        "description": "Temperature in Celsius",
+                        "type": "number"
+                      },
+                      "vertVis": {
+                        "description": "Vertical visibility",
+                        "type": "integer"
+                      },
+                      "visib": {
+                        "description": "Visibility",
+                        "type": "string"
+                      },
+                      "wdir": {
+                        "description": "Wind direction in degrees",
+                        "type": "integer"
+                      },
+                      "wgst": {
+                        "description": "Wind gust in knots",
+                        "type": "integer"
+                      },
+                      "wspd": {
+                        "description": "Wind speed in knots",
+                        "type": "integer"
+                      },
+                      "wxString": {
+                        "description": "Weather phenomena string",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "204": {
+            "description": "No content - valid request but no data available"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Invalid request - invalid or missing parameters"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Rate limit exceeded - maximum 100 requests per minute"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Internal server error - request may be valid but system unable to serve it"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

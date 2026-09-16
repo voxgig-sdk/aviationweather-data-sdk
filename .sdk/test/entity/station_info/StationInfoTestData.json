@@ -9,7 +9,7 @@
         "lat": 104,
         "lon": 105,
         "name": "s6a",
-        "priority": "s6b",
+        "priority": 107,
         "site": "s6c",
         "state": "s6d"
       },
@@ -21,7 +21,7 @@
         "lat": 204,
         "lon": 205,
         "name": "sce",
-        "priority": "scf",
+        "priority": 207,
         "site": "sd0",
         "state": "sd1"
       },
@@ -33,7 +33,7 @@
         "lat": 304,
         "lon": 305,
         "name": "s132",
-        "priority": "s133",
+        "priority": 307,
         "site": "s134",
         "state": "s135"
       }
@@ -49,9 +49,314 @@
         "lat": 404,
         "lon": 405,
         "name": "s196",
-        "priority": "s197",
+        "priority": 407,
         "site": "s198",
         "state": "s199"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/data/stationinfo": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getStationInfo",
+        "parameters": [
+          {
+            "description": "Comma-separated list of ICAO station identifiers",
+            "in": "query",
+            "name": "ids",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Bounding box coordinates (minLon,minLat,maxLon,maxLat)",
+            "in": "query",
+            "name": "bbox",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Output format",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "default": "json",
+              "enum": [
+                "json",
+                "geojson",
+                "xml"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/geo+json": {
+                "schema": {
+                  "properties": {
+                    "features": {
+                      "items": {
+                        "properties": {
+                          "geometry": {
+                            "properties": {
+                              "coordinates": {
+                                "description": "Coordinate array structure depends on geometry type",
+                                "type": "array"
+                              },
+                              "type": {
+                                "enum": [
+                                  "Point",
+                                  "LineString",
+                                  "Polygon",
+                                  "MultiPoint",
+                                  "MultiLineString",
+                                  "MultiPolygon"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "properties": {
+                            "description": "Feature properties specific to each product type",
+                            "type": "object"
+                          },
+                          "type": {
+                            "enum": [
+                              "Feature"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "enum": [
+                        "FeatureCollection"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "country": {
+                        "description": "Country code",
+                        "type": "string"
+                      },
+                      "elev": {
+                        "description": "Elevation in meters",
+                        "type": "number"
+                      },
+                      "iataId": {
+                        "description": "IATA identifier",
+                        "type": "string"
+                      },
+                      "icaoId": {
+                        "description": "ICAO station identifier",
+                        "type": "string"
+                      },
+                      "lat": {
+                        "description": "Latitude",
+                        "type": "number"
+                      },
+                      "lon": {
+                        "description": "Longitude",
+                        "type": "number"
+                      },
+                      "name": {
+                        "description": "Station name",
+                        "type": "string"
+                      },
+                      "priority": {
+                        "description": "Priority level",
+                        "type": "integer"
+                      },
+                      "site": {
+                        "description": "Site type",
+                        "type": "string"
+                      },
+                      "state": {
+                        "description": "State or province",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "204": {
+            "description": "No content - valid request but no data available"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Invalid request - invalid or missing parameters"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Rate limit exceeded - maximum 100 requests per minute"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Internal server error - request may be valid but system unable to serve it"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }
