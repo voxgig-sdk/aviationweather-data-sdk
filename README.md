@@ -105,12 +105,12 @@ local results, err = client:Airport():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/aviationweather-data-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases) |
-| Python | `voxgig-sdk-aviationweather-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases) |
-| PHP | `voxgig-sdk/aviationweather-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases) |
+| TypeScript | `@voxgig-sdk/aviationweather-data-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/tags) |
+| Python | `voxgig-sdk-aviationweather-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/tags) |
+| PHP | `voxgig-sdk/aviationweather-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/aviationweather-data-sdk/go` | `go get github.com/voxgig-sdk/aviationweather-data-sdk/go@latest` |
-| Ruby | `voxgig-sdk-aviationweather-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases) |
-| Lua | `voxgig-sdk-aviationweather-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases) |
+| Ruby | `voxgig-sdk-aviationweather-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/tags) |
+| Lua | `voxgig-sdk-aviationweather-data` | publish pending — [install from git tag](https://github.com/voxgig-sdk/aviationweather-data-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/aviationweather-data-sdk/go-cli` | `go install github.com/voxgig-sdk/aviationweather-data-sdk/go-cli/cmd/aviationweather-data@latest` |
 | Go MCP server | `github.com/voxgig-sdk/aviationweather-data-sdk/go-mcp` | `go get github.com/voxgig-sdk/aviationweather-data-sdk/go-mcp@latest` |
 

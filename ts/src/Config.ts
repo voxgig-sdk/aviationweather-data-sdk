@@ -127,36 +127,36 @@ class Config {
 
     entity: {
       
-      air_sigmet: {
-      },
-
-      airport: {
-      },
-
-      cache: {
-      },
-
-      cwa: {
-      },
-
-      g_airmet: {
-      },
-
-      metar: {
-      },
-
-      pirep: {
-      },
-
-      station_info: {
-      },
-
-      taf: {
-      },
-
-      tcf: {
-      },
-
+        air_sigmet: {
+        },
+  
+        airport: {
+        },
+  
+        cache: {
+        },
+  
+        cwa: {
+        },
+  
+        g_airmet: {
+        },
+  
+        metar: {
+        },
+  
+        pirep: {
+        },
+  
+        station_info: {
+        },
+  
+        taf: {
+        },
+  
+        tcf: {
+        },
+  
     }
   }
 
