@@ -100,56 +100,66 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "airsigmetType",
-						"short": "SIGMET type",
+						"title": "Airsigmet Type",
 						"type": "`$STRING`",
+						"short": "SIGMET type",
 					},
 					map[string]any{
 						"name": "altitudeHigh",
-						"short": "Upper altitude in feet MSL",
+						"title": "Altitude High",
 						"type": "`$INTEGER`",
+						"short": "Upper altitude in feet MSL",
 					},
 					map[string]any{
 						"name": "altitudeLow",
-						"short": "Lower altitude in feet MSL",
+						"title": "Altitude Low",
 						"type": "`$INTEGER`",
+						"short": "Lower altitude in feet MSL",
 					},
 					map[string]any{
 						"name": "fir",
-						"short": "Flight Information Region",
+						"title": "Fir",
 						"type": "`$STRING`",
+						"short": "Flight Information Region",
 					},
 					map[string]any{
 						"name": "hazard",
-						"short": "Hazard type",
+						"title": "Hazard",
 						"type": "`$STRING`",
+						"short": "Hazard type",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "issueTime",
-						"short": "Issue time in ISO8601 format",
+						"title": "Issue Time",
 						"type": "`$STRING`",
+						"short": "Issue time in ISO8601 format",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "rawAirSigmet",
-						"short": "Raw SIGMET text",
+						"title": "Raw Air Sigmet",
 						"type": "`$STRING`",
+						"short": "Raw SIGMET text",
 					},
 					map[string]any{
 						"name": "severity",
+						"title": "Severity",
+						"type": "`$STRING`",
 						"short": "Severity level",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "validTimeFrom",
-						"short": "Valid time from in ISO8601 format",
+						"title": "Valid Time From",
 						"type": "`$STRING`",
+						"short": "Valid time from in ISO8601 format",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "validTimeTo",
-						"short": "Valid time to in ISO8601 format",
+						"title": "Valid Time To",
 						"type": "`$STRING`",
+						"short": "Valid time to in ISO8601 format",
+						"format": "date-time",
 					},
 				},
 				"name": "air_sigmet",
@@ -159,35 +169,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "bbox",
-											"orig": "bbox",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "raw",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "hazard",
-											"orig": "hazard",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/airsigmet",
@@ -202,6 +183,45 @@ func MakeConfig() map[string]any {
 										"lit": "airsigmet",
 									},
 								},
+								"parts": []any{
+									"api",
+									"data",
+									"airsigmet",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "bbox",
+											"orig": "bbox",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "raw",
+										},
+										map[string]any{
+											"name": "hazard",
+											"orig": "hazard",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"bbox",
@@ -209,15 +229,6 @@ func MakeConfig() map[string]any {
 										"format",
 										"hazard",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"data",
-									"airsigmet",
 								},
 							},
 						},
@@ -231,48 +242,57 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "city",
-						"short": "City",
+						"title": "City",
 						"type": "`$STRING`",
+						"short": "City",
 					},
 					map[string]any{
 						"name": "country",
-						"short": "Country code",
+						"title": "Country",
 						"type": "`$STRING`",
+						"short": "Country code",
 					},
 					map[string]any{
 						"name": "elev",
-						"short": "Elevation in meters",
+						"title": "Elev",
 						"type": "`$NUMBER`",
+						"short": "Elevation in meters",
 					},
 					map[string]any{
 						"name": "iataId",
-						"short": "IATA identifier",
+						"title": "Iata Id",
 						"type": "`$STRING`",
+						"short": "IATA identifier",
 					},
 					map[string]any{
 						"name": "icaoId",
-						"short": "ICAO airport identifier",
+						"title": "Icao Id",
 						"type": "`$STRING`",
+						"short": "ICAO airport identifier",
 					},
 					map[string]any{
 						"name": "lat",
-						"short": "Latitude",
+						"title": "Lat",
 						"type": "`$NUMBER`",
+						"short": "Latitude",
 					},
 					map[string]any{
 						"name": "lon",
-						"short": "Longitude",
+						"title": "Lon",
 						"type": "`$NUMBER`",
+						"short": "Longitude",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Airport name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Airport name",
 					},
 					map[string]any{
 						"name": "state",
-						"short": "State or province",
+						"title": "State",
 						"type": "`$STRING`",
+						"short": "State or province",
 					},
 				},
 				"name": "airport",
@@ -282,29 +302,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "bbox",
-											"orig": "bbox",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "ids",
-											"orig": "ids",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/airport",
@@ -319,21 +316,45 @@ func MakeConfig() map[string]any {
 										"lit": "airport",
 									},
 								},
+								"parts": []any{
+									"api",
+									"data",
+									"airport",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "bbox",
+											"orig": "bbox",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
+										map[string]any{
+											"name": "ids",
+											"orig": "ids",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"bbox",
 										"format",
 										"ids",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"data",
-									"airport",
 								},
 							},
 						},
@@ -352,7 +373,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/aircraftreports.cache.csv.gz",
@@ -367,21 +387,22 @@ func MakeConfig() map[string]any {
 										"lit": "aircraftreports.cache.csv.gz",
 									},
 								},
-								"select": map[string]any{
-									"$action": "aircraftreportscachecsvgz",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"cache",
 									"aircraftreports.cache.csv.gz",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "aircraftreportscachecsvgz",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/aircraftreports.cache.xml.gz",
@@ -396,21 +417,22 @@ func MakeConfig() map[string]any {
 										"lit": "aircraftreports.cache.xml.gz",
 									},
 								},
-								"select": map[string]any{
-									"$action": "aircraftreportscachexmlgz",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"cache",
 									"aircraftreports.cache.xml.gz",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "aircraftreportscachexmlgz",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/airsigmets.cache.csv.gz",
@@ -425,21 +447,22 @@ func MakeConfig() map[string]any {
 										"lit": "airsigmets.cache.csv.gz",
 									},
 								},
-								"select": map[string]any{
-									"$action": "airsigmetscachecsvgz",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"cache",
 									"airsigmets.cache.csv.gz",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "airsigmetscachecsvgz",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/airsigmets.cache.xml.gz",
@@ -454,21 +477,22 @@ func MakeConfig() map[string]any {
 										"lit": "airsigmets.cache.xml.gz",
 									},
 								},
-								"select": map[string]any{
-									"$action": "airsigmetscachexmlgz",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"cache",
 									"airsigmets.cache.xml.gz",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "airsigmetscachexmlgz",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/gairmets.cache.xml.gz",
@@ -483,21 +507,22 @@ func MakeConfig() map[string]any {
 										"lit": "gairmets.cache.xml.gz",
 									},
 								},
-								"select": map[string]any{
-									"$action": "gairmetscachexmlgz",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"cache",
 									"gairmets.cache.xml.gz",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "gairmetscachexmlgz",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/metars.cache.csv.gz",
@@ -512,21 +537,22 @@ func MakeConfig() map[string]any {
 										"lit": "metars.cache.csv.gz",
 									},
 								},
-								"select": map[string]any{
-									"$action": "metarscachecsvgz",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"cache",
 									"metars.cache.csv.gz",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "metarscachecsvgz",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/metars.cache.xml.gz",
@@ -541,21 +567,22 @@ func MakeConfig() map[string]any {
 										"lit": "metars.cache.xml.gz",
 									},
 								},
-								"select": map[string]any{
-									"$action": "metarscachexmlgz",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"cache",
 									"metars.cache.xml.gz",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "metarscachexmlgz",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/stations.cache.json.gz",
@@ -570,21 +597,22 @@ func MakeConfig() map[string]any {
 										"lit": "stations.cache.json.gz",
 									},
 								},
-								"select": map[string]any{
-									"$action": "stationscachejsongz",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"cache",
 									"stations.cache.json.gz",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "stationscachejsongz",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/stations.cache.xml.gz",
@@ -599,21 +627,22 @@ func MakeConfig() map[string]any {
 										"lit": "stations.cache.xml.gz",
 									},
 								},
-								"select": map[string]any{
-									"$action": "stationscachexmlgz",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"cache",
 									"stations.cache.xml.gz",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "stationscachexmlgz",
+								},
 							},
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/cache/tafs.cache.xml.gz",
@@ -628,17 +657,19 @@ func MakeConfig() map[string]any {
 										"lit": "tafs.cache.xml.gz",
 									},
 								},
-								"select": map[string]any{
-									"$action": "tafscachexmlgz",
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"cache",
 									"tafs.cache.xml.gz",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{
+									"$action": "tafscachexmlgz",
 								},
 							},
 						},
@@ -652,41 +683,48 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "cwsu",
-						"short": "Center Weather Service Unit",
+						"title": "Cwsu",
 						"type": "`$STRING`",
+						"short": "Center Weather Service Unit",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "issueTime",
-						"short": "Issue time in ISO8601 format",
+						"title": "Issue Time",
 						"type": "`$STRING`",
+						"short": "Issue time in ISO8601 format",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "rawText",
-						"short": "Raw CWA text",
+						"title": "Raw Text",
 						"type": "`$STRING`",
+						"short": "Raw CWA text",
 					},
 					map[string]any{
 						"name": "sequence",
-						"short": "Sequence number",
+						"title": "Sequence",
 						"type": "`$INTEGER`",
+						"short": "Sequence number",
 					},
 					map[string]any{
 						"name": "seriesId",
+						"title": "Series Id",
+						"type": "`$STRING`",
 						"short": "Series identifier",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "validTimeFrom",
-						"short": "Valid time from in ISO8601 format",
+						"title": "Valid Time From",
 						"type": "`$STRING`",
+						"short": "Valid time from in ISO8601 format",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "validTimeTo",
-						"short": "Valid time to in ISO8601 format",
+						"title": "Valid Time To",
 						"type": "`$STRING`",
+						"short": "Valid time to in ISO8601 format",
+						"format": "date-time",
 					},
 				},
 				"name": "cwa",
@@ -696,29 +734,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "bbox",
-											"orig": "bbox",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "raw",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/cwa",
@@ -733,21 +748,45 @@ func MakeConfig() map[string]any {
 										"lit": "cwa",
 									},
 								},
+								"parts": []any{
+									"api",
+									"data",
+									"cwa",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "bbox",
+											"orig": "bbox",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "raw",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"bbox",
 										"date",
 										"format",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"data",
-									"cwa",
 								},
 							},
 						},
@@ -761,46 +800,54 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "altitudeHigh",
-						"short": "Upper altitude in feet MSL",
+						"title": "Altitude High",
 						"type": "`$INTEGER`",
+						"short": "Upper altitude in feet MSL",
 					},
 					map[string]any{
 						"name": "altitudeLow",
-						"short": "Lower altitude in feet MSL",
+						"title": "Altitude Low",
 						"type": "`$INTEGER`",
+						"short": "Lower altitude in feet MSL",
 					},
 					map[string]any{
 						"name": "hazard",
-						"short": "Hazard type",
+						"title": "Hazard",
 						"type": "`$STRING`",
+						"short": "Hazard type",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "issueTime",
-						"short": "Issue time in ISO8601 format",
+						"title": "Issue Time",
 						"type": "`$STRING`",
+						"short": "Issue time in ISO8601 format",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "qualifier",
-						"short": "Forecast qualifier",
+						"title": "Qualifier",
 						"type": "`$STRING`",
+						"short": "Forecast qualifier",
 					},
 					map[string]any{
 						"name": "severity",
+						"title": "Severity",
+						"type": "`$STRING`",
 						"short": "Severity level",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "validTimeFrom",
-						"short": "Valid time from in ISO8601 format",
+						"title": "Valid Time From",
 						"type": "`$STRING`",
+						"short": "Valid time from in ISO8601 format",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "validTimeTo",
-						"short": "Valid time to in ISO8601 format",
+						"title": "Valid Time To",
 						"type": "`$STRING`",
+						"short": "Valid time to in ISO8601 format",
+						"format": "date-time",
 					},
 				},
 				"name": "g_airmet",
@@ -810,35 +857,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "bbox",
-											"orig": "bbox",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "hazard",
-											"orig": "hazard",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/gairmet",
@@ -853,6 +871,45 @@ func MakeConfig() map[string]any {
 										"lit": "gairmet",
 									},
 								},
+								"parts": []any{
+									"api",
+									"data",
+									"gairmet",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "bbox",
+											"orig": "bbox",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
+										map[string]any{
+											"name": "hazard",
+											"orig": "hazard",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"bbox",
@@ -860,15 +917,6 @@ func MakeConfig() map[string]any {
 										"format",
 										"hazard",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"data",
-									"gairmet",
 								},
 							},
 						},
@@ -882,180 +930,215 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "altim",
-						"short": "Altimeter setting in inches of mercury",
+						"title": "Altim",
 						"type": "`$NUMBER`",
+						"short": "Altimeter setting in inches of mercury",
 					},
 					map[string]any{
 						"name": "clouds",
-						"short": "Cloud layers",
+						"title": "Clouds",
 						"type": "`$ARRAY`",
+						"short": "Cloud layers",
 					},
 					map[string]any{
 						"name": "dewp",
-						"short": "Dewpoint in Celsius",
+						"title": "Dewp",
 						"type": "`$NUMBER`",
+						"short": "Dewpoint in Celsius",
 					},
 					map[string]any{
 						"name": "elev",
-						"short": "Elevation in meters",
+						"title": "Elev",
 						"type": "`$NUMBER`",
+						"short": "Elevation in meters",
 					},
 					map[string]any{
 						"name": "fltCat",
-						"short": "Flight category (VFR, MVFR, IFR, LIFR)",
+						"title": "Flt Cat",
 						"type": "`$STRING`",
+						"short": "Flight category (VFR, MVFR, IFR, LIFR)",
 					},
 					map[string]any{
 						"name": "icaoId",
-						"short": "ICAO station identifier",
+						"title": "Icao Id",
 						"type": "`$STRING`",
+						"short": "ICAO station identifier",
 					},
 					map[string]any{
 						"name": "lat",
-						"short": "Latitude",
+						"title": "Lat",
 						"type": "`$NUMBER`",
+						"short": "Latitude",
 					},
 					map[string]any{
 						"name": "lon",
-						"short": "Longitude",
+						"title": "Lon",
 						"type": "`$NUMBER`",
+						"short": "Longitude",
 					},
 					map[string]any{
 						"name": "maxT",
-						"short": "Maximum temperature",
+						"title": "Max T",
 						"type": "`$NUMBER`",
+						"short": "Maximum temperature",
 					},
 					map[string]any{
 						"name": "maxT24",
-						"short": "24-hour maximum temperature",
+						"title": "Max T24",
 						"type": "`$NUMBER`",
+						"short": "24-hour maximum temperature",
 					},
 					map[string]any{
 						"name": "metarType",
-						"short": "METAR type (METAR or SPECI)",
+						"title": "Metar Type",
 						"type": "`$STRING`",
+						"short": "METAR type (METAR or SPECI)",
 					},
 					map[string]any{
 						"name": "minT",
-						"short": "Minimum temperature",
+						"title": "Min T",
 						"type": "`$NUMBER`",
+						"short": "Minimum temperature",
 					},
 					map[string]any{
 						"name": "minT24",
-						"short": "24-hour minimum temperature",
+						"title": "Min T24",
 						"type": "`$NUMBER`",
+						"short": "24-hour minimum temperature",
 					},
 					map[string]any{
 						"name": "mostRecent",
-						"short": "Most recent observation flag",
+						"title": "Most Recent",
 						"type": "`$INTEGER`",
+						"short": "Most recent observation flag",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Station name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Station name",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "obsTime",
-						"short": "Observation time in ISO8601 format",
+						"title": "Obs Time",
 						"type": "`$STRING`",
+						"short": "Observation time in ISO8601 format",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "pcp24hr",
-						"short": "24-hour precipitation",
+						"title": "Pcp24hr",
 						"type": "`$NUMBER`",
+						"short": "24-hour precipitation",
 					},
 					map[string]any{
 						"name": "pcp3hr",
-						"short": "3-hour precipitation",
+						"title": "Pcp3hr",
 						"type": "`$NUMBER`",
+						"short": "3-hour precipitation",
 					},
 					map[string]any{
 						"name": "pcp6hr",
-						"short": "6-hour precipitation",
+						"title": "Pcp6hr",
 						"type": "`$NUMBER`",
+						"short": "6-hour precipitation",
 					},
 					map[string]any{
 						"name": "precip",
-						"short": "Precipitation",
+						"title": "Precip",
 						"type": "`$NUMBER`",
+						"short": "Precipitation",
 					},
 					map[string]any{
 						"name": "presTend",
-						"short": "Pressure tendency",
+						"title": "Pres Tend",
 						"type": "`$NUMBER`",
+						"short": "Pressure tendency",
 					},
 					map[string]any{
 						"name": "prior",
-						"short": "Prior observation indicator",
+						"title": "Prior",
 						"type": "`$INTEGER`",
+						"short": "Prior observation indicator",
 					},
 					map[string]any{
 						"name": "qcField",
-						"short": "Quality control field",
+						"title": "Qc Field",
 						"type": "`$INTEGER`",
+						"short": "Quality control field",
 					},
 					map[string]any{
 						"name": "rawOb",
-						"short": "Raw METAR observation text",
+						"title": "Raw Ob",
 						"type": "`$STRING`",
+						"short": "Raw METAR observation text",
 					},
 					map[string]any{
 						"name": "rawTaf",
-						"short": "Raw TAF if available",
+						"title": "Raw Taf",
 						"type": "`$STRING`",
+						"short": "Raw TAF if available",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "reportTime",
-						"short": "Report time in ISO8601 format",
+						"title": "Report Time",
 						"type": "`$STRING`",
+						"short": "Report time in ISO8601 format",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "slp",
-						"short": "Sea level pressure",
+						"title": "Slp",
 						"type": "`$NUMBER`",
+						"short": "Sea level pressure",
 					},
 					map[string]any{
 						"name": "snow",
-						"short": "Snow depth",
+						"title": "Snow",
 						"type": "`$NUMBER`",
+						"short": "Snow depth",
 					},
 					map[string]any{
 						"name": "temp",
-						"short": "Temperature in Celsius",
+						"title": "Temp",
 						"type": "`$NUMBER`",
+						"short": "Temperature in Celsius",
 					},
 					map[string]any{
 						"name": "vertVis",
-						"short": "Vertical visibility",
+						"title": "Vert Vis",
 						"type": "`$INTEGER`",
+						"short": "Vertical visibility",
 					},
 					map[string]any{
 						"name": "visib",
-						"short": "Visibility",
+						"title": "Visib",
 						"type": "`$STRING`",
+						"short": "Visibility",
 					},
 					map[string]any{
 						"name": "wdir",
-						"short": "Wind direction in degrees",
+						"title": "Wdir",
 						"type": "`$INTEGER`",
+						"short": "Wind direction in degrees",
 					},
 					map[string]any{
 						"name": "wgst",
-						"short": "Wind gust in knots",
+						"title": "Wgst",
 						"type": "`$INTEGER`",
+						"short": "Wind gust in knots",
 					},
 					map[string]any{
 						"name": "wspd",
-						"short": "Wind speed in knots",
+						"title": "Wspd",
 						"type": "`$INTEGER`",
+						"short": "Wind speed in knots",
 					},
 					map[string]any{
 						"name": "wxString",
-						"short": "Weather phenomena string",
+						"title": "Wx String",
 						"type": "`$STRING`",
+						"short": "Weather phenomena string",
 					},
 				},
 				"name": "metar",
@@ -1065,41 +1148,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "bbox",
-											"orig": "bbox",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "raw",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "ids",
-											"orig": "ids",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "taf",
-											"orig": "taf",
-											"type": "`$BOOLEAN`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/metar",
@@ -1114,6 +1162,51 @@ func MakeConfig() map[string]any {
 										"lit": "metar",
 									},
 								},
+								"parts": []any{
+									"api",
+									"data",
+									"metar",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "bbox",
+											"orig": "bbox",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "raw",
+										},
+										map[string]any{
+											"name": "ids",
+											"orig": "ids",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "taf",
+											"orig": "taf",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"bbox",
@@ -1122,15 +1215,6 @@ func MakeConfig() map[string]any {
 										"ids",
 										"taf",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"data",
-									"metar",
 								},
 							},
 						},
@@ -1144,79 +1228,94 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "aircraftType",
-						"short": "Aircraft type",
+						"title": "Aircraft Type",
 						"type": "`$STRING`",
+						"short": "Aircraft type",
 					},
 					map[string]any{
 						"name": "altitudeFt",
-						"short": "Altitude in feet MSL",
+						"title": "Altitude Ft",
 						"type": "`$INTEGER`",
+						"short": "Altitude in feet MSL",
 					},
 					map[string]any{
 						"name": "clouds",
-						"short": "Cloud reports",
+						"title": "Clouds",
 						"type": "`$ARRAY`",
+						"short": "Cloud reports",
 					},
 					map[string]any{
 						"name": "icing",
-						"short": "Icing report",
+						"title": "Icing",
 						"type": "`$STRING`",
+						"short": "Icing report",
 					},
 					map[string]any{
 						"name": "lat",
-						"short": "Latitude",
+						"title": "Lat",
 						"type": "`$NUMBER`",
+						"short": "Latitude",
 					},
 					map[string]any{
 						"name": "lon",
-						"short": "Longitude",
+						"title": "Lon",
 						"type": "`$NUMBER`",
+						"short": "Longitude",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "obsTime",
-						"short": "Observation time in ISO8601 format",
+						"title": "Obs Time",
 						"type": "`$STRING`",
+						"short": "Observation time in ISO8601 format",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "rawOb",
-						"short": "Raw PIREP text",
+						"title": "Raw Ob",
 						"type": "`$STRING`",
+						"short": "Raw PIREP text",
 					},
 					map[string]any{
 						"name": "reportType",
-						"short": "Report type (PIREP or AIREP)",
+						"title": "Report Type",
 						"type": "`$STRING`",
+						"short": "Report type (PIREP or AIREP)",
 					},
 					map[string]any{
 						"name": "temp",
-						"short": "Temperature in Celsius",
+						"title": "Temp",
 						"type": "`$NUMBER`",
+						"short": "Temperature in Celsius",
 					},
 					map[string]any{
 						"name": "turbulence",
-						"short": "Turbulence report",
+						"title": "Turbulence",
 						"type": "`$STRING`",
+						"short": "Turbulence report",
 					},
 					map[string]any{
 						"name": "visibility",
-						"short": "Visibility",
+						"title": "Visibility",
 						"type": "`$STRING`",
+						"short": "Visibility",
 					},
 					map[string]any{
 						"name": "wdir",
-						"short": "Wind direction in degrees",
+						"title": "Wdir",
 						"type": "`$INTEGER`",
+						"short": "Wind direction in degrees",
 					},
 					map[string]any{
 						"name": "wspd",
-						"short": "Wind speed in knots",
+						"title": "Wspd",
 						"type": "`$INTEGER`",
+						"short": "Wind speed in knots",
 					},
 					map[string]any{
 						"name": "wxString",
-						"short": "Weather phenomena string",
+						"title": "Wx String",
 						"type": "`$STRING`",
+						"short": "Weather phenomena string",
 					},
 				},
 				"name": "pirep",
@@ -1226,35 +1325,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "age",
-											"orig": "age",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "bbox",
-											"orig": "bbox",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "raw",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/pirep",
@@ -1269,6 +1339,45 @@ func MakeConfig() map[string]any {
 										"lit": "pirep",
 									},
 								},
+								"parts": []any{
+									"api",
+									"data",
+									"pirep",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "age",
+											"orig": "age",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "bbox",
+											"orig": "bbox",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "raw",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"age",
@@ -1276,15 +1385,6 @@ func MakeConfig() map[string]any {
 										"date",
 										"format",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"data",
-									"pirep",
 								},
 							},
 						},
@@ -1298,53 +1398,63 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "country",
-						"short": "Country code",
+						"title": "Country",
 						"type": "`$STRING`",
+						"short": "Country code",
 					},
 					map[string]any{
 						"name": "elev",
-						"short": "Elevation in meters",
+						"title": "Elev",
 						"type": "`$NUMBER`",
+						"short": "Elevation in meters",
 					},
 					map[string]any{
 						"name": "iataId",
-						"short": "IATA identifier",
+						"title": "Iata Id",
 						"type": "`$STRING`",
+						"short": "IATA identifier",
 					},
 					map[string]any{
 						"name": "icaoId",
-						"short": "ICAO station identifier",
+						"title": "Icao Id",
 						"type": "`$STRING`",
+						"short": "ICAO station identifier",
 					},
 					map[string]any{
 						"name": "lat",
-						"short": "Latitude",
+						"title": "Lat",
 						"type": "`$NUMBER`",
+						"short": "Latitude",
 					},
 					map[string]any{
 						"name": "lon",
-						"short": "Longitude",
+						"title": "Lon",
 						"type": "`$NUMBER`",
+						"short": "Longitude",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Station name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Station name",
 					},
 					map[string]any{
 						"name": "priority",
-						"short": "Priority level",
+						"title": "Priority",
 						"type": "`$INTEGER`",
+						"short": "Priority level",
 					},
 					map[string]any{
 						"name": "site",
-						"short": "Site type",
+						"title": "Site",
 						"type": "`$STRING`",
+						"short": "Site type",
 					},
 					map[string]any{
 						"name": "state",
-						"short": "State or province",
+						"title": "State",
 						"type": "`$STRING`",
+						"short": "State or province",
 					},
 				},
 				"name": "station_info",
@@ -1354,29 +1464,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "bbox",
-											"orig": "bbox",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "json",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "ids",
-											"orig": "ids",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/stationinfo",
@@ -1391,21 +1478,45 @@ func MakeConfig() map[string]any {
 										"lit": "stationinfo",
 									},
 								},
+								"parts": []any{
+									"api",
+									"data",
+									"stationinfo",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "bbox",
+											"orig": "bbox",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "json",
+										},
+										map[string]any{
+											"name": "ids",
+											"orig": "ids",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"bbox",
 										"format",
 										"ids",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"data",
-									"stationinfo",
 								},
 							},
 						},
@@ -1418,63 +1529,74 @@ func MakeConfig() map[string]any {
 			"taf": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "date-time",
 						"name": "bulletinTime",
-						"short": "Bulletin time in ISO8601 format",
+						"title": "Bulletin Time",
 						"type": "`$STRING`",
+						"short": "Bulletin time in ISO8601 format",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "elev",
-						"short": "Elevation in meters",
+						"title": "Elev",
 						"type": "`$NUMBER`",
+						"short": "Elevation in meters",
 					},
 					map[string]any{
 						"name": "fcsts",
-						"short": "Forecast periods",
+						"title": "Fcsts",
 						"type": "`$ARRAY`",
+						"short": "Forecast periods",
 					},
 					map[string]any{
 						"name": "icaoId",
-						"short": "ICAO station identifier",
+						"title": "Icao Id",
 						"type": "`$STRING`",
+						"short": "ICAO station identifier",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "issueTime",
-						"short": "TAF issue time in ISO8601 format",
+						"title": "Issue Time",
 						"type": "`$STRING`",
+						"short": "TAF issue time in ISO8601 format",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "lat",
-						"short": "Latitude",
+						"title": "Lat",
 						"type": "`$NUMBER`",
+						"short": "Latitude",
 					},
 					map[string]any{
 						"name": "lon",
-						"short": "Longitude",
+						"title": "Lon",
 						"type": "`$NUMBER`",
+						"short": "Longitude",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Station name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Station name",
 					},
 					map[string]any{
 						"name": "rawTAF",
+						"title": "Raw Taf",
+						"type": "`$STRING`",
 						"short": "Raw TAF forecast text",
-						"type": "`$STRING`",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "validTimeFrom",
-						"short": "Valid time from in ISO8601 format",
+						"title": "Valid Time From",
 						"type": "`$STRING`",
+						"short": "Valid time from in ISO8601 format",
+						"format": "date-time",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "validTimeTo",
-						"short": "Valid time to in ISO8601 format",
+						"title": "Valid Time To",
 						"type": "`$STRING`",
+						"short": "Valid time to in ISO8601 format",
+						"format": "date-time",
 					},
 				},
 				"name": "taf",
@@ -1484,35 +1606,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "bbox",
-											"orig": "bbox",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "raw",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "ids",
-											"orig": "ids",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/taf",
@@ -1527,6 +1620,45 @@ func MakeConfig() map[string]any {
 										"lit": "taf",
 									},
 								},
+								"parts": []any{
+									"api",
+									"data",
+									"taf",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "bbox",
+											"orig": "bbox",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "raw",
+										},
+										map[string]any{
+											"name": "ids",
+											"orig": "ids",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"bbox",
@@ -1534,15 +1666,6 @@ func MakeConfig() map[string]any {
 										"format",
 										"ids",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"data",
-									"taf",
 								},
 							},
 						},
@@ -1561,23 +1684,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "date",
-											"orig": "date",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "raw",
-											"kind": "query",
-											"name": "format",
-											"orig": "format",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/data/tcf",
@@ -1592,20 +1698,38 @@ func MakeConfig() map[string]any {
 										"lit": "tcf",
 									},
 								},
+								"parts": []any{
+									"api",
+									"data",
+									"tcf",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "date",
+											"orig": "date",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "format",
+											"orig": "format",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "raw",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"date",
 										"format",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"api",
-									"data",
-									"tcf",
 								},
 							},
 						},

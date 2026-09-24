@@ -1,0 +1,167 @@
+# Entity: taf
+
+main: kit: entity: taf: {
+
+  alias: field: {}
+
+  fields: {
+    bulletinTime: {
+      fo: "date-time"
+      h: "Bulletin Time"
+      n: "bulletinTime"
+      r: false
+      sh: "Bulletin time in ISO8601 format"
+      t: "`$STRING`"
+    }
+    elev: {
+      h: "Elev"
+      n: "elev"
+      r: false
+      sh: "Elevation in meters"
+      t: "`$NUMBER`"
+    }
+    fcsts: {
+      h: "Fcsts"
+      n: "fcsts"
+      r: false
+      sh: "Forecast periods"
+      t: "`$ARRAY`"
+    }
+    icaoId: {
+      h: "Icao Id"
+      n: "icaoId"
+      r: false
+      sh: "ICAO station identifier"
+      t: "`$STRING`"
+    }
+    issueTime: {
+      fo: "date-time"
+      h: "Issue Time"
+      n: "issueTime"
+      r: false
+      sh: "TAF issue time in ISO8601 format"
+      t: "`$STRING`"
+    }
+    lat: {
+      h: "Lat"
+      n: "lat"
+      r: false
+      sh: "Latitude"
+      t: "`$NUMBER`"
+    }
+    lon: {
+      h: "Lon"
+      n: "lon"
+      r: false
+      sh: "Longitude"
+      t: "`$NUMBER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Station name"
+      t: "`$STRING`"
+    }
+    rawTAF: {
+      h: "Raw Taf"
+      n: "rawTAF"
+      r: false
+      sh: "Raw TAF forecast text"
+      t: "`$STRING`"
+    }
+    validTimeFrom: {
+      fo: "date-time"
+      h: "Valid Time From"
+      n: "validTimeFrom"
+      r: false
+      sh: "Valid time from in ISO8601 format"
+      t: "`$STRING`"
+    }
+    validTimeTo: {
+      fo: "date-time"
+      h: "Valid Time To"
+      n: "validTimeTo"
+      r: false
+      sh: "Valid time to in ISO8601 format"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "taf"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/data/taf"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "bbox"
+                or: "bbox"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "raw"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "ids"
+                or: "ids"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/data/taf"
+          q: {
+            exist: [
+              "bbox"
+              "date"
+              "format"
+              "ids"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "data"
+            }
+            {
+              lit: "taf"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

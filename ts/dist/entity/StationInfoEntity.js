@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StationInfoEntity = void 0;
 const AviationweatherDataEntityBase_1 = require("../AviationweatherDataEntityBase");
-// TODO: needs Entity superclass
 class StationInfoEntity extends AviationweatherDataEntityBase_1.AviationweatherDataEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

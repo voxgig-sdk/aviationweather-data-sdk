@@ -1,0 +1,159 @@
+# Entity: air_sigmet
+
+main: kit: entity: air_sigmet: {
+
+  alias: field: {}
+
+  fields: {
+    airsigmetType: {
+      h: "Airsigmet Type"
+      n: "airsigmetType"
+      r: false
+      sh: "SIGMET type"
+      t: "`$STRING`"
+    }
+    altitudeHigh: {
+      h: "Altitude High"
+      n: "altitudeHigh"
+      r: false
+      sh: "Upper altitude in feet MSL"
+      t: "`$INTEGER`"
+    }
+    altitudeLow: {
+      h: "Altitude Low"
+      n: "altitudeLow"
+      r: false
+      sh: "Lower altitude in feet MSL"
+      t: "`$INTEGER`"
+    }
+    fir: {
+      h: "Fir"
+      n: "fir"
+      r: false
+      sh: "Flight Information Region"
+      t: "`$STRING`"
+    }
+    hazard: {
+      h: "Hazard"
+      n: "hazard"
+      r: false
+      sh: "Hazard type"
+      t: "`$STRING`"
+    }
+    issueTime: {
+      fo: "date-time"
+      h: "Issue Time"
+      n: "issueTime"
+      r: false
+      sh: "Issue time in ISO8601 format"
+      t: "`$STRING`"
+    }
+    rawAirSigmet: {
+      h: "Raw Air Sigmet"
+      n: "rawAirSigmet"
+      r: false
+      sh: "Raw SIGMET text"
+      t: "`$STRING`"
+    }
+    severity: {
+      h: "Severity"
+      n: "severity"
+      r: false
+      sh: "Severity level"
+      t: "`$STRING`"
+    }
+    validTimeFrom: {
+      fo: "date-time"
+      h: "Valid Time From"
+      n: "validTimeFrom"
+      r: false
+      sh: "Valid time from in ISO8601 format"
+      t: "`$STRING`"
+    }
+    validTimeTo: {
+      fo: "date-time"
+      h: "Valid Time To"
+      n: "validTimeTo"
+      r: false
+      sh: "Valid time to in ISO8601 format"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "air_sigmet"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/data/airsigmet"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "bbox"
+                or: "bbox"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "raw"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "hazard"
+                or: "hazard"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/data/airsigmet"
+          q: {
+            exist: [
+              "bbox"
+              "date"
+              "format"
+              "hazard"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "data"
+            }
+            {
+              lit: "airsigmet"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

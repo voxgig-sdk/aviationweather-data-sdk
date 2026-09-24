@@ -19,7 +19,6 @@ import type {
   AirSigmetListMatch,
 } from '../AviationweatherDataTypes'
 
-// TODO: needs Entity superclass
 class AirSigmetEntity extends AviationweatherDataEntityBase<AirSigmet> {
 
   constructor(client: AviationweatherDataSDK, entopts: any) {

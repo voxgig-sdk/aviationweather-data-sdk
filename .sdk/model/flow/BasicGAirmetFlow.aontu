@@ -1,0 +1,22 @@
+# BasicGAirmetFlow
+
+main: kit: flow: BasicGAirmetFlow:
+{
+  entity: "g_airmet",
+  kind: "basic",
+  name: "BasicGAirmetFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "g_airmet_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGAirmetFlow"
+}

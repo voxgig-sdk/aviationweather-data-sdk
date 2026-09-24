@@ -19,7 +19,6 @@ import type {
   MetarListMatch,
 } from '../AviationweatherDataTypes'
 
-// TODO: needs Entity superclass
 class MetarEntity extends AviationweatherDataEntityBase<Metar> {
 
   constructor(client: AviationweatherDataSDK, entopts: any) {

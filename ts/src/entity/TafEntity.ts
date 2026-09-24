@@ -19,7 +19,6 @@ import type {
   TafListMatch,
 } from '../AviationweatherDataTypes'
 
-// TODO: needs Entity superclass
 class TafEntity extends AviationweatherDataEntityBase<Taf> {
 
   constructor(client: AviationweatherDataSDK, entopts: any) {

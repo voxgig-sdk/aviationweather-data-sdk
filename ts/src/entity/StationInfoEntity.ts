@@ -19,7 +19,6 @@ import type {
   StationInfoListMatch,
 } from '../AviationweatherDataTypes'
 
-// TODO: needs Entity superclass
 class StationInfoEntity extends AviationweatherDataEntityBase<StationInfo> {
 
   constructor(client: AviationweatherDataSDK, entopts: any) {

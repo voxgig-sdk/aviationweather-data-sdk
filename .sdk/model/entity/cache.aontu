@@ -1,0 +1,291 @@
+# Entity: cache
+
+main: kit: entity: cache: {
+
+  alias: field: {}
+
+  name: "cache"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /data/cache/aircraftreports.cache.csv.gz"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/data/cache/aircraftreports.cache.csv.gz"
+          q: {
+            "$action": "aircraftreportscachecsvgz"
+          }
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "aircraftreports.cache.csv.gz"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /data/cache/aircraftreports.cache.xml.gz"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/data/cache/aircraftreports.cache.xml.gz"
+          q: {
+            "$action": "aircraftreportscachexmlgz"
+          }
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "aircraftreports.cache.xml.gz"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /data/cache/airsigmets.cache.csv.gz"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/data/cache/airsigmets.cache.csv.gz"
+          q: {
+            "$action": "airsigmetscachecsvgz"
+          }
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "airsigmets.cache.csv.gz"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /data/cache/airsigmets.cache.xml.gz"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/data/cache/airsigmets.cache.xml.gz"
+          q: {
+            "$action": "airsigmetscachexmlgz"
+          }
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "airsigmets.cache.xml.gz"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /data/cache/gairmets.cache.xml.gz"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/data/cache/gairmets.cache.xml.gz"
+          q: {
+            "$action": "gairmetscachexmlgz"
+          }
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "gairmets.cache.xml.gz"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /data/cache/metars.cache.csv.gz"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/data/cache/metars.cache.csv.gz"
+          q: {
+            "$action": "metarscachecsvgz"
+          }
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "metars.cache.csv.gz"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /data/cache/metars.cache.xml.gz"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/data/cache/metars.cache.xml.gz"
+          q: {
+            "$action": "metarscachexmlgz"
+          }
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "metars.cache.xml.gz"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /data/cache/stations.cache.json.gz"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/data/cache/stations.cache.json.gz"
+          q: {
+            "$action": "stationscachejsongz"
+          }
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "stations.cache.json.gz"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /data/cache/stations.cache.xml.gz"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/data/cache/stations.cache.xml.gz"
+          q: {
+            "$action": "stationscachexmlgz"
+          }
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "stations.cache.xml.gz"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /data/cache/tafs.cache.xml.gz"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/data/cache/tafs.cache.xml.gz"
+          q: {
+            "$action": "tafscachexmlgz"
+          }
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "cache"
+            }
+            {
+              lit: "tafs.cache.xml.gz"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

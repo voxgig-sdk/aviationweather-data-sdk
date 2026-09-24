@@ -1,0 +1,70 @@
+# Entity: tcf
+
+main: kit: entity: tcf: {
+
+  alias: field: {}
+
+  name: "tcf"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/data/tcf"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "raw"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/data/tcf"
+          q: {
+            exist: [
+              "date"
+              "format"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "data"
+            }
+            {
+              lit: "tcf"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

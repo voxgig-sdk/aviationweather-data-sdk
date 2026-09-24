@@ -1,0 +1,22 @@
+# BasicAirportFlow
+
+main: kit: flow: BasicAirportFlow:
+{
+  entity: "airport",
+  kind: "basic",
+  name: "BasicAirportFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "airport_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAirportFlow"
+}

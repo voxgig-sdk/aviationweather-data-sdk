@@ -1,0 +1,28 @@
+# BasicTcfFlow
+
+main: kit: flow: BasicTcfFlow:
+{
+  entity: "tcf",
+  kind: "basic",
+  name: "BasicTcfFlow",
+  step: [
+    {
+      i: {
+        ref: "tcf_ref01",
+        srcdatavar: "tcf_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-tcf_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTcfFlow"
+}

@@ -19,7 +19,6 @@ import type {
   PirepListMatch,
 } from '../AviationweatherDataTypes'
 
-// TODO: needs Entity superclass
 class PirepEntity extends AviationweatherDataEntityBase<Pirep> {
 
   constructor(client: AviationweatherDataSDK, entopts: any) {

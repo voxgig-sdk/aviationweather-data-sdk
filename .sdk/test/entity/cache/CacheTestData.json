@@ -20,223 +20,53 @@
   "requests": {
     "GET /data/cache/aircraftreports.cache.csv.gz": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getAircraftReportsCacheCsv",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/gzip": {
-                "schema": {
-                  "format": "binary",
-                  "type": "string"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /data/cache/aircraftreports.cache.xml.gz": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getAircraftReportsCacheXml",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/gzip": {
-                "schema": {
-                  "format": "binary",
-                  "type": "string"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /data/cache/airsigmets.cache.csv.gz": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getAirSigmetsCacheCsv",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/gzip": {
-                "schema": {
-                  "format": "binary",
-                  "type": "string"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /data/cache/airsigmets.cache.xml.gz": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getAirSigmetsCacheXml",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/gzip": {
-                "schema": {
-                  "format": "binary",
-                  "type": "string"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /data/cache/gairmets.cache.xml.gz": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getGAirmetsCacheXml",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/gzip": {
-                "schema": {
-                  "format": "binary",
-                  "type": "string"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /data/cache/metars.cache.csv.gz": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getMetarsCacheCsv",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/gzip": {
-                "schema": {
-                  "format": "binary",
-                  "type": "string"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /data/cache/metars.cache.xml.gz": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getMetarsCacheXml",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/gzip": {
-                "schema": {
-                  "format": "binary",
-                  "type": "string"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /data/cache/stations.cache.json.gz": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getStationsCacheJson",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/gzip": {
-                "schema": {
-                  "format": "binary",
-                  "type": "string"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /data/cache/stations.cache.xml.gz": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getStationsCacheXml",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/gzip": {
-                "schema": {
-                  "format": "binary",
-                  "type": "string"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     },
     "GET /data/cache/tafs.cache.xml.gz": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getTafsCacheXml",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/gzip": {
-                "schema": {
-                  "format": "binary",
-                  "type": "string"
-                }
-              }
-            },
-            "description": "Successful response"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

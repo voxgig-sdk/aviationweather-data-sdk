@@ -1,0 +1,192 @@
+# Entity: pirep
+
+main: kit: entity: pirep: {
+
+  alias: field: {}
+
+  fields: {
+    aircraftType: {
+      h: "Aircraft Type"
+      n: "aircraftType"
+      r: false
+      sh: "Aircraft type"
+      t: "`$STRING`"
+    }
+    altitudeFt: {
+      h: "Altitude Ft"
+      n: "altitudeFt"
+      r: false
+      sh: "Altitude in feet MSL"
+      t: "`$INTEGER`"
+    }
+    clouds: {
+      h: "Clouds"
+      n: "clouds"
+      r: false
+      sh: "Cloud reports"
+      t: "`$ARRAY`"
+    }
+    icing: {
+      h: "Icing"
+      n: "icing"
+      r: false
+      sh: "Icing report"
+      t: "`$STRING`"
+    }
+    lat: {
+      h: "Lat"
+      n: "lat"
+      r: false
+      sh: "Latitude"
+      t: "`$NUMBER`"
+    }
+    lon: {
+      h: "Lon"
+      n: "lon"
+      r: false
+      sh: "Longitude"
+      t: "`$NUMBER`"
+    }
+    obsTime: {
+      fo: "date-time"
+      h: "Obs Time"
+      n: "obsTime"
+      r: false
+      sh: "Observation time in ISO8601 format"
+      t: "`$STRING`"
+    }
+    rawOb: {
+      h: "Raw Ob"
+      n: "rawOb"
+      r: false
+      sh: "Raw PIREP text"
+      t: "`$STRING`"
+    }
+    reportType: {
+      h: "Report Type"
+      n: "reportType"
+      r: false
+      sh: "Report type (PIREP or AIREP)"
+      t: "`$STRING`"
+    }
+    temp: {
+      h: "Temp"
+      n: "temp"
+      r: false
+      sh: "Temperature in Celsius"
+      t: "`$NUMBER`"
+    }
+    turbulence: {
+      h: "Turbulence"
+      n: "turbulence"
+      r: false
+      sh: "Turbulence report"
+      t: "`$STRING`"
+    }
+    visibility: {
+      h: "Visibility"
+      n: "visibility"
+      r: false
+      sh: "Visibility"
+      t: "`$STRING`"
+    }
+    wdir: {
+      h: "Wdir"
+      n: "wdir"
+      r: false
+      sh: "Wind direction in degrees"
+      t: "`$INTEGER`"
+    }
+    wspd: {
+      h: "Wspd"
+      n: "wspd"
+      r: false
+      sh: "Wind speed in knots"
+      t: "`$INTEGER`"
+    }
+    wxString: {
+      h: "Wx String"
+      n: "wxString"
+      r: false
+      sh: "Weather phenomena string"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "pirep"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/data/pirep"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "age"
+                or: "age"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "bbox"
+                or: "bbox"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "raw"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/data/pirep"
+          q: {
+            exist: [
+              "age"
+              "bbox"
+              "date"
+              "format"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "data"
+            }
+            {
+              lit: "pirep"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

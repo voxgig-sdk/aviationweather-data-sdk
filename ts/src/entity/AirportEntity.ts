@@ -19,7 +19,6 @@ import type {
   AirportListMatch,
 } from '../AviationweatherDataTypes'
 
-// TODO: needs Entity superclass
 class AirportEntity extends AviationweatherDataEntityBase<Airport> {
 
   constructor(client: AviationweatherDataSDK, entopts: any) {

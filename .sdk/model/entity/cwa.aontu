@@ -1,0 +1,130 @@
+# Entity: cwa
+
+main: kit: entity: cwa: {
+
+  alias: field: {}
+
+  fields: {
+    cwsu: {
+      h: "Cwsu"
+      n: "cwsu"
+      r: false
+      sh: "Center Weather Service Unit"
+      t: "`$STRING`"
+    }
+    issueTime: {
+      fo: "date-time"
+      h: "Issue Time"
+      n: "issueTime"
+      r: false
+      sh: "Issue time in ISO8601 format"
+      t: "`$STRING`"
+    }
+    rawText: {
+      h: "Raw Text"
+      n: "rawText"
+      r: false
+      sh: "Raw CWA text"
+      t: "`$STRING`"
+    }
+    sequence: {
+      h: "Sequence"
+      n: "sequence"
+      r: false
+      sh: "Sequence number"
+      t: "`$INTEGER`"
+    }
+    seriesId: {
+      h: "Series Id"
+      n: "seriesId"
+      r: false
+      sh: "Series identifier"
+      t: "`$STRING`"
+    }
+    validTimeFrom: {
+      fo: "date-time"
+      h: "Valid Time From"
+      n: "validTimeFrom"
+      r: false
+      sh: "Valid time from in ISO8601 format"
+      t: "`$STRING`"
+    }
+    validTimeTo: {
+      fo: "date-time"
+      h: "Valid Time To"
+      n: "validTimeTo"
+      r: false
+      sh: "Valid time to in ISO8601 format"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "cwa"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/data/cwa"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "bbox"
+                or: "bbox"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "raw"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/data/cwa"
+          q: {
+            exist: [
+              "bbox"
+              "date"
+              "format"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "data"
+            }
+            {
+              lit: "cwa"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

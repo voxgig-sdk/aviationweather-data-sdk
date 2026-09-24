@@ -19,7 +19,6 @@ import type {
   CwaListMatch,
 } from '../AviationweatherDataTypes'
 
-// TODO: needs Entity superclass
 class CwaEntity extends AviationweatherDataEntityBase<Cwa> {
 
   constructor(client: AviationweatherDataSDK, entopts: any) {

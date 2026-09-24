@@ -122,56 +122,66 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'airsigmetType',
-              'short' => 'SIGMET type',
+              'title' => 'Airsigmet Type',
               'type' => '`$STRING`',
+              'short' => 'SIGMET type',
             ],
             [
               'name' => 'altitudeHigh',
-              'short' => 'Upper altitude in feet MSL',
+              'title' => 'Altitude High',
               'type' => '`$INTEGER`',
+              'short' => 'Upper altitude in feet MSL',
             ],
             [
               'name' => 'altitudeLow',
-              'short' => 'Lower altitude in feet MSL',
+              'title' => 'Altitude Low',
               'type' => '`$INTEGER`',
+              'short' => 'Lower altitude in feet MSL',
             ],
             [
               'name' => 'fir',
-              'short' => 'Flight Information Region',
+              'title' => 'Fir',
               'type' => '`$STRING`',
+              'short' => 'Flight Information Region',
             ],
             [
               'name' => 'hazard',
-              'short' => 'Hazard type',
+              'title' => 'Hazard',
               'type' => '`$STRING`',
+              'short' => 'Hazard type',
             ],
             [
-              'format' => 'date-time',
               'name' => 'issueTime',
-              'short' => 'Issue time in ISO8601 format',
+              'title' => 'Issue Time',
               'type' => '`$STRING`',
+              'short' => 'Issue time in ISO8601 format',
+              'format' => 'date-time',
             ],
             [
               'name' => 'rawAirSigmet',
-              'short' => 'Raw SIGMET text',
+              'title' => 'Raw Air Sigmet',
               'type' => '`$STRING`',
+              'short' => 'Raw SIGMET text',
             ],
             [
               'name' => 'severity',
+              'title' => 'Severity',
+              'type' => '`$STRING`',
               'short' => 'Severity level',
-              'type' => '`$STRING`',
             ],
             [
-              'format' => 'date-time',
               'name' => 'validTimeFrom',
-              'short' => 'Valid time from in ISO8601 format',
+              'title' => 'Valid Time From',
               'type' => '`$STRING`',
+              'short' => 'Valid time from in ISO8601 format',
+              'format' => 'date-time',
             ],
             [
-              'format' => 'date-time',
               'name' => 'validTimeTo',
-              'short' => 'Valid time to in ISO8601 format',
+              'title' => 'Valid Time To',
               'type' => '`$STRING`',
+              'short' => 'Valid time to in ISO8601 format',
+              'format' => 'date-time',
             ],
           ],
           'name' => 'air_sigmet',
@@ -181,35 +191,6 @@ class AviationweatherDataConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'bbox',
-                        'orig' => 'bbox',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'date',
-                        'orig' => 'date',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'raw',
-                        'kind' => 'query',
-                        'name' => 'format',
-                        'orig' => 'format',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'hazard',
-                        'orig' => 'hazard',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/airsigmet',
@@ -224,6 +205,45 @@ class AviationweatherDataConfig
                       'lit' => 'airsigmet',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'airsigmet',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'bbox',
+                        'orig' => 'bbox',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'date',
+                        'orig' => 'date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'format',
+                        'orig' => 'format',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'raw',
+                      ],
+                      [
+                        'name' => 'hazard',
+                        'orig' => 'hazard',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'bbox',
@@ -231,15 +251,6 @@ class AviationweatherDataConfig
                       'format',
                       'hazard',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'api',
-                    'data',
-                    'airsigmet',
                   ],
                 ],
               ],
@@ -253,48 +264,57 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'city',
-              'short' => 'City',
+              'title' => 'City',
               'type' => '`$STRING`',
+              'short' => 'City',
             ],
             [
               'name' => 'country',
-              'short' => 'Country code',
+              'title' => 'Country',
               'type' => '`$STRING`',
+              'short' => 'Country code',
             ],
             [
               'name' => 'elev',
-              'short' => 'Elevation in meters',
+              'title' => 'Elev',
               'type' => '`$NUMBER`',
+              'short' => 'Elevation in meters',
             ],
             [
               'name' => 'iataId',
-              'short' => 'IATA identifier',
+              'title' => 'Iata Id',
               'type' => '`$STRING`',
+              'short' => 'IATA identifier',
             ],
             [
               'name' => 'icaoId',
-              'short' => 'ICAO airport identifier',
+              'title' => 'Icao Id',
               'type' => '`$STRING`',
+              'short' => 'ICAO airport identifier',
             ],
             [
               'name' => 'lat',
-              'short' => 'Latitude',
+              'title' => 'Lat',
               'type' => '`$NUMBER`',
+              'short' => 'Latitude',
             ],
             [
               'name' => 'lon',
-              'short' => 'Longitude',
+              'title' => 'Lon',
               'type' => '`$NUMBER`',
+              'short' => 'Longitude',
             ],
             [
               'name' => 'name',
-              'short' => 'Airport name',
+              'title' => 'Name',
               'type' => '`$STRING`',
+              'short' => 'Airport name',
             ],
             [
               'name' => 'state',
-              'short' => 'State or province',
+              'title' => 'State',
               'type' => '`$STRING`',
+              'short' => 'State or province',
             ],
           ],
           'name' => 'airport',
@@ -304,29 +324,6 @@ class AviationweatherDataConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'bbox',
-                        'orig' => 'bbox',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'json',
-                        'kind' => 'query',
-                        'name' => 'format',
-                        'orig' => 'format',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'ids',
-                        'orig' => 'ids',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/airport',
@@ -341,21 +338,45 @@ class AviationweatherDataConfig
                       'lit' => 'airport',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'airport',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'bbox',
+                        'orig' => 'bbox',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'format',
+                        'orig' => 'format',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'json',
+                      ],
+                      [
+                        'name' => 'ids',
+                        'orig' => 'ids',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'bbox',
                       'format',
                       'ids',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'api',
-                    'data',
-                    'airport',
                   ],
                 ],
               ],
@@ -374,7 +395,6 @@ class AviationweatherDataConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/aircraftreports.cache.csv.gz',
@@ -389,21 +409,22 @@ class AviationweatherDataConfig
                       'lit' => 'aircraftreports.cache.csv.gz',
                     ],
                   ],
-                  'select' => [
-                    '$action' => 'aircraftreportscachecsvgz',
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'data',
                     'cache',
                     'aircraftreports.cache.csv.gz',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'aircraftreportscachecsvgz',
+                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/aircraftreports.cache.xml.gz',
@@ -418,21 +439,22 @@ class AviationweatherDataConfig
                       'lit' => 'aircraftreports.cache.xml.gz',
                     ],
                   ],
-                  'select' => [
-                    '$action' => 'aircraftreportscachexmlgz',
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'data',
                     'cache',
                     'aircraftreports.cache.xml.gz',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'aircraftreportscachexmlgz',
+                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/airsigmets.cache.csv.gz',
@@ -447,21 +469,22 @@ class AviationweatherDataConfig
                       'lit' => 'airsigmets.cache.csv.gz',
                     ],
                   ],
-                  'select' => [
-                    '$action' => 'airsigmetscachecsvgz',
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'data',
                     'cache',
                     'airsigmets.cache.csv.gz',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'airsigmetscachecsvgz',
+                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/airsigmets.cache.xml.gz',
@@ -476,21 +499,22 @@ class AviationweatherDataConfig
                       'lit' => 'airsigmets.cache.xml.gz',
                     ],
                   ],
-                  'select' => [
-                    '$action' => 'airsigmetscachexmlgz',
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'data',
                     'cache',
                     'airsigmets.cache.xml.gz',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'airsigmetscachexmlgz',
+                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/gairmets.cache.xml.gz',
@@ -505,21 +529,22 @@ class AviationweatherDataConfig
                       'lit' => 'gairmets.cache.xml.gz',
                     ],
                   ],
-                  'select' => [
-                    '$action' => 'gairmetscachexmlgz',
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'data',
                     'cache',
                     'gairmets.cache.xml.gz',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'gairmetscachexmlgz',
+                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/metars.cache.csv.gz',
@@ -534,21 +559,22 @@ class AviationweatherDataConfig
                       'lit' => 'metars.cache.csv.gz',
                     ],
                   ],
-                  'select' => [
-                    '$action' => 'metarscachecsvgz',
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'data',
                     'cache',
                     'metars.cache.csv.gz',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'metarscachecsvgz',
+                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/metars.cache.xml.gz',
@@ -563,21 +589,22 @@ class AviationweatherDataConfig
                       'lit' => 'metars.cache.xml.gz',
                     ],
                   ],
-                  'select' => [
-                    '$action' => 'metarscachexmlgz',
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'data',
                     'cache',
                     'metars.cache.xml.gz',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'metarscachexmlgz',
+                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/stations.cache.json.gz',
@@ -592,21 +619,22 @@ class AviationweatherDataConfig
                       'lit' => 'stations.cache.json.gz',
                     ],
                   ],
-                  'select' => [
-                    '$action' => 'stationscachejsongz',
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'data',
                     'cache',
                     'stations.cache.json.gz',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'stationscachejsongz',
+                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/stations.cache.xml.gz',
@@ -621,21 +649,22 @@ class AviationweatherDataConfig
                       'lit' => 'stations.cache.xml.gz',
                     ],
                   ],
-                  'select' => [
-                    '$action' => 'stationscachexmlgz',
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'data',
                     'cache',
                     'stations.cache.xml.gz',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'stationscachexmlgz',
+                  ],
                 ],
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/cache/tafs.cache.xml.gz',
@@ -650,17 +679,19 @@ class AviationweatherDataConfig
                       'lit' => 'tafs.cache.xml.gz',
                     ],
                   ],
-                  'select' => [
-                    '$action' => 'tafscachexmlgz',
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'data',
                     'cache',
                     'tafs.cache.xml.gz',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [
+                    '$action' => 'tafscachexmlgz',
                   ],
                 ],
               ],
@@ -674,41 +705,48 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'cwsu',
-              'short' => 'Center Weather Service Unit',
+              'title' => 'Cwsu',
               'type' => '`$STRING`',
+              'short' => 'Center Weather Service Unit',
             ],
             [
-              'format' => 'date-time',
               'name' => 'issueTime',
-              'short' => 'Issue time in ISO8601 format',
+              'title' => 'Issue Time',
               'type' => '`$STRING`',
+              'short' => 'Issue time in ISO8601 format',
+              'format' => 'date-time',
             ],
             [
               'name' => 'rawText',
-              'short' => 'Raw CWA text',
+              'title' => 'Raw Text',
               'type' => '`$STRING`',
+              'short' => 'Raw CWA text',
             ],
             [
               'name' => 'sequence',
-              'short' => 'Sequence number',
+              'title' => 'Sequence',
               'type' => '`$INTEGER`',
+              'short' => 'Sequence number',
             ],
             [
               'name' => 'seriesId',
+              'title' => 'Series Id',
+              'type' => '`$STRING`',
               'short' => 'Series identifier',
-              'type' => '`$STRING`',
             ],
             [
-              'format' => 'date-time',
               'name' => 'validTimeFrom',
-              'short' => 'Valid time from in ISO8601 format',
+              'title' => 'Valid Time From',
               'type' => '`$STRING`',
+              'short' => 'Valid time from in ISO8601 format',
+              'format' => 'date-time',
             ],
             [
-              'format' => 'date-time',
               'name' => 'validTimeTo',
-              'short' => 'Valid time to in ISO8601 format',
+              'title' => 'Valid Time To',
               'type' => '`$STRING`',
+              'short' => 'Valid time to in ISO8601 format',
+              'format' => 'date-time',
             ],
           ],
           'name' => 'cwa',
@@ -718,29 +756,6 @@ class AviationweatherDataConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'bbox',
-                        'orig' => 'bbox',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'date',
-                        'orig' => 'date',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'raw',
-                        'kind' => 'query',
-                        'name' => 'format',
-                        'orig' => 'format',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/cwa',
@@ -755,21 +770,45 @@ class AviationweatherDataConfig
                       'lit' => 'cwa',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'cwa',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'bbox',
+                        'orig' => 'bbox',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'date',
+                        'orig' => 'date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'format',
+                        'orig' => 'format',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'raw',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'bbox',
                       'date',
                       'format',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'api',
-                    'data',
-                    'cwa',
                   ],
                 ],
               ],
@@ -783,46 +822,54 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'altitudeHigh',
-              'short' => 'Upper altitude in feet MSL',
+              'title' => 'Altitude High',
               'type' => '`$INTEGER`',
+              'short' => 'Upper altitude in feet MSL',
             ],
             [
               'name' => 'altitudeLow',
-              'short' => 'Lower altitude in feet MSL',
+              'title' => 'Altitude Low',
               'type' => '`$INTEGER`',
+              'short' => 'Lower altitude in feet MSL',
             ],
             [
               'name' => 'hazard',
-              'short' => 'Hazard type',
+              'title' => 'Hazard',
               'type' => '`$STRING`',
+              'short' => 'Hazard type',
             ],
             [
-              'format' => 'date-time',
               'name' => 'issueTime',
-              'short' => 'Issue time in ISO8601 format',
+              'title' => 'Issue Time',
               'type' => '`$STRING`',
+              'short' => 'Issue time in ISO8601 format',
+              'format' => 'date-time',
             ],
             [
               'name' => 'qualifier',
-              'short' => 'Forecast qualifier',
+              'title' => 'Qualifier',
               'type' => '`$STRING`',
+              'short' => 'Forecast qualifier',
             ],
             [
               'name' => 'severity',
+              'title' => 'Severity',
+              'type' => '`$STRING`',
               'short' => 'Severity level',
-              'type' => '`$STRING`',
             ],
             [
-              'format' => 'date-time',
               'name' => 'validTimeFrom',
-              'short' => 'Valid time from in ISO8601 format',
+              'title' => 'Valid Time From',
               'type' => '`$STRING`',
+              'short' => 'Valid time from in ISO8601 format',
+              'format' => 'date-time',
             ],
             [
-              'format' => 'date-time',
               'name' => 'validTimeTo',
-              'short' => 'Valid time to in ISO8601 format',
+              'title' => 'Valid Time To',
               'type' => '`$STRING`',
+              'short' => 'Valid time to in ISO8601 format',
+              'format' => 'date-time',
             ],
           ],
           'name' => 'g_airmet',
@@ -832,35 +879,6 @@ class AviationweatherDataConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'bbox',
-                        'orig' => 'bbox',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'date',
-                        'orig' => 'date',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'json',
-                        'kind' => 'query',
-                        'name' => 'format',
-                        'orig' => 'format',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'hazard',
-                        'orig' => 'hazard',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/gairmet',
@@ -875,6 +893,45 @@ class AviationweatherDataConfig
                       'lit' => 'gairmet',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'gairmet',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'bbox',
+                        'orig' => 'bbox',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'date',
+                        'orig' => 'date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'format',
+                        'orig' => 'format',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'json',
+                      ],
+                      [
+                        'name' => 'hazard',
+                        'orig' => 'hazard',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'bbox',
@@ -882,15 +939,6 @@ class AviationweatherDataConfig
                       'format',
                       'hazard',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'api',
-                    'data',
-                    'gairmet',
                   ],
                 ],
               ],
@@ -904,180 +952,215 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'altim',
-              'short' => 'Altimeter setting in inches of mercury',
+              'title' => 'Altim',
               'type' => '`$NUMBER`',
+              'short' => 'Altimeter setting in inches of mercury',
             ],
             [
               'name' => 'clouds',
-              'short' => 'Cloud layers',
+              'title' => 'Clouds',
               'type' => '`$ARRAY`',
+              'short' => 'Cloud layers',
             ],
             [
               'name' => 'dewp',
-              'short' => 'Dewpoint in Celsius',
+              'title' => 'Dewp',
               'type' => '`$NUMBER`',
+              'short' => 'Dewpoint in Celsius',
             ],
             [
               'name' => 'elev',
-              'short' => 'Elevation in meters',
+              'title' => 'Elev',
               'type' => '`$NUMBER`',
+              'short' => 'Elevation in meters',
             ],
             [
               'name' => 'fltCat',
-              'short' => 'Flight category (VFR, MVFR, IFR, LIFR)',
+              'title' => 'Flt Cat',
               'type' => '`$STRING`',
+              'short' => 'Flight category (VFR, MVFR, IFR, LIFR)',
             ],
             [
               'name' => 'icaoId',
-              'short' => 'ICAO station identifier',
+              'title' => 'Icao Id',
               'type' => '`$STRING`',
+              'short' => 'ICAO station identifier',
             ],
             [
               'name' => 'lat',
-              'short' => 'Latitude',
+              'title' => 'Lat',
               'type' => '`$NUMBER`',
+              'short' => 'Latitude',
             ],
             [
               'name' => 'lon',
-              'short' => 'Longitude',
+              'title' => 'Lon',
               'type' => '`$NUMBER`',
+              'short' => 'Longitude',
             ],
             [
               'name' => 'maxT',
-              'short' => 'Maximum temperature',
+              'title' => 'Max T',
               'type' => '`$NUMBER`',
+              'short' => 'Maximum temperature',
             ],
             [
               'name' => 'maxT24',
-              'short' => '24-hour maximum temperature',
+              'title' => 'Max T24',
               'type' => '`$NUMBER`',
+              'short' => '24-hour maximum temperature',
             ],
             [
               'name' => 'metarType',
-              'short' => 'METAR type (METAR or SPECI)',
+              'title' => 'Metar Type',
               'type' => '`$STRING`',
+              'short' => 'METAR type (METAR or SPECI)',
             ],
             [
               'name' => 'minT',
-              'short' => 'Minimum temperature',
+              'title' => 'Min T',
               'type' => '`$NUMBER`',
+              'short' => 'Minimum temperature',
             ],
             [
               'name' => 'minT24',
-              'short' => '24-hour minimum temperature',
+              'title' => 'Min T24',
               'type' => '`$NUMBER`',
+              'short' => '24-hour minimum temperature',
             ],
             [
               'name' => 'mostRecent',
-              'short' => 'Most recent observation flag',
+              'title' => 'Most Recent',
               'type' => '`$INTEGER`',
+              'short' => 'Most recent observation flag',
             ],
             [
               'name' => 'name',
-              'short' => 'Station name',
+              'title' => 'Name',
               'type' => '`$STRING`',
+              'short' => 'Station name',
             ],
             [
-              'format' => 'date-time',
               'name' => 'obsTime',
-              'short' => 'Observation time in ISO8601 format',
+              'title' => 'Obs Time',
               'type' => '`$STRING`',
+              'short' => 'Observation time in ISO8601 format',
+              'format' => 'date-time',
             ],
             [
               'name' => 'pcp24hr',
-              'short' => '24-hour precipitation',
+              'title' => 'Pcp24hr',
               'type' => '`$NUMBER`',
+              'short' => '24-hour precipitation',
             ],
             [
               'name' => 'pcp3hr',
-              'short' => '3-hour precipitation',
+              'title' => 'Pcp3hr',
               'type' => '`$NUMBER`',
+              'short' => '3-hour precipitation',
             ],
             [
               'name' => 'pcp6hr',
-              'short' => '6-hour precipitation',
+              'title' => 'Pcp6hr',
               'type' => '`$NUMBER`',
+              'short' => '6-hour precipitation',
             ],
             [
               'name' => 'precip',
-              'short' => 'Precipitation',
+              'title' => 'Precip',
               'type' => '`$NUMBER`',
+              'short' => 'Precipitation',
             ],
             [
               'name' => 'presTend',
-              'short' => 'Pressure tendency',
+              'title' => 'Pres Tend',
               'type' => '`$NUMBER`',
+              'short' => 'Pressure tendency',
             ],
             [
               'name' => 'prior',
-              'short' => 'Prior observation indicator',
+              'title' => 'Prior',
               'type' => '`$INTEGER`',
+              'short' => 'Prior observation indicator',
             ],
             [
               'name' => 'qcField',
-              'short' => 'Quality control field',
+              'title' => 'Qc Field',
               'type' => '`$INTEGER`',
+              'short' => 'Quality control field',
             ],
             [
               'name' => 'rawOb',
-              'short' => 'Raw METAR observation text',
+              'title' => 'Raw Ob',
               'type' => '`$STRING`',
+              'short' => 'Raw METAR observation text',
             ],
             [
               'name' => 'rawTaf',
-              'short' => 'Raw TAF if available',
+              'title' => 'Raw Taf',
               'type' => '`$STRING`',
+              'short' => 'Raw TAF if available',
             ],
             [
-              'format' => 'date-time',
               'name' => 'reportTime',
-              'short' => 'Report time in ISO8601 format',
+              'title' => 'Report Time',
               'type' => '`$STRING`',
+              'short' => 'Report time in ISO8601 format',
+              'format' => 'date-time',
             ],
             [
               'name' => 'slp',
-              'short' => 'Sea level pressure',
+              'title' => 'Slp',
               'type' => '`$NUMBER`',
+              'short' => 'Sea level pressure',
             ],
             [
               'name' => 'snow',
-              'short' => 'Snow depth',
+              'title' => 'Snow',
               'type' => '`$NUMBER`',
+              'short' => 'Snow depth',
             ],
             [
               'name' => 'temp',
-              'short' => 'Temperature in Celsius',
+              'title' => 'Temp',
               'type' => '`$NUMBER`',
+              'short' => 'Temperature in Celsius',
             ],
             [
               'name' => 'vertVis',
-              'short' => 'Vertical visibility',
+              'title' => 'Vert Vis',
               'type' => '`$INTEGER`',
+              'short' => 'Vertical visibility',
             ],
             [
               'name' => 'visib',
-              'short' => 'Visibility',
+              'title' => 'Visib',
               'type' => '`$STRING`',
+              'short' => 'Visibility',
             ],
             [
               'name' => 'wdir',
-              'short' => 'Wind direction in degrees',
+              'title' => 'Wdir',
               'type' => '`$INTEGER`',
+              'short' => 'Wind direction in degrees',
             ],
             [
               'name' => 'wgst',
-              'short' => 'Wind gust in knots',
+              'title' => 'Wgst',
               'type' => '`$INTEGER`',
+              'short' => 'Wind gust in knots',
             ],
             [
               'name' => 'wspd',
-              'short' => 'Wind speed in knots',
+              'title' => 'Wspd',
               'type' => '`$INTEGER`',
+              'short' => 'Wind speed in knots',
             ],
             [
               'name' => 'wxString',
-              'short' => 'Weather phenomena string',
+              'title' => 'Wx String',
               'type' => '`$STRING`',
+              'short' => 'Weather phenomena string',
             ],
           ],
           'name' => 'metar',
@@ -1087,41 +1170,6 @@ class AviationweatherDataConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'bbox',
-                        'orig' => 'bbox',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'date',
-                        'orig' => 'date',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'raw',
-                        'kind' => 'query',
-                        'name' => 'format',
-                        'orig' => 'format',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'ids',
-                        'orig' => 'ids',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'taf',
-                        'orig' => 'taf',
-                        'type' => '`$BOOLEAN`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/metar',
@@ -1136,6 +1184,51 @@ class AviationweatherDataConfig
                       'lit' => 'metar',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'metar',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'bbox',
+                        'orig' => 'bbox',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'date',
+                        'orig' => 'date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'format',
+                        'orig' => 'format',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'raw',
+                      ],
+                      [
+                        'name' => 'ids',
+                        'orig' => 'ids',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'taf',
+                        'orig' => 'taf',
+                        'type' => '`$BOOLEAN`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'bbox',
@@ -1144,15 +1237,6 @@ class AviationweatherDataConfig
                       'ids',
                       'taf',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'api',
-                    'data',
-                    'metar',
                   ],
                 ],
               ],
@@ -1166,79 +1250,94 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'aircraftType',
-              'short' => 'Aircraft type',
+              'title' => 'Aircraft Type',
               'type' => '`$STRING`',
+              'short' => 'Aircraft type',
             ],
             [
               'name' => 'altitudeFt',
-              'short' => 'Altitude in feet MSL',
+              'title' => 'Altitude Ft',
               'type' => '`$INTEGER`',
+              'short' => 'Altitude in feet MSL',
             ],
             [
               'name' => 'clouds',
-              'short' => 'Cloud reports',
+              'title' => 'Clouds',
               'type' => '`$ARRAY`',
+              'short' => 'Cloud reports',
             ],
             [
               'name' => 'icing',
-              'short' => 'Icing report',
+              'title' => 'Icing',
               'type' => '`$STRING`',
+              'short' => 'Icing report',
             ],
             [
               'name' => 'lat',
-              'short' => 'Latitude',
+              'title' => 'Lat',
               'type' => '`$NUMBER`',
+              'short' => 'Latitude',
             ],
             [
               'name' => 'lon',
-              'short' => 'Longitude',
+              'title' => 'Lon',
               'type' => '`$NUMBER`',
+              'short' => 'Longitude',
             ],
             [
-              'format' => 'date-time',
               'name' => 'obsTime',
-              'short' => 'Observation time in ISO8601 format',
+              'title' => 'Obs Time',
               'type' => '`$STRING`',
+              'short' => 'Observation time in ISO8601 format',
+              'format' => 'date-time',
             ],
             [
               'name' => 'rawOb',
-              'short' => 'Raw PIREP text',
+              'title' => 'Raw Ob',
               'type' => '`$STRING`',
+              'short' => 'Raw PIREP text',
             ],
             [
               'name' => 'reportType',
-              'short' => 'Report type (PIREP or AIREP)',
+              'title' => 'Report Type',
               'type' => '`$STRING`',
+              'short' => 'Report type (PIREP or AIREP)',
             ],
             [
               'name' => 'temp',
-              'short' => 'Temperature in Celsius',
+              'title' => 'Temp',
               'type' => '`$NUMBER`',
+              'short' => 'Temperature in Celsius',
             ],
             [
               'name' => 'turbulence',
-              'short' => 'Turbulence report',
+              'title' => 'Turbulence',
               'type' => '`$STRING`',
+              'short' => 'Turbulence report',
             ],
             [
               'name' => 'visibility',
-              'short' => 'Visibility',
+              'title' => 'Visibility',
               'type' => '`$STRING`',
+              'short' => 'Visibility',
             ],
             [
               'name' => 'wdir',
-              'short' => 'Wind direction in degrees',
+              'title' => 'Wdir',
               'type' => '`$INTEGER`',
+              'short' => 'Wind direction in degrees',
             ],
             [
               'name' => 'wspd',
-              'short' => 'Wind speed in knots',
+              'title' => 'Wspd',
               'type' => '`$INTEGER`',
+              'short' => 'Wind speed in knots',
             ],
             [
               'name' => 'wxString',
-              'short' => 'Weather phenomena string',
+              'title' => 'Wx String',
               'type' => '`$STRING`',
+              'short' => 'Weather phenomena string',
             ],
           ],
           'name' => 'pirep',
@@ -1248,35 +1347,6 @@ class AviationweatherDataConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'age',
-                        'orig' => 'age',
-                        'type' => '`$INTEGER`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'bbox',
-                        'orig' => 'bbox',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'date',
-                        'orig' => 'date',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'raw',
-                        'kind' => 'query',
-                        'name' => 'format',
-                        'orig' => 'format',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/pirep',
@@ -1291,6 +1361,45 @@ class AviationweatherDataConfig
                       'lit' => 'pirep',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'pirep',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'age',
+                        'orig' => 'age',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'bbox',
+                        'orig' => 'bbox',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'date',
+                        'orig' => 'date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'format',
+                        'orig' => 'format',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'raw',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'age',
@@ -1298,15 +1407,6 @@ class AviationweatherDataConfig
                       'date',
                       'format',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'api',
-                    'data',
-                    'pirep',
                   ],
                 ],
               ],
@@ -1320,53 +1420,63 @@ class AviationweatherDataConfig
           'fields' => [
             [
               'name' => 'country',
-              'short' => 'Country code',
+              'title' => 'Country',
               'type' => '`$STRING`',
+              'short' => 'Country code',
             ],
             [
               'name' => 'elev',
-              'short' => 'Elevation in meters',
+              'title' => 'Elev',
               'type' => '`$NUMBER`',
+              'short' => 'Elevation in meters',
             ],
             [
               'name' => 'iataId',
-              'short' => 'IATA identifier',
+              'title' => 'Iata Id',
               'type' => '`$STRING`',
+              'short' => 'IATA identifier',
             ],
             [
               'name' => 'icaoId',
-              'short' => 'ICAO station identifier',
+              'title' => 'Icao Id',
               'type' => '`$STRING`',
+              'short' => 'ICAO station identifier',
             ],
             [
               'name' => 'lat',
-              'short' => 'Latitude',
+              'title' => 'Lat',
               'type' => '`$NUMBER`',
+              'short' => 'Latitude',
             ],
             [
               'name' => 'lon',
-              'short' => 'Longitude',
+              'title' => 'Lon',
               'type' => '`$NUMBER`',
+              'short' => 'Longitude',
             ],
             [
               'name' => 'name',
-              'short' => 'Station name',
+              'title' => 'Name',
               'type' => '`$STRING`',
+              'short' => 'Station name',
             ],
             [
               'name' => 'priority',
-              'short' => 'Priority level',
+              'title' => 'Priority',
               'type' => '`$INTEGER`',
+              'short' => 'Priority level',
             ],
             [
               'name' => 'site',
-              'short' => 'Site type',
+              'title' => 'Site',
               'type' => '`$STRING`',
+              'short' => 'Site type',
             ],
             [
               'name' => 'state',
-              'short' => 'State or province',
+              'title' => 'State',
               'type' => '`$STRING`',
+              'short' => 'State or province',
             ],
           ],
           'name' => 'station_info',
@@ -1376,29 +1486,6 @@ class AviationweatherDataConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'bbox',
-                        'orig' => 'bbox',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'json',
-                        'kind' => 'query',
-                        'name' => 'format',
-                        'orig' => 'format',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'ids',
-                        'orig' => 'ids',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/stationinfo',
@@ -1413,21 +1500,45 @@ class AviationweatherDataConfig
                       'lit' => 'stationinfo',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'stationinfo',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'bbox',
+                        'orig' => 'bbox',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'format',
+                        'orig' => 'format',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'json',
+                      ],
+                      [
+                        'name' => 'ids',
+                        'orig' => 'ids',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'bbox',
                       'format',
                       'ids',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'api',
-                    'data',
-                    'stationinfo',
                   ],
                 ],
               ],
@@ -1440,63 +1551,74 @@ class AviationweatherDataConfig
         'taf' => [
           'fields' => [
             [
-              'format' => 'date-time',
               'name' => 'bulletinTime',
-              'short' => 'Bulletin time in ISO8601 format',
+              'title' => 'Bulletin Time',
               'type' => '`$STRING`',
+              'short' => 'Bulletin time in ISO8601 format',
+              'format' => 'date-time',
             ],
             [
               'name' => 'elev',
-              'short' => 'Elevation in meters',
+              'title' => 'Elev',
               'type' => '`$NUMBER`',
+              'short' => 'Elevation in meters',
             ],
             [
               'name' => 'fcsts',
-              'short' => 'Forecast periods',
+              'title' => 'Fcsts',
               'type' => '`$ARRAY`',
+              'short' => 'Forecast periods',
             ],
             [
               'name' => 'icaoId',
-              'short' => 'ICAO station identifier',
+              'title' => 'Icao Id',
               'type' => '`$STRING`',
+              'short' => 'ICAO station identifier',
             ],
             [
-              'format' => 'date-time',
               'name' => 'issueTime',
-              'short' => 'TAF issue time in ISO8601 format',
+              'title' => 'Issue Time',
               'type' => '`$STRING`',
+              'short' => 'TAF issue time in ISO8601 format',
+              'format' => 'date-time',
             ],
             [
               'name' => 'lat',
-              'short' => 'Latitude',
+              'title' => 'Lat',
               'type' => '`$NUMBER`',
+              'short' => 'Latitude',
             ],
             [
               'name' => 'lon',
-              'short' => 'Longitude',
+              'title' => 'Lon',
               'type' => '`$NUMBER`',
+              'short' => 'Longitude',
             ],
             [
               'name' => 'name',
-              'short' => 'Station name',
+              'title' => 'Name',
               'type' => '`$STRING`',
+              'short' => 'Station name',
             ],
             [
               'name' => 'rawTAF',
+              'title' => 'Raw Taf',
+              'type' => '`$STRING`',
               'short' => 'Raw TAF forecast text',
-              'type' => '`$STRING`',
             ],
             [
-              'format' => 'date-time',
               'name' => 'validTimeFrom',
-              'short' => 'Valid time from in ISO8601 format',
+              'title' => 'Valid Time From',
               'type' => '`$STRING`',
+              'short' => 'Valid time from in ISO8601 format',
+              'format' => 'date-time',
             ],
             [
-              'format' => 'date-time',
               'name' => 'validTimeTo',
-              'short' => 'Valid time to in ISO8601 format',
+              'title' => 'Valid Time To',
               'type' => '`$STRING`',
+              'short' => 'Valid time to in ISO8601 format',
+              'format' => 'date-time',
             ],
           ],
           'name' => 'taf',
@@ -1506,35 +1628,6 @@ class AviationweatherDataConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'bbox',
-                        'orig' => 'bbox',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'date',
-                        'orig' => 'date',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'raw',
-                        'kind' => 'query',
-                        'name' => 'format',
-                        'orig' => 'format',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'ids',
-                        'orig' => 'ids',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/taf',
@@ -1549,6 +1642,45 @@ class AviationweatherDataConfig
                       'lit' => 'taf',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'taf',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'bbox',
+                        'orig' => 'bbox',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'date',
+                        'orig' => 'date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'format',
+                        'orig' => 'format',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'raw',
+                      ],
+                      [
+                        'name' => 'ids',
+                        'orig' => 'ids',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'bbox',
@@ -1556,15 +1688,6 @@ class AviationweatherDataConfig
                       'format',
                       'ids',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'api',
-                    'data',
-                    'taf',
                   ],
                 ],
               ],
@@ -1583,23 +1706,6 @@ class AviationweatherDataConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'date',
-                        'orig' => 'date',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'raw',
-                        'kind' => 'query',
-                        'name' => 'format',
-                        'orig' => 'format',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/data/tcf',
@@ -1614,20 +1720,38 @@ class AviationweatherDataConfig
                       'lit' => 'tcf',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'data',
+                    'tcf',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'date',
+                        'orig' => 'date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'format',
+                        'orig' => 'format',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'raw',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'date',
                       'format',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'api',
-                    'data',
-                    'tcf',
                   ],
                 ],
               ],

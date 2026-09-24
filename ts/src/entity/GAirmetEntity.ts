@@ -19,7 +19,6 @@ import type {
   GAirmetListMatch,
 } from '../AviationweatherDataTypes'
 
-// TODO: needs Entity superclass
 class GAirmetEntity extends AviationweatherDataEntityBase<GAirmet> {
 
   constructor(client: AviationweatherDataSDK, entopts: any) {

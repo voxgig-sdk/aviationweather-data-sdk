@@ -1,0 +1,22 @@
+# BasicTafFlow
+
+main: kit: flow: BasicTafFlow:
+{
+  entity: "taf",
+  kind: "basic",
+  name: "BasicTafFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "taf_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTafFlow"
+}

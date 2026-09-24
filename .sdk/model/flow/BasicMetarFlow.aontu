@@ -1,0 +1,22 @@
+# BasicMetarFlow
+
+main: kit: flow: BasicMetarFlow:
+{
+  entity: "metar",
+  kind: "basic",
+  name: "BasicMetarFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "metar_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMetarFlow"
+}

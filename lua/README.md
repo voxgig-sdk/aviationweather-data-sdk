@@ -43,7 +43,7 @@ local airsigmets, err = client:AirSigmet():list()
 if err then error(err) end
 
 for _, item in ipairs(airsigmets) do
-  print(item["airsigmetType"])
+  print(item)
 end
 ```
 

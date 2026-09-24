@@ -1,0 +1,341 @@
+# Entity: metar
+
+main: kit: entity: metar: {
+
+  alias: field: {}
+
+  fields: {
+    altim: {
+      h: "Altim"
+      n: "altim"
+      r: false
+      sh: "Altimeter setting in inches of mercury"
+      t: "`$NUMBER`"
+    }
+    clouds: {
+      h: "Clouds"
+      n: "clouds"
+      r: false
+      sh: "Cloud layers"
+      t: "`$ARRAY`"
+    }
+    dewp: {
+      h: "Dewp"
+      n: "dewp"
+      r: false
+      sh: "Dewpoint in Celsius"
+      t: "`$NUMBER`"
+    }
+    elev: {
+      h: "Elev"
+      n: "elev"
+      r: false
+      sh: "Elevation in meters"
+      t: "`$NUMBER`"
+    }
+    fltCat: {
+      h: "Flt Cat"
+      n: "fltCat"
+      r: false
+      sh: "Flight category (VFR, MVFR, IFR, LIFR)"
+      t: "`$STRING`"
+    }
+    icaoId: {
+      h: "Icao Id"
+      n: "icaoId"
+      r: false
+      sh: "ICAO station identifier"
+      t: "`$STRING`"
+    }
+    lat: {
+      h: "Lat"
+      n: "lat"
+      r: false
+      sh: "Latitude"
+      t: "`$NUMBER`"
+    }
+    lon: {
+      h: "Lon"
+      n: "lon"
+      r: false
+      sh: "Longitude"
+      t: "`$NUMBER`"
+    }
+    maxT: {
+      h: "Max T"
+      n: "maxT"
+      r: false
+      sh: "Maximum temperature"
+      t: "`$NUMBER`"
+    }
+    maxT24: {
+      h: "Max T24"
+      n: "maxT24"
+      r: false
+      sh: "24-hour maximum temperature"
+      t: "`$NUMBER`"
+    }
+    metarType: {
+      h: "Metar Type"
+      n: "metarType"
+      r: false
+      sh: "METAR type (METAR or SPECI)"
+      t: "`$STRING`"
+    }
+    minT: {
+      h: "Min T"
+      n: "minT"
+      r: false
+      sh: "Minimum temperature"
+      t: "`$NUMBER`"
+    }
+    minT24: {
+      h: "Min T24"
+      n: "minT24"
+      r: false
+      sh: "24-hour minimum temperature"
+      t: "`$NUMBER`"
+    }
+    mostRecent: {
+      h: "Most Recent"
+      n: "mostRecent"
+      r: false
+      sh: "Most recent observation flag"
+      t: "`$INTEGER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Station name"
+      t: "`$STRING`"
+    }
+    obsTime: {
+      fo: "date-time"
+      h: "Obs Time"
+      n: "obsTime"
+      r: false
+      sh: "Observation time in ISO8601 format"
+      t: "`$STRING`"
+    }
+    pcp24hr: {
+      h: "Pcp24hr"
+      n: "pcp24hr"
+      r: false
+      sh: "24-hour precipitation"
+      t: "`$NUMBER`"
+    }
+    pcp3hr: {
+      h: "Pcp3hr"
+      n: "pcp3hr"
+      r: false
+      sh: "3-hour precipitation"
+      t: "`$NUMBER`"
+    }
+    pcp6hr: {
+      h: "Pcp6hr"
+      n: "pcp6hr"
+      r: false
+      sh: "6-hour precipitation"
+      t: "`$NUMBER`"
+    }
+    precip: {
+      h: "Precip"
+      n: "precip"
+      r: false
+      sh: "Precipitation"
+      t: "`$NUMBER`"
+    }
+    presTend: {
+      h: "Pres Tend"
+      n: "presTend"
+      r: false
+      sh: "Pressure tendency"
+      t: "`$NUMBER`"
+    }
+    prior: {
+      h: "Prior"
+      n: "prior"
+      r: false
+      sh: "Prior observation indicator"
+      t: "`$INTEGER`"
+    }
+    qcField: {
+      h: "Qc Field"
+      n: "qcField"
+      r: false
+      sh: "Quality control field"
+      t: "`$INTEGER`"
+    }
+    rawOb: {
+      h: "Raw Ob"
+      n: "rawOb"
+      r: false
+      sh: "Raw METAR observation text"
+      t: "`$STRING`"
+    }
+    rawTaf: {
+      h: "Raw Taf"
+      n: "rawTaf"
+      r: false
+      sh: "Raw TAF if available"
+      t: "`$STRING`"
+    }
+    reportTime: {
+      fo: "date-time"
+      h: "Report Time"
+      n: "reportTime"
+      r: false
+      sh: "Report time in ISO8601 format"
+      t: "`$STRING`"
+    }
+    slp: {
+      h: "Slp"
+      n: "slp"
+      r: false
+      sh: "Sea level pressure"
+      t: "`$NUMBER`"
+    }
+    snow: {
+      h: "Snow"
+      n: "snow"
+      r: false
+      sh: "Snow depth"
+      t: "`$NUMBER`"
+    }
+    temp: {
+      h: "Temp"
+      n: "temp"
+      r: false
+      sh: "Temperature in Celsius"
+      t: "`$NUMBER`"
+    }
+    vertVis: {
+      h: "Vert Vis"
+      n: "vertVis"
+      r: false
+      sh: "Vertical visibility"
+      t: "`$INTEGER`"
+    }
+    visib: {
+      h: "Visib"
+      n: "visib"
+      r: false
+      sh: "Visibility"
+      t: "`$STRING`"
+    }
+    wdir: {
+      h: "Wdir"
+      n: "wdir"
+      r: false
+      sh: "Wind direction in degrees"
+      t: "`$INTEGER`"
+    }
+    wgst: {
+      h: "Wgst"
+      n: "wgst"
+      r: false
+      sh: "Wind gust in knots"
+      t: "`$INTEGER`"
+    }
+    wspd: {
+      h: "Wspd"
+      n: "wspd"
+      r: false
+      sh: "Wind speed in knots"
+      t: "`$INTEGER`"
+    }
+    wxString: {
+      h: "Wx String"
+      n: "wxString"
+      r: false
+      sh: "Weather phenomena string"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "metar"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/data/metar"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "bbox"
+                or: "bbox"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "raw"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "ids"
+                or: "ids"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "taf"
+                or: "taf"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/data/metar"
+          q: {
+            exist: [
+              "bbox"
+              "date"
+              "format"
+              "ids"
+              "taf"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "data"
+            }
+            {
+              lit: "metar"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
