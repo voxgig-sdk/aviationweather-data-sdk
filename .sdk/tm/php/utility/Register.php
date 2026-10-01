@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 AviationweatherDataUtility::setRegistrar(function (AviationweatherDataUtility $u): void {
     $u->clean = [AviationweatherDataClean::class, 'call'];
+    $u->clean_add = [AviationweatherDataClean::class, 'add'];
+    $u->clean_explain = [AviationweatherDataDone::class, 'clean_explain'];
     $u->done = [AviationweatherDataDone::class, 'call'];
     $u->make_error = [AviationweatherDataMakeError::class, 'call'];
     $u->feature_add = [AviationweatherDataFeatureAdd::class, 'call'];

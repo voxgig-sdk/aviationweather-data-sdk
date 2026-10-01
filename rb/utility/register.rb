@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 AviationweatherDataUtility.registrar = ->(u) {
   u.clean = AviationweatherDataUtilities::Clean
+  u.clean_add = AviationweatherDataUtilities::CleanAdd
+  u.clean_explain = AviationweatherDataUtilities::CleanExplain
   u.done = AviationweatherDataUtilities::Done
   u.make_error = AviationweatherDataUtilities::MakeError
   u.feature_add = AviationweatherDataUtilities::FeatureAdd
