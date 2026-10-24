@@ -20,6 +20,11 @@ main: kit: entity: cache: {
           q: {
             "$action": "aircraftreportscachecsvgz"
           }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "application/gzip"
+          }
           s: [
             {
               lit: "data"
@@ -46,6 +51,11 @@ main: kit: entity: cache: {
           o: "/data/cache/aircraftreports.cache.xml.gz"
           q: {
             "$action": "aircraftreportscachexmlgz"
+          }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "application/gzip"
           }
           s: [
             {
@@ -74,6 +84,11 @@ main: kit: entity: cache: {
           q: {
             "$action": "airsigmetscachecsvgz"
           }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "application/gzip"
+          }
           s: [
             {
               lit: "data"
@@ -100,6 +115,11 @@ main: kit: entity: cache: {
           o: "/data/cache/airsigmets.cache.xml.gz"
           q: {
             "$action": "airsigmetscachexmlgz"
+          }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "application/gzip"
           }
           s: [
             {
@@ -128,6 +148,11 @@ main: kit: entity: cache: {
           q: {
             "$action": "gairmetscachexmlgz"
           }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "application/gzip"
+          }
           s: [
             {
               lit: "data"
@@ -154,6 +179,11 @@ main: kit: entity: cache: {
           o: "/data/cache/metars.cache.csv.gz"
           q: {
             "$action": "metarscachecsvgz"
+          }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "application/gzip"
           }
           s: [
             {
@@ -182,6 +212,11 @@ main: kit: entity: cache: {
           q: {
             "$action": "metarscachexmlgz"
           }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "application/gzip"
+          }
           s: [
             {
               lit: "data"
@@ -208,6 +243,11 @@ main: kit: entity: cache: {
           o: "/data/cache/stations.cache.json.gz"
           q: {
             "$action": "stationscachejsongz"
+          }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "application/gzip"
           }
           s: [
             {
@@ -236,6 +276,11 @@ main: kit: entity: cache: {
           q: {
             "$action": "stationscachexmlgz"
           }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "application/gzip"
+          }
           s: [
             {
               lit: "data"
@@ -262,6 +307,11 @@ main: kit: entity: cache: {
           o: "/data/cache/tafs.cache.xml.gz"
           q: {
             "$action": "tafscachexmlgz"
+          }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "application/gzip"
           }
           s: [
             {

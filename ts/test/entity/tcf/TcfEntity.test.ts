@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { AviationweatherDataSDK, BaseFeature, stdutil } from '../../..'
+import { AviationweatherDataSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('TcfEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = AviationweatherDataSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Tcf().load({"date":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.AVIATIONWEATHER_DATA_TEST_LIVE
@@ -51,7 +63,7 @@ describe('TcfEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"tcf","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/data/tcf","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"date","or":"date","r":false,"t":"`$STRING`","index$":0},{"a":true,"ex":"raw","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/api/data/tcf","q":{"exist":["date","format"]},"r":{},"s":[{"lit":"api"},{"lit":"data"},{"lit":"tcf"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"tcf","name__orig":"tcf","Name":"Tcf","name_":"tcf","name-":"tcf","NAME":"TCF","index$":9}, {"active":true,"entity":"tcf","key$":"BasicTcfFlow","kind":"basic","name":"BasicTcfFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"tcf_ref01","srcdatavar":"tcf_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-tcf_ref01"}}],"index$":0}]}, 'Tcf', {"GET /api/data/tcf":{"protocol":"http","parameters":[{"name":"date","in":"query","description":"Date for historical data (ISO8601 format)","required":false,"schema":{"type":"string","format":"date-time"},"index$":0},{"name":"format","in":"query","description":"Output format","required":false,"schema":{"type":"string","enum":["raw","geojson"],"default":"raw"},"index$":1}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"tcf","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/data/tcf","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"date","or":"date","r":false,"t":"`$STRING`","index$":0},{"a":true,"ex":"raw","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/api/data/tcf","q":{},"r":{},"rs":{"alternatives":[{"kind":"raw","media":"text/plain"}],"kind":"json","media":"application/geo+json"},"s":[{"lit":"api"},{"lit":"data"},{"lit":"tcf"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"tcf","name__orig":"tcf","Name":"Tcf","name_":"tcf","name-":"tcf","NAME":"TCF","index$":9}, {"active":true,"entity":"tcf","key$":"BasicTcfFlow","kind":"basic","name":"BasicTcfFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"tcf_ref01","srcdatavar":"tcf_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-tcf_ref01"}}],"index$":0}]}, 'Tcf', {"GET /api/data/tcf":{"protocol":"http","parameters":[{"name":"date","in":"query","description":"Date for historical data (ISO8601 format)","required":false,"schema":{"type":"string","format":"date-time"},"index$":0},{"name":"format","in":"query","description":"Output format","required":false,"schema":{"type":"string","enum":["raw","geojson"],"default":"raw"},"index$":1}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('TcfEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/aviationweather-data-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/aviationweather-data-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -230,8 +230,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
+| `load` | `($reqmatch, $ctrl): mixed` | Load a single entity by match criteria, and return it. |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -241,9 +241,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -487,7 +487,7 @@ Create an instance: `$air_sigmet = $client->AirSigmet();`
 #### Example: List
 
 ```php
-// list() returns an array of AirSigmet records (throws on error).
+// list() returns an array of AirSigmet entities, one per record (throws on error).
 $air_sigmets = $client->AirSigmet()->list();
 ```
 
@@ -519,7 +519,7 @@ Create an instance: `$airport = $client->Airport();`
 #### Example: List
 
 ```php
-// list() returns an array of Airport records (throws on error).
+// list() returns an array of Airport entities, one per record (throws on error).
 $airports = $client->Airport()->list();
 ```
 
@@ -533,13 +533,6 @@ Create an instance: `$cache = $client->Cache();`
 | Method | Description |
 | --- | --- |
 | `load(match)` | Load a single entity by match criteria. |
-
-#### Example: Load
-
-```php
-// load() returns the ENTITY — call data_get() for the Cache record (throws on error).
-$cache = $client->Cache()->load();
-```
 
 
 ### Cwa
@@ -567,7 +560,7 @@ Create an instance: `$cwa = $client->Cwa();`
 #### Example: List
 
 ```php
-// list() returns an array of Cwa records (throws on error).
+// list() returns an array of Cwa entities, one per record (throws on error).
 $cwas = $client->Cwa()->list();
 ```
 
@@ -598,7 +591,7 @@ Create an instance: `$g_airmet = $client->GAirmet();`
 #### Example: List
 
 ```php
-// list() returns an array of GAirmet records (throws on error).
+// list() returns an array of GAirmet entities, one per record (throws on error).
 $g_airmets = $client->GAirmet()->list();
 ```
 
@@ -656,7 +649,7 @@ Create an instance: `$metar = $client->Metar();`
 #### Example: List
 
 ```php
-// list() returns an array of Metar records (throws on error).
+// list() returns an array of Metar entities, one per record (throws on error).
 $metars = $client->Metar()->list();
 ```
 
@@ -694,7 +687,7 @@ Create an instance: `$pirep = $client->Pirep();`
 #### Example: List
 
 ```php
-// list() returns an array of Pirep records (throws on error).
+// list() returns an array of Pirep entities, one per record (throws on error).
 $pireps = $client->Pirep()->list();
 ```
 
@@ -727,7 +720,7 @@ Create an instance: `$station_info = $client->StationInfo();`
 #### Example: List
 
 ```php
-// list() returns an array of StationInfo records (throws on error).
+// list() returns an array of StationInfo entities, one per record (throws on error).
 $station_infos = $client->StationInfo()->list();
 ```
 
@@ -761,7 +754,7 @@ Create an instance: `$taf = $client->Taf();`
 #### Example: List
 
 ```php
-// list() returns an array of Taf records (throws on error).
+// list() returns an array of Taf entities, one per record (throws on error).
 $tafs = $client->Taf()->list();
 ```
 

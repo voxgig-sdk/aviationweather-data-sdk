@@ -126,13 +126,23 @@ main: kit: entity: air_sigmet: {
           }
           m: "GET"
           o: "/api/data/airsigmet"
-          q: {
-            exist: [
-              "bbox"
-              "date"
-              "format"
-              "hazard"
+          rs: {
+            alternatives: [
+              {
+                kind: "json"
+                media: "application/geo+json"
+              }
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
+              {
+                kind: "raw"
+                media: "text/plain"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

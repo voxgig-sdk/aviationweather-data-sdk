@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { AviationweatherDataSDK, BaseFeature, stdutil } from '../../..'
+import { AviationweatherDataSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('PirepEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('pirep hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of AviationweatherDataSDK.test(offline).Pirep().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of AviationweatherDataSDK.test(offline).Pirep()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = AviationweatherDataSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Pirep().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of AviationweatherDataSDK.test().Pirep().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new AviationweatherDataSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Pirep().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Pirep().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = AviationweatherDataSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Pirep().list({"age":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.AVIATIONWEATHER_DATA_TEST_LIVE
@@ -51,7 +109,7 @@ describe('PirepEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"aircraftType":{"a":true,"h":"Aircraft Type","n":"aircraftType","r":false,"sh":"Aircraft type","t":"`$STRING`","key$":"aircraftType","index$":0},"altitudeFt":{"a":true,"h":"Altitude Ft","n":"altitudeFt","r":false,"sh":"Altitude in feet MSL","t":"`$INTEGER`","key$":"altitudeFt","index$":1},"clouds":{"a":true,"h":"Clouds","n":"clouds","r":false,"sh":"Cloud reports","t":"`$ARRAY`","key$":"clouds","index$":2},"icing":{"a":true,"h":"Icing","n":"icing","r":false,"sh":"Icing report","t":"`$STRING`","key$":"icing","index$":3},"lat":{"a":true,"h":"Lat","n":"lat","r":false,"sh":"Latitude","t":"`$NUMBER`","key$":"lat","index$":4},"lon":{"a":true,"h":"Lon","n":"lon","r":false,"sh":"Longitude","t":"`$NUMBER`","key$":"lon","index$":5},"obsTime":{"a":true,"fo":"date-time","h":"Obs Time","n":"obsTime","r":false,"sh":"Observation time in ISO8601 format","t":"`$STRING`","key$":"obsTime","index$":6},"rawOb":{"a":true,"h":"Raw Ob","n":"rawOb","r":false,"sh":"Raw PIREP text","t":"`$STRING`","key$":"rawOb","index$":7},"reportType":{"a":true,"h":"Report Type","n":"reportType","r":false,"sh":"Report type (PIREP or AIREP)","t":"`$STRING`","key$":"reportType","index$":8},"temp":{"a":true,"h":"Temp","n":"temp","r":false,"sh":"Temperature in Celsius","t":"`$NUMBER`","key$":"temp","index$":9},"turbulence":{"a":true,"h":"Turbulence","n":"turbulence","r":false,"sh":"Turbulence report","t":"`$STRING`","key$":"turbulence","index$":10},"visibility":{"a":true,"h":"Visibility","n":"visibility","r":false,"sh":"Visibility","t":"`$STRING`","key$":"visibility","index$":11},"wdir":{"a":true,"h":"Wdir","n":"wdir","r":false,"sh":"Wind direction in degrees","t":"`$INTEGER`","key$":"wdir","index$":12},"wspd":{"a":true,"h":"Wspd","n":"wspd","r":false,"sh":"Wind speed in knots","t":"`$INTEGER`","key$":"wspd","index$":13},"wxString":{"a":true,"h":"Wx String","n":"wxString","r":false,"sh":"Weather phenomena string","t":"`$STRING`","key$":"wxString","index$":14}},"name":"pirep","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /api/data/pirep","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"age","or":"age","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"k":"query","n":"bbox","or":"bbox","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"date","or":"date","r":false,"t":"`$STRING`","index$":2},{"a":true,"ex":"raw","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":3}]},"k":"http","m":"GET","o":"/api/data/pirep","q":{"exist":["age","bbox","date","format"]},"r":{},"s":[{"lit":"api"},{"lit":"data"},{"lit":"pirep"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"pirep","name__orig":"pirep","Name":"Pirep","name_":"pirep","name-":"pirep","NAME":"PIREP","index$":6}, {"active":true,"entity":"pirep","key$":"BasicPirepFlow","kind":"basic","name":"BasicPirepFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"pirep_ref01"}}],"index$":0}]}, 'Pirep', {"GET /api/data/pirep":{"protocol":"http","parameters":[{"name":"date","in":"query","description":"Date for historical data (ISO8601 format)","required":false,"schema":{"type":"string","format":"date-time"},"index$":0},{"name":"bbox","in":"query","description":"Bounding box coordinates (minLon,minLat,maxLon,maxLat)","required":false,"schema":{"type":"string"},"index$":1},{"name":"format","in":"query","description":"Output format","required":false,"schema":{"type":"string","enum":["raw","json","geojson","xml"],"default":"raw"},"index$":2},{"name":"age","in":"query","description":"Age of reports in hours","required":false,"schema":{"type":"integer"},"index$":3}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"aircraftType":{"a":true,"h":"Aircraft Type","n":"aircraftType","r":false,"sh":"Aircraft type","t":"`$STRING`","key$":"aircraftType","index$":0},"altitudeFt":{"a":true,"h":"Altitude Ft","n":"altitudeFt","r":false,"sh":"Altitude in feet MSL","t":"`$INTEGER`","key$":"altitudeFt","index$":1},"clouds":{"a":true,"h":"Clouds","n":"clouds","r":false,"sh":"Cloud reports","t":"`$ARRAY`","key$":"clouds","index$":2},"icing":{"a":true,"h":"Icing","n":"icing","r":false,"sh":"Icing report","t":"`$STRING`","key$":"icing","index$":3},"lat":{"a":true,"h":"Lat","n":"lat","r":false,"sh":"Latitude","t":"`$NUMBER`","key$":"lat","index$":4},"lon":{"a":true,"h":"Lon","n":"lon","r":false,"sh":"Longitude","t":"`$NUMBER`","key$":"lon","index$":5},"obsTime":{"a":true,"fo":"date-time","h":"Obs Time","n":"obsTime","r":false,"sh":"Observation time in ISO8601 format","t":"`$STRING`","key$":"obsTime","index$":6},"rawOb":{"a":true,"h":"Raw Ob","n":"rawOb","r":false,"sh":"Raw PIREP text","t":"`$STRING`","key$":"rawOb","index$":7},"reportType":{"a":true,"h":"Report Type","n":"reportType","r":false,"sh":"Report type (PIREP or AIREP)","t":"`$STRING`","key$":"reportType","index$":8},"temp":{"a":true,"h":"Temp","n":"temp","r":false,"sh":"Temperature in Celsius","t":"`$NUMBER`","key$":"temp","index$":9},"turbulence":{"a":true,"h":"Turbulence","n":"turbulence","r":false,"sh":"Turbulence report","t":"`$STRING`","key$":"turbulence","index$":10},"visibility":{"a":true,"h":"Visibility","n":"visibility","r":false,"sh":"Visibility","t":"`$STRING`","key$":"visibility","index$":11},"wdir":{"a":true,"h":"Wdir","n":"wdir","r":false,"sh":"Wind direction in degrees","t":"`$INTEGER`","key$":"wdir","index$":12},"wspd":{"a":true,"h":"Wspd","n":"wspd","r":false,"sh":"Wind speed in knots","t":"`$INTEGER`","key$":"wspd","index$":13},"wxString":{"a":true,"h":"Wx String","n":"wxString","r":false,"sh":"Weather phenomena string","t":"`$STRING`","key$":"wxString","index$":14}},"name":"pirep","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /api/data/pirep","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"age","or":"age","r":false,"t":"`$INTEGER`","index$":0},{"a":true,"k":"query","n":"bbox","or":"bbox","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"date","or":"date","r":false,"t":"`$STRING`","index$":2},{"a":true,"ex":"raw","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":3}]},"k":"http","m":"GET","o":"/api/data/pirep","q":{},"r":{},"rs":{"alternatives":[{"kind":"json","media":"application/geo+json"},{"kind":"raw","media":"application/xml"},{"kind":"raw","media":"text/plain"}],"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"data"},{"lit":"pirep"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"pirep","name__orig":"pirep","Name":"Pirep","name_":"pirep","name-":"pirep","NAME":"PIREP","index$":6}, {"active":true,"entity":"pirep","key$":"BasicPirepFlow","kind":"basic","name":"BasicPirepFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"pirep_ref01"}}],"index$":0}]}, 'Pirep', {"GET /api/data/pirep":{"protocol":"http","parameters":[{"name":"date","in":"query","description":"Date for historical data (ISO8601 format)","required":false,"schema":{"type":"string","format":"date-time"},"index$":0},{"name":"bbox","in":"query","description":"Bounding box coordinates (minLon,minLat,maxLon,maxLat)","required":false,"schema":{"type":"string"},"index$":1},{"name":"format","in":"query","description":"Output format","required":false,"schema":{"type":"string","enum":["raw","json","geojson","xml"],"default":"raw"},"index$":2},{"name":"age","in":"query","description":"Age of reports in hours","required":false,"schema":{"type":"integer"},"index$":3}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('PirepEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

@@ -102,6 +102,7 @@ class Config {
       },
       "optspec": {
         "clearTimer": "`$FUNCTION`",
+        "now": "`$FUNCTION`",
         "setTimer": "`$FUNCTION`"
       },
       "strict": false,
@@ -277,17 +278,29 @@ class Config {
                     "name": "hazard",
                     "orig": "hazard",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "bbox",
-                  "date",
-                  "format",
-                  "hazard"
-                ]
+              "select": {},
+              "response": {
+                "alternatives": [
+                  {
+                    "kind": "json",
+                    "media": "application/geo+json"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "application/xml"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "text/plain"
+                  }
+                ],
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -408,12 +421,20 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "bbox",
-                  "format",
-                  "ids"
-                ]
+              "select": {},
+              "response": {
+                "alternatives": [
+                  {
+                    "kind": "json",
+                    "media": "application/geo+json"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "application/xml"
+                  }
+                ],
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -459,6 +480,11 @@ class Config {
               "args": {},
               "select": {
                 "$action": "aircraftreportscachecsvgz"
+              },
+              "response": {
+                "binary": true,
+                "kind": "raw",
+                "media": "application/gzip"
               }
             },
             {
@@ -489,6 +515,11 @@ class Config {
               "args": {},
               "select": {
                 "$action": "aircraftreportscachexmlgz"
+              },
+              "response": {
+                "binary": true,
+                "kind": "raw",
+                "media": "application/gzip"
               }
             },
             {
@@ -519,6 +550,11 @@ class Config {
               "args": {},
               "select": {
                 "$action": "airsigmetscachecsvgz"
+              },
+              "response": {
+                "binary": true,
+                "kind": "raw",
+                "media": "application/gzip"
               }
             },
             {
@@ -549,6 +585,11 @@ class Config {
               "args": {},
               "select": {
                 "$action": "airsigmetscachexmlgz"
+              },
+              "response": {
+                "binary": true,
+                "kind": "raw",
+                "media": "application/gzip"
               }
             },
             {
@@ -579,6 +620,11 @@ class Config {
               "args": {},
               "select": {
                 "$action": "gairmetscachexmlgz"
+              },
+              "response": {
+                "binary": true,
+                "kind": "raw",
+                "media": "application/gzip"
               }
             },
             {
@@ -609,6 +655,11 @@ class Config {
               "args": {},
               "select": {
                 "$action": "metarscachecsvgz"
+              },
+              "response": {
+                "binary": true,
+                "kind": "raw",
+                "media": "application/gzip"
               }
             },
             {
@@ -639,6 +690,11 @@ class Config {
               "args": {},
               "select": {
                 "$action": "metarscachexmlgz"
+              },
+              "response": {
+                "binary": true,
+                "kind": "raw",
+                "media": "application/gzip"
               }
             },
             {
@@ -669,6 +725,11 @@ class Config {
               "args": {},
               "select": {
                 "$action": "stationscachejsongz"
+              },
+              "response": {
+                "binary": true,
+                "kind": "raw",
+                "media": "application/gzip"
               }
             },
             {
@@ -699,6 +760,11 @@ class Config {
               "args": {},
               "select": {
                 "$action": "stationscachexmlgz"
+              },
+              "response": {
+                "binary": true,
+                "kind": "raw",
+                "media": "application/gzip"
               }
             },
             {
@@ -729,6 +795,11 @@ class Config {
               "args": {},
               "select": {
                 "$action": "tafscachexmlgz"
+              },
+              "response": {
+                "binary": true,
+                "kind": "raw",
+                "media": "application/gzip"
               }
             }
           ]
@@ -840,12 +911,20 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "bbox",
-                  "date",
-                  "format"
-                ]
+              "select": {},
+              "response": {
+                "alternatives": [
+                  {
+                    "kind": "json",
+                    "media": "application/geo+json"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "text/plain"
+                  }
+                ],
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -965,17 +1044,25 @@ class Config {
                     "name": "hazard",
                     "orig": "hazard",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "bbox",
-                  "date",
-                  "format",
-                  "hazard"
-                ]
+              "select": {},
+              "response": {
+                "alternatives": [
+                  {
+                    "kind": "json",
+                    "media": "application/geo+json"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "application/xml"
+                  }
+                ],
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1266,14 +1353,28 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "bbox",
-                  "date",
-                  "format",
-                  "ids",
-                  "taf"
-                ]
+              "select": {},
+              "response": {
+                "alternatives": [
+                  {
+                    "kind": "json",
+                    "media": "application/geo+json"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "application/xml"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "text/csv"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "text/plain"
+                  }
+                ],
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1437,13 +1538,24 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "age",
-                  "bbox",
-                  "date",
-                  "format"
-                ]
+              "select": {},
+              "response": {
+                "alternatives": [
+                  {
+                    "kind": "json",
+                    "media": "application/geo+json"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "application/xml"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "text/plain"
+                  }
+                ],
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1570,12 +1682,20 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "bbox",
-                  "format",
-                  "ids"
-                ]
+              "select": {},
+              "response": {
+                "alternatives": [
+                  {
+                    "kind": "json",
+                    "media": "application/geo+json"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "application/xml"
+                  }
+                ],
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1718,13 +1838,24 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "bbox",
-                  "date",
-                  "format",
-                  "ids"
-                ]
+              "select": {},
+              "response": {
+                "alternatives": [
+                  {
+                    "kind": "json",
+                    "media": "application/geo+json"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "application/xml"
+                  },
+                  {
+                    "kind": "raw",
+                    "media": "text/plain"
+                  }
+                ],
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -1784,11 +1915,16 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "date",
-                  "format"
-                ]
+              "select": {},
+              "response": {
+                "alternatives": [
+                  {
+                    "kind": "raw",
+                    "media": "text/plain"
+                  }
+                ],
+                "kind": "json",
+                "media": "application/geo+json"
               }
             }
           ]

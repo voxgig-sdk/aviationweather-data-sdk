@@ -134,13 +134,23 @@ main: kit: entity: taf: {
           }
           m: "GET"
           o: "/api/data/taf"
-          q: {
-            exist: [
-              "bbox"
-              "date"
-              "format"
-              "ids"
+          rs: {
+            alternatives: [
+              {
+                kind: "json"
+                media: "application/geo+json"
+              }
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
+              {
+                kind: "raw"
+                media: "text/plain"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

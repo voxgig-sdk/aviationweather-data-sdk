@@ -116,12 +116,19 @@ main: kit: entity: station_info: {
           }
           m: "GET"
           o: "/api/data/stationinfo"
-          q: {
-            exist: [
-              "bbox"
-              "format"
-              "ids"
+          rs: {
+            alternatives: [
+              {
+                kind: "json"
+                media: "application/geo+json"
+              }
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

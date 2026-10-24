@@ -307,14 +307,27 @@ main: kit: entity: metar: {
           }
           m: "GET"
           o: "/api/data/metar"
-          q: {
-            exist: [
-              "bbox"
-              "date"
-              "format"
-              "ids"
-              "taf"
+          rs: {
+            alternatives: [
+              {
+                kind: "json"
+                media: "application/geo+json"
+              }
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
+              {
+                kind: "raw"
+                media: "text/csv"
+              }
+              {
+                kind: "raw"
+                media: "text/plain"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

@@ -234,15 +234,26 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/data/airsigmet",
-                  "q": {
-                    "exist": [
-                      "bbox",
-                      "date",
-                      "format",
-                      "hazard"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "alternatives": [
+                      {
+                        "kind": "json",
+                        "media": "application/geo+json"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "application/xml"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "text/plain"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -390,14 +401,22 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/data/airport",
-                  "q": {
-                    "exist": [
-                      "bbox",
-                      "format",
-                      "ids"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "alternatives": [
+                      {
+                        "kind": "json",
+                        "media": "application/geo+json"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "application/xml"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -448,6 +467,11 @@
                     "$action": "aircraftreportscachecsvgz"
                   },
                   "r": {},
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/gzip"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -479,6 +503,11 @@
                     "$action": "aircraftreportscachexmlgz"
                   },
                   "r": {},
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/gzip"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -510,6 +539,11 @@
                     "$action": "airsigmetscachecsvgz"
                   },
                   "r": {},
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/gzip"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -541,6 +575,11 @@
                     "$action": "airsigmetscachexmlgz"
                   },
                   "r": {},
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/gzip"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -572,6 +611,11 @@
                     "$action": "gairmetscachexmlgz"
                   },
                   "r": {},
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/gzip"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -603,6 +647,11 @@
                     "$action": "metarscachecsvgz"
                   },
                   "r": {},
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/gzip"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -634,6 +683,11 @@
                     "$action": "metarscachexmlgz"
                   },
                   "r": {},
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/gzip"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -665,6 +719,11 @@
                     "$action": "stationscachejsongz"
                   },
                   "r": {},
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/gzip"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -696,6 +755,11 @@
                     "$action": "stationscachexmlgz"
                   },
                   "r": {},
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/gzip"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -727,6 +791,11 @@
                     "$action": "tafscachexmlgz"
                   },
                   "r": {},
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "application/gzip"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -861,14 +930,22 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/data/cwa",
-                  "q": {
-                    "exist": [
-                      "bbox",
-                      "date",
-                      "format"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "alternatives": [
+                      {
+                        "kind": "json",
+                        "media": "application/geo+json"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "text/plain"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -1019,15 +1096,22 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/data/gairmet",
-                  "q": {
-                    "exist": [
-                      "bbox",
-                      "date",
-                      "format",
-                      "hazard"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "alternatives": [
+                      {
+                        "kind": "json",
+                        "media": "application/geo+json"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "application/xml"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -1401,16 +1485,30 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/data/metar",
-                  "q": {
-                    "exist": [
-                      "bbox",
-                      "date",
-                      "format",
-                      "ids",
-                      "taf"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "alternatives": [
+                      {
+                        "kind": "json",
+                        "media": "application/geo+json"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "application/xml"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "text/csv"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "text/plain"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -1615,15 +1713,26 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/data/pirep",
-                  "q": {
-                    "exist": [
-                      "age",
-                      "bbox",
-                      "date",
-                      "format"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "alternatives": [
+                      {
+                        "kind": "json",
+                        "media": "application/geo+json"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "application/xml"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "text/plain"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -1779,14 +1888,22 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/data/stationinfo",
-                  "q": {
-                    "exist": [
-                      "bbox",
-                      "format",
-                      "ids"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "alternatives": [
+                      {
+                        "kind": "json",
+                        "media": "application/geo+json"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "application/xml"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -1962,15 +2079,26 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/data/taf",
-                  "q": {
-                    "exist": [
-                      "bbox",
-                      "date",
-                      "format",
-                      "ids"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "alternatives": [
+                      {
+                        "kind": "json",
+                        "media": "application/geo+json"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "application/xml"
+                      },
+                      {
+                        "kind": "raw",
+                        "media": "text/plain"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -2037,13 +2165,18 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/api/data/tcf",
-                  "q": {
-                    "exist": [
-                      "date",
-                      "format"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "alternatives": [
+                      {
+                        "kind": "raw",
+                        "media": "text/plain"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/geo+json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -2390,6 +2523,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -2772,7 +2906,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -2825,6 +2959,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -3055,7 +3194,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -3432,6 +3574,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

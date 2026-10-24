@@ -79,6 +79,7 @@ module AviationweatherDataConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -227,16 +228,28 @@ module AviationweatherDataConfig
                         "orig" => "hazard",
                         "type" => "`$STRING`",
                         "kind" => "query",
+                        "field" => true,
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "bbox",
-                      "date",
-                      "format",
-                      "hazard",
+                  "select" => {},
+                  "response" => {
+                    "alternatives" => [
+                      {
+                        "kind" => "json",
+                        "media" => "application/geo+json",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "application/xml",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "text/plain",
+                      },
                     ],
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -357,12 +370,20 @@ module AviationweatherDataConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "bbox",
-                      "format",
-                      "ids",
+                  "select" => {},
+                  "response" => {
+                    "alternatives" => [
+                      {
+                        "kind" => "json",
+                        "media" => "application/geo+json",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "application/xml",
+                      },
                     ],
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -409,6 +430,11 @@ module AviationweatherDataConfig
                   "select" => {
                     "$action" => "aircraftreportscachecsvgz",
                   },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "application/gzip",
+                  },
                 },
                 {
                   "kind" => "http",
@@ -438,6 +464,11 @@ module AviationweatherDataConfig
                   "args" => {},
                   "select" => {
                     "$action" => "aircraftreportscachexmlgz",
+                  },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "application/gzip",
                   },
                 },
                 {
@@ -469,6 +500,11 @@ module AviationweatherDataConfig
                   "select" => {
                     "$action" => "airsigmetscachecsvgz",
                   },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "application/gzip",
+                  },
                 },
                 {
                   "kind" => "http",
@@ -498,6 +534,11 @@ module AviationweatherDataConfig
                   "args" => {},
                   "select" => {
                     "$action" => "airsigmetscachexmlgz",
+                  },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "application/gzip",
                   },
                 },
                 {
@@ -529,6 +570,11 @@ module AviationweatherDataConfig
                   "select" => {
                     "$action" => "gairmetscachexmlgz",
                   },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "application/gzip",
+                  },
                 },
                 {
                   "kind" => "http",
@@ -558,6 +604,11 @@ module AviationweatherDataConfig
                   "args" => {},
                   "select" => {
                     "$action" => "metarscachecsvgz",
+                  },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "application/gzip",
                   },
                 },
                 {
@@ -589,6 +640,11 @@ module AviationweatherDataConfig
                   "select" => {
                     "$action" => "metarscachexmlgz",
                   },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "application/gzip",
+                  },
                 },
                 {
                   "kind" => "http",
@@ -618,6 +674,11 @@ module AviationweatherDataConfig
                   "args" => {},
                   "select" => {
                     "$action" => "stationscachejsongz",
+                  },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "application/gzip",
                   },
                 },
                 {
@@ -649,6 +710,11 @@ module AviationweatherDataConfig
                   "select" => {
                     "$action" => "stationscachexmlgz",
                   },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "application/gzip",
+                  },
                 },
                 {
                   "kind" => "http",
@@ -678,6 +744,11 @@ module AviationweatherDataConfig
                   "args" => {},
                   "select" => {
                     "$action" => "tafscachexmlgz",
+                  },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "application/gzip",
                   },
                 },
               ],
@@ -789,12 +860,20 @@ module AviationweatherDataConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "bbox",
-                      "date",
-                      "format",
+                  "select" => {},
+                  "response" => {
+                    "alternatives" => [
+                      {
+                        "kind" => "json",
+                        "media" => "application/geo+json",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "text/plain",
+                      },
                     ],
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -915,16 +994,24 @@ module AviationweatherDataConfig
                         "orig" => "hazard",
                         "type" => "`$STRING`",
                         "kind" => "query",
+                        "field" => true,
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "bbox",
-                      "date",
-                      "format",
-                      "hazard",
+                  "select" => {},
+                  "response" => {
+                    "alternatives" => [
+                      {
+                        "kind" => "json",
+                        "media" => "application/geo+json",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "application/xml",
+                      },
                     ],
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -1215,14 +1302,28 @@ module AviationweatherDataConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "bbox",
-                      "date",
-                      "format",
-                      "ids",
-                      "taf",
+                  "select" => {},
+                  "response" => {
+                    "alternatives" => [
+                      {
+                        "kind" => "json",
+                        "media" => "application/geo+json",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "application/xml",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "text/csv",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "text/plain",
+                      },
                     ],
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -1386,13 +1487,24 @@ module AviationweatherDataConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "age",
-                      "bbox",
-                      "date",
-                      "format",
+                  "select" => {},
+                  "response" => {
+                    "alternatives" => [
+                      {
+                        "kind" => "json",
+                        "media" => "application/geo+json",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "application/xml",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "text/plain",
+                      },
                     ],
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -1519,12 +1631,20 @@ module AviationweatherDataConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "bbox",
-                      "format",
-                      "ids",
+                  "select" => {},
+                  "response" => {
+                    "alternatives" => [
+                      {
+                        "kind" => "json",
+                        "media" => "application/geo+json",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "application/xml",
+                      },
                     ],
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -1667,13 +1787,24 @@ module AviationweatherDataConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "bbox",
-                      "date",
-                      "format",
-                      "ids",
+                  "select" => {},
+                  "response" => {
+                    "alternatives" => [
+                      {
+                        "kind" => "json",
+                        "media" => "application/geo+json",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "application/xml",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "text/plain",
+                      },
                     ],
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -1733,11 +1864,16 @@ module AviationweatherDataConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "date",
-                      "format",
+                  "select" => {},
+                  "response" => {
+                    "alternatives" => [
+                      {
+                        "kind" => "raw",
+                        "media" => "text/plain",
+                      },
                     ],
+                    "kind" => "json",
+                    "media" => "application/geo+json",
                   },
                 },
               ],

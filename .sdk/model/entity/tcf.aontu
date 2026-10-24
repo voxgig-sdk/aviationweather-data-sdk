@@ -36,11 +36,15 @@ main: kit: entity: tcf: {
           }
           m: "GET"
           o: "/api/data/tcf"
-          q: {
-            exist: [
-              "date"
-              "format"
+          rs: {
+            alternatives: [
+              {
+                kind: "raw"
+                media: "text/plain"
+              }
             ]
+            kind: "json"
+            media: "application/geo+json"
           }
           s: [
             {

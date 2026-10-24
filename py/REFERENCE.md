@@ -136,14 +136,14 @@ air_sigmet = client.AirSigmet()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[AirSigmetEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.AirSigmet().list()
 for air_sigmet in results:
-    print(air_sigmet)
+    print(air_sigmet.data_get())
 ```
 
 ### Common Methods
@@ -197,14 +197,14 @@ airport = client.Airport()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[AirportEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Airport().list()
 for airport in results:
-    print(airport)
+    print(airport.data_get())
 ```
 
 ### Common Methods
@@ -244,13 +244,9 @@ cache = client.Cache()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> CacheEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
-
-```python
-result = client.Cache().load()
-```
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ### Common Methods
 
@@ -301,14 +297,14 @@ cwa = client.Cwa()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[CwaEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Cwa().list()
 for cwa in results:
-    print(cwa)
+    print(cwa.data_get())
 ```
 
 ### Common Methods
@@ -361,14 +357,14 @@ g_airmet = client.GAirmet()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[GAirmetEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.GAirmet().list()
 for g_airmet in results:
-    print(g_airmet)
+    print(g_airmet.data_get())
 ```
 
 ### Common Methods
@@ -448,14 +444,14 @@ metar = client.Metar()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[MetarEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Metar().list()
 for metar in results:
-    print(metar)
+    print(metar.data_get())
 ```
 
 ### Common Methods
@@ -515,14 +511,14 @@ pirep = client.Pirep()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[PirepEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Pirep().list()
 for pirep in results:
-    print(pirep)
+    print(pirep.data_get())
 ```
 
 ### Common Methods
@@ -577,14 +573,14 @@ station_info = client.StationInfo()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[StationInfoEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.StationInfo().list()
 for station_info in results:
-    print(station_info)
+    print(station_info.data_get())
 ```
 
 ### Common Methods
@@ -640,14 +636,14 @@ taf = client.Taf()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[TafEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Taf().list()
 for taf in results:
-    print(taf)
+    print(taf.data_get())
 ```
 
 ### Common Methods
@@ -687,9 +683,9 @@ tcf = client.Tcf()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> dict`
+#### `load(reqmatch, ctrl=None) -> TcfEntity`
 
-Load a single entity matching the given criteria. Returns the entity data and raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, and raises on error.
 
 ```python
 result = client.Tcf().load()
@@ -881,6 +877,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

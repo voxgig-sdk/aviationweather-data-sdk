@@ -18,15 +18,40 @@ const PLAN = [
         "select": {
             "bbox": "v1",
             "date": "v1",
-            "format": "v1",
+            "format": "raw",
             "hazard": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "text/plain",
+            "application/json",
+            "application/geo+json",
+            "application/xml"
+        ],
         "query": [
             "date",
             "bbox",
             "format",
             "hazard"
+        ],
+        "queryArgs": [
+            {
+                "name": "bbox",
+                "wire": "bbox"
+            },
+            {
+                "name": "date",
+                "wire": "date"
+            },
+            {
+                "name": "format",
+                "wire": "format"
+            },
+            {
+                "name": "hazard",
+                "wire": "hazard"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -55,14 +80,34 @@ const PLAN = [
         "args": [],
         "select": {
             "bbox": "v1",
-            "format": "v1",
+            "format": "json",
             "ids": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json",
+            "application/geo+json",
+            "application/xml"
+        ],
         "query": [
             "ids",
             "bbox",
             "format"
+        ],
+        "queryArgs": [
+            {
+                "name": "bbox",
+                "wire": "bbox"
+            },
+            {
+                "name": "format",
+                "wire": "format"
+            },
+            {
+                "name": "ids",
+                "wire": "ids"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -91,7 +136,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/gzip"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": null,
@@ -107,7 +157,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/gzip"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": null,
@@ -123,7 +178,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/gzip"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": null,
@@ -139,7 +199,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/gzip"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": null,
@@ -155,7 +220,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/gzip"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": null,
@@ -171,7 +241,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/gzip"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": null,
@@ -187,7 +262,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/gzip"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": null,
@@ -203,7 +283,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/gzip"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": null,
@@ -219,7 +304,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/gzip"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": null,
@@ -235,7 +325,12 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/gzip"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": null,
@@ -251,13 +346,33 @@ const PLAN = [
         "select": {
             "bbox": "v1",
             "date": "v1",
-            "format": "v1"
+            "format": "raw"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "text/plain",
+            "application/json",
+            "application/geo+json"
+        ],
         "query": [
             "date",
             "bbox",
             "format"
+        ],
+        "queryArgs": [
+            {
+                "name": "bbox",
+                "wire": "bbox"
+            },
+            {
+                "name": "date",
+                "wire": "date"
+            },
+            {
+                "name": "format",
+                "wire": "format"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -284,15 +399,39 @@ const PLAN = [
         "select": {
             "bbox": "v1",
             "date": "v1",
-            "format": "v1",
+            "format": "json",
             "hazard": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json",
+            "application/geo+json",
+            "application/xml"
+        ],
         "query": [
             "date",
             "bbox",
             "format",
             "hazard"
+        ],
+        "queryArgs": [
+            {
+                "name": "bbox",
+                "wire": "bbox"
+            },
+            {
+                "name": "date",
+                "wire": "date"
+            },
+            {
+                "name": "format",
+                "wire": "format"
+            },
+            {
+                "name": "hazard",
+                "wire": "hazard"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -320,17 +459,47 @@ const PLAN = [
         "select": {
             "bbox": "v1",
             "date": "v1",
-            "format": "v1",
+            "format": "raw",
             "ids": "v1",
             "taf": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "text/plain",
+            "application/json",
+            "application/geo+json",
+            "text/csv",
+            "application/xml"
+        ],
         "query": [
             "ids",
             "format",
             "date",
             "bbox",
             "taf"
+        ],
+        "queryArgs": [
+            {
+                "name": "bbox",
+                "wire": "bbox"
+            },
+            {
+                "name": "date",
+                "wire": "date"
+            },
+            {
+                "name": "format",
+                "wire": "format"
+            },
+            {
+                "name": "ids",
+                "wire": "ids"
+            },
+            {
+                "name": "taf",
+                "wire": "taf"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -391,14 +560,39 @@ const PLAN = [
             "age": "v1",
             "bbox": "v1",
             "date": "v1",
-            "format": "v1"
+            "format": "raw"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "text/plain",
+            "application/json",
+            "application/geo+json",
+            "application/xml"
+        ],
         "query": [
             "date",
             "bbox",
             "format",
             "age"
+        ],
+        "queryArgs": [
+            {
+                "name": "age",
+                "wire": "age"
+            },
+            {
+                "name": "bbox",
+                "wire": "bbox"
+            },
+            {
+                "name": "date",
+                "wire": "date"
+            },
+            {
+                "name": "format",
+                "wire": "format"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -438,14 +632,34 @@ const PLAN = [
         "args": [],
         "select": {
             "bbox": "v1",
-            "format": "v1",
+            "format": "json",
             "ids": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json",
+            "application/geo+json",
+            "application/xml"
+        ],
         "query": [
             "ids",
             "bbox",
             "format"
+        ],
+        "queryArgs": [
+            {
+                "name": "bbox",
+                "wire": "bbox"
+            },
+            {
+                "name": "format",
+                "wire": "format"
+            },
+            {
+                "name": "ids",
+                "wire": "ids"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -475,15 +689,40 @@ const PLAN = [
         "select": {
             "bbox": "v1",
             "date": "v1",
-            "format": "v1",
+            "format": "raw",
             "ids": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "text/plain",
+            "application/json",
+            "application/geo+json",
+            "application/xml"
+        ],
         "query": [
             "ids",
             "format",
             "date",
             "bbox"
+        ],
+        "queryArgs": [
+            {
+                "name": "bbox",
+                "wire": "bbox"
+            },
+            {
+                "name": "date",
+                "wire": "date"
+            },
+            {
+                "name": "format",
+                "wire": "format"
+            },
+            {
+                "name": "ids",
+                "wire": "ids"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -525,12 +764,27 @@ const PLAN = [
         "args": [],
         "select": {
             "date": "v1",
-            "format": "v1"
+            "format": "raw"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "text/plain",
+            "application/geo+json"
+        ],
         "query": [
             "date",
             "format"
+        ],
+        "queryArgs": [
+            {
+                "name": "date",
+                "wire": "date"
+            },
+            {
+                "name": "format",
+                "wire": "format"
+            }
         ],
         "auth": null,
         "status": 200,

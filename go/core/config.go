@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -219,16 +220,28 @@ func MakeConfig() map[string]any {
 											"orig": "hazard",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"bbox",
-										"date",
-										"format",
-										"hazard",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "json",
+											"media": "application/geo+json",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "text/plain",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -349,12 +362,20 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"bbox",
-										"format",
-										"ids",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "json",
+											"media": "application/geo+json",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -401,6 +422,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"$action": "aircraftreportscachecsvgz",
 								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "application/gzip",
+								},
 							},
 							map[string]any{
 								"kind": "http",
@@ -430,6 +456,11 @@ func MakeConfig() map[string]any {
 								"args": map[string]any{},
 								"select": map[string]any{
 									"$action": "aircraftreportscachexmlgz",
+								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "application/gzip",
 								},
 							},
 							map[string]any{
@@ -461,6 +492,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"$action": "airsigmetscachecsvgz",
 								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "application/gzip",
+								},
 							},
 							map[string]any{
 								"kind": "http",
@@ -490,6 +526,11 @@ func MakeConfig() map[string]any {
 								"args": map[string]any{},
 								"select": map[string]any{
 									"$action": "airsigmetscachexmlgz",
+								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "application/gzip",
 								},
 							},
 							map[string]any{
@@ -521,6 +562,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"$action": "gairmetscachexmlgz",
 								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "application/gzip",
+								},
 							},
 							map[string]any{
 								"kind": "http",
@@ -550,6 +596,11 @@ func MakeConfig() map[string]any {
 								"args": map[string]any{},
 								"select": map[string]any{
 									"$action": "metarscachecsvgz",
+								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "application/gzip",
 								},
 							},
 							map[string]any{
@@ -581,6 +632,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"$action": "metarscachexmlgz",
 								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "application/gzip",
+								},
 							},
 							map[string]any{
 								"kind": "http",
@@ -610,6 +666,11 @@ func MakeConfig() map[string]any {
 								"args": map[string]any{},
 								"select": map[string]any{
 									"$action": "stationscachejsongz",
+								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "application/gzip",
 								},
 							},
 							map[string]any{
@@ -641,6 +702,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"$action": "stationscachexmlgz",
 								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "application/gzip",
+								},
 							},
 							map[string]any{
 								"kind": "http",
@@ -670,6 +736,11 @@ func MakeConfig() map[string]any {
 								"args": map[string]any{},
 								"select": map[string]any{
 									"$action": "tafscachexmlgz",
+								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "application/gzip",
 								},
 							},
 						},
@@ -781,12 +852,20 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"bbox",
-										"date",
-										"format",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "json",
+											"media": "application/geo+json",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "text/plain",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -907,16 +986,24 @@ func MakeConfig() map[string]any {
 											"orig": "hazard",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"bbox",
-										"date",
-										"format",
-										"hazard",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "json",
+											"media": "application/geo+json",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -1207,14 +1294,28 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"bbox",
-										"date",
-										"format",
-										"ids",
-										"taf",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "json",
+											"media": "application/geo+json",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "text/csv",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "text/plain",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -1378,13 +1479,24 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"age",
-										"bbox",
-										"date",
-										"format",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "json",
+											"media": "application/geo+json",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "text/plain",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -1511,12 +1623,20 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"bbox",
-										"format",
-										"ids",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "json",
+											"media": "application/geo+json",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -1659,13 +1779,24 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"bbox",
-										"date",
-										"format",
-										"ids",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "json",
+											"media": "application/geo+json",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "application/xml",
+										},
+										map[string]any{
+											"kind": "raw",
+											"media": "text/plain",
+										},
 									},
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -1725,11 +1856,16 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"date",
-										"format",
+								"select": map[string]any{},
+								"response": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"kind": "raw",
+											"media": "text/plain",
+										},
 									},
+									"kind": "json",
+									"media": "application/geo+json",
 								},
 							},
 						},

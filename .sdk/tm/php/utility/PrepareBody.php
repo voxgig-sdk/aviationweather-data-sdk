@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 // AviationweatherData SDK utility: prepare_body
 
+require_once __DIR__ . '/Media.php';
+
 class AviationweatherDataPrepareBody
 {
     public static function call(AviationweatherDataContext $ctx): mixed
     {
         if ($ctx->op->input === 'data') {
+            if (AviationweatherDataMedia::isRawRequest($ctx->point)) {
+                return AviationweatherDataMedia::rawBody($ctx->reqdata);
+            }
             $body = ($ctx->utility->transform_request)($ctx);
             // PHP cannot tell an empty map from an empty list, and this
             // vendored struct answers [] where the canonical transform

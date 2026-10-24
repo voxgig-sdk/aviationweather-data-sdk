@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -244,16 +245,28 @@ def make_config():
                       "orig": "hazard",
                       "type": "`$STRING`",
                       "kind": "query",
+                      "field": True,
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "bbox",
-                    "date",
-                    "format",
-                    "hazard",
+                "select": {},
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "json",
+                      "media": "application/geo+json",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "application/xml",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "text/plain",
+                    },
                   ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -374,12 +387,20 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "bbox",
-                    "format",
-                    "ids",
+                "select": {},
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "json",
+                      "media": "application/geo+json",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "application/xml",
+                    },
                   ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -426,6 +447,11 @@ def make_config():
                 "select": {
                   "$action": "aircraftreportscachecsvgz",
                 },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "application/gzip",
+                },
               },
               {
                 "kind": "http",
@@ -455,6 +481,11 @@ def make_config():
                 "args": {},
                 "select": {
                   "$action": "aircraftreportscachexmlgz",
+                },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "application/gzip",
                 },
               },
               {
@@ -486,6 +517,11 @@ def make_config():
                 "select": {
                   "$action": "airsigmetscachecsvgz",
                 },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "application/gzip",
+                },
               },
               {
                 "kind": "http",
@@ -515,6 +551,11 @@ def make_config():
                 "args": {},
                 "select": {
                   "$action": "airsigmetscachexmlgz",
+                },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "application/gzip",
                 },
               },
               {
@@ -546,6 +587,11 @@ def make_config():
                 "select": {
                   "$action": "gairmetscachexmlgz",
                 },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "application/gzip",
+                },
               },
               {
                 "kind": "http",
@@ -575,6 +621,11 @@ def make_config():
                 "args": {},
                 "select": {
                   "$action": "metarscachecsvgz",
+                },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "application/gzip",
                 },
               },
               {
@@ -606,6 +657,11 @@ def make_config():
                 "select": {
                   "$action": "metarscachexmlgz",
                 },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "application/gzip",
+                },
               },
               {
                 "kind": "http",
@@ -635,6 +691,11 @@ def make_config():
                 "args": {},
                 "select": {
                   "$action": "stationscachejsongz",
+                },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "application/gzip",
                 },
               },
               {
@@ -666,6 +727,11 @@ def make_config():
                 "select": {
                   "$action": "stationscachexmlgz",
                 },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "application/gzip",
+                },
               },
               {
                 "kind": "http",
@@ -695,6 +761,11 @@ def make_config():
                 "args": {},
                 "select": {
                   "$action": "tafscachexmlgz",
+                },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "application/gzip",
                 },
               },
             ],
@@ -806,12 +877,20 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "bbox",
-                    "date",
-                    "format",
+                "select": {},
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "json",
+                      "media": "application/geo+json",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "text/plain",
+                    },
                   ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -932,16 +1011,24 @@ def make_config():
                       "orig": "hazard",
                       "type": "`$STRING`",
                       "kind": "query",
+                      "field": True,
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "bbox",
-                    "date",
-                    "format",
-                    "hazard",
+                "select": {},
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "json",
+                      "media": "application/geo+json",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "application/xml",
+                    },
                   ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -1232,14 +1319,28 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "bbox",
-                    "date",
-                    "format",
-                    "ids",
-                    "taf",
+                "select": {},
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "json",
+                      "media": "application/geo+json",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "application/xml",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "text/csv",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "text/plain",
+                    },
                   ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -1403,13 +1504,24 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "age",
-                    "bbox",
-                    "date",
-                    "format",
+                "select": {},
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "json",
+                      "media": "application/geo+json",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "application/xml",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "text/plain",
+                    },
                   ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -1536,12 +1648,20 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "bbox",
-                    "format",
-                    "ids",
+                "select": {},
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "json",
+                      "media": "application/geo+json",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "application/xml",
+                    },
                   ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -1684,13 +1804,24 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "bbox",
-                    "date",
-                    "format",
-                    "ids",
+                "select": {},
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "json",
+                      "media": "application/geo+json",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "application/xml",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "text/plain",
+                    },
                   ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -1750,11 +1881,16 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "date",
-                    "format",
+                "select": {},
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "raw",
+                      "media": "text/plain",
+                    },
                   ],
+                  "kind": "json",
+                  "media": "application/geo+json",
                 },
               },
             ],

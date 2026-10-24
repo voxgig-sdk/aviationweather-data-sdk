@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.GAirmet();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('g_airmet hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.AviationweatherDataSDK.test(offline).GAirmet().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.AviationweatherDataSDK.test(offline).GAirmet()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.AviationweatherDataSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.GAirmet().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.AviationweatherDataSDK.test().GAirmet().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.AviationweatherDataSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.GAirmet().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.GAirmet().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.AviationweatherDataSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.GAirmet().list({ "bbox": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.AVIATIONWEATHER_DATA_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "altitudeHigh": { "a": true, "h": "Altitude High", "n": "altitudeHigh", "r": false, "sh": "Upper altitude in feet MSL", "t": "`$INTEGER`", "key$": "altitudeHigh", "index$": 0 }, "altitudeLow": { "a": true, "h": "Altitude Low", "n": "altitudeLow", "r": false, "sh": "Lower altitude in feet MSL", "t": "`$INTEGER`", "key$": "altitudeLow", "index$": 1 }, "hazard": { "a": true, "h": "Hazard", "n": "hazard", "r": false, "sh": "Hazard type", "t": "`$STRING`", "key$": "hazard", "index$": 2 }, "issueTime": { "a": true, "fo": "date-time", "h": "Issue Time", "n": "issueTime", "r": false, "sh": "Issue time in ISO8601 format", "t": "`$STRING`", "key$": "issueTime", "index$": 3 }, "qualifier": { "a": true, "h": "Qualifier", "n": "qualifier", "r": false, "sh": "Forecast qualifier", "t": "`$STRING`", "key$": "qualifier", "index$": 4 }, "severity": { "a": true, "h": "Severity", "n": "severity", "r": false, "sh": "Severity level", "t": "`$STRING`", "key$": "severity", "index$": 5 }, "validTimeFrom": { "a": true, "fo": "date-time", "h": "Valid Time From", "n": "validTimeFrom", "r": false, "sh": "Valid time from in ISO8601 format", "t": "`$STRING`", "key$": "validTimeFrom", "index$": 6 }, "validTimeTo": { "a": true, "fo": "date-time", "h": "Valid Time To", "n": "validTimeTo", "r": false, "sh": "Valid time to in ISO8601 format", "t": "`$STRING`", "key$": "validTimeTo", "index$": 7 } }, "name": "g_airmet", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /api/data/gairmet", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "bbox", "or": "bbox", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "date", "or": "date", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "ex": "json", "k": "query", "n": "format", "or": "format", "r": false, "t": "`$STRING`", "index$": 2 }, { "a": true, "k": "query", "n": "hazard", "or": "hazard", "r": false, "t": "`$STRING`", "index$": 3 }] }, "k": "http", "m": "GET", "o": "/api/data/gairmet", "q": { "exist": ["bbox", "date", "format", "hazard"] }, "r": {}, "s": [{ "lit": "api" }, { "lit": "data" }, { "lit": "gairmet" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "g_airmet", "name__orig": "g_airmet", "Name": "GAirmet", "name_": "g_airmet", "name-": "g-airmet", "NAME": "G_AIRMET", "index$": 4 }, { "active": true, "entity": "g_airmet", "key$": "BasicGAirmetFlow", "kind": "basic", "name": "BasicGAirmetFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "g_airmet_ref01" } }], "index$": 0 }] }, 'GAirmet', { "GET /api/data/gairmet": { "protocol": "http", "parameters": [{ "name": "date", "in": "query", "description": "Date for historical data (ISO8601 format)", "required": false, "schema": { "type": "string", "format": "date-time" }, "index$": 0 }, { "name": "bbox", "in": "query", "description": "Bounding box coordinates (minLon,minLat,maxLon,maxLat)", "required": false, "schema": { "type": "string" }, "index$": 1 }, { "name": "format", "in": "query", "description": "Output format", "required": false, "schema": { "type": "string", "enum": ["json", "geojson", "xml"], "default": "json" }, "index$": 2 }, { "name": "hazard", "in": "query", "description": "Filter by hazard type", "required": false, "schema": { "type": "string" }, "index$": 3 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "altitudeHigh": { "a": true, "h": "Altitude High", "n": "altitudeHigh", "r": false, "sh": "Upper altitude in feet MSL", "t": "`$INTEGER`", "key$": "altitudeHigh", "index$": 0 }, "altitudeLow": { "a": true, "h": "Altitude Low", "n": "altitudeLow", "r": false, "sh": "Lower altitude in feet MSL", "t": "`$INTEGER`", "key$": "altitudeLow", "index$": 1 }, "hazard": { "a": true, "h": "Hazard", "n": "hazard", "r": false, "sh": "Hazard type", "t": "`$STRING`", "key$": "hazard", "index$": 2 }, "issueTime": { "a": true, "fo": "date-time", "h": "Issue Time", "n": "issueTime", "r": false, "sh": "Issue time in ISO8601 format", "t": "`$STRING`", "key$": "issueTime", "index$": 3 }, "qualifier": { "a": true, "h": "Qualifier", "n": "qualifier", "r": false, "sh": "Forecast qualifier", "t": "`$STRING`", "key$": "qualifier", "index$": 4 }, "severity": { "a": true, "h": "Severity", "n": "severity", "r": false, "sh": "Severity level", "t": "`$STRING`", "key$": "severity", "index$": 5 }, "validTimeFrom": { "a": true, "fo": "date-time", "h": "Valid Time From", "n": "validTimeFrom", "r": false, "sh": "Valid time from in ISO8601 format", "t": "`$STRING`", "key$": "validTimeFrom", "index$": 6 }, "validTimeTo": { "a": true, "fo": "date-time", "h": "Valid Time To", "n": "validTimeTo", "r": false, "sh": "Valid time to in ISO8601 format", "t": "`$STRING`", "key$": "validTimeTo", "index$": 7 } }, "name": "g_airmet", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /api/data/gairmet", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "bbox", "or": "bbox", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "date", "or": "date", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "ex": "json", "k": "query", "n": "format", "or": "format", "r": false, "t": "`$STRING`", "index$": 2 }, { "a": true, "k": "query", "n": "hazard", "or": "hazard", "r": false, "t": "`$STRING`", "index$": 3 }] }, "k": "http", "m": "GET", "o": "/api/data/gairmet", "q": {}, "r": {}, "rs": { "alternatives": [{ "kind": "json", "media": "application/geo+json" }, { "kind": "raw", "media": "application/xml" }], "kind": "json", "media": "application/json" }, "s": [{ "lit": "api" }, { "lit": "data" }, { "lit": "gairmet" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "g_airmet", "name__orig": "g_airmet", "Name": "GAirmet", "name_": "g_airmet", "name-": "g-airmet", "NAME": "G_AIRMET", "index$": 4 }, { "active": true, "entity": "g_airmet", "key$": "BasicGAirmetFlow", "kind": "basic", "name": "BasicGAirmetFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "g_airmet_ref01" } }], "index$": 0 }] }, 'GAirmet', { "GET /api/data/gairmet": { "protocol": "http", "parameters": [{ "name": "date", "in": "query", "description": "Date for historical data (ISO8601 format)", "required": false, "schema": { "type": "string", "format": "date-time" }, "index$": 0 }, { "name": "bbox", "in": "query", "description": "Bounding box coordinates (minLon,minLat,maxLon,maxLat)", "required": false, "schema": { "type": "string" }, "index$": 1 }, { "name": "format", "in": "query", "description": "Output format", "required": false, "schema": { "type": "string", "enum": ["json", "geojson", "xml"], "default": "json" }, "index$": 2 }, { "name": "hazard", "in": "query", "description": "Filter by hazard type", "required": false, "schema": { "type": "string" }, "index$": 3 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const g_airmet_ref01_list = (await g_airmet_ref01_ent.list(g_airmet_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

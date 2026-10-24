@@ -159,13 +159,23 @@ main: kit: entity: pirep: {
           }
           m: "GET"
           o: "/api/data/pirep"
-          q: {
-            exist: [
-              "age"
-              "bbox"
-              "date"
-              "format"
+          rs: {
+            alternatives: [
+              {
+                kind: "json"
+                media: "application/geo+json"
+              }
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
+              {
+                kind: "raw"
+                media: "text/plain"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

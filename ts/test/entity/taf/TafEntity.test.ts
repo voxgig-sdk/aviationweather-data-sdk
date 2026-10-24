@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { AviationweatherDataSDK, BaseFeature, stdutil } from '../../..'
+import { AviationweatherDataSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('TafEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('taf hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of AviationweatherDataSDK.test(offline).Taf().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of AviationweatherDataSDK.test(offline).Taf()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = AviationweatherDataSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Taf().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of AviationweatherDataSDK.test().Taf().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new AviationweatherDataSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Taf().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Taf().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = AviationweatherDataSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Taf().list({"bbox":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.AVIATIONWEATHER_DATA_TEST_LIVE
@@ -51,7 +109,7 @@ describe('TafEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"bulletinTime":{"a":true,"fo":"date-time","h":"Bulletin Time","n":"bulletinTime","r":false,"sh":"Bulletin time in ISO8601 format","t":"`$STRING`","key$":"bulletinTime","index$":0},"elev":{"a":true,"h":"Elev","n":"elev","r":false,"sh":"Elevation in meters","t":"`$NUMBER`","key$":"elev","index$":1},"fcsts":{"a":true,"h":"Fcsts","n":"fcsts","r":false,"sh":"Forecast periods","t":"`$ARRAY`","key$":"fcsts","index$":2},"icaoId":{"a":true,"h":"Icao Id","n":"icaoId","r":false,"sh":"ICAO station identifier","t":"`$STRING`","key$":"icaoId","index$":3},"issueTime":{"a":true,"fo":"date-time","h":"Issue Time","n":"issueTime","r":false,"sh":"TAF issue time in ISO8601 format","t":"`$STRING`","key$":"issueTime","index$":4},"lat":{"a":true,"h":"Lat","n":"lat","r":false,"sh":"Latitude","t":"`$NUMBER`","key$":"lat","index$":5},"lon":{"a":true,"h":"Lon","n":"lon","r":false,"sh":"Longitude","t":"`$NUMBER`","key$":"lon","index$":6},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Station name","t":"`$STRING`","key$":"name","index$":7},"rawTAF":{"a":true,"h":"Raw Taf","n":"rawTAF","r":false,"sh":"Raw TAF forecast text","t":"`$STRING`","key$":"rawTAF","index$":8},"validTimeFrom":{"a":true,"fo":"date-time","h":"Valid Time From","n":"validTimeFrom","r":false,"sh":"Valid time from in ISO8601 format","t":"`$STRING`","key$":"validTimeFrom","index$":9},"validTimeTo":{"a":true,"fo":"date-time","h":"Valid Time To","n":"validTimeTo","r":false,"sh":"Valid time to in ISO8601 format","t":"`$STRING`","key$":"validTimeTo","index$":10}},"name":"taf","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /api/data/taf","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"bbox","or":"bbox","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"date","or":"date","r":false,"t":"`$STRING`","index$":1},{"a":true,"ex":"raw","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"ids","or":"ids","r":false,"t":"`$STRING`","index$":3}]},"k":"http","m":"GET","o":"/api/data/taf","q":{"exist":["bbox","date","format","ids"]},"r":{},"s":[{"lit":"api"},{"lit":"data"},{"lit":"taf"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"taf","name__orig":"taf","Name":"Taf","name_":"taf","name-":"taf","NAME":"TAF","index$":8}, {"active":true,"entity":"taf","key$":"BasicTafFlow","kind":"basic","name":"BasicTafFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"taf_ref01"}}],"index$":0}]}, 'Taf', {"GET /api/data/taf":{"protocol":"http","parameters":[{"name":"ids","in":"query","description":"Comma-separated list of ICAO station identifiers","required":false,"schema":{"type":"string"},"index$":0},{"name":"format","in":"query","description":"Output format","required":false,"schema":{"type":"string","enum":["raw","json","geojson","xml","iwxxm"],"default":"raw"},"index$":1},{"name":"date","in":"query","description":"Date for historical data (ISO8601 format)","required":false,"schema":{"type":"string","format":"date-time"},"index$":2},{"name":"bbox","in":"query","description":"Bounding box coordinates (minLon,minLat,maxLon,maxLat)","required":false,"schema":{"type":"string"},"index$":3}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"bulletinTime":{"a":true,"fo":"date-time","h":"Bulletin Time","n":"bulletinTime","r":false,"sh":"Bulletin time in ISO8601 format","t":"`$STRING`","key$":"bulletinTime","index$":0},"elev":{"a":true,"h":"Elev","n":"elev","r":false,"sh":"Elevation in meters","t":"`$NUMBER`","key$":"elev","index$":1},"fcsts":{"a":true,"h":"Fcsts","n":"fcsts","r":false,"sh":"Forecast periods","t":"`$ARRAY`","key$":"fcsts","index$":2},"icaoId":{"a":true,"h":"Icao Id","n":"icaoId","r":false,"sh":"ICAO station identifier","t":"`$STRING`","key$":"icaoId","index$":3},"issueTime":{"a":true,"fo":"date-time","h":"Issue Time","n":"issueTime","r":false,"sh":"TAF issue time in ISO8601 format","t":"`$STRING`","key$":"issueTime","index$":4},"lat":{"a":true,"h":"Lat","n":"lat","r":false,"sh":"Latitude","t":"`$NUMBER`","key$":"lat","index$":5},"lon":{"a":true,"h":"Lon","n":"lon","r":false,"sh":"Longitude","t":"`$NUMBER`","key$":"lon","index$":6},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Station name","t":"`$STRING`","key$":"name","index$":7},"rawTAF":{"a":true,"h":"Raw Taf","n":"rawTAF","r":false,"sh":"Raw TAF forecast text","t":"`$STRING`","key$":"rawTAF","index$":8},"validTimeFrom":{"a":true,"fo":"date-time","h":"Valid Time From","n":"validTimeFrom","r":false,"sh":"Valid time from in ISO8601 format","t":"`$STRING`","key$":"validTimeFrom","index$":9},"validTimeTo":{"a":true,"fo":"date-time","h":"Valid Time To","n":"validTimeTo","r":false,"sh":"Valid time to in ISO8601 format","t":"`$STRING`","key$":"validTimeTo","index$":10}},"name":"taf","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /api/data/taf","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"bbox","or":"bbox","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"date","or":"date","r":false,"t":"`$STRING`","index$":1},{"a":true,"ex":"raw","k":"query","n":"format","or":"format","r":false,"t":"`$STRING`","index$":2},{"a":true,"k":"query","n":"ids","or":"ids","r":false,"t":"`$STRING`","index$":3}]},"k":"http","m":"GET","o":"/api/data/taf","q":{},"r":{},"rs":{"alternatives":[{"kind":"json","media":"application/geo+json"},{"kind":"raw","media":"application/xml"},{"kind":"raw","media":"text/plain"}],"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"data"},{"lit":"taf"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"taf","name__orig":"taf","Name":"Taf","name_":"taf","name-":"taf","NAME":"TAF","index$":8}, {"active":true,"entity":"taf","key$":"BasicTafFlow","kind":"basic","name":"BasicTafFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"taf_ref01"}}],"index$":0}]}, 'Taf', {"GET /api/data/taf":{"protocol":"http","parameters":[{"name":"ids","in":"query","description":"Comma-separated list of ICAO station identifiers","required":false,"schema":{"type":"string"},"index$":0},{"name":"format","in":"query","description":"Output format","required":false,"schema":{"type":"string","enum":["raw","json","geojson","xml","iwxxm"],"default":"raw"},"index$":1},{"name":"date","in":"query","description":"Date for historical data (ISO8601 format)","required":false,"schema":{"type":"string","format":"date-time"},"index$":2},{"name":"bbox","in":"query","description":"Bounding box coordinates (minLon,minLat,maxLon,maxLat)","required":false,"schema":{"type":"string"},"index$":3}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('TafEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

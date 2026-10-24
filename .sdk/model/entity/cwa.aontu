@@ -98,12 +98,19 @@ main: kit: entity: cwa: {
           }
           m: "GET"
           o: "/api/data/cwa"
-          q: {
-            exist: [
-              "bbox"
-              "date"
-              "format"
+          rs: {
+            alternatives: [
+              {
+                kind: "json"
+                media: "application/geo+json"
+              }
+              {
+                kind: "raw"
+                media: "text/plain"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

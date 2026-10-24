@@ -112,13 +112,19 @@ main: kit: entity: g_airmet: {
           }
           m: "GET"
           o: "/api/data/gairmet"
-          q: {
-            exist: [
-              "bbox"
-              "date"
-              "format"
-              "hazard"
+          rs: {
+            alternatives: [
+              {
+                kind: "json"
+                media: "application/geo+json"
+              }
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

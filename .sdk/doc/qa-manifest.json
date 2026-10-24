@@ -3,5 +3,42 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Aircraft type",
+      "Altimeter setting in inches of mercury",
+      "Altitude in feet MSL",
+      "Aviation Weather Center Production Server",
+      "Bulletin time in ISO8601 format",
+      "Center Weather Service Unit",
+      "City",
+      "Cloud layers",
+      "Cloud reports",
+      "Country code",
+      "Dewpoint in Celsius",
+      "Elevation in meters",
+      "Flight Information Region",
+      "Flight category (VFR, MVFR, IFR, LIFR)",
+      "Forecast periods",
+      "Forecast qualifier",
+      "Hazard type",
+      "IATA identifier",
+      "ICAO airport identifier",
+      "ICAO station identifier",
+      "Icing report",
+      "Issue time in ISO8601 format",
+      "Latitude",
+      "Lower altitude in feet MSL",
+      "No content - valid request but no data available",
+      "Raw CWA text",
+      "SIGMET type",
+      "Sequence number",
+      "Series identifier",
+      "Successful response",
+      "TAF issue time in ISO8601 format",
+      "This API provides machine-to-machine access to aviation weather data, including METARs, TAFs, AIRMETs, and SIGMETs. It enables users to fetch up-to-date weather information for flight planning and operations. The service allows queries for the past 15 days of data and provides cache options for efficient data retrieval.",
+      "Upper altitude in feet MSL"
+    ]
+  }
 }
